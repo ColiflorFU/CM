@@ -25,15 +25,19 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
         <div class="container-fluid px-4 px-lg-5">
             <a class="navbar-brand" href="#page-top">
-                <!-- Mobile Logo (default visible, hidden on lg) -->
-                <img src="recursos/Logos/LOGO WEB MOBILE.svg" alt="CM Arquitectura" height="32" class="d-lg-none">
-                <!-- Desktop Logo (hidden default, visible on lg) -->
-                <img src="recursos/Logos/LOGO WEB DESK.svg" alt="CM Arquitectura" height="32" class="d-none d-lg-block">
+                <!-- Mobile Logo (< 800px) -->
+                <img src="recursos/Logos/LOGO WEB MOBILE.svg" alt="CM Arquitectura" height="32" class="logo-mobile">
+                <!-- Desktop Logo (> 800px) -->
+                <img src="recursos/Logos/LOGO WEB DESK.svg" alt="CM Arquitectura" height="32" class="logo-desktop">
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <div class="toggler-custom">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -398,49 +402,56 @@
 
                 <div class="project-list">
                     <!-- Project Item 1 -->
-                    <div class="project-item border-top border-secondary py-5 position-relative group">
-                        <div class="row align-items-center">
-                            <div class="col-lg-2 text-accent fw-bold h4 mb-0">01</div>
-                            <div class="col-lg-7">
-                                <h3 class="text-white font-montserrat fw-bold display-6 mb-0 project-title">RESIDENCIA
-                                    LOS
-                                    ÁLAMOS</h3>
-                            </div>
-                            <div class="col-lg-3 text-end d-none d-lg-block">
-                                <span class="text-white-50 text-uppercase ls-1">Residencial</span>
+                    <a href="proyecto-residencia.html" class="text-decoration-none d-block">
+                        <div class="project-item border-top border-secondary py-5 position-relative group">
+                            <div class="row align-items-center">
+                                <div class="col-lg-2 text-accent fw-bold h4 mb-0">01</div>
+                                <div class="col-lg-7">
+                                    <h3 class="text-white font-montserrat fw-bold display-6 mb-0 project-title">
+                                        RESIDENCIA LOS ÁLAMOS
+                                    </h3>
+                                </div>
+                                <div class="col-lg-3 text-end d-none d-lg-block">
+                                    <span class="text-white-50 text-uppercase ls-1">Residencial</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Project Item 2 -->
-                    <div class="project-item border-top border-secondary py-5 position-relative group">
-                        <div class="row align-items-center">
-                            <div class="col-lg-2 text-accent fw-bold h4 mb-0">02</div>
-                            <div class="col-lg-7">
-                                <h3 class="text-white font-montserrat fw-bold display-6 mb-0 project-title">TORRE
-                                    CENTRAL
-                                </h3>
-                            </div>
-                            <div class="col-lg-3 text-end d-none d-lg-block">
-                                <span class="text-white-50 text-uppercase ls-1">Corporativo</span>
+                    <a href="proyecto-torre.html" class="text-decoration-none d-block">
+                        <div class="project-item border-top border-secondary py-5 position-relative group">
+                            <div class="row align-items-center">
+                                <div class="col-lg-2 text-accent fw-bold h4 mb-0">02</div>
+                                <div class="col-lg-7">
+                                    <h3 class="text-white font-montserrat fw-bold display-6 mb-0 project-title">
+                                        TORRE CENTRAL
+                                    </h3>
+                                </div>
+                                <div class="col-lg-3 text-end d-none d-lg-block">
+                                    <span class="text-white-50 text-uppercase ls-1">Corporativo</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Project Item 3 -->
-                    <div class="project-item border-top border-bottom border-secondary py-5 position-relative group">
-                        <div class="row align-items-center">
-                            <div class="col-lg-2 text-accent fw-bold h4 mb-0">03</div>
-                            <div class="col-lg-7">
-                                <h3 class="text-white font-montserrat fw-bold display-6 mb-0 project-title">CASA DE
-                                    CAMPO
-                                </h3>
-                            </div>
-                            <div class="col-lg-3 text-end d-none d-lg-block">
-                                <span class="text-white-50 text-uppercase ls-1">Vacacional</span>
+                    <a href="proyecto-casa-campo.html" class="text-decoration-none d-block">
+                        <div
+                            class="project-item border-top border-bottom border-secondary py-5 position-relative group">
+                            <div class="row align-items-center">
+                                <div class="col-lg-2 text-accent fw-bold h4 mb-0">03</div>
+                                <div class="col-lg-7">
+                                    <h3 class="text-white font-montserrat fw-bold display-6 mb-0 project-title">
+                                        CASA DE CAMPO
+                                    </h3>
+                                </div>
+                                <div class="col-lg-3 text-end d-none d-lg-block">
+                                    <span class="text-white-50 text-uppercase ls-1">Vacacional</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
