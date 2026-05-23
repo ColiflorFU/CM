@@ -32,15 +32,60 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     };
 
-    // Collapse responsive navbar when toggler is visible
+    // Mobile navigation behavior
     const navbarToggler = document.body.querySelector('.navbar-toggler');
+    const navbarResponsive = document.body.querySelector('#navbarResponsive');
     const responsiveNavItems = [].slice.call(
         document.querySelectorAll('#navbarResponsive .nav-link')
     );
+
+    const closeMobileMenu = function () {
+        if (!navbarResponsive || !navbarResponsive.classList.contains('show')) {
+            return;
+        }
+
+        const collapse = bootstrap.Collapse.getOrCreateInstance(navbarResponsive, {
+            toggle: false
+        });
+        collapse.hide();
+    };
+
+    if (navbarResponsive && mainNav) {
+        navbarResponsive.addEventListener('show.bs.collapse', () => {
+            document.body.classList.add('mobile-menu-open');
+            mainNav.classList.add('mobile-menu-open');
+        });
+
+        navbarResponsive.addEventListener('hidden.bs.collapse', () => {
+            document.body.classList.remove('mobile-menu-open');
+            mainNav.classList.remove('mobile-menu-open');
+        });
+
+        navbarResponsive.addEventListener('click', (event) => {
+            if (event.target === navbarResponsive) {
+                closeMobileMenu();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            const isMobileTogglerVisible = navbarToggler && window.getComputedStyle(navbarToggler).display !== 'none';
+            if (!isMobileTogglerVisible || !navbarResponsive.classList.contains('show')) {
+                return;
+            }
+
+            const clickedMenuLink = event.target.closest('#navbarResponsive .nav-link');
+            const clickedToggler = navbarToggler.contains(event.target);
+
+            if (!clickedMenuLink && !clickedToggler) {
+                closeMobileMenu();
+            }
+        });
+    }
+
     responsiveNavItems.map(function (responsiveNavItem) {
         responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
+            if (navbarToggler && window.getComputedStyle(navbarToggler).display !== 'none') {
+                closeMobileMenu();
             }
         });
     });

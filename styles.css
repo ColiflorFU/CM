@@ -171,10 +171,11 @@ h6 {
     #navbarResponsive {
         background-color: var(--color-blue-atlantic);
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
+        inset: 0;
+        width: 100vw;
+        max-width: none;
         height: 100vh;
+        height: 100dvh;
         padding-top: 6rem;
         /* Space for header/logo */
         padding-left: 1.5rem;
@@ -192,6 +193,8 @@ h6 {
         z-index: 1040;
         /* Behind toggler/brand */
         overflow-y: auto;
+        overflow-x: hidden;
+        transform: none;
     }
 
     /* Only show when Bootstrap adds the 'show' class */
@@ -204,10 +207,11 @@ h6 {
     #navbarResponsive.collapsing {
         display: flex;
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
+        inset: 0;
+        width: 100vw;
+        max-width: none;
         height: 100vh;
+        height: 100dvh;
         z-index: 1040;
         background-color: var(--color-blue-atlantic);
         flex-direction: column;
@@ -221,10 +225,40 @@ h6 {
         transition: none !important;
     }
 
+    body.mobile-menu-open {
+        overflow: hidden;
+    }
+
+    #mainNav.mobile-menu-open {
+        background-color: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+
+    #mainNav.mobile-menu-open .navbar-brand img,
+    #mainNav.mobile-menu-open.navbar-shrink .navbar-brand img {
+        filter: brightness(0) invert(1);
+    }
+
+    #mainNav.mobile-menu-open #navbarResponsive .nav-link,
+    #mainNav.navbar-shrink.mobile-menu-open #navbarResponsive .nav-link {
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    #mainNav.mobile-menu-open #navbarResponsive .nav-link:hover,
+    #mainNav.mobile-menu-open #navbarResponsive .nav-link.active {
+        color: var(--color-accent);
+    }
+
+    #mainNav.mobile-menu-open .navbar-toggler span,
+    #mainNav.navbar-shrink.mobile-menu-open .navbar-toggler span {
+        background-color: var(--color-accent);
+    }
+
     @keyframes menuSlideDown {
         from {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(-12px);
         }
 
         to {
@@ -241,7 +275,7 @@ h6 {
 
         to {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(-12px);
         }
     }
 
@@ -306,15 +340,17 @@ h6 {
         width: 100%;
         text-align: left;
         /* Align text left */
+        margin: 0;
     }
 
     .navbar-nav .nav-link {
         margin-left: 0;
-        padding: 1rem 0;
+        padding: 1.05rem 0;
         /* Reduced padding */
         font-size: 1.2rem;
         /* Reduced font size from 1.5rem */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.82);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         opacity: 0;
         animation: itemFadeIn 0.4s ease-out forwards;
     }
@@ -409,7 +445,10 @@ h6 {
     color: var(--color-accent) !important;
 }
 
-.project-detail-page .project-hero .text-white,
+.project-detail-page .project-hero .text-white {
+    color: #fff !important;
+}
+
 .project-detail-page .project-hero .text-white-50 {
     color: rgba(255, 255, 255, 0.85) !important;
 }
@@ -448,6 +487,29 @@ h6 {
 
 /* Reduce font sizes on mobile to prevent overflow */
 @media (max-width: 576px) {
+    :root {
+        --mobile-content-gutter: max(1.5rem, calc(env(safe-area-inset-left) + 8px));
+        --mobile-content-gutter-right: max(1.5rem, calc(env(safe-area-inset-right) + 8px));
+    }
+
+    #mainNav > .container-fluid,
+    #navbarResponsive,
+    .page-section > .container,
+    footer > .container {
+        padding-left: var(--mobile-content-gutter) !important;
+        padding-right: var(--mobile-content-gutter-right) !important;
+    }
+
+    .btn-outline-accent,
+    .btn-xl {
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .progress {
+        width: 100%;
+    }
+
     .hero-content h1 {
         font-size: 2.5rem !important;
     }
@@ -511,8 +573,8 @@ h6 {
 
 .project-item .project-title {
     transition: all 0.4s ease;
-    -webkit-text-stroke: 1px var(--color-blue-atlantic);
-    color: transparent;
+    -webkit-text-stroke: 0;
+    color: var(--color-concrete);
 }
 
 .project-item:hover .project-title {
@@ -554,7 +616,7 @@ h6 {
 }
 
 /* Footer */
-footer {
+body > footer {
     background-color: var(--color-blue-atlantic) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
@@ -696,21 +758,27 @@ footer {
     color: var(--color-grey-slate) !important;
 }
 
-/* Restablecer colores claros para el footer (que usa .bg-dark-2 pero tiene fondo oscuro) */
-footer.bg-dark-2, footer {
+/* Restablecer colores claros para el footer principal (que usa .bg-dark-2 pero tiene fondo oscuro) */
+body > footer.bg-dark-2,
+body > footer {
     color: var(--color-white-editorial) !important;
 }
 
-footer.bg-dark-2 h5, footer h5,
-footer.bg-dark-2 .text-white, footer .text-white {
+body > footer.bg-dark-2 h5,
+body > footer h5,
+body > footer.bg-dark-2 .text-white,
+body > footer .text-white {
     color: #FFFFFF !important;
 }
 
-footer.bg-dark-2 .text-white-50, footer .text-white-50,
-footer.bg-dark-2 a, footer a {
+body > footer.bg-dark-2 .text-white-50,
+body > footer .text-white-50,
+body > footer.bg-dark-2 a,
+body > footer a {
     color: rgba(255, 255, 255, 0.6) !important;
 }
 
-footer.bg-dark-2 a:hover, footer a:hover {
+body > footer.bg-dark-2 a:hover,
+body > footer a:hover {
     color: var(--color-orange-action) !important;
 }
