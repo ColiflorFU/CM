@@ -629,7 +629,7 @@ h6 {
     display: flex;
     align-items: center;
     overflow: hidden;
-    background-image: url('recursos/HeroSection/Fondo.jpg');
+    background-image: url('Recursos/Miscelaneos/CTA.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -638,7 +638,7 @@ h6 {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.44);
     backdrop-filter: grayscale(1);
 }
 
@@ -646,8 +646,8 @@ h6 {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.95)),
-        linear-gradient(180deg, rgba(234, 234, 233, 0.85), rgba(255, 255, 255, 0.62));
+        linear-gradient(90deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.44)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.22));
 }
 
 .cta-break-content {
@@ -656,12 +656,16 @@ h6 {
 
 .cta-break-content h2 {
     color: var(--color-blue-atlantic);
+    font-size: 2.15rem !important;
+    line-height: 1.28;
 }
 
 .cta-break-content p {
     max-width: 620px;
     margin-left: auto;
     margin-right: auto;
+    color: var(--color-blue-atlantic) !important;
+    font-weight: 500;
 }
 
 /* Team detail pages */
@@ -758,12 +762,14 @@ h6 {
 }
 
 .team-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     background-color: #FFFFFF;
     border: 1px solid rgba(20, 32, 59, 0.08);
     padding: 2rem;
     text-decoration: none;
     transition: all 0.3s ease;
+    height: 100%;
 }
 
 .team-card:hover {
@@ -789,6 +795,10 @@ h6 {
     color: var(--color-blue-atlantic);
 }
 
+.team-card .link-accent {
+    margin-top: auto;
+}
+
 @media (max-width: 767.98px) {
     .timeline-item {
         grid-template-columns: 1fr;
@@ -805,6 +815,31 @@ body > footer {
 .form-control::placeholder {
     color: var(--color-concrete);
     opacity: 0.5;
+}
+
+#contactForm .form-control {
+    background-color: var(--color-white-editorial) !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    color: var(--color-blue-atlantic) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-shadow: none !important;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+#contactForm .form-control:focus {
+    background-color: #FFFFFF !important;
+    border-color: var(--color-orange-action) !important;
+}
+
+#contactForm .form-floating > label {
+    padding-left: 1rem !important;
+    color: var(--color-grey-steel) !important;
+}
+
+#contactForm textarea.form-control {
+    min-height: 120px;
 }
 
 .btn-circle {
