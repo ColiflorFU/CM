@@ -1,4 +1,4 @@
-/* Global Vars & Reset */
+﻿/* Global Vars & Reset */
 :root {
     --bs-font-sans-serif: 'Montserrat', sans-serif;
 
@@ -782,3 +782,4 @@ body > footer.bg-dark-2 a:hover,
 body > footer a:hover {
     color: var(--color-orange-action) !important;
 }
+

@@ -1,4 +1,4 @@
-/*!
+﻿/*!
 * Minimal script for Navbar interactions
 */
 window.addEventListener('DOMContentLoaded', event => {
@@ -106,3 +106,4 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
