@@ -429,6 +429,11 @@ h6 {
     padding-bottom: 9rem;
 }
 
+.stats-panel .progress-bar {
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--progress-delay, 0s);
+}
+
 /* Project detail pages use a light content surface. These overrides keep
    inherited dark-theme utility classes readable without changing the hero/footer. */
 .project-detail-page section.bg-dark-1 .text-white,
@@ -530,8 +535,15 @@ h6 {
 @media (min-width: 992px) {
     .hero-content {
         padding-top: 0;
-        padding-left: 5rem !important;
-        width: auto;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: min(560px, calc(100% - 8rem));
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-content p {
+        width: 78% !important;
     }
 }
 
@@ -553,6 +565,23 @@ h6 {
     background-color: var(--color-orange-action);
     border-color: var(--color-orange-action);
     opacity: 1;
+}
+
+.carousel-item .hero-content {
+    opacity: 0;
+    transform: translateX(22px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.carousel-item.active .hero-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.carousel-item.carousel-item-start .hero-content,
+.carousel-item.carousel-item-end .hero-content {
+    opacity: 0;
+    transform: translateX(-16px);
 }
 
 /* Ensure no padding top on body/header conflict */
@@ -893,15 +922,42 @@ h6 {
 }
 
 .founder-title {
-    text-transform: none !important;
     color: var(--color-black-editorial) !important;
     font-weight: 500 !important;
     line-height: 1.28 !important;
+    text-transform: none !important;
 }
 
 .founder-title span {
     color: var(--color-blue-atlantic);
     font-weight: 700;
+}
+
+.founder-quote {
+    color: var(--color-blue-atlantic);
+    border-left: 3px solid var(--color-orange-action);
+    padding-left: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+.founder-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.founder-badges span {
+    background-color: rgba(255, 255, 255, 0.78);
+    color: var(--color-blue-atlantic);
+    border: 1px solid rgba(20, 32, 59, 0.10);
+    border-radius: 2px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
 }
 
 @media (max-width: 767.98px) {
@@ -1102,6 +1158,34 @@ body > footer a {
 body > footer.bg-dark-2 a:hover,
 body > footer a:hover {
     color: var(--color-orange-action) !important;
+}
+
+/* Subtle scroll reveal */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-reveal="title"] {
+    transform: translateY(22px);
+}
+
+[data-reveal="card"] {
+    transition-delay: var(--reveal-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* Editorial spacing refinement */
