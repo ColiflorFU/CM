@@ -590,6 +590,8 @@ h6 {
     border-radius: 4px;
     box-shadow: 0 4px 15px rgba(20, 32, 59, 0.02);
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-item:hover {
@@ -604,6 +606,10 @@ h6 {
 
 .service-item p {
     color: var(--color-grey-slate) !important;
+}
+
+.service-item .link-accent {
+    margin-top: auto;
 }
 
 .service-item .icon-box svg {
