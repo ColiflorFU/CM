@@ -3,8 +3,8 @@
     --bs-font-sans-serif: 'Montserrat', sans-serif;
 
     /* User Palette */
-    --color-orange-action: #EBC687;
-    /* Naranja Acción (Updated to subtle Gold) */
+    --color-orange-action: #FAA218;
+    /* Naranja Acción (Official Hex) */
     --color-grey-slate: #3C465C;
     /* Gris Pizarra */
     --color-blue-atlantic: #14203B;
@@ -21,18 +21,20 @@
     /* Blanco Editorial */
 
     /* Theme Mappings */
-    --bs-body-bg: #1E1F22;
-    /* Reverted to Dark Grey */
-    --bs-body-color: var(--color-grey-fog);
+    --bs-body-bg: #FFFFFF;
+    /* Light Mode Background */
+    --bs-body-color: var(--color-black-editorial);
 
-    --color-bg-dark: #1E1F22;
-    --color-bg-darker: #151619;
+    --color-bg-dark: #FFFFFF;
+    /* Overruled for Light Mode */
+    --color-bg-darker: #F8F9FA;
+    /* Light Grey for alternate sections */
     --color-bg-secondary: var(--color-grey-slate);
 
     --color-accent: var(--color-orange-action);
     --color-text-white: var(--color-white-editorial);
-    --color-text-muted: var(--color-concrete);
-    --color-text-body: var(--color-grey-fog);
+    --color-text-dark: var(--color-black-editorial);
+    --color-text-body: var(--color-grey-slate);
 }
 
 body {
@@ -42,17 +44,17 @@ body {
     overflow-x: hidden;
 }
 
-/* Typography Overrides */
 h1,
 h2 {
     font-size: 48px !important;
+    color: var(--color-blue-atlantic);
 }
 
 h3,
 h4,
 h5,
 h6 {
-    color: var(--color-text-white);
+    color: var(--color-black-editorial);
     letter-spacing: -0.02em;
 }
 
@@ -80,6 +82,10 @@ h6 {
     color: var(--color-accent) !important;
 }
 
+.bg-brand-blue {
+    background-color: var(--color-blue-atlantic) !important;
+}
+
 .link-accent {
     color: var(--color-accent);
     transition: all 0.3s ease;
@@ -99,14 +105,28 @@ h6 {
 }
 
 #mainNav.navbar-shrink {
-    background-color: rgba(30, 31, 34, 0.95);
+    background-color: rgba(255, 255, 255, 0.95);
     padding-top: 1rem;
     padding-bottom: 1rem;
     backdrop-filter: blur(10px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 #mainNav.navbar-shrink .navbar-brand {
-    display: none;
+    display: block;
+}
+
+#mainNav.navbar-shrink .navbar-brand img {
+    /* Matches brand blue #14203B */
+    filter: brightness(0) saturate(100%) invert(9%) sepia(43%) saturate(1210%) hue-rotate(185deg) brightness(93%) contrast(95%);
+}
+
+#mainNav.navbar-shrink .nav-link {
+    color: var(--color-blue-atlantic);
+}
+
+#mainNav.navbar-shrink .navbar-toggler span {
+    background-color: var(--color-blue-atlantic);
 }
 
 .navbar-brand {
@@ -149,7 +169,7 @@ h6 {
 /* Mobile Menu Styling */
 @media (max-width: 991.98px) {
     #navbarResponsive {
-        background-color: var(--color-bg-dark);
+        background-color: var(--color-blue-atlantic);
         position: fixed;
         top: 0;
         left: 0;
@@ -189,7 +209,7 @@ h6 {
         width: 100%;
         height: 100vh;
         z-index: 1040;
-        background-color: var(--color-bg-dark);
+        background-color: var(--color-blue-atlantic);
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
@@ -362,11 +382,36 @@ h6 {
 }
 
 .bg-dark-1 {
-    background-color: var(--color-bg-dark);
+    background-color: #FFFFFF;
 }
 
 .bg-dark-2 {
-    background-color: var(--color-bg-darker);
+    background-color: var(--color-white-editorial);
+}
+
+/* Project detail pages use a light content surface. These overrides keep
+   inherited dark-theme utility classes readable without changing the hero/footer. */
+.project-detail-page section.bg-dark-1 .text-white,
+.project-detail-page section.bg-dark-1 h2.text-white,
+.project-detail-page section.bg-dark-1 h3.text-white {
+    color: var(--color-blue-atlantic) !important;
+}
+
+.project-detail-page section.bg-dark-1 .text-white-50 {
+    color: var(--color-grey-slate) !important;
+}
+
+.project-detail-page section.bg-dark-1 .blockquote-custom.text-white {
+    color: #fff !important;
+}
+
+.project-detail-page section.bg-dark-1 .blockquote-custom .blockquote-footer {
+    color: var(--color-accent) !important;
+}
+
+.project-detail-page .project-hero .text-white,
+.project-detail-page .project-hero .text-white-50 {
+    color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* Masthead / Hero Carousel */
@@ -456,37 +501,47 @@ h6 {
 .project-item {
     transition: all 0.4s ease;
     cursor: pointer;
-    border-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(20, 32, 59, 0.1) !important;
 }
 
 .project-item:hover {
-    background-color: rgba(255, 255, 255, 0.02);
+    background-color: rgba(20, 32, 59, 0.02);
     border-color: var(--color-accent) !important;
 }
 
 .project-item .project-title {
     transition: all 0.4s ease;
-    /* Text stroke effect (optional, browser support varies but looks cool) */
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    -webkit-text-stroke: 1px var(--color-blue-atlantic);
     color: transparent;
 }
 
 .project-item:hover .project-title {
     -webkit-text-stroke: 0px;
-    color: var(--color-text-white);
+    color: var(--color-blue-atlantic);
     padding-left: 20px;
 }
 
-/* Service List */
+/* Service List - Styled as elegant white cards on light grey bg */
 .service-item {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(20, 32, 59, 0.05);
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(20, 32, 59, 0.02);
     transition: all 0.3s ease;
-    border: 1px solid transparent;
 }
 
 .service-item:hover {
-    background-color: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-orange-action);
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(20, 32, 59, 0.08);
+}
+
+.service-item h4 {
+    color: var(--color-blue-atlantic) !important;
+}
+
+.service-item p {
+    color: var(--color-grey-slate) !important;
 }
 
 .service-item .icon-box svg {
@@ -495,13 +550,13 @@ h6 {
 
 .service-item:hover .icon-box svg {
     transform: scale(1.1);
-    color: #fff;
-    /* Optional: make icon white on hover */
+    color: var(--color-orange-action);
 }
 
 /* Footer */
 footer {
-    border-color: rgba(255, 255, 255, 0.05) !important;
+    background-color: var(--color-blue-atlantic) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .form-control::placeholder {
@@ -580,39 +635,82 @@ footer {
     color: #000;
 }
 
-/* FAQ Accordion Dark Theme */
+/* FAQ Accordion Light Theme */
 .accordion-item {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(20, 32, 59, 0.1);
 }
 
 .accordion-button {
     background-color: transparent;
-    color: var(--color-white-editorial);
+    color: var(--color-blue-atlantic);
     font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     box-shadow: none !important;
     padding-left: 0;
 }
 
 .accordion-button:not(.collapsed) {
     background-color: transparent;
-    color: var(--color-accent);
+    color: var(--color-orange-action);
 }
 
 .accordion-button::after {
-    filter: invert(1);
+    /* Standard dark icon arrow instead of white */
+    filter: none;
 }
 
 .accordion-button:not(.collapsed)::after {
-    filter: invert(1) sepia(100%) saturate(500%) hue-rotate(360deg);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23EBC687'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    filter: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FAA218'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
 .accordion-body {
-    color: var(--color-grey-fog);
-    font-weight: 300;
+    color: var(--color-grey-slate);
+    font-weight: 400;
     padding-left: 0;
     padding-top: 0;
+}
+
+/* Accessibility & General Contrast Overrides for Light Mode Sections */
+.bg-dark-1, .bg-dark-2 {
+    color: var(--color-grey-slate);
+}
+
+.bg-dark-1 h1, .bg-dark-1 h2, .bg-dark-1 h3, .bg-dark-1 h4, .bg-dark-1 h5, .bg-dark-1 h6,
+.bg-dark-2 h1, .bg-dark-2 h2, .bg-dark-2 h3, .bg-dark-2 h4, .bg-dark-2 h5, .bg-dark-2 h6 {
+    color: var(--color-blue-atlantic);
+}
+
+.bg-dark-1 .text-white, .bg-dark-2 .text-white {
+    color: var(--color-black-editorial) !important;
+}
+
+.bg-dark-1 .text-white-50, .bg-dark-2 .text-white-50 {
+    color: var(--color-grey-slate) !important;
+}
+
+/* Team section text-white-50 override */
+#team .text-white-50 {
+    color: var(--color-grey-slate) !important;
+}
+
+/* Restablecer colores claros para el footer (que usa .bg-dark-2 pero tiene fondo oscuro) */
+footer.bg-dark-2, footer {
+    color: var(--color-white-editorial) !important;
+}
+
+footer.bg-dark-2 h5, footer h5,
+footer.bg-dark-2 .text-white, footer .text-white {
+    color: #FFFFFF !important;
+}
+
+footer.bg-dark-2 .text-white-50, footer .text-white-50,
+footer.bg-dark-2 a, footer a {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+footer.bg-dark-2 a:hover, footer a:hover {
+    color: var(--color-orange-action) !important;
 }
