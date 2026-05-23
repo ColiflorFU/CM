@@ -621,6 +621,49 @@ h6 {
     color: var(--color-orange-action);
 }
 
+/* CTA break */
+.cta-break-section {
+    position: relative;
+    min-height: 380px;
+    padding: 7rem 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-image: url('recursos/HeroSection/Fondo.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.cta-break-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: grayscale(1);
+}
+
+.cta-break-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.95)),
+        linear-gradient(180deg, rgba(234, 234, 233, 0.85), rgba(255, 255, 255, 0.62));
+}
+
+.cta-break-content {
+    max-width: 720px;
+}
+
+.cta-break-content h2 {
+    color: var(--color-blue-atlantic);
+}
+
+.cta-break-content p {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Team detail pages */
 .team-hero {
     background-color: var(--color-blue-atlantic);
@@ -919,5 +962,107 @@ body > footer a {
 body > footer.bg-dark-2 a:hover,
 body > footer a:hover {
     color: var(--color-orange-action) !important;
+}
+
+/* Editorial spacing refinement */
+.page-section {
+    padding: 9rem 0;
+}
+
+.page-section .display-5 {
+    font-size: 2.15rem !important;
+    line-height: 1.28;
+    letter-spacing: 0;
+}
+
+.page-section p,
+.service-item p,
+.team-card p,
+.profile-card p,
+.timeline-item p,
+.profile-aside li {
+    font-size: 0.95rem;
+    line-height: 1.85;
+}
+
+.sub-heading {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    letter-spacing: 2px;
+}
+
+.service-item,
+.team-card,
+.profile-card,
+.profile-aside {
+    padding: 2.35rem !important;
+    border-color: rgba(20, 32, 59, 0.10);
+    box-shadow: none;
+}
+
+.service-item:hover,
+.team-card:hover {
+    box-shadow: none;
+    transform: translateY(-3px);
+}
+
+.service-item h4,
+.team-card h3,
+.profile-card h3 {
+    font-size: 1.15rem;
+    line-height: 1.45;
+    letter-spacing: 0;
+    margin-bottom: 1.35rem !important;
+}
+
+.service-item .icon-box {
+    margin-bottom: 2rem !important;
+}
+
+.service-item .icon-box svg {
+    width: 46px;
+    height: 46px;
+}
+
+.link-accent {
+    font-size: 0.86rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.row.gx-5.gy-5 {
+    --bs-gutter-x: 2.5rem;
+    --bs-gutter-y: 2.5rem;
+}
+
+.team-card-photo {
+    margin-bottom: 2rem;
+}
+
+.timeline-item {
+    padding: 2.5rem 0;
+}
+
+@media (max-width: 576px) {
+    .page-section {
+        padding: 6rem 0;
+    }
+
+    .page-section .display-5 {
+        font-size: 1.75rem !important;
+        line-height: 1.32;
+    }
+
+    .service-item,
+    .team-card,
+    .profile-card,
+    .profile-aside {
+        padding: 2rem !important;
+    }
+
+    .cta-break-section {
+        min-height: 320px;
+        padding: 5rem 0;
+    }
 }
 
