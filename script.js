@@ -98,7 +98,9 @@ window.addEventListener('DOMContentLoaded', event => {
         '.team-card',
         '.profile-card',
         '.timeline-item',
-        '.cta-break-content'
+        '.cta-break-content',
+        '.related-project-card',
+        '.project-lead-cta'
     ];
     const revealElements = document.querySelectorAll(revealSelectors.join(','));
 
@@ -106,7 +108,7 @@ window.addEventListener('DOMContentLoaded', event => {
         let serviceCardIndex = 0;
         revealElements.forEach((element, index) => {
             if (!element.hasAttribute('data-reveal')) {
-                const isCard = element.matches('.service-item, .team-card, .profile-card, .timeline-item');
+                const isCard = element.matches('.service-item, .team-card, .profile-card, .timeline-item, .related-project-card');
                 element.setAttribute('data-reveal', isCard ? 'card' : 'title');
                 if (element.matches('.service-item')) {
                     const delay = serviceCardIndex === 5 ? 0.48 : serviceCardIndex * 0.08;
