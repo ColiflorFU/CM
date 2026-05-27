@@ -96,6 +96,8 @@ CM/
 | Fecha | Descripción |
 |---|---|
 | _(fecha)_ | Inicio del registro — Proyecto migrado desde OpenAI Codex a opencode |
+| 27-05-2026 | Clonado del repositorio y configuración de `credential.helper osxkeychain` para autenticación con token GitHub |
+| 27-05-2026 | Agregado flujo de trabajo multi-máquina: `pull → trabajar → commit → push` |
 
 ---
 
@@ -121,6 +123,28 @@ python -m http.server 8000
 # Con Node
 npx serve .
 ```
+
+---
+
+## Flujo de trabajo multi-máquina
+
+Para mantener el proyecto sincronizado entre varias máquinas:
+
+```bash
+# 1. En cada máquina nueva, configurar el token UNA SOLA VEZ:
+git config --global credential.helper osxkeychain
+# Luego al hacer clone o push, pegar el token cuando lo pida
+# Queda guardado en el llavero de macOS (no se vuelve a pedir)
+
+# 2. Flujo diario:
+git pull                          # Traer cambios de la otra máquina
+# ... trabajar, modificar archivos ...
+git add .
+git commit -m "descripción breve"
+git push                          # Subir para la otra máquina
+```
+
+> ⚠️ **Regla de oro**: Siempre `git pull` antes de empezar a trabajar. Si hay conflictos, resolverlos antes de hacer commit.
 
 ---
 
