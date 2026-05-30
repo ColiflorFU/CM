@@ -511,23 +511,10 @@ blockquote {
     min-height: 720px;
     padding: 0;
     background:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.05)),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.12)),
+        url("Recursos/Miscelaneos/CTA.jpg") center / cover no-repeat,
         #26211d;
     overflow: hidden;
-}
-
-.banner-cta-section::before {
-    content: "Imagen banner pendiente";
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.28);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
 }
 
 .banner-grid-lines {
