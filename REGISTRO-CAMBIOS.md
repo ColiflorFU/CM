@@ -149,3 +149,11 @@ git push                          # Subir para la otra máquina
 ---
 
 _Última actualización: 27-05-2026_
+
+## v1.0 — 2026-05-30
+
+Versionado inicial del proyecto. Se adopta sistema de versionado semántico (v{major}.{minor}).
+
+| Fecha | Descripción |
+|---|---|
+| 30-05-2026 | **v1.0**: Versionado inicial — creación de VERSION, tag git, REGISTRO-CAMBIOS.md unificado |
