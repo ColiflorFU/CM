@@ -4,312 +4,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Residencia Los Álamos | Contreras Martínez</title>
-
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Google Fonts: Montserrat -->
+    <meta name="description" content="Residencia Los Álamos — Proyecto residencial de Contreras Martínez Arquitectura Integral en Santiago, Chile.">
+    <title>Residencia Los Álamos | Contreras Martínez · Arquitectura Integral</title>
+    <link rel="icon" type="image/png" href="Recursos/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Urbanist:wght@400;500;600&display=swap"
         rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="recursos/favicon.png">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Specific Styles for Template */
-        .project-hero {
-            height: 50vh;
-            min-height: 400px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .blockquote-custom {
-            background-color: var(--color-blue-atlantic);
-            border-left: 5px solid var(--color-accent);
-            padding: 2rem;
-            font-style: italic;
-            margin: 2rem 0;
-            color: #fff;
-        }
-
-        .sidebar-widget {
-            background-color: var(--color-bg-darker);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .widget-title {
-            color: var(--color-blue-atlantic);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            padding-bottom: 1rem;
-        }
-
-        .project-meta li {
-            margin-bottom: 1rem;
-            color: var(--color-grey-slate);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .project-meta strong {
-            color: var(--color-blue-atlantic);
-        }
-    </style>
 </head>
 
-<body id="page-top" class="project-detail-page">
+<body>
+    <header class="site-header" id="top">
+        <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
+            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
+        </a>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
-        <div class="container-fluid px-4 px-lg-5">
-            <a class="navbar-brand" href="index.html">
-                <!-- Mobile Logo (< 800px) -->
-                <img src="recursos/Logos/LOGO WEB MOBILE.svg" alt="CM Arquitectura" height="32" class="logo-mobile">
-                <!-- Desktop Logo (> 800px) -->
-                <img src="recursos/Logos/LOGO WEB DESK.svg" alt="CM Arquitectura" height="32" class="logo-desktop">
-            </a>
-            <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <div class="toggler-custom">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="index.html#intro">Sobre Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#services">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#projects">Proyectos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#team">Equipo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contacto</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
 
-    <!-- Hero Section -->
-    <header class="project-hero d-flex align-items-center justify-content-center"
-        style="background-image: url('recursos/HeroSection/Fondo.jpg');">
-        <div class="hero-overlay position-absolute w-100 h-100 bg-brand-blue" style="opacity: 0.7;"></div>
-        <div class="container position-relative z-index-1 text-center">
-            <h1 class="text-white font-montserrat fw-bold display-4 mb-3">RESIDENCIA LOS ÁLAMOS</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center bg-transparent p-0">
-                    <li class="breadcrumb-item"><a href="index.html"
-                            class="link-accent text-decoration-none text-uppercase">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="index.html#projects"
-                            class="link-accent text-decoration-none text-uppercase">Proyectos</a></li>
-                    <li class="breadcrumb-item active text-white-50 text-uppercase" aria-current="page">Detalles</li>
-                </ol>
-            </nav>
-        </div>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="index.html#studio">Estudio</a>
+            <a href="index.html#services">Servicios</a>
+            <a href="index.html#portfolio">Proyectos</a>
+            <a href="index.html#process">Proceso</a>
+            <a href="index.html#contact">Contacto</a>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <section class="page-section bg-dark-1">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-5">
-
-                <!-- Content Column -->
-                <div class="col-lg-8 mb-5 mb-lg-0">
-                    <!-- Featured Image -->
-                    <img src="recursos/HeroSection/Proyecto01.png" class="img-fluid w-100 mb-5" alt="Imagen Destacada">
-
-                    <div class="mb-4">
-                        <span class="text-accent text-uppercase ls-2 fw-bold small">Residencial</span>
-                        <span class="text-white-50 mx-2">|</span>
-                        <span class="text-white-50 small">Septiembre 2024</span>
+    <main>
+        <article class="project-article">
+            <header class="project-hero">
+                <div class="container">
+                    <p class="eyebrow">Proyecto residencial</p>
+                    <h1>Residencia Los Álamos</h1>
+                    <div class="project-meta">
+                        <span>Residencial</span>
+                        <span>Santiago, Chile</span>
+                        <span>2025</span>
                     </div>
-
-                    <h2 class="text-white font-montserrat fw-bold mb-4">Concepto y Desarrollo</h2>
-                    <p class="text-white-50 font-montserrat fw-light mb-4 lead">
-                        Aquí va la descripción principal del proyecto. Explica la visión general, los objetivos del
-                        cliente y cómo abordaste el desafío inicial. Este párrafo debe ser atractivo y resumir la
-                        esencia de la obra.
-                    </p>
-                    <p class="text-white-50 font-montserrat fw-light mb-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </p>
-
-                    <!-- Blockquote -->
-                    <blockquote class="blockquote-custom text-white">
-                        <p class="mb-3">"La arquitectura no se trata de matemáticas o zonificación, se trata de
-                            emociones viscerales."</p>
-                        <footer class="blockquote-footer text-accent mt-2">Equipo de Diseño</footer>
-                    </blockquote>
-
-                    <h3 class="text-white font-montserrat fw-bold mt-5 mb-4">El Desafío de Diseño</h3>
-                    <p class="text-white-50 font-montserrat fw-light mb-4">
-                        Detalla los problemas específicos que se resolvieron. ¿Había limitaciones de espacio?
-                        ¿Requisitos de sostenibilidad? ¿Desafíos estructurales? Explica cómo la solución arquitectónica
-                        superó estos obstáculos.
-                    </p>
-
-                    <div class="row g-3 my-5">
-                        <div class="col-md-6">
-                            <img src="recursos/HeroSection/Proyecto01.png" class="img-fluid w-100" alt="Detalle 1">
-                        </div>
-                        <div class="col-md-6">
-                            <img src="recursos/HeroSection/Proyecto01.png" class="img-fluid w-100" alt="Detalle 2">
-                        </div>
-                    </div>
-
-                    <p class="text-white-50 font-montserrat fw-light">
-                        Conclusión del proyecto y el impacto final en el entorno o en la vida de los usuarios. Cierra
-                        con una nota fuerte sobre el valor entregado.
-                    </p>
                 </div>
+            </header>
 
-                <!-- Sidebar Column -->
-                <div class="col-lg-4">
+            <section class="project-content">
+                <div class="container project-layout">
+                    <div class="project-main">
+                        <figure class="project-cover">
+                            <div class="media-block" style="min-height:520px">
+                                <span>Imagen pendiente</span>
+                            </div>
+                        </figure>
 
-                    <!-- Project Details Widget -->
-                    <div class="sidebar-widget">
-                        <h4 class="widget-title">Información del Proyecto</h4>
-                        <ul class="list-unstyled project-meta font-montserrat fw-light">
-                            <li>
-                                <span>Cliente:</span>
-                                <strong>Grupo Inmobiliario</strong>
-                            </li>
-                            <li>
-                                <span>Ubicación:</span>
-                                <strong>Santiago, Chile</strong>
-                            </li>
-                            <li>
-                                <span>Categoría:</span>
-                                <strong>Residencial</strong>
-                            </li>
-                            <li>
-                                <span>Superficie:</span>
-                                <strong>450 m²</strong>
-                            </li>
-                            <li>
-                                <span>Año:</span>
-                                <strong>2024</strong>
-                            </li>
-                            <li>
-                                <span>Valor:</span>
-                                <strong>$250M</strong>
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="project-tags">
+                            <span>Arquitectura</span>
+                            <span>Diseño interior</span>
+                            <span>Remodelación</span>
+                        </div>
 
-                    <!-- Contact Widget -->
-                    <div class="sidebar-widget text-center">
-                        <h4 class="widget-title">¿Te interesa algo similar?</h4>
-                        <p class="text-white-50 font-montserrat fw-light mb-4">
-                            Contáctanos para discutir tu próximo proyecto y convertir tu visión en realidad.
+                        <h2>Concepto y desarrollo</h2>
+                        <p class="project-intro">
+                            Una vivienda unifamiliar que busca reinterpretar la casa patio tradicional, adaptándola
+                            a las necesidades contemporáneas de una familia en crecimiento.
                         </p>
-                        <a href="index.html#contact" class="btn btn-outline-accent w-100 font-montserrat">COTIZAR
-                            AHORA</a>
+                        <p>
+                            El proyecto parte de la recuperación de una estructura existente de los años 70,
+                            aprovechando su envolvente térmica y redistribuyendo el programa en tres niveles
+                            conectados por un núcleo de luz central.
+                        </p>
+
+                        <figure class="project-figure">
+                            <div class="media-block" style="min-height:400px">
+                                <span>Imagen pendiente</span>
+                            </div>
+                            <figcaption>Vista principal del proyecto. Reemplazar por fotografía real.</figcaption>
+                        </figure>
+
+                        <h3>El desafío</h3>
+                        <p>
+                            Trabajar con una estructura existente implicaba restricciones de altura, carga y
+                            normativa. Se optó por liberar el centro de la casa para generar un patio interior
+                            que aportara luz y ventilación a todas las estancias.
+                        </p>
+
+                        <blockquote class="project-quote">
+                            <p>“La arquitectura es el juego sabio, correcto y magnífico de los volúmenes bajo la luz.”</p>
+                        </blockquote>
+
+                        <h3>Proceso de diseño</h3>
+                        <p>
+                            La materialidad combina hormigón a la vista, carpintería metálica negra y revestimientos
+                            cálidos en madera. Se diseñaron mobiliarios fijos para optimizar el espacio y se
+                            incorporaron sistemas pasivos de eficiencia energética.
+                        </p>
+
+                        <div class="project-grid-2">
+                            <div class="media-block" style="min-height:320px"><span>Detalle 1</span></div>
+                            <div class="media-block" style="min-height:320px"><span>Detalle 2</span></div>
+                        </div>
+
+                        <h3>Resultado</h3>
+                        <p>
+                            Una vivienda que duplicó su superficie útil original sin aumentar la huella edificada,
+                            mejorando significativamente las condiciones de habitabilidad, iluminación y eficiencia
+                            energética.
+                        </p>
+                        <p>
+                            Este proyecto estuvo a cargo de Elizabeth Contreras, arquitecta fundadora del estudio,
+                            quien lideró el proceso de diseño, coordinación técnica y revisión general del encargo.
+                        </p>
                     </div>
 
+                    <aside class="project-sidebar">
+                        <div class="sidebar-card">
+                            <h4>Información del proyecto</h4>
+                            <dl>
+                                <dt>Tipo</dt>
+                                <dd>Residencial</dd>
+                                <dt>Ubicación</dt>
+                                <dd>Santiago, Chile</dd>
+                                <dt>Año</dt>
+                                <dd>2025</dd>
+                                <dt>Superficie</dt>
+                                <dd>320 m²</dd>
+                                <dt>Encargo</dt>
+                                <dd>Remodelación integral</dd>
+                                <dt>Arquitecta</dt>
+                                <dd>Elizabeth Contreras</dd>
+                            </dl>
+                        </div>
+
+                        <div class="sidebar-card">
+                            <h4>Plano del proyecto</h4>
+                            <div class="media-block" style="min-height:240px">
+                                <span>Plano próximamente</span>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-card sidebar-cta">
+                            <h4>¿Te interesa algo similar?</h4>
+                            <p>Conversemos sobre el alcance, factibilidad y próximos pasos de tu proyecto.</p>
+                            <a href="index.html#contact">Solicitar contacto <span>&rarr;</span></a>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="project-related">
+                <div class="container">
+                    <div class="section-heading">
+                        <p class="eyebrow">Más proyectos</p>
+                        <h2>Proyectos destacados</h2>
+                    </div>
+                    <div class="related-grid">
+                        <a href="proyecto-casa-campo.html" class="related-card">
+                            <div class="media-block" style="min-height:280px"><span>Imagen</span></div>
+                            <h3>Casa de Campo</h3>
+                            <span class="related-tag">Vacacional</span>
+                        </a>
+                        <a href="proyecto-torre.html" class="related-card">
+                            <div class="media-block" style="min-height:280px"><span>Imagen</span></div>
+                            <h3>Torre Central</h3>
+                            <span class="related-tag">Corporativo</span>
+                        </a>
+                        <a href="project-template.html" class="related-card">
+                            <div class="media-block" style="min-height:280px"><span>Imagen</span></div>
+                            <h3>Nuevo proyecto</h3>
+                            <span class="related-tag">Próximamente</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer footer-cta" id="contact">
+        <div class="container footer-top">
+            <a class="footer-brand" href="index.html" aria-label="Contreras Martínez inicio">
+                <img src="Recursos/Logos/LogoFooter.svg" alt="Contreras Martínez Arquitectura Integral">
+            </a>
+
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html#studio">Estudio</a>
+                <a href="index.html#services">Servicios</a>
+                <a href="index.html#portfolio">Proyectos</a>
+                <a href="index.html#process">Proceso</a>
+            </nav>
+        </div>
+
+        <div class="container footer-main">
+            <div class="footer-cta-copy">
+                <h2>¿Tienes algo en mente? Hablemos.</h2>
+                <a class="footer-button" href="mailto:elizabeth@contrerasmartinez.cl">Solicitar contacto <span>&rarr;</span></a>
+                <a class="footer-up" href="#top" aria-label="Volver arriba">&uarr;</a>
+            </div>
+
+            <div class="footer-contact">
+                <div class="footer-contact-block">
+                    <span>Email</span>
+                    <a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a>
+                </div>
+                <div class="footer-contact-block">
+                    <span>Teléfono</span>
+                    <a href="tel:+56951278937">+56 9 5127 8937</a>
+                </div>
+                <div class="footer-contact-block">
+                    <span>Estudio</span>
+                    <p>Paseo Ahumada 341, Of. 504<br>Santiago Centro, Chile</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#!">Instagram</a>
+                    <a href="#!">LinkedIn</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer / Contact -->
-    <footer class="bg-dark-2 pt-5 pb-0" id="contact">
-        <div class="container px-4 px-lg-5 py-5">
-            <div class="row gx-5">
-                <!-- Column 1: Logo & Social -->
-                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 text-center">
-                    <a class="navbar-brand d-block mb-4" href="index.html#page-top">
-                        <img src="recursos/Logos/LogoFooter.svg" alt="CM Arquitectura" height="120">
-                    </a>
-                    <div class="d-flex gap-3 social-icons justify-content-center">
-                        <!-- Placeholders for icons -->
-                        <a class="btn btn-outline-secondary btn-circle" href="#!"><i class="bi bi-facebook"></i>F</a>
-                        <a class="btn btn-outline-secondary btn-circle" href="#!"><i class="bi bi-twitter"></i>T</a>
-                        <a class="btn btn-outline-secondary btn-circle" href="#!"><i class="bi bi-instagram"></i>I</a>
-                    </div>
-                </div>
-
-                <!-- Column 2: Address -->
-                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                    <h5 class="text-white font-montserrat fw-bold mb-4">Nuestra Dirección</h5>
-                    <p class="text-white-50 mb-0 font-montserrat fw-light">
-                        Paseo Ahumada 341, Of. 504<br>
-                        Santiago Centro, RM<br>
-                        Chile
-                    </p>
-                </div>
-
-                <!-- Column 3: Contact -->
-                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                    <h5 class="text-white font-montserrat fw-bold mb-4">Contacto</h5>
-                    <ul class="list-unstyled text-white-50 font-montserrat fw-light">
-                        <li class="mb-2">+56 9 5127 8937</li>
-                        <li class="mb-2">elizabeth@contrerasmartinez.cl</li>
-                    </ul>
-                </div>
-
-                <!-- Column 4: Newsletter -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white font-montserrat fw-bold mb-4">Newsletter</h5>
-                    <form>
-                        <div class="newsletter-container">
-                            <input type="email" class="form-control newsletter-input font-montserrat fw-light"
-                                placeholder="Ingresa tu E-Mail" aria-label="Email">
-                            <button class="btn btn-subscribe font-montserrat" type="button">SUSCRIBIRSE</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <hr class="border-secondary my-5 opacity-25">
-
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <div class="small text-white-50 font-montserrat fw-light">
-                        Copyright &copy; 2025 Contreras Martínez. Designed by <span class="text-accent">Patrick Zapata
-                            2025</span>
-                    </div>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="small">
-                        <a class="text-white-50 text-decoration-none me-3 font-montserrat fw-light"
-                            href="index.html#intro">Sobre
-                            Nosotros</a>
-                        <a class="text-white-50 text-decoration-none me-3 font-montserrat fw-light"
-                            href="index.html#services">Servicios</a>
-                        <a class="text-white-50 text-decoration-none font-montserrat fw-light"
-                            href="index.html#contact">Contacto</a>
-                    </div>
-                </div>
-            </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Contreras Martínez</p>
+            <p>Arquitectura, diseño, construcción y regularización</p>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 
 </html>
-
-

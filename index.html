@@ -1,869 +1,344 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contreras Martínez | Arquitectura</title>
-
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Google Fonts: Montserrat -->
+    <meta name="description"
+        content="Contreras Martínez Arquitectura Integral: diseño, coordinación técnica, construcción, inspección y regularización de proyectos en Santiago.">
+    <title>Contreras Martínez | Arquitectura Integral</title>
+    <link rel="icon" type="image/png" href="Recursos/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Urbanist:wght@400;500;600&display=swap"
         rel="stylesheet">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="recursos/favicon.png">
-
-    <!-- SEO Schema JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "¿Qué servicios ofrece un estudio de arquitectura?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ofrecemos servicios integrales de arquitectura que incluyen diseño arquitectónico, anteproyectos, proyectos municipales, desarrollo de planos técnicos, coordinación de especialidades, dirección de obra y asesoría durante todo el proceso constructivo."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Trabajan con proyectos residenciales y comerciales?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Desarrollamos proyectos residenciales (casas, ampliaciones, remodelaciones) y proyectos comerciales como oficinas, locales comerciales y equipamiento, adaptándonos a las normativas y necesidades de cada cliente."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿En qué ciudades o regiones trabajan?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Trabajamos principalmente en Santiago y Región Metropolitana, pero también desarrollamos proyectos en otras regiones de Chile mediante coordinación remota y visitas programadas a obra."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Cuánto cuesta contratar a un arquitecto?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "El costo depende del tipo de proyecto, superficie, complejidad y alcance del encargo. Cada proyecto se cotiza de forma personalizada luego de una reunión inicial para entender las necesidades del cliente."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Qué etapas tiene un proyecto de arquitectura?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Un proyecto arquitectónico se desarrolla en etapas: Levantamiento y análisis del encargo, Anteproyecto, Proyecto definitivo, Tramitación municipal, Desarrollo técnico y seguimiento de obra."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Realizan proyectos llave en mano?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Podemos ofrecer un servicio integral que incluye diseño, coordinación técnica y ejecución de obra, trabajando con equipos y proveedores de confianza para asegurar calidad y cumplimiento de plazos."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Pueden ayudar con permisos y trámites municipales?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Nos encargamos de la elaboración y presentación de proyectos para permisos de edificación, regularizaciones y recepciones finales ante la Dirección de Obras Municipales (DOM)."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Trabajan con criterios de arquitectura sustentable?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Integramos criterios de eficiencia energética, asoleamiento, ventilación natural y selección responsable de materiales, buscando proyectos más eficientes, confortables y sostenibles en el tiempo."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Cómo es el proceso para iniciar un proyecto?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "El proceso comienza con una reunión inicial (presencial u online) donde analizamos el terreno, las necesidades del cliente, presupuesto y plazos. A partir de eso, proponemos una solución arquitectónica y una cotización clara."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Diseñan proyectos personalizados o usan modelos estándar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Todos nuestros proyectos son 100% personalizados, diseñados según el contexto, el programa, el presupuesto y la identidad de cada cliente."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Puedo remodelar o ampliar una vivienda existente?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Realizamos proyectos de remodelación, ampliación y regularización de viviendas existentes, evaluando la estructura, normativa vigente y potencial del espacio."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Trabajan con constructoras o maestros externos?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Podemos coordinar el proyecto con constructoras, contratistas o maestros del cliente, o bien recomendar equipos con los que trabajamos habitualmente."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Cuánto tiempo demora un proyecto de arquitectura?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Los plazos varían según el tipo y escala del proyecto. Un anteproyecto puede tomar entre 3 y 6 semanas, mientras que un proyecto completo puede extenderse varios meses considerando trámites y obra."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Ofrecen asesoría antes de comprar un terreno?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Realizamos asesorías previas para evaluar factibilidad normativa, orientación, restricciones legales y potencial arquitectónico del terreno antes de su compra."
-        }
-      }, {
-        "@type": "Question",
-        "name": "¿Cómo puedo contactarlos para una cotización?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Puedes contactarnos a través del formulario web, correo electrónico o WhatsApp. Coordinaremos una reunión inicial para conocer tu proyecto y enviarte una propuesta personalizada."
-        }
-      }]
-    }
-    </script>
 </head>
 
-<body id="page-top">
+<body>
+    <header class="site-header" id="top">
+        <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
+            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
+        </a>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
-        <div class="container-fluid px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">
-                <!-- Mobile Logo (< 800px) -->
-                <img src="recursos/Logos/LOGO WEB MOBILE.svg" alt="CM Arquitectura" height="32" class="logo-mobile">
-                <!-- Desktop Logo (> 800px) -->
-                <img src="recursos/Logos/LOGO WEB DESK.svg" alt="CM Arquitectura" height="32" class="logo-desktop">
-            </a>
-            <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <div class="toggler-custom">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#intro">Sobre Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Equipo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
 
-    <!-- Hero Section / Carousel -->
-    <header class="masthead p-0 h-auto">
-        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-indicators mb-5">
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="container-fluid p-0">
-                        <div class="row g-0">
-                            <!-- Left: Text & Dark Background -->
-                            <div class="col-lg-6 d-flex align-items-center justify-content-center bg-dark-hero position-relative"
-                                style="background-image: url('recursos/HeroSection/Fondo.jpg'); background-size: cover; background-position: center;">
-                                <div class="hero-overlay position-absolute w-100 h-100 bg-brand-blue" style="opacity: 0.68;">
-                                </div>
-                                <div class="hero-content position-relative z-index-1 p-5 text-start">
-                                    <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">Diseño de
-                                        Interiores</div>
-                                    <h1 class="font-montserrat display-3 fw-bold text-white mb-4 l-h-1">
-                                        INNOVA TU <br> <span class="text-accent">ESPACIO</span> A OTRO NIVEL
-                                    </h1>
-                                    <p class="text-white-50 mb-5 font-montserrat fw-light w-75 lead d-none d-md-block">
-                                        Transformamos cada rincón en una experiencia visual única.
-                                    </p>
-                                    <a class="btn btn-outline-accent btn-xl font-montserrat fw-light"
-                                        href="project-template.html">VER PROYECTO &rarr;</a>
-                                </div>
-                            </div>
-                            <!-- Right: Project Image -->
-                            <div class="col-lg-6 d-none d-lg-block">
-                                <img src="recursos/HeroSection/Proyecto01.png" class="d-block w-100 vh-100-custom"
-                                    alt="Proyecto Destacado" style="object-fit: cover;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 2 (Placeholder using same assets for now) -->
-                <div class="carousel-item">
-                    <div class="container-fluid p-0">
-                        <div class="row g-0">
-                            <div class="col-lg-6 d-flex align-items-center justify-content-center bg-dark-hero position-relative"
-                                style="background-image: url('recursos/HeroSection/Fondo.jpg'); background-size: cover; background-position: center;">
-                                <div class="hero-overlay position-absolute w-100 h-100 bg-brand-blue" style="opacity: 0.68;">
-                                </div>
-                                <div class="hero-content position-relative z-index-1 p-5 text-start">
-                                    <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">Arquitectura
-                                    </div>
-                                    <h1 class="font-montserrat display-3 fw-bold text-white mb-4 l-h-1">
-                                        CONCEPTOS DE <br> <span class="text-accent">VIDA</span> MODERNA
-                                    </h1>
-                                    <p class="text-white-50 mb-5 font-montserrat fw-light w-75 lead d-none d-md-block">
-                                        Diseño sostenible para el mundo de mañana.
-                                    </p>
-                                    <a class="btn btn-outline-accent btn-xl font-montserrat fw-light"
-                                        href="project-template.html">VER PROYECTO &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 d-none d-lg-block">
-                                <img src="recursos/HeroSection/Proyecto01.png" class="d-block w-100 vh-100-custom"
-                                    alt="Proyecto 2" style="object-fit: cover;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 (Placeholder) -->
-                <div class="carousel-item">
-                    <div class="container-fluid p-0">
-                        <div class="row g-0">
-                            <div class="col-lg-6 d-flex align-items-center justify-content-center bg-dark-hero position-relative"
-                                style="background-image: url('recursos/HeroSection/Fondo.jpg'); background-size: cover; background-position: center;">
-                                <div class="hero-overlay position-absolute w-100 h-100 bg-brand-blue" style="opacity: 0.68;">
-                                </div>
-                                <div class="hero-content position-relative z-index-1 p-5 text-start">
-                                    <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">Planeación
-                                        Urbana</div>
-                                    <h1 class="font-montserrat display-3 fw-bold text-white mb-4 l-h-1">
-                                        PAISAJES <br> <span class="text-accent">URBANOS</span> REIMAGINADOS
-                                    </h1>
-                                    <p class="text-white-50 mb-5 font-montserrat fw-light w-75 lead d-none d-md-block">
-                                        Planificación urbana integrada con la naturaleza.
-                                    </p>
-                                    <a class="btn btn-outline-accent btn-xl font-montserrat fw-light"
-                                        href="project-template.html">VER PROYECTO &rarr;</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 d-none d-lg-block">
-                                <img src="recursos/HeroSection/Proyecto01.png" class="d-block w-100 vh-100-custom"
-                                    alt="Proyecto 3" style="object-fit: cover;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="#studio">Estudio</a>
+            <a href="#services">Servicios</a>
+            <a href="#portfolio">Proyectos</a>
+            <a href="#process">Proceso</a>
+            <a href="#contact">Contacto</a>
+        </nav>
     </header>
 
-    <!-- Intro / About Section -->
-    <section class="page-section bg-dark-1 intro-section" id="intro">
-        <div class="container px-4 px-lg-5">
-            <div class="row align-items-center">
-                <!-- Left Column: Content -->
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">Sobre nosotros</div>
-                    <h2 class="font-montserrat fw-bold display-5 mb-4 text-uppercase">
-                        Apasionados por diseñar <br> <span class="text-muted">espacios con identidad</span>
-                    </h2>
-                    <p class="text-muted font-montserrat fw-light mb-4 lead">
-                        Nacimos en 2015 en el histórico eje cívico de Santiago, desde nuestro estudio en Paseo Bulnes.
-                        Desde ahí proyectamos arquitectura, interiorismo y renovación de espacios, combinando la solidez
-                        de la arquitectura clásica con nuevas formas de habitar, diseñar y construir.
-                    </p>
-                    <p class="text-muted font-montserrat fw-light mb-4 lead">
-                        Creemos que la tecnología y la innovación deben avanzar sin perder de vista el origen, la
-                        historia y el carácter de cada lugar.
-                    </p>
-                    <a href="#services" class="btn btn-outline-accent btn-xl font-montserrat fw-light mt-2">CONOCER MÁS
-                        &rarr;</a>
+    <main>
+        <section class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <h1>Diseño que escucha, espacios pensados para habitar mejor.</h1>
+                    <div class="hero-thumbs">
+                        <div class="media-block hero-thumb">
+                            <span>Imagen pendiente</span>
+                        </div>
+                        <div class="media-block hero-thumb media-warm">
+                            <span>Imagen pendiente</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Right Column: Stats -->
-                <div class="col-lg-5 offset-lg-1 stats-panel">
-                    <div class="d-flex align-items-end mb-5">
-                        <h2 class="display-1 fw-bold mb-0 lh-1 stats-number" style="font-size: 8rem; color: var(--color-blue-atlantic);">12+</h2>
-                        <span class="h5 text-accent ms-3 mb-3 text-uppercase ls-2">Años de <br>Experiencia</span>
+                <div class="hero-media media-block media-dark">
+                    <span>Imagen principal pendiente</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="studio-section" id="studio">
+            <div class="container studio-grid">
+                <div class="studio-heading">
+                    <p class="eyebrow">Conoce el estudio</p>
+                    <h2>Espacios con identidad, oficio técnico y una forma clara de avanzar.</h2>
+                    <a class="text-link studio-heading-link" href="#services">Conocer servicios <span>&rarr;</span></a>
+                </div>
+
+                <div class="studio-image-small media-block">
+                    <span>Imagen pendiente</span>
+                </div>
+
+                <div class="studio-copy">
+                    <p>
+                        Nacimos en 2015 en el eje cívico de Santiago, desde nuestro estudio en Paseo Bulnes. Desde ahí
+                        proyectamos arquitectura, interiorismo, renovación y regularización de espacios.
+                    </p>
+                    <p>
+                        Cada encargo comienza escuchando. Entendemos la historia, el uso, la normativa y las
+                        posibilidades reales para transformar ideas en espacios construibles, cómodos y con carácter.
+                    </p>
+                    <a class="text-link studio-mobile-link" href="#services">Conocer servicios <span>&rarr;</span></a>
+                    <div class="studio-badge">
+                        <strong>CM</strong>
+                        <span>Arquitectura Integral desde 2015</span>
+                    </div>
+                </div>
+
+                <div class="studio-image-large media-block media-dark image-elizabeth-hero">
+                    <span>Imagen fundadora pendiente</span>
+                    <i aria-hidden="true"></i>
+                </div>
+
+                <p class="vertical-label">Elizabeth Contreras / Arquitecta Fundadora</p>
+            </div>
+        </section>
+
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Servicios</p>
+                    <h2>Soluciones integrales para proyectar, construir y regularizar.</h2>
+                </div>
+
+                <div class="service-list">
+                    <a href="#contact" class="service-row">
+                        <span>01</span>
+                        <div>
+                            <h3>Arquitectura y Diseño</h3>
+                            <p>Viviendas, locales comerciales y bodegas industriales.</p>
+                        </div>
+                        <em>&rarr;</em>
+                    </a>
+                    <a href="#contact" class="service-row">
+                        <span>02</span>
+                        <div>
+                            <h3>Especialidades Técnicas</h3>
+                            <p>Cálculo estructural, eléctricos, sanitarios y gas.</p>
+                        </div>
+                        <em>&rarr;</em>
+                    </a>
+                    <a href="#contact" class="service-row">
+                        <span>03</span>
+                        <div>
+                            <h3>Construcción y Remodelación</h3>
+                            <p>Obra nueva, ampliaciones y transformación de espacios.</p>
+                        </div>
+                        <em>&rarr;</em>
+                    </a>
+                    <a href="#contact" class="service-row">
+                        <span>04</span>
+                        <div>
+                            <h3>Inspección Técnica de Obras</h3>
+                            <p>Supervisión, revisión técnica y control de ejecución.</p>
+                        </div>
+                        <em>&rarr;</em>
+                    </a>
+                    <a href="#contact" class="service-row">
+                        <span>05</span>
+                        <div>
+                            <h3>Regularización y Permisos</h3>
+                            <p>Normalización, documentación y trámites municipales.</p>
+                        </div>
+                        <em>&rarr;</em>
+                    </a>
+                    <a href="#contact" class="service-row">
+                        <span>06</span>
+                        <div>
+                            <h3>Ley del Mono</h3>
+                            <p>Regularización de viviendas y ampliaciones bajo normativa.</p>
+                        </div>
+                        <em>&rarr;</em>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="philosophy-section">
+            <div class="container philosophy-grid">
+                <div class="section-heading">
+                    <p class="eyebrow">Nuestra mirada</p>
+                    <h2>La tecnología avanza, pero cada proyecto necesita origen, historia y carácter.</h2>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Escucha</h3>
+                    <p>Leemos el encargo, el lugar y la forma de habitar antes de definir una respuesta.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Técnica</h3>
+                    <p>Coordinamos diseño, normativa y especialidades para que el proyecto sea viable.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Identidad</h3>
+                    <p>Buscamos soluciones sobrias, funcionales y coherentes con quien habitará el espacio.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="banner-cta-section" aria-label="Consulta de proyecto">
+            <div class="banner-grid-lines" aria-hidden="true"></div>
+            <div class="banner-cta-panel">
+                <h2>Diseño integral, cercano y técnicamente claro.</h2>
+                <p>Revisemos tu idea, propiedad o regularización para definir el camino más adecuado.</p>
+                <a href="#contact">Agendar una conversación</a>
+            </div>
+        </section>
+
+        <section class="portfolio-section" id="portfolio">
+            <div class="container">
+                <div class="portfolio-heading">
+                    <div>
+                        <p class="eyebrow">Portfolio</p>
+                        <h2>Featured work</h2>
+                    </div>
+                    <a class="text-link" href="proyecto-casa-campo.html">Portfolio <span>&rarr;</span></a>
+                </div>
+
+                <div class="portfolio-grid">
+                    <a href="proyecto-residencia.html" class="portfolio-card portfolio-card-tall">
+                        <div class="media-block portfolio-media portfolio-media-warm"><span>Imagen pendiente</span></div>
+                        <h3>Residencia Los Álamos</h3>
+                    </a>
+                    <a href="proyecto-torre.html" class="portfolio-card portfolio-card-wide">
+                        <div class="media-block portfolio-media portfolio-media-soft"><span>Imagen pendiente</span></div>
+                        <h3>Torre Central</h3>
+                    </a>
+                    <a href="proyecto-casa-campo.html" class="portfolio-card portfolio-card-tall">
+                        <div class="media-block portfolio-media portfolio-media-cool"><span>Imagen pendiente</span></div>
+                        <h3>Casa de Campo</h3>
+                    </a>
+                </div>
+
+                <div class="portfolio-controls" aria-hidden="true">
+                    <span>&larr;</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section" id="process">
+            <div class="container process-feature-grid">
+                <div class="process-feature-copy">
+                    <p class="eyebrow">Nuestro proceso</p>
+                    <h2>Pasos claros. Ritmo cuidado. Flujo colaborativo.</h2>
+                    <p class="process-intro">
+                        Integramos diseño, coordinación técnica y decisiones normativas para que cada etapa avance con
+                        claridad, desde la primera conversación hasta la ejecución o regularización.
+                    </p>
+
+                    <div class="process-sketch" aria-hidden="true">
+                        <span></span>
                     </div>
 
-                    <!-- Progress Bar 1 -->
-                    <div class="mb-4">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="font-montserrat">Proyectos residenciales</span>
-                            <span class="font-montserrat">90%</span>
-                        </div>
-                        <div class="progress" style="height: 3px; background-color: #3C465C;">
-                            <div class="progress-bar bg-accent" role="progressbar"
-                                style="width: 0%; background-color: var(--color-orange-action); --progress-delay: 0s;" data-progress="90" aria-valuenow="90"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                    <div class="process-accordion">
+                        <details open>
+                            <summary><span>01</span> Diagnóstico</summary>
+                            <p>Levantamos necesidades, revisamos contexto, normativa, posibilidades del espacio y
+                                objetivos del encargo.</p>
+                        </details>
+                        <details>
+                            <summary><span>02</span> Planificación</summary>
+                            <p>Definimos alcance, etapas, documentación requerida, especialidades y ruta técnica para
+                                avanzar sin improvisar.</p>
+                        </details>
+                        <details>
+                            <summary><span>03</span> Diseño</summary>
+                            <p>Desarrollamos una propuesta coherente con la identidad del cliente, el uso cotidiano y
+                                la factibilidad constructiva.</p>
+                        </details>
+                        <details>
+                            <summary><span>04</span> Ejecución</summary>
+                            <p>Coordinamos obra, revisión técnica, permisos o regularización según las necesidades de
+                                cada proyecto.</p>
+                        </details>
                     </div>
+                </div>
 
-                    <!-- Progress Bar 2 -->
-                    <div class="mb-4">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="font-montserrat">Renovación de espacios</span>
-                            <span class="font-montserrat">85%</span>
-                        </div>
-                        <div class="progress" style="height: 3px; background-color: #3C465C;">
-                            <div class="progress-bar bg-accent" role="progressbar"
-                                style="width: 0%; background-color: var(--color-orange-action); --progress-delay: 0.18s;" data-progress="85" aria-valuenow="85"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                <div class="process-feature-media">
+                    <div class="process-image process-image-top media-block">
+                        <span>Imagen pendiente</span>
                     </div>
-
-                    <!-- Progress Bar 3 -->
-                    <div class="mb-4">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="font-montserrat">Diseño interior</span>
-                            <span class="font-montserrat">80%</span>
-                        </div>
-                        <div class="progress" style="height: 3px; background-color: #3C465C;">
-                            <div class="progress-bar bg-accent" role="progressbar"
-                                style="width: 0%; background-color: var(--color-orange-action); --progress-delay: 0.42s;" data-progress="80" aria-valuenow="80"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                    <div class="process-image process-image-main media-block media-dark">
+                        <span>Imagen pendiente</span>
                     </div>
+                </div>
+            </div>
+        </section>
 
+        <section class="founder-section">
+            <div class="container founder-grid">
+                <div class="founder-media media-block">
+                    <span>Foto pendiente</span>
+                </div>
+                <div class="founder-copy">
+                    <p class="eyebrow">Fundadora / Arquitecta</p>
+                    <h2>Elizabeth Contreras</h2>
+                    <p>
+                        Arquitecta titulada por la UTEM, con formación en Arquitectura Interior por la Universidad de
+                        Chile y Accesibilidad Universal por la PUC. Su trabajo integra escucha, diseño, técnica y
+                        cumplimiento normativo.
+                    </p>
+                    <blockquote>“El fin de toda actividad plástica es la construcción.”</blockquote>
+                    <div class="tag-list">
+                        <span>2014 Arquitecta titulada</span>
+                        <span>Arquitectura interior</span>
+                        <span>Accesibilidad universal</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="site-footer footer-cta" id="contact">
+        <div class="container footer-top">
+            <a class="footer-brand" href="#top" aria-label="Contreras Mart&iacute;nez inicio">
+                <img src="Recursos/Logos/LogoFooter.svg" alt="Contreras Mart&iacute;nez Arquitectura Integral">
+            </a>
+
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="#studio">Estudio</a>
+                <a href="#services">Servicios</a>
+                <a href="#portfolio">Proyectos</a>
+                <a href="#process">Proceso</a>
+            </nav>
+        </div>
+
+        <div class="container footer-main">
+            <div class="footer-cta-copy">
+                <h2>&iquest;Tienes algo en mente? Hablemos.</h2>
+                <a class="footer-button" href="mailto:elizabeth@contrerasmartinez.cl">Solicitar contacto <span>&rarr;</span></a>
+                <a class="footer-up" href="#top" aria-label="Volver arriba">&uarr;</a>
+            </div>
+
+            <div class="footer-contact">
+                <div class="footer-contact-block">
+                    <span>Email</span>
+                    <a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a>
+                </div>
+                <div class="footer-contact-block">
+                    <span>Teléfono</span>
+                    <a href="tel:+56951278937">+56 9 5127 8937</a>
+                </div>
+                <div class="footer-contact-block">
+                    <span>Estudio</span>
+                    <p>Paseo Ahumada 341, Of. 504<br>Santiago Centro, Chile</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#!">Instagram</a>
+                    <a href="#!">LinkedIn</a>
                 </div>
             </div>
         </div>
-    </section>
-        <!-- Clients Section temporarily removed for MVP. Backup: clients-section-backup.html -->
 
-        <!-- Services Section -->
-        <section class="page-section bg-dark-2 position-relative" id="services">
-            <div class="container px-4 px-lg-5">
-                <div class="row mb-5 text-center">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">Nuestros Servicios</div>
-                        <h2 class="font-montserrat fw-bold display-5 mb-4 text-uppercase">Soluciones integrales</h2>
-                        <p class="text-muted font-montserrat fw-light">
-                            Acompañamos cada etapa del proyecto, desde el diseño inicial hasta la ejecución,
-                            coordinación técnica y regularización normativa.
-                        </p>
-                    </div>
-                </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Contreras Mart&iacute;nez</p>
+            <p>Arquitectura, dise&ntilde;o, construcci&oacute;n y regularizaci&oacute;n</p>
+        </div>
+    </footer>
 
-                <div class="row gx-5 gy-5">
-                    <!-- Service 1: Arquitectura y Diseño -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item p-4 text-start group h-100">
-                            <div class="icon-box mb-4 text-accent">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
-                                    class="bi bi-house-door" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 2 8h1v6.5A1.5 1.5 0 0 0 4.5 16h7a1.5 1.5 0 0 0 1.5-1.5V8h1a.5.5 0 0 0 .354-.854l-6-6zM4 14.5V7.707l4-4 4 4V14.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5z" />
-                                    <path
-                                        d="M7 13.5V10h2v3.5a.5.5 0 0 0 1 0V9.5A.5.5 0 0 0 9.5 9h-3a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-white font-montserrat fw-bold mb-3">Arquitectura y Diseño</h4>
-                            <p class="text-white-50 font-montserrat fw-light mb-4">
-                                Viviendas, locales comerciales y bodegas industriales.
-                            </p>
-                            <a href="#contact"
-                                class="link-accent text-decoration-none fw-bold ls-1 d-flex align-items-center">
-                                LEER MÁS <span class="ms-2">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Service 2: Especialidades Técnicas -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item p-4 text-start group h-100">
-                            <div class="icon-box mb-4 text-accent">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
-                                    class="bi bi-layers" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.235.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-7.5-4zM1.56 5 8 1.567 14.44 5 8 8.433 1.56 5z" />
-                                    <path
-                                        d="M.265 8.559a.5.5 0 0 1 .676-.206L8 12.117l7.059-3.764a.5.5 0 1 1 .47.882l-7.294 3.889a.5.5 0 0 1-.47 0L.47 9.235a.5.5 0 0 1-.206-.676z" />
-                                    <path
-                                        d="M.265 11.559a.5.5 0 0 1 .676-.206L8 15.117l7.059-3.764a.5.5 0 1 1 .47.882l-7.294 3.889a.5.5 0 0 1-.47 0L.47 12.235a.5.5 0 0 1-.206-.676z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-white font-montserrat fw-bold mb-3">Especialidades Técnicas</h4>
-                            <p class="text-white-50 font-montserrat fw-light mb-4">
-                                Cálculo estructural, proyectos eléctricos, sanitarios y gas.
-                            </p>
-                            <a href="#contact"
-                                class="link-accent text-decoration-none fw-bold ls-1 d-flex align-items-center">
-                                LEER MÁS <span class="ms-2">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Service 3: Construcción y Remodelación -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item p-4 text-start group h-100">
-                            <div class="icon-box mb-4 text-accent">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
-                                    class="bi bi-bricks" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1H5.5zm5.5 0v2H15V1h-4zM1 7v2h3.5V7H1zm4.5 0v2h5V7H5.5zm5.5 0v2H15V7h-4zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2H5.5zm5.5 0v2H15v-2h-4z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-white font-montserrat fw-bold mb-3">Construcción y Remodelación</h4>
-                            <p class="text-white-50 font-montserrat fw-light mb-4">
-                                Obra nueva, ampliaciones y remodelaciones.
-                            </p>
-                            <a href="#contact"
-                                class="link-accent text-decoration-none fw-bold ls-1 d-flex align-items-center">
-                                LEER MÁS <span class="ms-2">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Service 4: Inspección Técnica de Obras -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item p-4 text-start group h-100">
-                            <div class="icon-box mb-4 text-accent">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
-                                    class="bi bi-clipboard-check" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    <path
-                                        d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-                                    <path
-                                        d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-white font-montserrat fw-bold mb-3">Inspección Técnica de Obras</h4>
-                            <p class="text-white-50 font-montserrat fw-light mb-4">
-                                Supervisión, revisión técnica y control de ejecución.
-                            </p>
-                            <a href="#contact"
-                                class="link-accent text-decoration-none fw-bold ls-1 d-flex align-items-center">
-                                LEER MÁS <span class="ms-2">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Service 5: Regularización y Permisos -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item p-4 text-start group h-100">
-                            <div class="icon-box mb-4 text-accent">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
-                                    class="bi bi-file-earmark-check" viewBox="0 0 16 16">
-                                    <path
-                                        d="M10.854 6.854a.5.5 0 0 0-.708-.708L7.5 8.793 6.354 7.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                    <path
-                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-white font-montserrat fw-bold mb-3">Regularización y Permisos</h4>
-                            <p class="text-white-50 font-montserrat fw-light mb-4">
-                                Normalización, documentación y trámites municipales.
-                            </p>
-                            <a href="#contact"
-                                class="link-accent text-decoration-none fw-bold ls-1 d-flex align-items-center">
-                                LEER MÁS <span class="ms-2">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Service 6: Ley del Mono -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item p-4 text-start group h-100">
-                            <div class="icon-box mb-4 text-accent">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
-                                    class="bi bi-building-check" viewBox="0 0 16 16">
-                                    <path
-                                        d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm1.679-4.493-2.182 2.182a.5.5 0 0 1-.708 0l-.969-.97a.5.5 0 1 1 .708-.707l.615.616 1.828-1.828a.5.5 0 1 1 .708.707z" />
-                                    <path
-                                        d="M2 1.5A1.5 1.5 0 0 1 3.5 0h6A1.5 1.5 0 0 1 11 1.5v6.57a4.5 4.5 0 0 0-1 .35V1.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0-.5.5V15h5.5a4.5 4.5 0 0 0 .68 1H2V1.5z" />
-                                    <path
-                                        d="M4.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm-3 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
-                                </svg>
-                            </div>
-                            <h4 class="text-white font-montserrat fw-bold mb-3">Ley del Mono</h4>
-                            <p class="text-white-50 font-montserrat fw-light mb-4">
-                                Regularización de viviendas y ampliaciones bajo normativa.
-                            </p>
-                            <a href="#contact"
-                                class="link-accent text-decoration-none fw-bold ls-1 d-flex align-items-center">
-                                LEER MÁS <span class="ms-2">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Break Section -->
-        <section class="cta-break-section">
-            <div class="cta-break-overlay"></div>
-            <div class="container px-4 px-lg-5 position-relative">
-                <div class="text-center mx-auto cta-break-content">
-                    <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">¿Tienes un proyecto en mente?</div>
-                    <h2 class="font-montserrat fw-bold display-5 text-uppercase mb-4">
-                         Diseño integral para espacios con identidad.
-                    </h2>
-                    <p class="text-muted font-montserrat fw-light mb-5">
-                         Revisemos tu idea, propiedad o espacio actual para
-                        definir el camino técnico y creativo más adecuado.
-                    </p>
-                    <a href="#contact" class="btn btn-outline-accent font-montserrat fw-light">
-                        HABLEMOS &rarr;
-                    </a>
-                </div>
-            </div>
-        </section>
-        <!-- Founder Section -->
-        <section class="page-section bg-dark-1 founder-section" id="team">
-            <div class="container px-4 px-lg-5">
-                <div class="row align-items-center gx-5">
-                    <div class="col-lg-5 mb-5 mb-lg-0">
-                        <div class="founder-image-frame">
-                            <img src="Recursos/Miscelaneos/ELIZABETH.png" alt="Elizabeth Contreras">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 offset-lg-1">
-                        <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">Fundadora / Arquitecta</div>
-                        <h2 class="font-montserrat fw-bold display-5 mb-4 founder-title">
-                            Elizabeth Contreras<br>
-                            <span>Diseño Interior & Accesibilidad</span>
-                        </h2>
-                        <div class="founder-badges mb-5">
-                            <span>2014 Arquitecta titulada</span>
-                            <span>U. de Chile Arquitectura Interior</span>
-                            <span>PUC Accesibilidad Universal</span>
-                           
-                         <p class="text-muted font-montserrat fw-light lead mb-4">
-                            Arquitecta titulada por la UTEM, con formación en Arquitectura Interior por la U. de Chile y
-                            Accesibilidad Universal por la PUC. Su trabajo transforma la esencia de cada mandante en
-                            espacios funcionales, habitables y normativamente viables, integrando escucha, diseño,
-                            técnica y cumplimiento normativo.
-                        </p>
-                         <a href="equipo-elizabeth-contreras.html" class="btn btn-outline-accent font-montserrat fw-light">
-                            VER TRAYECTORIA &rarr;
-                        </a>
-                           
-                        </div>
-                        <blockquote class="founder-quote mb-4">
-                            “El fin de toda actividad plástica es la construcción.”
-                            
-                        </blockquote>
-                       
-                      
-                        
-                       
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section class="page-section bg-dark-2" id="projects">
-            <div class="container px-4 px-lg-5">
-                <div class="row mb-5">
-                    <div class="col-12 text-center text-lg-start">
-                        <div class="sub-heading text-accent mb-2 ls-3 fw-bold">PORTFOLIO</div>
-                        <h2 class="font-montserrat fw-bold display-5 text-uppercase">Proyectos Selección</h2>
-                    </div>
-                </div>
-
-                <div class="project-list">
-                    <!-- Project Item 1 -->
-                    <a href="project-template.html" class="text-decoration-none d-block">
-                        <div class="project-item border-top border-secondary py-5 position-relative group">
-                            <div class="row align-items-center">
-                                <div class="col-lg-2 text-accent fw-bold h4 mb-0">01</div>
-                                <div class="col-lg-7">
-                                    <h3 class="text-white font-montserrat fw-bold display-6 mb-0 project-title">
-                                        RESIDENCIA LOS ÁLAMOS
-                                    </h3>
-                                </div>
-                                <div class="col-lg-3 text-end d-none d-lg-block">
-                                    <span class="text-muted text-uppercase ls-1">Residencial</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Project Item 2 -->
-                    <a href="project-template.html" class="text-decoration-none d-block">
-                        <div class="project-item border-top border-secondary py-5 position-relative group">
-                            <div class="row align-items-center">
-                                <div class="col-lg-2 text-accent fw-bold h4 mb-0">02</div>
-                                <div class="col-lg-7">
-                                    <h3 class="font-montserrat fw-bold display-6 mb-0 project-title">
-                                        TORRE CENTRAL
-                                    </h3>
-                                </div>
-                                <div class="col-lg-3 text-end d-none d-lg-block">
-                                    <span class="text-muted text-uppercase ls-1">Corporativo</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Project Item 3 -->
-                    <a href="project-template.html" class="text-decoration-none d-block">
-                        <div
-                            class="project-item border-top border-bottom border-secondary py-5 position-relative group">
-                            <div class="row align-items-center">
-                                <div class="col-lg-2 text-accent fw-bold h4 mb-0">03</div>
-                                <div class="col-lg-7">
-                                    <h3 class="font-montserrat fw-bold display-6 mb-0 project-title">
-                                        CASA DE CAMPO
-                                    </h3>
-                                </div>
-                                <div class="col-lg-3 text-end d-none d-lg-block">
-                                    <span class="text-muted text-uppercase ls-1">Vacacional</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ & Contact Section -->
-        <section class="page-section bg-dark-1" id="contact">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-5">
-                    <!-- Left Column: Form -->
-                    <div class="col-lg-5 mb-5 mb-lg-0">
-                        <div class="card bg-white border-0 shadow-lg p-4">
-                            <div class="card-body">
-                                <span class="text-muted text-uppercase ls-1 small mb-2 d-block">Contacto
-                                    Rápido</span>
-                                <h3 class="font-montserrat fw-bold mb-4">Comencemos tu proyecto.</h3>
-
-                                <form id="contactForm">
-                                    <div class="form-floating mb-3">
-                                        <input
-                                            class="form-control bg-transparent text-dark border-bottom border-0 rounded-0 ps-0 shadow-none border-secondary"
-                                            id="name" type="text" placeholder="Nombre" required />
-                                        <label for="name" class="text-muted ps-0">Tu Nombre</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input
-                                            class="form-control bg-transparent text-dark border-bottom border-0 rounded-0 ps-0 shadow-none border-secondary"
-                                            id="number" type="tel" placeholder="Teléfono" />
-                                        <label for="number" class="text-muted ps-0">Tu Teléfono</label>
-                                    </div>
-                                    <div class="form-floating mb-4">
-                                        <textarea
-                                            class="form-control bg-transparent text-dark border-bottom border-0 rounded-0 ps-0 shadow-none border-secondary"
-                                            id="message" placeholder="Mensaje" style="height: 100px"
-                                            required></textarea>
-                                        <label for="message" class="text-muted ps-0">Mensaje</label>
-                                    </div>
-                                    <button class="btn btn-outline-accent w-100 font-montserrat fw-bold"
-                                        type="submit">INICIAR PROYECTO</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Accordion -->
-                    <div class="col-lg-6 offset-lg-1">
-                        <span class="text-accent text-uppercase ls-1 small mb-2 d-block">Feature Services</span>
-                        <h2 class="font-montserrat fw-bold mb-5 text-uppercase">¿Por qué elegirnos?</h2>
-
-                        <div class="accordion" id="faqAccordion">
-                            <!-- Item 1 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        ¿Qué servicios ofrece un estudio de arquitectura?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Ofrecemos servicios integrales de arquitectura que incluyen diseño
-                                        arquitectónico, anteproyectos, proyectos municipales, desarrollo de planos
-                                        técnicos, coordinación de especialidades y dirección de obra.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 2 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        ¿Trabajan con proyectos residenciales y comerciales?
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Sí. Desarrollamos proyectos residenciales (casas, ampliaciones, remodelaciones)
-                                        y proyectos comerciales como oficinas y locales comerciales.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 3 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        ¿Cuál es el costo de contratar a un arquitecto?
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                    aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        El costo depende del tipo de proyecto, superficie y complejidad. Cotizamos de
-                                        forma personalizada tras una reunión inicial.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 4 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFour" aria-expanded="false"
-                                        aria-controls="collapseFour">
-                                        ¿En qué ciudades trabajan?
-                                    </button>
-                                </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Principalmente en la Región Metropolitana, pero gestionamos proyectos en otras
-                                        regiones mediante coordinación remota.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 5 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive" aria-expanded="false"
-                                        aria-controls="collapseFive">
-                                        ¿Realizan proyectos llave en mano?
-                                    </button>
-                                </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Sí, ofrecemos servicio integral de diseño y construcción con equipos de
-                                        confianza.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-4">
-                                <a href="faq-test.html" class="link-accent text-decoration-none small fw-bold">VER TODAS
-                                    LAS PREGUNTAS &rarr;</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer / Contact -->
-        <footer class="bg-dark-2 pt-5 pb-0" id="footer">
-            <div class="container px-4 px-lg-5 py-5">
-                <div class="row gx-5">
-                    <!-- Column 1: Logo & Social -->
-                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 text-center">
-                        <a class="navbar-brand d-block mb-4" href="#page-top">
-                            <img src="recursos/Logos/LogoFooter.svg" alt="CM Arquitectura" height="120">
-                        </a>
-                        <div class="d-flex gap-3 social-icons justify-content-center">
-                            <!-- Placeholders for icons -->
-                            <a class="btn btn-outline-secondary btn-circle" href="#!"><i
-                                    class="bi bi-facebook"></i>F</a>
-                            <a class="btn btn-outline-secondary btn-circle" href="#!"><i class="bi bi-twitter"></i>T</a>
-                            <a class="btn btn-outline-secondary btn-circle" href="#!"><i
-                                    class="bi bi-instagram"></i>I</a>
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Address -->
-                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                        <h5 class="text-white font-montserrat fw-bold mb-4">Nuestra Dirección</h5>
-                        <p class="text-white-50 mb-0 font-montserrat fw-light">
-                            Paseo Ahumada 341, Of. 504<br>
-                            Santiago Centro, RM<br>
-                            Chile
-                        </p>
-                    </div>
-
-                    <!-- Column 3: Contact -->
-                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                        <h5 class="text-white font-montserrat fw-bold mb-4">Contacto</h5>
-                        <ul class="list-unstyled text-white-50 font-montserrat fw-light">
-                            <li class="mb-2">+56 9 5127 8937</li>
-                            <li class="mb-2">elizabeth@contrerasmartinez.cl</li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 4: Newsletter -->
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white font-montserrat fw-bold mb-4">Newsletter</h5>
-                        <form>
-                            <div class="newsletter-container">
-                                <input type="email" class="form-control newsletter-input font-montserrat fw-light"
-                                    placeholder="Ingresa tu E-Mail" aria-label="Email">
-                                <button class="btn btn-subscribe font-montserrat" type="button">SUSCRIBIRSE</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <hr class="border-secondary my-5 opacity-25">
-
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        <div class="small text-white-50 font-montserrat fw-light">
-                            Copyright &copy; 2025 Contreras Martínez. Designed by <span class="text-accent">Patrick
-                                Zapata
-                                2025</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="small">
-                            <a class="text-white-50 text-decoration-none me-3 font-montserrat fw-light"
-                                href="#intro">Sobre
-                                Nosotros</a>
-                            <a class="text-white-50 text-decoration-none me-3 font-montserrat fw-light"
-                                href="#services">Servicios</a>
-                            <a class="text-white-50 text-decoration-none font-montserrat fw-light"
-                                href="#contact">Contacto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Bootstrap 5 JS Bundle -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Custom JS -->
-        <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
-
-
-
