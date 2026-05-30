@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const revealTargets = document.querySelectorAll(
-        "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .founder-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .footer-cta-copy, .footer-contact"
+        "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .founder-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .footer-cta-copy, .footer-contact, .contact-form-block, .faq-block, .faq-list details, .form-field"
     );
 
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && revealTargets.length) {
@@ -58,4 +58,67 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    const faqItems = document.querySelectorAll(".faq-list details");
+    faqItems.forEach((item) => {
+        item.addEventListener("toggle", () => {
+            if (!item.open) return;
+            faqItems.forEach((otherItem) => {
+                if (otherItem !== item) otherItem.open = false;
+            });
+        });
+    });
+
+    const form = document.getElementById("contactForm");
+    const feedback = form?.querySelector(".form-feedback");
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            feedback.textContent = "";
+            feedback.className = "form-feedback";
+
+            const name = form.name.value.trim();
+            const email = form.email.value.trim();
+            const message = form.message.value.trim();
+
+            if (!name || !email || !message) {
+                feedback.textContent = "Por favor completa todos los campos.";
+                feedback.classList.add("is-error");
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                feedback.textContent = "Ingresa un correo electrónico válido.";
+                feedback.classList.add("is-error");
+                return;
+            }
+
+            const btn = form.querySelector(".form-submit");
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.textContent = "Enviando...";
+
+            try {
+                const res = await fetch("https://formspree.io/f/xdkebogw", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message }),
+                });
+
+                if (res.ok) {
+                    feedback.textContent = "Mensaje enviado con éxito. Te contactaremos pronto.";
+                    feedback.classList.add("is-success");
+                    form.reset();
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                feedback.textContent = "Hubo un error al enviar. Intenta nuevamente o escríbenos directo a elizabeth@contrerasmartinez.cl.";
+                feedback.classList.add("is-error");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        });
+    }
 });

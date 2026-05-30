@@ -508,11 +508,13 @@ blockquote {
 
 .banner-cta-section {
     position: relative;
-    min-height: 720px;
+    aspect-ratio: 2440 / 870;
+    max-height: 90vh;
+    min-height: 400px;
     padding: 0;
     background:
         linear-gradient(90deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.12)),
-        url("Recursos/Miscelaneos/CTA.jpg") center / cover no-repeat,
+        url("Recursos/Miscelaneos/mesa.png") center / cover no-repeat,
         #26211d;
     overflow: hidden;
 }
@@ -521,11 +523,23 @@ blockquote {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.24) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
-    background-size: calc(100% / 5) calc(100% / 3);
     pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35));
+    background-size:
+        1px 100%,
+        1px 100%,
+        100% 1px,
+        100% 1px;
+    background-position:
+        calc(30px + ((100% - 60px) / 5) + 26px) center,
+        calc(30px + ((100% - 60px) / 5) + 26px + min(330px, calc((100% - 60px) / 5 - 52px))) center,
+        center calc(100% / 6),
+        center calc(100% - 100% / 6);
+    background-repeat: no-repeat;
 }
 
 .banner-cta-panel {
@@ -989,6 +1003,156 @@ blockquote {
 [data-reveal].is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ── Contact + FAQ ── */
+
+.contact-faq-section {
+    padding: 120px 0;
+    background: var(--soft);
+}
+
+.contact-faq-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 72px;
+    align-items: start;
+}
+
+.contact-form-block h2,
+.faq-block h2 {
+    margin: 0 0 16px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.6rem, 2.2vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.contact-form-intro {
+    margin: 0 0 40px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 440px;
+}
+
+.form-field {
+    margin-bottom: 24px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: border-color 0.2s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--ink);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.form-submit:hover {
+    background: var(--orange);
+}
+
+.form-feedback {
+    margin: 16px 0 0;
+    font-size: 0.88rem;
+    min-height: 1.4em;
+}
+
+.form-feedback.is-error {
+    color: #c0392b;
+}
+
+.form-feedback.is-success {
+    color: #27ae60;
+}
+
+/* ── FAQ ── */
+
+.faq-list {
+    border-top: 1px solid rgba(16, 16, 16, 0.12);
+}
+
+.faq-list details {
+    border-bottom: 1px solid rgba(16, 16, 16, 0.12);
+}
+
+.faq-list summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    font-family: "Urbanist", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.3;
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-list summary::after {
+    content: "+";
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.3rem;
+    color: var(--muted);
+    transition: transform 0.2s ease;
+}
+
+.faq-list details[open] summary::after {
+    content: "–";
+}
+
+.faq-list details p {
+    margin: 0 0 24px;
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
 }
 
 /* ── Project Article ── */
@@ -1487,7 +1651,9 @@ blockquote {
     }
 
     .banner-cta-section {
-        min-height: 620px;
+        min-height: 100dvh;
+        aspect-ratio: unset;
+        max-height: none;
     }
 
     .banner-grid-lines {
@@ -1602,5 +1768,23 @@ blockquote {
 
     .sidebar-card {
         padding: 24px;
+    }
+
+    .contact-faq-section {
+        padding: 72px 0;
+    }
+
+    .contact-faq-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .faq-list summary {
+        font-size: 1rem;
+        padding: 18px 0;
+    }
+
+    .faq-list details p {
+        font-size: 0.88rem;
     }
 }

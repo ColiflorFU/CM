@@ -14,6 +14,54 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Urbanist:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Qué servicios ofrece el estudio?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Arquitectura y diseño, especialidades técnicas (cálculo estructural, eléctricos, sanitarios, gas), construcción y remodelación, inspección técnica de obras, regularización y permisos, y Ley del Mono."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Trabajan con proyectos residenciales y comerciales?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí. Desarrollamos viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándonos a la normativa de cada caso."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cuánto cuesta contratar un arquitecto?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Cada proyecto se cotiza de forma personalizada luego de una reunión inicial. El costo depende de la superficie, complejidad técnica y alcance del encargo."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿En qué zonas trabajan?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Principalmente en Santiago y Región Metropolitana, pero gestionamos proyectos en otras regiones mediante coordinación remota y visitas programadas."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cómo inicio un proyecto con ustedes?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Coordinamos una reunión para entender tu idea y definir el mejor camino."
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -32,7 +80,7 @@
             <a href="#services">Servicios</a>
             <a href="#portfolio">Proyectos</a>
             <a href="#process">Proceso</a>
-            <a href="#contact">Contacto</a>
+            <a href="#contacto">Contacto</a>
         </nav>
     </header>
 
@@ -273,6 +321,62 @@
         </section>
 
 
+        <section class="contact-faq-section" id="contacto">
+            <div class="container">
+                <div class="contact-faq-grid">
+                    <div class="contact-form-block">
+                        <p class="eyebrow">Contacto</p>
+                        <h2>Conversemos sobre tu proyecto</h2>
+                        <p class="contact-form-intro">
+                            Cuéntanos en qué estás trabajando y te respondemos a la brevedad.
+                        </p>
+                        <form id="contactForm" novalidate>
+                            <div class="form-field">
+                                <label for="formName">Nombre</label>
+                                <input id="formName" name="name" type="text" required placeholder="Tu nombre">
+                            </div>
+                            <div class="form-field">
+                                <label for="formEmail">Correo electrónico</label>
+                                <input id="formEmail" name="email" type="email" required placeholder="tu@email.cl">
+                            </div>
+                            <div class="form-field">
+                                <label for="formMessage">Mensaje</label>
+                                <textarea id="formMessage" name="message" rows="5" required placeholder="Cuéntanos sobre tu proyecto, consulta o presupuesto..."></textarea>
+                            </div>
+                            <button class="form-submit" type="submit">Enviar mensaje <span>&rarr;</span></button>
+                            <p class="form-feedback" aria-live="polite"></p>
+                        </form>
+                    </div>
+
+                    <div class="faq-block">
+                        <p class="eyebrow">Preguntas frecuentes</p>
+                        <h2>Resolvemos tus dudas</h2>
+                        <div class="faq-list">
+                            <details>
+                                <summary>¿Qué servicios ofrece el estudio?</summary>
+                                <p>Arquitectura y diseño, especialidades técnicas (cálculo estructural, eléctricos, sanitarios, gas), construcción y remodelación, inspección técnica de obras, regularización y permisos, y Ley del Mono.</p>
+                            </details>
+                            <details>
+                                <summary>¿Trabajan con proyectos residenciales y comerciales?</summary>
+                                <p>Sí. Desarrollamos viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándonos a la normativa de cada caso.</p>
+                            </details>
+                            <details>
+                                <summary>¿Cuánto cuesta contratar un arquitecto?</summary>
+                                <p>Cada proyecto se cotiza de forma personalizada luego de una reunión inicial. El costo depende de la superficie, complejidad técnica y alcance del encargo.</p>
+                            </details>
+                            <details>
+                                <summary>¿En qué zonas trabajan?</summary>
+                                <p>Principalmente en Santiago y Región Metropolitana, pero gestionamos proyectos en otras regiones mediante coordinación remota y visitas programadas.</p>
+                            </details>
+                            <details>
+                                <summary>¿Cómo inicio un proyecto con ustedes?</summary>
+                                <p>Agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Coordinamos una reunión para entender tu idea y definir el mejor camino.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer footer-cta" id="contact">
