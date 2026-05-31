@@ -2101,7 +2101,7 @@ blockquote {
 
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 48px;
     }
 
     .footer-cta-col {
@@ -2224,6 +2224,10 @@ blockquote {
 
     .footer-disclaimer p {
         font-size: 15px;
+    }
+
+    .footer-grid > * {
+        grid-column: 1;
     }
 
     .footer-fab {
