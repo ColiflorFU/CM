@@ -85,17 +85,53 @@
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="container hero-grid">
-                <div class="hero-copy">
-                    <h1>Diseño que escucha, espacios pensados para habitar mejor.</h1>
-                    <div class="hero-thumbs">
-                        <div class="media-block hero-thumb" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
-                        <div class="media-block hero-thumb media-warm" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
+        <section class="hero hero-slider">
+            <div class="hero__texture"></div>
+            <div class="hero__track">
+                <div class="hero__slide active">
+                    <div class="hero__left">
+                        <div class="hero__content">
+                            <span class="hero__label">ARQUITECTURA INTEGRAL</span>
+                            <h1>Diseño que escucha,<br>espacios para habitar mejor.</h1>
+                            <p class="hero__desc">Desde 2015 proyectamos arquitectura, interiorismo y renovación con enfoque técnico y humano. Cada encargo comienza escuchando: entendemos la historia, el uso y las posibilidades reales.</p>
+
+                            <div class="hero__actions">
+                                <a class="print-button" href="#portfolio">
+                                    <span>VER PROYECTOS</span>
+                                </a>
+                                <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__right">
+                        <img src="Recursos/Miscelaneos/hero.jpeg" alt="Proyecto 1">
                     </div>
                 </div>
 
-                <div class="hero-media media-block media-dark" style="background-image:url('Recursos/HeroSection/Fondo.jpg')"></div>
+                <div class="hero__slide">
+                    <div class="hero__left">
+                        <div class="hero__content">
+                            <span class="hero__label">ARQUITECTURA INTEGRAL</span>
+                            <h1>Segundo proyecto,<br>otra forma de habitar.</h1>
+                            <p class="hero__desc">Cada espacio cuenta una historia distinta. Proyectamos con la misma rigurosidad técnica y sensibilidad, adaptándonos a la normativa de cada caso.</p>
+
+                            <div class="hero__actions">
+                                <a class="print-button" href="#portfolio">
+                                    <span>VER PROYECTOS</span>
+                                </a>
+                                <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__right">
+                        <img src="Recursos/Miscelaneos/hero.jpeg" alt="Proyecto 2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__slider" role="tablist" aria-label="Navegación del slider">
+                <button class="hero__slider-btn hero__slider--active" role="tab" aria-selected="true" data-slide="0">01</button>
+                <button class="hero__slider-btn" role="tab" aria-selected="false" data-slide="1">02</button>
             </div>
         </section>
 
@@ -379,52 +415,56 @@
         </section>
     </main>
 
-    <footer class="site-footer footer-cta" id="contact">
-        <div class="container footer-top">
-            <a class="footer-brand" href="#top" aria-label="Contreras Mart&iacute;nez inicio">
-                <img src="Recursos/Logos/LogoFooter.svg" alt="Contreras Mart&iacute;nez Arquitectura Integral">
-            </a>
+    <div class="footer-frame" id="contact">
+        <span class="frame-line frame-line-left" aria-hidden="true"></span>
+        <span class="frame-line frame-line-right" aria-hidden="true"></span>
 
-            <nav class="footer-nav" aria-label="Footer">
-                <a href="#studio">Estudio</a>
-                <a href="#services">Servicios</a>
-                <a href="#portfolio">Proyectos</a>
-                <a href="#process">Proceso</a>
-            </nav>
-        </div>
+        <footer class="site-footer grid-bg">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- CTA Column (spans 2) -->
+                    <div class="footer-cta-col">
+                        <h2>¿Tienes algo en mente? Hablemos.</h2>
+                        <div class="architectural-button-wrap">
+                            <a href="mailto:elizabeth@contrerasmartinez.cl" class="architectural-button">
+                                <span class="architectural-button__marks"></span>
+                                <span class="architectural-button__label">DROP US A LINE</span>
+                            </a>
+                            <span class="btn-microcopy">Arquitectura, diseño, construcción y regularización</span>
+                        </div>
+                    </div>
 
-        <div class="container footer-main">
-            <div class="footer-cta-copy">
-                <h2>&iquest;Tienes algo en mente? Hablemos.</h2>
-                <a class="footer-button" href="mailto:elizabeth@contrerasmartinez.cl">Solicitar contacto <span>&rarr;</span></a>
-                <a class="footer-up" href="#top" aria-label="Volver arriba">&uarr;</a>
+                    <!-- Social Column -->
+                    <div>
+                        <h3 class="footer-col-label">Social</h3>
+                        <ul class="footer-col-links">
+                            <li><a href="#!">Instagram</a></li>
+                            <li><a href="#!">LinkedIn</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Address Column -->
+                    <div>
+                        <h3 class="footer-col-label">Find Us</h3>
+                        <div class="footer-address">
+                            <p>Paseo Ahumada 341, Of. 504<br>Santiago Centro, Chile</p>
+                            <a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a>
+                            <a href="tel:+56951278937">+56 9 5127 8937</a>
+                        </div>
+                    </div>
+
+                    <!-- Disclaimer Column -->
+                    <div class="footer-disclaimer">
+                        <h3 class="footer-col-label">Info</h3>
+                        <p>&copy; 2026 Contreras Martínez</p>
+                        <p>Arquitectura, diseño, construcción y regularización</p>
+                    </div>
+                </div>
             </div>
+        </footer>
 
-            <div class="footer-contact">
-                <div class="footer-contact-block">
-                    <span>Email</span>
-                    <a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a>
-                </div>
-                <div class="footer-contact-block">
-                    <span>Teléfono</span>
-                    <a href="tel:+56951278937">+56 9 5127 8937</a>
-                </div>
-                <div class="footer-contact-block">
-                    <span>Estudio</span>
-                    <p>Paseo Ahumada 341, Of. 504<br>Santiago Centro, Chile</p>
-                </div>
-                <div class="footer-social">
-                    <a href="#!">Instagram</a>
-                    <a href="#!">LinkedIn</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Contreras Mart&iacute;nez</p>
-            <p>Arquitectura, dise&ntilde;o, construcci&oacute;n y regularizaci&oacute;n</p>
-        </div>
-    </footer>
+        <a href="#top" class="footer-fab" aria-label="Volver arriba">&uarr;</a>
+    </div>
 
     <script src="script.js"></script>
 </body>

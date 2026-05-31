@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const revealTargets = document.querySelectorAll(
-        "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .founder-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .footer-cta-copy, .footer-contact, .contact-form-block, .faq-block, .faq-list details, .form-field"
+        "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .founder-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .contact-form-block, .faq-block, .faq-list details, .form-field"
     );
 
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && revealTargets.length) {
@@ -120,5 +120,151 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.innerHTML = originalText;
             }
         });
+    }
+
+    /* ── Hero Cinematic Slider ── */
+    const slider = document.querySelector('.hero-slider');
+    if (slider) {
+        const track = slider.querySelector('.hero__track');
+        const slides = slider.querySelectorAll('.hero__slide');
+        const btns = slider.querySelectorAll('.hero__slider-btn');
+        if (track && slides.length > 1 && btns.length) {
+            let current = 0;
+            let animating = true; /* Locked during page load */
+            let interval;
+            let isMobile = window.matchMedia('(max-width: 760px)').matches;
+            const mm = window.matchMedia('(max-width: 760px)');
+            mm.addEventListener('change', (e) => { isMobile = e.matches; });
+
+            /* ── Texture: page load zoom-out ── */
+            const texture = slider.querySelector('.hero__texture');
+            if (texture) {
+                texture.style.transform = 'scale(1.15)';
+                texture.style.transition = 'none';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        texture.style.transition = 'transform 1.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                        texture.style.transform = 'scale(1)';
+                    });
+                });
+            }
+
+            /* ── Text split: wrap h1 lines ── */
+            slides.forEach(slide => {
+                const h1 = slide.querySelector('h1');
+                if (h1 && !h1.dataset.split) {
+                    h1.dataset.split = '1';
+                    const html = h1.innerHTML;
+                    const lines = html.split('<br>');
+                    h1.innerHTML = lines.map(line =>
+                        `<span class="hero__line"><span class="hero__line-inner">${line.trim()}</span></span>`
+                    ).join('');
+                }
+            });
+
+            /* ── Page load animation ── */
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    slider.classList.add('hero-loaded');
+                });
+            });
+
+            /* Unlock slider and start auto-advance after page load */
+            setTimeout(() => {
+                animating = false;
+                interval = setInterval(autoAdvance, 6000);
+            }, 2200);
+
+            /* ── Slide transition ── */
+            function goTo(index) {
+                if (index === current || animating) return;
+                if (isMobile) {
+                    slides.forEach(s => s.classList.remove('active'));
+                    slides[index].classList.add('active');
+                    btns.forEach(b => b.classList.remove('hero__slider--active'));
+                    btns[index].classList.add('hero__slider--active');
+                    current = index;
+                    return;
+                }
+
+                animating = true;
+                const prev = slides[current];
+                const next = slides[index];
+
+                /* Exit parallax on outgoing image */
+                prev.classList.add('is-exiting');
+
+                /* Setup incoming slide: reset, then enter */
+                next.classList.remove('active', 'enter-active');
+                next.classList.add('enter');
+                void next.offsetWidth; /* force reflow */
+                next.classList.remove('enter');
+                next.classList.add('enter-active');
+
+                /* Move track */
+                track.classList.add('animating');
+                track.style.transform = `translateX(-${index * 50}%)`;
+
+                /* Update buttons */
+                btns.forEach(b => b.classList.remove('hero__slider--active'));
+                btns[index].classList.add('hero__slider--active');
+
+                /* Cleanup */
+                setTimeout(() => {
+                    prev.classList.remove('is-exiting', 'active');
+                    next.classList.remove('enter-active');
+                    next.classList.add('active');
+                    track.classList.remove('animating');
+                    animating = false;
+                    current = index;
+                }, 1600);
+            }
+
+            /* ── Button clicks ── */
+            btns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.slide, 10);
+                    if (idx === current) return;
+                    clearInterval(interval);
+                    goTo(idx);
+                    interval = setInterval(autoAdvance, 6000);
+                });
+            });
+
+            function autoAdvance() {
+                goTo((current + 1) % slides.length);
+            }
+
+            /* ── Scroll-linked hero motion ── */
+            let scrollTicking = false;
+            const leftCol = slider.querySelector('.hero__left');
+
+            function handleScroll() {
+                const st = window.scrollY;
+                const vh = window.innerHeight;
+                if (st < vh) {
+                    const progress = st / vh;
+                    if (texture) {
+                        texture.style.transition = 'none';
+                        texture.style.transform = `translateY(${progress * -30}px)`;
+                    }
+                    if (leftCol) {
+                        leftCol.style.transform = `translateY(${progress * -30}px)`;
+                        leftCol.style.opacity = `${1 - progress * 1.2}`;
+                    }
+                }
+                scrollTicking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!scrollTicking) {
+                    requestAnimationFrame(handleScroll);
+                    scrollTicking = true;
+                }
+            }, { passive: true });
+
+            /* Set initial scroll state */
+            handleScroll();
+        }
     }
 });
