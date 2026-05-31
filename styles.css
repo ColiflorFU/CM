@@ -1851,6 +1851,7 @@ blockquote {
     .site-header {
         min-height: 72px;
         padding: 0 16px;
+        border-bottom: none;
     }
 
     .brand img {
