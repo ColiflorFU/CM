@@ -85,17 +85,51 @@
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="container hero-grid">
-                <div class="hero-copy">
-                    <h1>Diseño que escucha, espacios pensados para habitar mejor.</h1>
-                    <div class="hero-thumbs">
-                        <div class="media-block hero-thumb" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
-                        <div class="media-block hero-thumb media-warm" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
+        <section class="hero hero-slider">
+            <div class="hero__texture"></div>
+            <div class="hero__slide active">
+                <div class="hero__left">
+                    <div class="hero__content">
+                        <span class="hero__label">ARQUITECTURA INTEGRAL</span>
+                        <h1>Diseño que escucha,<br>espacios para habitar mejor.</h1>
+                        <p class="hero__desc">Desde 2015 proyectamos arquitectura, interiorismo y renovación con enfoque técnico y humano. Cada encargo comienza escuchando: entendemos la historia, el uso y las posibilidades reales.</p>
+
+                        <div class="hero__actions">
+                            <a class="print-button" href="#portfolio">
+                                <span>VER PROYECTOS</span>
+                            </a>
+                            <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
+                        </div>
                     </div>
                 </div>
+                <div class="hero__right">
+                    <img src="Recursos/Miscelaneos/hero.jpeg" alt="Proyecto 1">
+                </div>
+            </div>
 
-                <div class="hero-media media-block media-dark" style="background-image:url('Recursos/HeroSection/Fondo.jpg')"></div>
+            <div class="hero__slide">
+                <div class="hero__left">
+                    <div class="hero__content">
+                        <span class="hero__label">ARQUITECTURA INTEGRAL</span>
+                        <h1>Segundo proyecto,<br>otra forma de habitar.</h1>
+                        <p class="hero__desc">Cada espacio cuenta una historia distinta. Proyectamos con la misma rigurosidad técnica y sensibilidad, adaptándonos a la normativa de cada caso.</p>
+
+                        <div class="hero__actions">
+                            <a class="print-button" href="#portfolio">
+                                <span>VER PROYECTOS</span>
+                            </a>
+                            <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__right">
+                    <img src="Recursos/Miscelaneos/hero.jpeg" alt="Proyecto 2">
+                </div>
+            </div>
+
+            <div class="hero__slider" role="tablist" aria-label="Navegación del slider">
+                <button class="hero__slider-btn hero__slider--active" role="tab" aria-selected="true" data-slide="0">01</button>
+                <button class="hero__slider-btn" role="tab" aria-selected="false" data-slide="1">02</button>
             </div>
         </section>
 

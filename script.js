@@ -121,4 +121,169 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    /* ── Hero Cinematic Slider ── */
+    const slider = document.querySelector('.hero-slider');
+    if (slider) {
+        const slides = slider.querySelectorAll('.hero__slide');
+        const btns = slider.querySelectorAll('.hero__slider-btn');
+        if (slides.length > 1 && btns.length) {
+            let current = 0;
+            let animating = true; /* Locked during page load */
+            let interval;
+            let isMobile = window.matchMedia('(max-width: 760px)').matches;
+            const mm = window.matchMedia('(max-width: 760px)');
+            mm.addEventListener('change', (e) => { isMobile = e.matches; });
+
+            /* ── Texture: page load zoom-out ── */
+            const texture = slider.querySelector('.hero__texture');
+            if (texture) {
+                texture.style.transform = 'scale(1.15)';
+                texture.style.transition = 'none';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        texture.style.transition = 'transform 1.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                        texture.style.transform = 'scale(1)';
+                    });
+                });
+            }
+
+            /* ── Text split: wrap h1 lines ── */
+            slides.forEach(slide => {
+                const h1 = slide.querySelector('h1');
+                if (h1 && !h1.dataset.split) {
+                    h1.dataset.split = '1';
+                    const html = h1.innerHTML;
+                    const lines = html.split('<br>');
+                    h1.innerHTML = lines.map(line =>
+                        `<span class="hero__line"><span class="hero__line-inner">${line.trim()}</span></span>`
+                    ).join('');
+                }
+            });
+
+            /* ── Page load animation ── */
+            slider.classList.add('hero-loading');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    slider.classList.remove('hero-loading');
+                    slider.classList.add('hero-loaded');
+                });
+            });
+
+            /* Unlock slider and start auto-advance after page load */
+            setTimeout(() => {
+                animating = false;
+                interval = setInterval(autoAdvance, 6000);
+            }, 2200);
+
+            /* ── Slide transition ── */
+            function goTo(index) {
+                if (index === current || animating) return;
+                if (isMobile) {
+                    slides.forEach(s => s.classList.remove('active'));
+                    slides[index].classList.add('active');
+                    btns.forEach(b => b.classList.remove('hero__slider--active'));
+                    btns[index].classList.add('hero__slider--active');
+                    current = index;
+                    return;
+                }
+
+                animating = true;
+                const prev = slides[current];
+                const next = slides[index];
+
+                /* Clear any leftover inline styles from previous transition */
+                [prev, next].forEach(s => {
+                    s.querySelectorAll('.hero__label, .hero__desc, .hero__actions, .hero__line-inner').forEach(el => {
+                        el.style.transition = '';
+                        el.style.transform = '';
+                        el.style.opacity = '';
+                    });
+                });
+
+                /* Reset next: set initial enter state (no transition) */
+                next.classList.remove('active', 'exit', 'enter-active');
+                next.classList.add('enter');
+
+                /* Force reflow to lock initial position */
+                void next.offsetHeight;
+
+                /* Remove active from prev, add exit */
+                prev.classList.remove('active');
+                prev.classList.add('exit');
+
+                /* Start enter animation on next */
+                next.classList.remove('enter');
+                next.classList.add('enter-active');
+
+                /* Update buttons */
+                btns.forEach(b => b.classList.remove('hero__slider--active'));
+                btns[index].classList.add('hero__slider--active');
+
+                /* ── Cleanup after animation completes ── */
+                setTimeout(() => {
+                    /* Preserve text at final visible state via inline styles */
+                    const textEls = next.querySelectorAll('.hero__label, .hero__desc, .hero__actions, .hero__line-inner');
+                    textEls.forEach(el => {
+                        el.style.transition = 'none';
+                        el.style.transform = 'translateY(0)';
+                        el.style.opacity = '1';
+                    });
+
+                    prev.classList.remove('exit');
+                    next.classList.add('active');
+                    /* Remove enter-active after active is applied */
+                    next.classList.remove('enter-active');
+                    animating = false;
+                    current = index;
+                }, 1600);
+            }
+
+            /* ── Button clicks ── */
+            btns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.slide, 10);
+                    if (idx === current) return;
+                    clearInterval(interval);
+                    goTo(idx);
+                    interval = setInterval(autoAdvance, 6000);
+                });
+            });
+
+            function autoAdvance() {
+                goTo((current + 1) % slides.length);
+            }
+
+            /* ── Scroll-linked hero motion ── */
+            let scrollTicking = false;
+            const leftCol = slider.querySelector('.hero__left');
+
+            function handleScroll() {
+                const st = window.scrollY;
+                const vh = window.innerHeight;
+                if (st < vh) {
+                    const progress = st / vh;
+                    if (texture) {
+                        texture.style.transition = 'none';
+                        texture.style.transform = `translateY(${progress * -30}px)`;
+                    }
+                    if (leftCol) {
+                        leftCol.style.transform = `translateY(${progress * -30}px)`;
+                        leftCol.style.opacity = `${1 - progress * 1.2}`;
+                    }
+                }
+                scrollTicking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!scrollTicking) {
+                    requestAnimationFrame(handleScroll);
+                    scrollTicking = true;
+                }
+            }, { passive: true });
+
+            /* Set initial scroll state */
+            handleScroll();
+        }
+    }
 });
