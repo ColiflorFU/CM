@@ -2109,18 +2109,25 @@ blockquote {
         display: flex;
         flex-direction: column;
         gap: 48px;
+        width: 100%;
     }
 
     .footer-grid > * {
         width: 100%;
-        min-width: 0;
         max-width: 100%;
+        min-width: 0;
         overflow-wrap: break-word;
         box-sizing: border-box;
     }
 
     .footer-cta-col {
         grid-column: unset;
+    }
+
+    .footer-cta-col h2 {
+        font-size: clamp(1.6rem, 7vw, 2rem);
+        margin-bottom: 24px;
+        overflow-wrap: break-word;
     }
 
     .footer-col-label {
@@ -2157,22 +2164,6 @@ blockquote {
 
     .footer-disclaimer p {
         font-size: 15px;
-        overflow-wrap: break-word;
-    }
-
-    .footer-grid > * {
-        min-width: 0;
-        width: 100%;
-        overflow-wrap: break-word;
-    }
-
-    .footer-cta-col {
-        grid-column: unset;
-    }
-
-    .footer-cta-col h2 {
-        font-size: clamp(1.6rem, 7vw, 2rem);
-        margin-bottom: 24px;
         overflow-wrap: break-word;
     }
 
