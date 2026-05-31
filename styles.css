@@ -2083,6 +2083,7 @@ blockquote {
     /* ── Footer Frame responsive at 760px ── */
     .footer-frame {
         padding: 12px;
+        overflow: hidden;
     }
 
     .footer-frame::before {
@@ -2110,6 +2111,13 @@ blockquote {
         gap: 48px;
     }
 
+    .footer-grid > * {
+        grid-column: 1;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
     .footer-cta-col {
         grid-column: 1;
     }
@@ -2117,6 +2125,7 @@ blockquote {
     .footer-cta-col h2 {
         font-size: clamp(1.6rem, 7vw, 2rem);
         margin-bottom: 24px;
+        overflow-wrap: break-word;
     }
 
     .architectural-button {
