@@ -19,6 +19,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    direction: ltr;
 }
 
 body {
@@ -1852,6 +1854,9 @@ blockquote {
         min-height: 72px;
         padding: 0 16px;
         border-bottom: none;
+        left: 0;
+        right: 0;
+        overflow: hidden;
     }
 
     .brand img {
@@ -1860,6 +1865,7 @@ blockquote {
 
     .menu-toggle {
         display: block;
+        flex-shrink: 0;
     }
 
     .site-nav {
