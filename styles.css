@@ -8,6 +8,8 @@
     --dark-2: #222222;
     --accent: #c5a47e;
     --orange: #f59a1b;
+    --footer-bg: #f8f8f8;
+    --grid-line: rgba(0, 0, 0, 0.04);
     --max: 1700px;
 }
 
@@ -29,6 +31,11 @@ body {
     line-height: 1.5;
 }
 
+::selection {
+    background: #000;
+    color: #fff;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -41,6 +48,14 @@ a {
 .container {
     width: min(var(--max), calc(100% - 60px));
     margin: 0 auto;
+}
+
+/* ── Grid Background Utility ── */
+.grid-bg {
+    background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 32px 32px;
 }
 
 .site-header {
@@ -842,156 +857,262 @@ blockquote {
     min-height: 520px;
 }
 
+/* ── Footer Frame (tarjeta con marco de impresión) ── */
+
+.footer-frame {
+    position: relative;
+    padding: 30px;
+    background: #fff;
+}
+
+/* Línea horizontal top — cruza todo el viewport */
+.footer-frame::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.10);
+    pointer-events: none;
+}
+
+/* Línea horizontal bottom — cruza todo el viewport */
+.footer-frame::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.10);
+    pointer-events: none;
+}
+
+.frame-line {
+    position: absolute;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.10);
+    pointer-events: none;
+}
+
+.frame-line-left {
+    left: 30px;
+    top: 0;
+    bottom: 0;
+}
+
+.frame-line-right {
+    right: 30px;
+    top: 0;
+    bottom: 0;
+}
+
+/* ── Site Footer (tarjeta interior) ── */
+
 .site-footer {
-    background: var(--dark);
-    color: rgba(255, 255, 255, 0.68);
+    background: var(--footer-bg);
+    padding: 72px 0 64px;
 }
 
-.footer-cta {
-    padding: 98px 0 46px;
-}
-
-.footer-top {
+.footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 40px;
-    align-items: center;
-    padding-bottom: 78px;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    gap: 64px;
 }
 
-.footer-brand img {
-    width: 220px;
-    height: auto;
+.footer-cta-col {
+    grid-column: 1 / 3;
 }
 
-.footer-nav {
-    display: flex;
-    gap: 48px;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.footer-nav a,
-.footer-contact a,
-.footer-bottom p {
-    color: rgba(255, 255, 255, 0.68);
-    text-decoration: none;
-}
-
-.footer-nav a:hover,
-.footer-contact a:hover {
-    color: #fff;
-}
-
-.footer-main {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-    gap: 72px;
-    align-items: start;
-    padding: 36px 0 76px;
-}
-
-.footer-cta-copy h2 {
-    max-width: 640px;
-    margin: 0 0 34px;
-    color: #fff;
+.footer-cta-col h2 {
     font-family: "Urbanist", sans-serif;
-    font-size: clamp(2.5rem, 4.4vw, 5.5rem);
+    font-size: clamp(1.8rem, 2.8vw, 2.8rem);
     font-weight: 500;
-    line-height: 1.06;
-    letter-spacing: -0.045em;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0 0 32px;
+    max-width: 540px;
 }
 
-.footer-button {
+/* Corners Button — architectural blueprint style */
+.architectural-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 16px 26px;
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    color: #fff;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
     text-decoration: none;
     text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-family: inherit;
+    color: #000;
+    overflow: visible;
 }
 
-.footer-button:hover {
-    background: #fff;
-    color: var(--dark);
+/*
+ * Horizontals — on the button itself via pseudo-elements.
+ * Extend 12px past the button on each side.
+ */
+.architectural-button::before,
+.architectural-button::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+    right: -12px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.20);
+    z-index: 1;
+    pointer-events: none;
 }
 
-.footer-up {
-    display: block;
-    width: 28px;
-    margin-top: 92px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.25rem;
+.architectural-button::before {
+    top: 0;
+}
+
+.architectural-button::after {
+    bottom: 0;
+}
+
+/*
+ * Verticals — single span, one background per side.
+ * Extend 12px above and below the button.
+ */
+.architectural-button__marks {
+    position: absolute;
+    top: -12px;
+    bottom: -12px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)) left center / 1px 100% no-repeat,
+        linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)) right center / 1px 100% no-repeat;
+}
+
+.architectural-button__label {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 1.4em;
+    padding-inline: 4.5em;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: transparent;
+    font-weight: 500;
+    font-size: 12px;
     line-height: 1;
-    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease;
 }
 
-.footer-contact {
-    display: grid;
-    gap: 28px;
-    align-content: start;
-    padding-top: 12px;
+.architectural-button:hover .architectural-button__label {
+    background: rgba(0, 0, 0, 0.03);
 }
 
-.footer-contact-block {
-    display: grid;
-    gap: 8px;
+/* Wrapper: espacio negativo alrededor del botón sin tocar sus líneas */
+.architectural-button-wrap {
+    padding: 8px 0 32px;
 }
 
-.footer-contact-block span {
-    color: rgba(255, 255, 255, 0.44);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+.btn-microcopy {
+    display: block;
+    margin-top: 28px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--ink);
+}
+
+.footer-col-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.28);
+    margin: 0 0 28px;
     text-transform: uppercase;
-}
-
-.footer-contact a,
-.footer-contact p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.9rem;
-    line-height: 1.55;
-}
-
-.footer-contact a {
-    justify-self: start;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.48);
-}
-
-.footer-social {
-    display: flex;
-    gap: 22px;
-    margin-top: 18px;
-}
-
-.footer-social a {
-    color: rgba(255, 255, 255, 0.56);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    gap: 32px;
-    padding-top: 34px;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.footer-bottom p {
-    margin: 0;
-    font-size: 0.74rem;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
+}
+
+.footer-col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col-links li {
+    margin-bottom: 0;
+}
+
+.footer-col-links a {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 2;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.footer-col-links a:hover {
+    color: var(--orange);
+}
+
+.footer-address p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 12px;
+}
+
+.footer-address a {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.8;
+    transition: color 0.15s ease;
+}
+
+.footer-address a:hover {
+    color: var(--orange);
+}
+
+.footer-disclaimer p {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 12px;
+    line-height: 1.6;
+}
+
+/* Scroll-to-top FAB */
+.footer-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.footer-fab:hover {
+    opacity: 0.8;
 }
 
 [data-reveal] {
@@ -1009,13 +1130,27 @@ blockquote {
 
 .contact-faq-section {
     padding: 120px 0;
-    background: var(--soft);
+    background: #fff;
+    border-top: 1px solid var(--line);
+    position: relative;
+}
+
+.contact-faq-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .contact-faq-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    gap: 72px;
+    gap: 80px;
     align-items: start;
 }
 
@@ -1434,6 +1569,20 @@ blockquote {
     .process-image-main {
         min-height: 440px;
     }
+
+    /* ── Footer responsive at 1100px ── */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-cta-col {
+        grid-column: 1 / -1;
+    }
+
+    .footer-cta-col h2 {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 760px) {
@@ -1611,43 +1760,100 @@ blockquote {
         line-height: 1.12;
     }
 
-    .philosophy-grid,
-    .portfolio-grid,
-    .footer-main,
-    .footer-top {
+    /* ── Footer Frame responsive at 760px ── */
+    .footer-frame {
+        padding: 12px;
+    }
+
+    .footer-frame::before {
+        top: 12px;
+    }
+
+    .footer-frame::after {
+        bottom: 12px;
+    }
+
+    .frame-line-left {
+        left: 12px;
+    }
+
+    .frame-line-right {
+        right: 12px;
+    }
+
+    .site-footer {
+        padding: 40px 0 36px;
+    }
+
+    .footer-grid {
         grid-template-columns: 1fr;
+        gap: 32px;
     }
 
-    .footer-cta {
-        padding: 72px 0 38px;
+    .footer-cta-col {
+        grid-column: 1;
     }
 
-    .footer-top {
-        gap: 34px;
-        padding-bottom: 58px;
+    .footer-cta-col h2 {
+        font-size: clamp(1.6rem, 7vw, 2rem);
+        margin-bottom: 24px;
     }
 
-    .footer-nav {
-        flex-wrap: wrap;
-        gap: 18px 28px;
+    .architectural-button {
+        width: 100%;
     }
 
-    .footer-main {
-        gap: 48px;
-        padding: 20px 0 52px;
+    .architectural-button::before,
+    .architectural-button::after {
+        left: -8px;
+        right: -8px;
     }
 
-    .footer-cta-copy h2 {
-        font-size: 2.65rem;
+    .architectural-button__marks {
+        top: -8px;
+        bottom: -8px;
     }
 
-    .footer-up {
-        margin-top: 56px;
+    .architectural-button__label {
+        padding-block: 1.4em;
+        padding-inline: 3em;
     }
 
-    .footer-bottom {
-        display: grid;
-        gap: 12px;
+    .architectural-button-wrap {
+        padding: 6px 0 24px;
+    }
+
+    .btn-microcopy {
+        font-size: 15px;
+    }
+
+    .footer-col-label {
+        margin-bottom: 16px;
+    }
+
+    .footer-col-links a {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .footer-address p {
+        font-size: 15px;
+    }
+
+    .footer-address a {
+        font-size: 15px;
+    }
+
+    .footer-disclaimer p {
+        font-size: 15px;
+    }
+
+    .footer-fab {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
 
     .banner-cta-section {

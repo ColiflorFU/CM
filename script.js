@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const revealTargets = document.querySelectorAll(
-        "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .founder-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .footer-cta-copy, .footer-contact, .contact-form-block, .faq-block, .faq-list details, .form-field"
+        "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .founder-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .contact-form-block, .faq-block, .faq-list details, .form-field"
     );
 
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && revealTargets.length) {
