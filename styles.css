@@ -2106,18 +2106,20 @@ blockquote {
     }
 
     .footer-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 48px;
+        display: block;
         width: 100%;
     }
 
     .footer-grid > * {
+        display: block;
         width: 100%;
         max-width: 100%;
-        min-width: 0;
         overflow-wrap: break-word;
         box-sizing: border-box;
+    }
+
+    .footer-grid > * + * {
+        margin-top: 48px;
     }
 
     .footer-cta-col {
