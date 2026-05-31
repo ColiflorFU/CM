@@ -175,121 +175,51 @@ section {
     z-index: 0;
 }
 
-/* ── Slide base ── */
-.hero__slide {
+/* ── Track ── */
+.hero__track {
     position: absolute;
     inset: 0;
+    display: flex;
+    z-index: 1;
+    will-change: transform;
+}
+
+.hero__track.animating {
+    transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Slide ── */
+.hero__slide {
+    flex: 0 0 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow: hidden;
     pointer-events: none;
-    z-index: 1;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(0);
-    will-change: transform, opacity, clip-path;
+    will-change: transform;
 }
 
-/* ── Active (idle, on screen) ── */
 .hero__slide.active {
-    opacity: 1;
-    visibility: visible;
-    z-index: 2;
+    pointer-events: auto;
 }
 
-/* ── Exit (outgoing) ── */
-.hero__slide.exit {
-    position: absolute;
-    z-index: 3;
-    opacity: 0.6;
-    visibility: visible;
-    transform: translateX(-10%) scale(1.03);
-    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 1.2s ease;
+/* ── Text elements initial state (hidden) ── */
+.hero__slide .hero__label,
+.hero__slide .hero__desc,
+.hero__slide .hero__actions {
+    transform: translateY(20px);
+    opacity: 0;
 }
 
-.hero__slide.exit .hero__right img {
-    transform: translateX(3%) scale(1.05);
-    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+/* ── Split line wrapper ── */
+.hero__line {
+    display: block;
+    overflow: hidden;
 }
 
-.hero__slide.exit .hero__label,
-.hero__slide.exit .hero__desc,
-.hero__slide.exit .hero__actions {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.hero__slide.exit .hero__line-inner {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* ── Enter initial (offscreen right, clipped) ── */
-.hero__slide.enter {
-    position: absolute;
-    z-index: 5;
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(100%);
-    clip-path: inset(0 100% 0 0);
-}
-
-.hero__slide.enter .hero__right img {
-    transform: translateX(-3%);
-}
-
-.hero__slide.enter .hero__label,
-.hero__slide.enter .hero__line-inner,
-.hero__slide.enter .hero__desc,
-.hero__slide.enter .hero__actions {
+.hero__line-inner {
+    display: block;
     transform: translateY(100%);
     opacity: 0;
-}
-
-/* ── Enter active (animating in) ── */
-.hero__slide.enter-active {
-    transform: translateX(0);
-    clip-path: inset(0 0 0 0);
-    z-index: 5;
-    transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
-                clip-path 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero__slide.enter-active .hero__right img {
-    transform: translateX(-3%);
-    transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero__slide.enter-active .hero__label {
-    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
-                opacity 0.9s ease 0.2s;
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.hero__slide.enter-active .hero__line-inner {
-    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s,
-                opacity 1s ease 0.35s;
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.hero__slide.enter-active .hero__line:nth-child(2) .hero__line-inner {
-    transition-delay: 0.5s;
-}
-
-.hero__slide.enter-active .hero__desc {
-    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s,
-                opacity 0.9s ease 0.7s;
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.hero__slide.enter-active .hero__actions {
-    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s,
-                opacity 0.8s ease 0.9s;
-    transform: translateY(0);
-    opacity: 1;
 }
 
 /* ── Page load animation ── */
@@ -325,24 +255,60 @@ section {
     opacity: 1;
 }
 
-/* ── Text elements initial state (hidden) ── */
-.hero__slide .hero__label,
-.hero__slide .hero__desc,
-.hero__slide .hero__actions {
-    transform: translateY(20px);
-    opacity: 0;
+/* ── Enter animation (slide transition) ── */
+.hero__slide.enter .hero__right img {
+    clip-path: inset(0 100% 0 0);
 }
 
-/* ── Split line wrapper ── */
-.hero__line {
-    display: block;
-    overflow: hidden;
-}
-
-.hero__line-inner {
-    display: block;
+.hero__slide.enter .hero__label,
+.hero__slide.enter .hero__line-inner,
+.hero__slide.enter .hero__desc,
+.hero__slide.enter .hero__actions {
     transform: translateY(100%);
     opacity: 0;
+}
+
+.hero__slide.enter-active .hero__right img {
+    transition: clip-path 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    clip-path: inset(0 0 0 0);
+}
+
+.hero__slide.enter-active .hero__label {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+                opacity 0.9s ease 0.2s;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.hero__slide.enter-active .hero__line-inner {
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s,
+                opacity 1s ease 0.35s;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.hero__slide.enter-active .hero__line:nth-child(2) .hero__line-inner {
+    transition-delay: 0.5s;
+}
+
+.hero__slide.enter-active .hero__desc {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s,
+                opacity 0.9s ease 0.7s;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.hero__slide.enter-active .hero__actions {
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s,
+                opacity 0.8s ease 0.9s;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ── Exit parallax (image moves opposite to track) ── */
+.hero__slide.is-exiting .hero__right img {
+    transform: translateX(5%);
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ── Content ── */
@@ -1921,10 +1887,22 @@ blockquote {
 
     .hero-slider {
         min-height: auto;
+        overflow-x: hidden;
+    }
+
+    .hero__track {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+        transition: none !important;
     }
 
     .hero__slide {
         position: relative;
+        width: 100%;
+        flex: none !important;
         grid-template-columns: 1fr;
         opacity: 1;
         transform: none !important;

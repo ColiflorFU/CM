@@ -125,9 +125,10 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ── Hero Cinematic Slider ── */
     const slider = document.querySelector('.hero-slider');
     if (slider) {
+        const track = slider.querySelector('.hero__track');
         const slides = slider.querySelectorAll('.hero__slide');
         const btns = slider.querySelectorAll('.hero__slider-btn');
-        if (slides.length > 1 && btns.length) {
+        if (track && slides.length > 1 && btns.length) {
             let current = 0;
             let animating = true; /* Locked during page load */
             let interval;
@@ -162,10 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             /* ── Page load animation ── */
-            slider.classList.add('hero-loading');
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
-                    slider.classList.remove('hero-loading');
                     slider.classList.add('hero-loaded');
                 });
             });
@@ -192,48 +191,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 const prev = slides[current];
                 const next = slides[index];
 
-                /* Clear any leftover inline styles from previous transition */
-                [prev, next].forEach(s => {
-                    s.querySelectorAll('.hero__label, .hero__desc, .hero__actions, .hero__line-inner').forEach(el => {
-                        el.style.transition = '';
-                        el.style.transform = '';
-                        el.style.opacity = '';
-                    });
-                });
+                /* Exit parallax on outgoing image */
+                prev.classList.add('is-exiting');
 
-                /* Reset next: set initial enter state (no transition) */
-                next.classList.remove('active', 'exit', 'enter-active');
+                /* Setup incoming slide: reset, then enter */
+                next.classList.remove('active', 'enter-active');
                 next.classList.add('enter');
-
-                /* Force reflow to lock initial position */
-                void next.offsetHeight;
-
-                /* Remove active from prev, add exit */
-                prev.classList.remove('active');
-                prev.classList.add('exit');
-
-                /* Start enter animation on next */
+                void next.offsetWidth; /* force reflow */
                 next.classList.remove('enter');
                 next.classList.add('enter-active');
+
+                /* Move track */
+                track.classList.add('animating');
+                track.style.transform = `translateX(-${index * 50}%)`;
 
                 /* Update buttons */
                 btns.forEach(b => b.classList.remove('hero__slider--active'));
                 btns[index].classList.add('hero__slider--active');
 
-                /* ── Cleanup after animation completes ── */
+                /* Cleanup */
                 setTimeout(() => {
-                    /* Preserve text at final visible state via inline styles */
-                    const textEls = next.querySelectorAll('.hero__label, .hero__desc, .hero__actions, .hero__line-inner');
-                    textEls.forEach(el => {
-                        el.style.transition = 'none';
-                        el.style.transform = 'translateY(0)';
-                        el.style.opacity = '1';
-                    });
-
-                    prev.classList.remove('exit');
-                    next.classList.add('active');
-                    /* Remove enter-active after active is applied */
+                    prev.classList.remove('is-exiting', 'active');
                     next.classList.remove('enter-active');
+                    next.classList.add('active');
+                    track.classList.remove('animating');
                     animating = false;
                     current = index;
                 }, 1600);
