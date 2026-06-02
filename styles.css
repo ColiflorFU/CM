@@ -2078,11 +2078,8 @@ section {
 }
 
 /* Grid lines that match the panel edges */
-.contacto-grid-lines {
-    position: absolute;
-    inset: 48px 40px;
-    z-index: 1;
-    pointer-events: none;
+.banner-grid-lines--contact {
+    z-index: 3;
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
         linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
@@ -2094,10 +2091,10 @@ section {
         100% 1px,
         100% 1px;
     background-position:
-        0 0,
-        100% 0,
-        0 0,
-        0 100%;
+        40px center,
+        calc(100% - 40px) center,
+        center 48px,
+        center calc(100% - 48px);
     background-repeat: no-repeat;
 }
 
@@ -3994,8 +3991,12 @@ section {
         padding: 32px 20px;
     }
 
-    .contacto-grid-lines {
-        inset: 32px 20px;
+    .banner-grid-lines--contact {
+        background-position:
+            20px center,
+            calc(100% - 20px) center,
+            center 32px,
+            center calc(100% - 32px);
     }
 
     .banner-cta-panel--contact {
