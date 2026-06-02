@@ -671,6 +671,113 @@ section {
     background: #fff;
 }
 
+.professional-tagline {
+    margin: 20px 0 28px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+}
+
+.bio-enfoque {
+    max-width: 640px;
+    color: var(--muted) !important;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin: 0 0 20px;
+    padding-left: 20px;
+    border-left: 2px solid var(--accent);
+}
+
+.bio-specialties {
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+}
+
+.bio-specialties h3 {
+    margin: 0 0 32px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.2rem, 1.5vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+.specialty-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.specialty-card {
+    padding: 28px 24px;
+    background: var(--soft);
+}
+
+.specialty-card h4 {
+    margin: 0 0 14px;
+    font-family: "Urbanist", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+.specialty-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.bio-timeline {
+    margin-top: 60px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+}
+
+.bio-timeline h3 {
+    margin: 0 0 32px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.2rem, 1.5vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+.timeline-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.timeline-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.timeline-year {
+    font-family: "Urbanist", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 48px;
+}
+
+.timeline-desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
 .bio-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
