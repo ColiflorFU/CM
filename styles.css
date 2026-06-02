@@ -10,6 +10,7 @@
     --orange: #f59a1b;
     --footer-bg: #f8f8f8;
     --grid-line: rgba(0, 0, 0, 0.04);
+    --bracket-color: rgba(0,0,0,0.35);
     --max: 1700px;
 }
 
@@ -1177,7 +1178,7 @@ blockquote {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     gap: 64px;
 }
 
@@ -1195,86 +1196,124 @@ blockquote {
     max-width: 540px;
 }
 
-/* Corners Button — architectural blueprint style */
-.architectural-button {
+/* CTA Button — corner brackets */
+.cta-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 270px;
+    height: 52px;
     background: transparent;
     border: none;
     cursor: pointer;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-family: inherit;
     color: #000;
     overflow: visible;
 }
 
-/*
- * Horizontals — on the button itself via pseudo-elements.
- * Extend 12px past the button on each side.
- */
-.architectural-button::before,
-.architectural-button::after {
+.cta-btn::before,
+.cta-btn::after {
     content: "";
     position: absolute;
-    left: -12px;
-    right: -12px;
+    left: -23px;
+    right: -23px;
     height: 1px;
-    background: rgba(0, 0, 0, 0.20);
+    background: var(--bracket-color);
     z-index: 1;
     pointer-events: none;
 }
 
-.architectural-button::before {
-    top: 0;
-}
+.cta-btn::before { top: 0; }
+.cta-btn::after  { bottom: 0; }
 
-.architectural-button::after {
-    bottom: 0;
-}
-
-/*
- * Verticals — single span, one background per side.
- * Extend 12px above and below the button.
- */
-.architectural-button__marks {
-    position: absolute;
-    top: -12px;
-    bottom: -12px;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    pointer-events: none;
-    background:
-        linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)) left center / 1px 100% no-repeat,
-        linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)) right center / 1px 100% no-repeat;
-}
-
-.architectural-button__label {
+.cta-btn-inner {
     position: relative;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-block: 1.4em;
-    padding-inline: 4.5em;
+    width: 100%;
+    height: 100%;
     border: 1px solid rgba(0, 0, 0, 0.06);
     background: transparent;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: inherit;
     color: inherit;
     transition: background 0.2s ease;
 }
 
-.architectural-button:hover .architectural-button__label {
+.cta-btn-inner::before,
+.cta-btn-inner::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+}
+
+.cta-btn-inner::before {
+    top: -23px;
+    border-top: 1px solid var(--bracket-color);
+    border-left: 1px solid var(--bracket-color);
+}
+
+.cta-btn-inner::after {
+    bottom: -23px;
+    border-bottom: 1px solid var(--bracket-color);
+    border-right: 1px solid var(--bracket-color);
+}
+
+/* TL bracket */
+.cta-btn::before { top: 0; left: 0; }
+.cta-btn .cta-bracket-tl {
+    position: absolute;
+    top: -23px; left: 0;
+    width: 12px; height: 12px;
+    border-top: 1px solid var(--bracket-color);
+    border-left: 1px solid var(--bracket-color);
+    pointer-events: none;
+    z-index: 3;
+}
+/* TR bracket */
+.cta-btn .cta-bracket-tr {
+    position: absolute;
+    top: -23px; right: 0;
+    width: 12px; height: 12px;
+    border-top: 1px solid var(--bracket-color);
+    border-right: 1px solid var(--bracket-color);
+    pointer-events: none;
+    z-index: 3;
+}
+/* BL bracket */
+.cta-btn .cta-bracket-bl {
+    position: absolute;
+    bottom: -23px; left: 0;
+    width: 12px; height: 12px;
+    border-bottom: 1px solid var(--bracket-color);
+    border-left: 1px solid var(--bracket-color);
+    pointer-events: none;
+    z-index: 3;
+}
+/* BR bracket */
+.cta-btn .cta-bracket-br {
+    position: absolute;
+    bottom: -23px; right: 0;
+    width: 12px; height: 12px;
+    border-bottom: 1px solid var(--bracket-color);
+    border-right: 1px solid var(--bracket-color);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.cta-btn:hover .cta-btn-inner {
     background: rgba(0, 0, 0, 0.03);
 }
 
-/* Wrapper: espacio negativo alrededor del botón sin tocar sus líneas */
+/* Wrapper */
 .architectural-button-wrap {
     padding: 8px 0 32px;
 }
@@ -1309,7 +1348,7 @@ blockquote {
 
 .footer-col-links a {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 2;
     color: var(--ink);
     text-decoration: none;
@@ -1343,15 +1382,15 @@ blockquote {
 }
 
 .footer-disclaimer p {
-    font-size: 16px;
+    font-size: 11px;
     font-weight: 500;
-    color: var(--ink);
+    color: rgba(0, 0, 0, 0.35);
     margin: 0 0 12px;
     line-height: 1.6;
 }
 
 /* Scroll-to-top FAB */
-.footer-fab {
+.scroll-top-fab {
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -1365,13 +1404,11 @@ blockquote {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    font-size: 20px;
-    line-height: 1;
     transition: opacity 0.2s ease;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
-.footer-fab:hover {
+.scroll-top-fab:hover {
     opacity: 0.8;
 }
 
