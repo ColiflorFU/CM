@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Contacta a Contreras Martínez — agenda una conversación sobre tu proyecto, consulta o presupuesto.">
+        content="Contacta a Contreras Martínez — conversemos sobre tu proyecto, consulta o presupuesto.">
     <title>Contacto | Contreras Martínez</title>
     <link rel="icon" type="image/png" href="Recursos/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,8 +16,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="contacto-page">
     <header class="site-header" id="top">
+        <button class="menu-toggle desktop-dropdown-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
         <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
             <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
         </a>
@@ -31,44 +35,99 @@
             <a href="index.html#portfolio">REGULARIZACIÓN</a>
         </nav>
         <a class="nav-contact-btn" href="contacto.html">CONTACTO</a>
+        <div class="desktop-dropdown" aria-hidden="true">
+            <div class="desktop-dropdown-inner">
+                <a href="proyecto-casa-campo.html" class="desktop-dropdown-item">Casa en el campo</a>
+                <a href="proyecto-residencia.html" class="desktop-dropdown-item">Residencia urbana</a>
+                <a href="proyecto-torre.html" class="desktop-dropdown-item">Torre moderna</a>
+                <a href="elizabeth.html" class="desktop-dropdown-item">El estudio</a>
+            </div>
+        </div>
     </header>
 
+    <div class="mobile-menu-overlay" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
+                <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
+            </a>
+            <button class="close-toggle" type="button" aria-label="Cerrar menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html#services">ARQUITECTURA</a>
+            <a href="index.html#services">DISEÑO</a>
+            <a href="contacto.html">CONSTRUCCIÓN</a>
+            <a href="contacto.html">REGULARIZACIÓN</a>
+            <a href="contacto.html">CONTACTO</a>
+        </div>
+    </div>
+
     <main>
-        <section class="contact-page-section">
-            <div class="container">
-                <div class="contact-page-layout">
-                    <div class="contact-page-intro">
-                        <p class="eyebrow">Contacto</p>
-                        <h2>Conversemos<br>sobre tu proyecto</h2>
-                        <p>
-                            Contanos en qué estás trabajando y te respondemos a la brevedad.
-                            También podés escribirnos directamente a
-                            <a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a>
-                            o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.
-                        </p>
+        <section class="contacto-hero">
+            <div class="container contacto-layout">
+                <!-- Left: info -->
+                <div class="contacto-info">
+                    <p class="eyebrow">Contacto</p>
+                    <h1>Conversemos<br>sobre tu proyecto</h1>
+                    <p class="contacto-desc">
+                        Decinos en qué estás trabajando y te respondemos a la brevedad.
+                        Cada proyecto comienza con una conversación.
+                    </p>
+
+                    <div class="contacto-details">
+                        <div class="contacto-detail-group">
+                            <h3>Contacto directo</h3>
+                            <p><a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a></p>
+                            <p><a href="tel:+56951278937">+56 9 5127 8937</a></p>
+                        </div>
+
+                        <div class="contacto-detail-group">
+                            <h3>Oficina</h3>
+                            <p>Paseo Ahumada 341, Of. 504<br>Santiago Centro, Chile</p>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Right: form -->
+                <div class="contacto-form-col">
+                    <p class="contacto-form-intro">
+                        Si tenés un proyecto, consulta o presupuesto en mente, completá el formulario y te escribimos a la brevedad.
+                    </p>
 
                     <form id="contactForm" action="form.php" method="POST" novalidate>
                         <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+
                         <div class="form-field">
                             <label for="formName">Nombre</label>
                             <input id="formName" name="name" type="text" required placeholder="Tu nombre">
                         </div>
+
                         <div class="form-field">
                             <label for="formEmail">Correo electrónico</label>
                             <input id="formEmail" name="email" type="email" required placeholder="tu@email.cl">
                         </div>
+
+                        <div class="form-field">
+                            <label for="formCity">Ciudad</label>
+                            <input id="formCity" name="city" type="text" placeholder="Tu ciudad">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="formPhone">Teléfono</label>
+                            <input id="formPhone" name="phone" type="tel" placeholder="+56 9 ...">
+                        </div>
+
                         <div class="form-field">
                             <label for="formMessage">Mensaje</label>
-                            <textarea id="formMessage" name="message" rows="5" required placeholder="Contanos sobre tu proyecto, consulta o presupuesto..."></textarea>
+                            <textarea id="formMessage" name="message" rows="4" required placeholder="Contanos sobre tu proyecto..."></textarea>
                         </div>
-                        <button class="form-submit" type="submit">
-                            <span class="bracket-tl"></span>
-                            <span class="bracket-tr"></span>
-                            <span class="bracket-bl"></span>
-                            <span class="bracket-br"></span>
+
+                        <button class="contacto-submit" type="submit">
                             Enviar mensaje <span>&rarr;</span>
                         </button>
+
                         <p class="form-feedback" aria-live="polite"></p>
                     </form>
                 </div>

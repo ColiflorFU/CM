@@ -1971,42 +1971,116 @@ section {
     margin-bottom: 48px;
 }
 
-/* ── Contact Page (separada del home) ── */
-.contact-page-section {
-    padding: 160px 0 140px;
+/* ── Contact Page editorial (Minnaro-style) ── */
+.contacto-page {
+    background: #f3f3f3;
 }
 
-.contact-page-layout {
+.contacto-hero {
+    padding: 140px 0 120px;
+}
+
+.contacto-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: clamp(60px, 8vw, 120px);
     align-items: start;
 }
 
-.contact-page-intro h2 {
-    margin: 0 0 24px;
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(2rem, 2.8vw, 3.2rem);
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: -0.025em;
+/* ── Left column ── */
+.contacto-info .eyebrow {
+    margin-bottom: 16px;
 }
 
-.contact-page-intro p {
+.contacto-info h1 {
+    margin: 0 0 24px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2.5rem, 3.5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+}
+
+.contacto-desc {
+    margin: 0 0 56px;
+    max-width: 400px;
     color: var(--muted);
     font-size: 0.95rem;
     line-height: 1.7;
-    max-width: 420px;
 }
 
-.contact-page-intro a {
+.contacto-details {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contacto-detail-group h3 {
+    margin: 0 0 12px;
+    font-family: "Urbanist", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--ink);
-    text-decoration: underline;
-    text-underline-offset: 2px;
 }
 
-.contact-page-intro a:hover {
+.contacto-detail-group p {
+    margin: 0 0 6px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.contacto-detail-group a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.contacto-detail-group a:hover {
     color: var(--orange);
+}
+
+/* ── Right column (form) ── */
+.contacto-form-intro {
+    margin: 0 0 40px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    max-width: 460px;
+}
+
+.contacto-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.contacto-submit:hover {
+    background: var(--ink);
+    color: #fff;
+}
+
+.contacto-submit span {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+}
+
+.contacto-submit:hover span {
+    transform: translateX(4px);
 }
 
 .form-field {
@@ -3824,16 +3898,20 @@ section {
 
 /* ── Contact page mobile ── */
 @media (max-width: 760px) {
-    .contact-page-section {
-        padding: 120px 0 80px;
+    .contacto-hero {
+        padding: 100px 0 80px;
     }
 
-    .contact-page-layout {
+    .contacto-layout {
         grid-template-columns: 1fr;
-        gap: 48px;
+        gap: 56px;
     }
 
-    .contact-page-intro p {
+    .contacto-desc {
+        max-width: none;
+    }
+
+    .contacto-form-intro {
         max-width: none;
     }
 }
