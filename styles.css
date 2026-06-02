@@ -1131,6 +1131,18 @@ section {
     overflow: hidden;
 }
 
+.cta-descanso {
+    position: relative;
+    aspect-ratio: 2440 / 522;
+    max-height: 54vh;
+    min-height: 240px;
+    padding: 0;
+    background:
+        url("Recursos/Miscelaneos/mesa.png") center / cover no-repeat,
+        #26211d;
+    overflow: hidden;
+}
+
 /* ── CONVERSEMOS CTA ── */
 .conversemos-section {
     background: #f7f7f7;
