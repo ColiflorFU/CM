@@ -69,23 +69,26 @@
         <button class="menu-toggle desktop-dropdown-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
             <span></span>
             <span></span>
-            <span></span>
         </button>
         <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
             <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
         </a>
         <nav class="site-nav" aria-label="Navegación principal">
             <a href="#services">ARQUITECTURA</a>
+            <span class="nav-sep">/</span>
             <a href="#services">DISEÑO</a>
+            <span class="nav-sep">/</span>
             <a href="#contact">CONSTRUCCIÓN</a>
+            <span class="nav-sep">/</span>
             <a href="#contact">REGULARIZACIÓN</a>
         </nav>
+        <a class="nav-contact-btn" href="#contact">CONTACTO</a>
         <div class="desktop-dropdown" aria-hidden="true">
             <div class="desktop-dropdown-inner">
-                <a href="proyecto-casa-campo.html" class="desktop-dropdown-item">Link 1</a>
-                <a href="proyecto-residencia.html" class="desktop-dropdown-item">Link 2</a>
-                <a href="proyecto-torre.html" class="desktop-dropdown-item">Link 3</a>
-                <a href="elizabeth.html" class="desktop-dropdown-item">Link 4</a>
+                <a href="proyecto-casa-campo.html" class="desktop-dropdown-item">Casa en el campo</a>
+                <a href="proyecto-residencia.html" class="desktop-dropdown-item">Residencia urbana</a>
+                <a href="proyecto-torre.html" class="desktop-dropdown-item">Torre moderna</a>
+                <a href="elizabeth.html" class="desktop-dropdown-item">El estudio</a>
             </div>
         </div>
     </header>
@@ -103,9 +106,9 @@
         <div class="mobile-menu-links">
             <a href="#services">ARQUITECTURA</a>
             <a href="#services">DISEÑO</a>
-            <a href="elizabeth.html">EL ESTUDIO</a>
             <a href="#contact">CONSTRUCCIÓN</a>
             <a href="#contact">REGULARIZACIÓN</a>
+            <a href="#contact">CONTACTO</a>
         </div>
     </div>
 
@@ -121,12 +124,12 @@
                             <p class="hero__desc">Desde 2015 proyectamos arquitectura, interiorismo y renovación con enfoque técnico y humano. Cada encargo comienza escuchando: entendemos la historia, el uso y las posibilidades reales.</p>
 
                             <div class="hero__actions">
-                                <a class="print-button" href="#portfolio">
-                                    <span class="bracket-tl"></span>
-                                    <span class="bracket-tr"></span>
-                                    <span class="bracket-bl"></span>
-                                    <span class="bracket-br"></span>
-                                    <span class="print-button-inner">VER PROYECTOS</span>
+                                <a class="cta-btn" href="#portfolio">
+                                    <span class="cta-bracket-tl"></span>
+                                    <span class="cta-bracket-tr"></span>
+                                    <span class="cta-bracket-bl"></span>
+                                    <span class="cta-bracket-br"></span>
+                                    <span class="cta-btn-inner">VER PROYECTOS</span>
                                 </a>
                                 <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
                             </div>
@@ -145,12 +148,12 @@
                             <p class="hero__desc">Cada espacio cuenta una historia distinta. Proyectamos con la misma rigurosidad técnica y sensibilidad, adaptándonos a la normativa de cada caso.</p>
 
                             <div class="hero__actions">
-                                <a class="print-button" href="#portfolio">
-                                    <span class="bracket-tl"></span>
-                                    <span class="bracket-tr"></span>
-                                    <span class="bracket-bl"></span>
-                                    <span class="bracket-br"></span>
-                                    <span class="print-button-inner">VER PROYECTOS</span>
+                                <a class="cta-btn" href="#portfolio">
+                                    <span class="cta-bracket-tl"></span>
+                                    <span class="cta-bracket-tr"></span>
+                                    <span class="cta-bracket-bl"></span>
+                                    <span class="cta-bracket-br"></span>
+                                    <span class="cta-btn-inner">VER PROYECTOS</span>
                                 </a>
                                 <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
                             </div>
@@ -540,38 +543,7 @@
         </a>
     </div>
 
-    <script>
-    (function() {
-        const menuToggle = document.querySelector('.site-header .menu-toggle');
-        const closeToggle = document.querySelector('.mobile-menu-overlay .close-toggle');
-        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
-
-        function openMenu() {
-            document.body.classList.add('menu-open');
-            mobileMenuOverlay.setAttribute('aria-hidden', 'false');
-            menuToggle.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeMenu() {
-            document.body.classList.remove('menu-open');
-            mobileMenuOverlay.setAttribute('aria-hidden', 'true');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        }
-
-        if (menuToggle) {
-            menuToggle.addEventListener('click', openMenu);
-        }
-
-        if (closeToggle) {
-            closeToggle.addEventListener('click', closeMenu);
-        }
-
-        mobileMenuLinks.forEach(function(link) {
-            link.addEventListener('click', closeMenu);
-        });
-    })();
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
