@@ -785,7 +785,124 @@ section {
     transform: translateX(-34px) rotate(180deg);
 }
 
-.philosophy-section,
+/* ── Nuestra Mirada (Editorial Philosophy Section) ── */
+.philosophy-section {
+    background: #f3f3f3;
+    padding: 120px 0 100px;
+}
+
+.philosophy-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Top Level: Text + Image ── */
+.philosophy-top {
+    display: grid;
+    grid-template-columns: 35fr 50fr;
+    gap: clamp(60px, 8vw, 120px);
+    align-items: start;
+}
+
+.philosophy-text {
+    padding-top: 10px;
+}
+
+.philosophy-eyebrow {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0 0 clamp(32px, 3vw, 48px);
+}
+
+.philosophy-headline {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(2rem, 2.5vw, 2.85rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.philosophy-headline span {
+    display: block;
+}
+
+.philosophy-headline span + span {
+    margin-top: 0.05em;
+}
+
+.philosophy-image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    width: 100%;
+}
+
+.philosophy-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ── Bottom Level: 3 Values ── */
+.philosophy-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(40px, 5vw, 80px);
+    margin-top: clamp(100px, 10vw, 200px);
+}
+
+.philosophy-value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.philosophy-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 28px;
+    flex-shrink: 0;
+}
+
+.philosophy-icon svg,
+.philosophy-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.philosophy-value-title {
+    margin: 0 0 14px;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(1.25rem, 1.6vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: #111;
+}
+
+.philosophy-value-desc {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.05vw, 1.125rem);
+    line-height: 1.8;
+    color: #666;
+    max-width: 340px;
+}
+
 .process-section {
     background: #f7f7f7;
 }
@@ -999,44 +1116,6 @@ section {
 
 .service-row:hover h3 {
     color: var(--orange);
-}
-
-.philosophy-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
-    gap: 20px;
-    align-items: stretch;
-}
-
-.philosophy-grid .section-heading {
-    grid-column: 1 / -1;
-    margin-bottom: 0;
-}
-
-.philosophy-card {
-    padding: 32px;
-    background: #fff;
-    border-left: 3px solid var(--orange);
-    transition: border-color 0.2s;
-}
-
-.philosophy-card:hover {
-    border-left-color: var(--ink);
-}
-
-.philosophy-card h3 {
-    margin: 0 0 20px;
-    font-family: "Urbanist", sans-serif;
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 1.4;
-}
-
-.philosophy-card p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.9rem;
 }
 
 .banner-cta-section {
@@ -2252,7 +2331,6 @@ section {
         display: none;
     }
 
-    .philosophy-grid,
     .portfolio-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -2529,9 +2607,6 @@ section {
         margin-top: 48px;
     }
 
-    .philosophy-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (max-width: 600px) {
@@ -3057,6 +3132,38 @@ section {
 
     .hero__right {
         min-height: 460px;
+    }
+
+    /* ── Philosophy mobile ── */
+    .philosophy-section {
+        padding: 80px 0 60px;
+    }
+
+    .philosophy-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .philosophy-text {
+        padding-top: 0;
+    }
+
+    .philosophy-eyebrow {
+        margin-bottom: 24px;
+    }
+
+    .philosophy-image {
+        aspect-ratio: 4 / 3;
+    }
+
+    .philosophy-values {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        margin-top: 80px;
+    }
+
+    .philosophy-value-desc {
+        max-width: none;
     }
 
     .studio-image-large {
