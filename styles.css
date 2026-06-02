@@ -76,6 +76,10 @@ a {
     backdrop-filter: blur(16px);
 }
 
+.site-header > * {
+    flex-shrink: 0;
+}
+
 .brand img {
     width: 260px;
     height: auto;
@@ -170,9 +174,10 @@ a {
 }
 
 .desktop-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 36px;
+    position: fixed;
+    top: 86px;
+    left: 0;
+    right: 0;
     z-index: 60;
     opacity: 0;
     visibility: hidden;
@@ -189,9 +194,11 @@ a {
 .desktop-dropdown-inner {
     background: var(--paper);
     border: 1px solid var(--line);
+    border-top: none;
     padding: 12px 0;
     min-width: 200px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    margin-left: 36px;
 }
 
 .desktop-dropdown-item {

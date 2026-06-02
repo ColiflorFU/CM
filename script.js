@@ -20,20 +20,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (menuToggle) {
         menuToggle.addEventListener("click", () => {
-            if (body.classList.contains("menu-open")) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
+            if (window.innerWidth <= 760) {
+                // Mobile: toggle overlay
+                if (body.classList.contains("menu-open")) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
             }
+            // Desktop: toggle dropdown only (no scroll lock)
         });
     }
 
-    // Desktop dropdown
+    // Desktop dropdown - toggle without scroll lock
     if (desktopDropdownToggle) {
         desktopDropdownToggle.addEventListener("click", (e) => {
             e.stopPropagation();
-            const isOpen = body.classList.toggle("dropdown-open");
-            desktopDropdownToggle.setAttribute("aria-expanded", String(isOpen));
+            const isOpen = body.classList.contains("dropdown-open");
+            if (isOpen) {
+                body.classList.remove("dropdown-open");
+                desktopDropdownToggle.setAttribute("aria-expanded", "false");
+            } else {
+                body.classList.add("dropdown-open");
+                desktopDropdownToggle.setAttribute("aria-expanded", "true");
+            }
         });
 
         // Close dropdown when clicking outside
