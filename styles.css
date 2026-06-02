@@ -2077,6 +2077,30 @@ section {
     -webkit-backdrop-filter: blur(38px) saturate(130%);
 }
 
+/* Grid lines that match the panel edges */
+.contacto-grid-lines {
+    position: absolute;
+    inset: 48px 40px;
+    z-index: 1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+        linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+        linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+        linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25));
+    background-size:
+        1px 100%,
+        1px 100%,
+        100% 1px,
+        100% 1px;
+    background-position:
+        0 0,
+        100% 0,
+        0 0,
+        0 100%;
+    background-repeat: no-repeat;
+}
+
 .banner-cta-panel--contact .contacto-form-intro {
     margin: 0 0 32px;
     color: rgba(255, 255, 255, 0.82);
@@ -3968,6 +3992,10 @@ section {
     .contacto-form-col {
         min-height: auto;
         padding: 32px 20px;
+    }
+
+    .contacto-grid-lines {
+        inset: 32px 20px;
     }
 
     .banner-cta-panel--contact {
