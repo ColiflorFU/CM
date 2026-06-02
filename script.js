@@ -1,30 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
     const menuToggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector(".site-nav");
+    const closeToggle = document.querySelector(".close-toggle");
+    const mobileMenuLinks = document.querySelector(".mobile-menu-links");
 
-    if (menuToggle && nav) {
+    function openMenu() {
+        body.classList.add("menu-open");
+        menuToggle.setAttribute("aria-expanded", "true");
+        document.documentElement.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+        body.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        document.documentElement.style.overflow = "";
+    }
+
+    if (menuToggle) {
         menuToggle.addEventListener("click", () => {
-            const isOpen = body.classList.toggle("menu-open");
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            document.documentElement.style.overflow = isOpen ? "hidden" : "";
-        });
-
-        nav.addEventListener("click", (event) => {
-            if (event.target.closest("a")) {
-                body.classList.remove("menu-open");
-                menuToggle.setAttribute("aria-expanded", "false");
-            }
-        });
-
-        document.addEventListener("click", (event) => {
-            const clickedMenu = nav.contains(event.target) || menuToggle.contains(event.target);
-            if (!clickedMenu && body.classList.contains("menu-open")) {
-                body.classList.remove("menu-open");
-                menuToggle.setAttribute("aria-expanded", "false");
+            if (body.classList.contains("menu-open")) {
+                closeMenu();
+            } else {
+                openMenu();
             }
         });
     }
+
+    if (closeToggle) {
+        closeToggle.addEventListener("click", closeMenu);
+    }
+
+    if (mobileMenuLinks) {
+        mobileMenuLinks.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+                closeMenu();
+            }
+        });
+    }
+
+    document.addEventListener("click", (event) => {
+        const clickedMenu = event.target.closest(".site-nav") || event.target.closest(".menu-toggle");
+        if (!clickedMenu && body.classList.contains("menu-open")) {
+            closeMenu();
+        }
+    });
+});
 
     const revealTargets = document.querySelectorAll(
         "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .contact-form-block, .faq-block, .faq-list details, .form-field, .conversemos-section, .cta-hablemos-section, .gallery-break-section, .conversemos-heading, .cta-hablemos-content"

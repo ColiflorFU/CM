@@ -66,23 +66,30 @@
 
 <body>
     <header class="site-header" id="top">
-        <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
-            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
-        </a>
-
         <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
             <span></span>
             <span></span>
         </button>
+    </header>
 
-        <nav class="site-nav" aria-label="Navegación principal">
+    <nav class="site-nav" aria-label="Navegación principal">
+        <div class="mobile-menu-header">
+            <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
+                <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
+            </a>
+            <button class="menu-toggle close-toggle" type="button" aria-label="Cerrar menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
             <a href="#services">ARQUITECTURA</a>
             <a href="#services">DISEÑO</a>
             <a href="elizabeth.html">EL ESTUDIO</a>
             <a href="#contact">CONSTRUCCIÓN</a>
             <a href="#contact">REGULARIZACIÓN</a>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <div class="menu-overlay" aria-hidden="true"></div>
 
@@ -354,6 +361,7 @@
             </div>
         </section>
 
+        <!--
         <section class="cta-hablemos-section" aria-label="Llamada a acción">
             <div class="container cta-hablemos-inner">
                 <div class="cta-hablemos-content">
@@ -374,6 +382,7 @@
                 </div>
             </div>
         </section>
+        -->
 
         <section class="gallery-break-section" aria-label="Proyectos">
             <div class="gallery-break-grid">
