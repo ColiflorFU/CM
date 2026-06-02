@@ -1752,8 +1752,8 @@ section {
 }
 
 .footer-col-links a {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 2;
     color: var(--ink);
     text-decoration: none;
