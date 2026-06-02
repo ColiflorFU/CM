@@ -1950,6 +1950,65 @@ section {
     line-height: 1.6;
 }
 
+/* ── FAQ standalone (sin formulario) ── */
+.faq-section {
+    padding: 100px 0 140px;
+    background: #f7f7f7;
+}
+
+.faq-section .faq-block {
+    padding-left: 0;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.faq-section .faq-block .eyebrow {
+    text-align: center;
+}
+
+.faq-section .faq-block h2 {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+/* ── Contact Page (separada del home) ── */
+.contact-page-section {
+    padding: 160px 0 140px;
+}
+
+.contact-page-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.contact-page-intro h2 {
+    margin: 0 0 24px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2rem, 2.8vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+}
+
+.contact-page-intro p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 420px;
+}
+
+.contact-page-intro a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.contact-page-intro a:hover {
+    color: var(--orange);
+}
+
 .form-field {
     margin-bottom: 24px;
 }
@@ -3760,5 +3819,21 @@ section {
 
     .gallery-break-item .media-block {
         min-height: 200px;
+    }
+}
+
+/* ── Contact page mobile ── */
+@media (max-width: 760px) {
+    .contact-page-section {
+        padding: 120px 0 80px;
+    }
+
+    .contact-page-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .contact-page-intro p {
+        max-width: none;
     }
 }
