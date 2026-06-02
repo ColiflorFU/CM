@@ -1133,12 +1133,12 @@ section {
 
 .cta-descanso {
     position: relative;
-    aspect-ratio: 2440 / 522;
-    max-height: 54vh;
-    min-height: 240px;
+    height: 50vh;
+    min-height: 300px;
+    max-height: 500px;
     padding: 0;
     background:
-        url("Recursos/Miscelaneos/mesa.png") center / cover no-repeat,
+        url("Recursos/Miscelaneos/fondofirma.png") center / cover no-repeat,
         #26211d;
     overflow: hidden;
 }
@@ -3394,6 +3394,16 @@ section {
 
     .hero__right {
         min-height: 460px;
+    }
+
+    /* ── Descanso mobile ── */
+    .cta-descanso {
+        height: 600px;
+        max-height: 600px;
+        min-height: 0;
+        background:
+            url("Recursos/Miscelaneos/fondofirmamobile.png") center / cover no-repeat,
+            #26211d;
     }
 
     /* ── Philosophy mobile ── */
