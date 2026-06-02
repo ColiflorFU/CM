@@ -1974,37 +1974,73 @@ section {
 /* ── Contact Page editorial (Minnaro-style) ── */
 .contacto-page {
     background: #f3f3f3;
+}
+
+/* Left column content — hero__left handles layout/padding */
+.contacto-info .eyebrow {
+    margin-bottom: 16px;
+}
+
+.contacto-info h1 {
+    margin: 0 0 24px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2.5rem, 3.5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+}
+
+.contacto-desc {
+    margin: 0 0 56px;
+    max-width: 400px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.contacto-details {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    gap: 40px;
 }
 
-.contacto-main {
-    display: flex;
-    flex: 1;
+.contacto-detail-group h3 {
+    margin: 0 0 12px;
+    font-family: "Urbanist", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
 }
 
-.contacto-layout {
-    display: flex;
-    flex: 1;
-    width: 100%;
+.contacto-detail-group p {
+    margin: 0 0 6px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
 }
 
-/* ── Left column ── */
-.contacto-info {
-    flex: 1;
-    padding: 140px max(30px, calc((100vw - var(--max)) / 2)) 80px 30px;
-    display: flex;
-    flex-direction: column;
+.contacto-detail-group a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.contacto-detail-group a:hover {
+    color: var(--orange);
+}
+
+/* ── Contacto: override hero left for top alignment ── */
+.contacto-hero .hero__left {
     justify-content: flex-start;
 }
 
-/* ── Right column (fondo oscuro/imagen con panel glass) ── */
+/* ── Right column (fills hero__right) ── */
 .contacto-form-col {
     position: relative;
-    width: 42%;
-    min-width: 480px;
-    flex-shrink: 0;
+    height: 100%;
     background: #1a1a1a;
     background-size: cover;
     background-position: center;
@@ -3931,26 +3967,18 @@ section {
 
 /* ── Contact page mobile ── */
 @media (max-width: 760px) {
-    .contacto-page {
-        display: block;
+    .contacto-hero .hero__left {
+        justify-content: flex-start;
+        padding: 108px 24px 48px;
+    }
+
+    .contacto-hero .hero__right {
         min-height: auto;
     }
 
-    .contacto-main {
-        display: block;
-    }
-
-    .contacto-layout {
-        display: block;
-    }
-
-    .contacto-info {
-        padding: 100px 30px 60px;
-    }
-
     .contacto-form-col {
-        width: 100%;
-        min-width: 0;
+        height: auto;
+        min-height: 460px;
         padding: 48px 24px;
     }
 
