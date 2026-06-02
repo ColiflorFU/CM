@@ -28,72 +28,57 @@
 
 | Sección | Estado | Notas |
 |---------|--------|-------|
-| Navbar Desktop | ❌ | No se ve, no funciona — fue modificado y roto |
+| Navbar Desktop | ⚠️ | Estructura HTML corregida, falta verificar visual contra referencia (usar /coli) |
 | Navbar Mobile | ⚠️ | Abre/cierra pero no se parece a la referencia |
-| Philosophy cards | ⚠️ | Borde izquierdaaccent agregado, falta verificar con referencia |
+| Philosophy cards | ⚠️ | Borde izquierdo accent agregado, falta verificar con referencia |
+| Hero en desktop | ⚠️ | Se rompió durante sesión anterior, podría estar funcionando ahora |
 
 ---
 
 ## CAMBIOS REALIZADOS ESTA SESIÓN
 
-### 1. Navbar
-- **Antes:** Links: Estudio, Servicios, Portfolio, Proceso, Contacto
-- **Ahora:** Links: ARQUITECTURA, DISEÑO, EL ESTUDIO (→elizabeth.html), CONSTRUCCIÓN, REGULARIZACIÓN
-- **Problema:** El navbar desktop está broken — no se ve, el agente lo修改ó mal
+### 1. Navbar — Fix estructura (2026-06-02)
+- **Antes:** Hamburger a la izquierda, logo centro, links derecha (roto, no se veía)
+- **Ahora:** 🍔 Hamburger izquierda → Logo → Links derecha (ARQUITECTURA, DISEÑO, CONSTRUCCIÓN, REGULARIZACIÓN) → Botón **CONTACTO** destacado
+- Dropdown con proyectos (Casa en el campo, Residencia urbana, Torre moderna, El estudio) debajo del hamburger
+- `.desktop-dropdown-toggle` ahora visible en desktop (antes tenía conflicto `display: none` vs `display: flex`)
+- Dropdown volvió a `position: absolute` (estaba en `position: fixed` cubriendo todo el viewport)
+- **Pendiente:** No hay animación de cierre del hamburger ni toggle del dropdown funcionando — el JS está en script.js pero necesita revisión
 
-### 2. Landing elizabeth.html
-- Creada desde cero con contenido del backup
-- Incluye: bio, quote, tags ("12+ años", "2014 Arquitecta titulada", etc.)
-- Timeline: 2025, 2024, 2015
-- Specialty cards: Arquitectura y Diseño, Regularización, Renovación
-- Philosophy quote sobre tecnología
+### 2. Hero
+- Estructura HTML y CSS intactas
+- Se rompió durante cambios del navbar (dropdown fixed empujaba contenido)
+- Con el fix del dropdown debería estar funcionando
 
-### 3. Nueva sección "CONVERSEMOS"
-- Heading grande uppercase + líneas decorativas horizontales
-- Subtext: "Cuéntanos sobre tu proyecto, consulta o presupuesto..."
-- Ubicación: entre philosophy y banner-cta
+### 3. Nuevo skill: Coli (revisor de UI)
+- Creado `C:\Users\krack\.config\opencode\skills\coli\SKILL.md`
+- Comando: `/coli revisar [elemento] contra [referencia]`
+- **Regla crítica:** Coli NUNCA lee imágenes en el contexto del orchestrator — delega a un sub-agente con contexto fresco
+- Esto evita el error `context window exceeds limit (2013)` de MiniMax
+- Registrado en `.atl/skill-registry.md` y Engram
 
-### 4. Nueva sección "CTA HABLEMOS" (comentada)
-- Sección con quote de Elizabeth y botón "CONOCER AL ESTUDIO"
--Fue comentada porque se movrá a proyectos y founder pages
-- **Ubicación en index.html:** líneas 364-383 (comentadas)
+---
 
-### 5. Galería break
-- Grid 2x2 con 4 imágenes
-- Hover scale en cada imagen
-- Agregada antes de contacto
+## ERROR CONOCIDO — MiniMax context limit
 
-### 6. Portfolio grid
-- **Cambio:** Se sacó la grilla y los backgrounds de color
-- Ahora es flex con wrap
-- Las fotos reales se subirán pronto
+### Error: `context window exceeds limit (2013)`
+- **Causa raíz:** La API Anthropic-compatible de MiniMax interpreta `max_tokens=2048` (default) como el límite TOTAL del contexto
+- **2013 ≈ 2048** menos overhead
+- **Disparador:** Leer imágenes de referencia (PNG) consume muchos tokens y llena el contexto rápido
+- **Solución:** Usar `/coli` que delega la lectura de imágenes a un sub-agente con contexto fresco
+- **Referencia:** https://github.com/agentscope-ai/QwenPaw/issues/1273
 
-### 7. Form.php
-- Handler PHP con mail()
-- Honeypot spam protection
-- Sanitización lineal (validate → sanitize)
-- Envía a: elizabethyelizabeth@gmail.com
-
-### 8. Fondos grises
-- Cambiados a #f7f7f7 en: philosophy, services, process, conversemos
-
-### 9. Traducciones
-- "Featured work" → "Trabajos destacados"
-- "DROP US A LINE" → "ESCRÍBENOS"
-- "Social" → "Redes"
-- "Find Us" → "Escríbenos"
-- "Info" → "Información"
-
-### 10. Philosophy cards
-- Borde izquierdo naranja accent (antes era borde inferior)
-- El acento está en la tarjeta, no en el h3
+### Síntomas de que está por pasar
+- Respuestas se vuelven lentas o cortadas
+- El modelo empieza a "olvidar" instrucciones anteriores
+- Error directo: `invalid params, context window exceeds limit (2013)`
 
 ---
 
 ## REFERENCIAS
 
 ### Archivos de referencia en `/Referencias`
-- `D-NABVAR.png` — Navbar desktop (ACTUALMENTE NO COINCIDE)
+- `D-NAVBAR.png` — Navbar desktop (NO COINCIDE, pendiente revisión con /coli)
 - `M-NAVBAR.png` — Navbar mobile hamburger
 - `M-MENU.png` — Menu mobile fullscreen overlay
 - `D-NUESTRAMIRADA.png` — Cards filosofía desktop
@@ -119,20 +104,38 @@
 
 ---
 
-## PENDIENTE — CRÍTICO
+## COMO USAR COLI
+
+```
+/coli revisar navbar contra D-NAVBAR.png
+/coli revisar hero contra referencia
+/coli comparar philosophy cards con D-NUESTRAMIRADA.png
+```
+
+Coli siempre:
+1. Lee la referencia PNG en un sub-agente separado
+2. Lee el código HTML/CSS relevante
+3. Produce un reporte estructurado: coincidencias, diferencias, prioridad, recomendaciones
+4. Devuelve SOLO texto — nunca arrastra imágenes al contexto principal
+
+---
+
+## PENDIENTE
 
 ### CRÍTICO
-1. **Navbar desktop** — No se ve, no funciona. Necesita revisión urgente contra D-NAVBAR.png
+1. **Navbar desktop** — Verificar visual contra D-NAVBAR.png usando `/coli`
+2. **Navbar mobile** — Verificar contra M-MENU.png usando `/coli`
+3. **Hamburger dropdown** — Falta animación de cierre, el toggle del dropdown no funciona
 
 ### IMPORTANTE
-2. **Navbar mobile** — Funciona pero no se parece a M-MENU.png
-3. **Philosophy cards** — Verificar que coincidan con D-NUESTRAMIRADA.png
+4. **Philosophy cards** — Verificar contra D-NUESTRAMIRADA.png usando `/coli`
+5. **Hero desktop** — Verificar que funcione después del fix del dropdown
 
 ### PARA PRÓXIMA SESIÓN
-4. Subir fotos reales al portfolio (reemplazar placeholder Proyecto01.png)
-5. Descomentar sección CTA HABLEMOS y llevarla a elizabeth.html y proyecto-*.html
-6. Verificar form.php en Hostinger (una vezalojado)
-7. Agregar links reales de Instagram/LinkedIn si ya están definidos
+6. Subir fotos reales al portfolio (reemplazar placeholder Proyecto01.png)
+7. Descomentar sección CTA HABLEMOS y llevarla a elizabeth.html y proyecto-*.html
+8. Verificar form.php en Hostinger (una vez alojado)
+9. Agregar links reales de Instagram/LinkedIn si ya están definidos
 
 ---
 
@@ -146,10 +149,16 @@
 ## Líneas de CSS clave
 
 - `.site-header` → línea 65 (navbar fixed con blur)
-- `.site-nav` → línea 85 (links horizontales, gap 28px)
-- `.menu-toggle` → línea 113 (hamburger, display:none desktop)
-- `.mobile-menu-overlay` → línea 2731 (fullscreen overlay mobile)
-- `.philosophy-card` → línea 879 (cards con borde izquierdo)
+- `.site-nav` → línea 82 (flex, margin-left:auto para empujar a derecha)
+- `.nav-contact-btn` → línea 116 (botón CONTACTO destacado)
+- `.desktop-dropdown-toggle` → línea 99 (hamburger, display:flex)
+- `.desktop-dropdown` → línea 207 (dropdown absolute, left:36px)
+- `.menu-toggle` → línea 126 (hamburger shared styles)
+- `.mobile-menu-overlay` → línea 2792 (fullscreen overlay mobile)
+- `.hero-slider` → línea 270 (slider container)
+- `.hero__track` → línea 291 (slider track)
+- `.hero__slide` → línea 304 (slide grid 2 columnas)
+- `.philosophy-card` → ~línea 879 (cards con borde izquierdo)
 
 ---
 
