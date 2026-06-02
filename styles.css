@@ -3155,6 +3155,14 @@ section {
         flex-shrink: 0;
     }
 
+    .nav-contact-btn {
+        display: none;
+    }
+
+    .site-header .brand {
+        margin-left: auto;
+    }
+
     .desktop-dropdown-toggle {
         display: none;
     }
@@ -3185,7 +3193,7 @@ section {
         overflow: hidden;
     }
 
-    /* Mobile menu header: logo left, X button right */
+    /* Mobile menu header: X left, logo right */
     .mobile-menu-header {
         display: flex;
         align-items: center;
@@ -3260,6 +3268,40 @@ section {
 
     .mobile-menu-links a:hover {
         color: var(--orange);
+    }
+
+    .mobile-contact-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 28px;
+        padding: 14px 36px;
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #1a1a1a;
+        background: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        transition: background 0.2s ease;
+    }
+
+    .mobile-contact-btn::after {
+        content: "→";
+        font-size: 1.1rem;
+        line-height: 1;
+        transition: transform 0.2s ease;
+    }
+
+    .mobile-contact-btn:hover {
+        background: #e8e8e8;
+    }
+
+    .mobile-contact-btn:hover::after {
+        transform: translateX(3px);
     }
 
     /* Hamburger toggle in page header - visible only when menu closed */
