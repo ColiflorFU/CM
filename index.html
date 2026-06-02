@@ -76,13 +76,15 @@
         </button>
 
         <nav class="site-nav" aria-label="Navegación principal">
-            <a href="#studio">Estudio</a>
-            <a href="#services">Servicios</a>
-            <a href="#portfolio">Proyectos</a>
-            <a href="#process">Proceso</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#services">ARQUITECTURA</a>
+            <a href="#services">DISEÑO</a>
+            <a href="elizabeth.html">EL ESTUDIO</a>
+            <a href="#contact">CONSTRUCCIÓN</a>
+            <a href="#contact">REGULARIZACIÓN</a>
         </nav>
     </header>
+
+    <div class="menu-overlay" aria-hidden="true"></div>
 
     <main>
         <section class="hero hero-slider">
@@ -257,6 +259,15 @@
             </div>
         </section>
 
+        <section class="conversemos-section">
+            <div class="conversemos-inner">
+                <span class="conversemos-line" aria-hidden="true"></span>
+                <h2 class="conversemos-heading">CONVERSEMOS</h2>
+                <p class="conversemos-sub">Cuéntanos sobre tu proyecto, consulta o presupuesto&hellip;</p>
+                <span class="conversemos-line" aria-hidden="true"></span>
+            </div>
+        </section>
+
         <section class="banner-cta-section" aria-label="Consulta de proyecto">
             <div class="banner-grid-lines" aria-hidden="true"></div>
             <div class="banner-cta-panel">
@@ -298,13 +309,13 @@
             </div>
         </section>
 
-        <section class="process-section" id="process">
+<section class="process-section" id="process">
             <div class="container process-feature-grid">
                 <div class="process-feature-copy">
                     <p class="eyebrow">Nuestro proceso</p>
                     <h2>Pasos claros. Ritmo cuidado. Flujo colaborativo.</h2>
                     <p class="process-intro">
-                        Integramos diseño, coordinación técnica y decisiones normativas para que cada etapa avance con
+                        Integgramos diseño, coordinación técnica y decisiones normativas para que cada etapa avance con
                         claridad, desde la primera conversación hasta la ejecución o regularización.
                     </p>
 
@@ -343,29 +354,45 @@
             </div>
         </section>
 
-        <section class="founder-section">
-            <div class="container founder-grid">
-                <div class="founder-media media-block" style="background-image:url('Recursos/Miscelaneos/ELIZABETH.png');background-size:cover;background-position:center 20%"></div>
-                <div class="founder-copy">
-                    <p class="eyebrow">Fundadora / Arquitecta</p>
-                    <h2>Elizabeth Contreras</h2>
-                    <p>
-                        Arquitecta titulada por la UTEM, con formación en Arquitectura Interior por la Universidad de
-                        Chile y Accesibilidad Universal por la PUC. Su trabajo integra escucha, diseño, técnica y
-                        cumplimiento normativo.
-                    </p>
-                    <blockquote>“El fin de toda actividad plástica es la construcción.”</blockquote>
-                    <div class="tag-list">
-                        <span>2014 Arquitecta titulada</span>
-                        <span>Arquitectura interior</span>
-                        <span>Accesibilidad universal</span>
-                    </div>
+        <section class="cta-hablemos-section" aria-label="Llamada a acción">
+            <div class="container cta-hablemos-inner">
+                <div class="cta-hablemos-content">
+                    <p class="eyebrow">Próximo paso</p>
+                    <h2>¿Hablamos de tu proyecto?</h2>
+                    <p>Agenda una conversación con Elizabeth para explorar posibilidades, resolver dudas o comenzar a proyectar.</p>
+                    <a href="elizabeth.html" class="print-button">
+                        <span class="bracket-tl"></span>
+                        <span class="bracket-tr"></span>
+                        <span class="bracket-bl"></span>
+                        <span class="bracket-br"></span>
+                        <span class="print-button-inner">CONOCER AL ESTUDIO</span>
+                    </a>
+                </div>
+                <div class="cta-hablemos-aside">
+                    <p class="cta-hablemos-quote">"El fin de toda actividad plástica es la construcción."</p>
+                    <span class="cta-hablemos-attribution">— Elizabeth Contreras</span>
                 </div>
             </div>
         </section>
 
+        <section class="gallery-break-section" aria-label="Proyectos">
+            <div class="gallery-break-grid">
+                <div class="gallery-break-item gallery-break-item-wide">
+                    <div class="media-block" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
+                </div>
+                <div class="gallery-break-item">
+                    <div class="media-block" style="background-image:url('Recursos/Miscelaneos/materiales.png')"></div>
+                </div>
+                <div class="gallery-break-item">
+                    <div class="media-block" style="background-image:url('Recursos/Miscelaneos/fondoplanos.png')"></div>
+                </div>
+                <div class="gallery-break-item gallery-break-item-wide">
+                    <div class="media-block" style="background-image:url('Recursos/Miscelaneos/mesa.png')"></div>
+                </div>
+            </div>
+        </section>
 
-        <section class="contact-faq-section" id="contacto">
+        <section class="contact-faq-section" id="contact">
             <div class="container">
                 <div class="contact-faq-grid">
                     <div class="contact-form-block">
@@ -374,7 +401,8 @@
                         <p class="contact-form-intro">
                             Cuéntanos en qué estás trabajando y te respondemos a la brevedad.
                         </p>
-                        <form id="contactForm" novalidate>
+                        <form id="contactForm" action="form.php" method="POST" novalidate>
+                            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
                             <div class="form-field">
                                 <label for="formName">Nombre</label>
                                 <input id="formName" name="name" type="text" required placeholder="Tu nombre">
@@ -429,7 +457,7 @@
         </section>
     </main>
 
-    <div class="footer-frame" id="contact">
+    <div class="footer-frame" id="contact-cta">
         <span class="frame-line frame-line-left" aria-hidden="true"></span>
         <span class="frame-line frame-line-right" aria-hidden="true"></span>
 
