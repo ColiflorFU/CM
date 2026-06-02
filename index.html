@@ -66,29 +66,36 @@
 
 <body>
     <header class="site-header" id="top">
-        <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
-            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
-        </a>
-        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <button class="menu-toggle desktop-dropdown-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
             <span></span>
             <span></span>
         </button>
+        <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
+            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
+        </a>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="#services">ARQUITECTURA</a>
+            <a href="#services">DISEÑO</a>
+            <a href="#contact">CONSTRUCCIÓN</a>
+            <a href="#contact">REGULARIZACIÓN</a>
+        </nav>
+        <div class="desktop-dropdown" aria-hidden="true">
+            <div class="desktop-dropdown-inner">
+                <a href="proyecto-casa-campo.html" class="desktop-dropdown-item">Link 1</a>
+                <a href="proyecto-residencia.html" class="desktop-dropdown-item">Link 2</a>
+                <a href="proyecto-torre.html" class="desktop-dropdown-item">Link 3</a>
+                <a href="elizabeth.html" class="desktop-dropdown-item">Link 4</a>
+            </div>
+        </div>
     </header>
-
-    <nav class="site-nav" aria-label="Navegación principal">
-        <a href="#services">ARQUITECTURA</a>
-        <a href="#services">DISEÑO</a>
-        <a href="elizabeth.html">EL ESTUDIO</a>
-        <a href="#contact">CONSTRUCCIÓN</a>
-        <a href="#contact">REGULARIZACIÓN</a>
-    </nav>
 
     <div class="mobile-menu-overlay" aria-hidden="true">
         <div class="mobile-menu-header">
             <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
                 <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
             </a>
-            <button class="menu-toggle close-toggle" type="button" aria-label="Cerrar menú" aria-expanded="false">
+            <button class="close-toggle" type="button" aria-label="Cerrar menú" aria-expanded="false">
                 <span></span>
                 <span></span>
             </button>

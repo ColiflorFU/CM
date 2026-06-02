@@ -3,14 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector(".menu-toggle");
     const closeToggle = document.querySelector(".close-toggle");
     const mobileMenuLinks = document.querySelector(".mobile-menu-links");
+    const desktopDropdownToggle = document.querySelector(".desktop-dropdown-toggle");
 
-    function openMenu() {
+    // Mobile menu
+    function openMobileMenu() {
         body.classList.add("menu-open");
         menuToggle.setAttribute("aria-expanded", "true");
         document.documentElement.style.overflow = "hidden";
     }
 
-    function closeMenu() {
+    function closeMobileMenu() {
         body.classList.remove("menu-open");
         menuToggle.setAttribute("aria-expanded", "false");
         document.documentElement.style.overflow = "";
@@ -19,21 +21,38 @@ document.addEventListener("DOMContentLoaded", () => {
     if (menuToggle) {
         menuToggle.addEventListener("click", () => {
             if (body.classList.contains("menu-open")) {
-                closeMenu();
+                closeMobileMenu();
             } else {
-                openMenu();
+                openMobileMenu();
+            }
+        });
+    }
+
+    // Desktop dropdown
+    if (desktopDropdownToggle) {
+        desktopDropdownToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isOpen = body.classList.toggle("dropdown-open");
+            desktopDropdownToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest(".desktop-dropdown") && !event.target.closest(".desktop-dropdown-toggle")) {
+                body.classList.remove("dropdown-open");
+                desktopDropdownToggle.setAttribute("aria-expanded", "false");
             }
         });
     }
 
     if (closeToggle) {
-        closeToggle.addEventListener("click", closeMenu);
+        closeToggle.addEventListener("click", closeMobileMenu);
     }
 
     if (mobileMenuLinks) {
         mobileMenuLinks.addEventListener("click", (event) => {
             if (event.target.closest("a")) {
-                closeMenu();
+                closeMobileMenu();
             }
         });
     }
@@ -41,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (event) => {
         const clickedMenu = event.target.closest(".site-nav") || event.target.closest(".menu-toggle");
         if (!clickedMenu && body.classList.contains("menu-open")) {
-            closeMenu();
+            closeMobileMenu();
         }
     });
 });
