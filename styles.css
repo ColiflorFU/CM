@@ -1595,6 +1595,8 @@ section {
     bottom: 0;
     width: 100%;
     min-height: 520px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* ── Footer Frame (tarjeta con marco de impresión) ── */
