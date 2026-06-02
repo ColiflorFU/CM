@@ -66,6 +66,9 @@
 
 <body>
     <header class="site-header" id="top">
+        <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
+            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
+        </a>
         <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
             <span></span>
             <span></span>
@@ -73,6 +76,14 @@
     </header>
 
     <nav class="site-nav" aria-label="Navegación principal">
+        <a href="#services">ARQUITECTURA</a>
+        <a href="#services">DISEÑO</a>
+        <a href="elizabeth.html">EL ESTUDIO</a>
+        <a href="#contact">CONSTRUCCIÓN</a>
+        <a href="#contact">REGULARIZACIÓN</a>
+    </nav>
+
+    <div class="mobile-menu-overlay" aria-hidden="true">
         <div class="mobile-menu-header">
             <a class="brand" href="#top" aria-label="Contreras Martínez inicio">
                 <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
@@ -89,9 +100,7 @@
             <a href="#contact">CONSTRUCCIÓN</a>
             <a href="#contact">REGULARIZACIÓN</a>
         </div>
-    </nav>
-
-    <div class="menu-overlay" aria-hidden="true"></div>
+    </div>
 
     <main>
         <section class="hero hero-slider">
@@ -296,15 +305,15 @@
 
                 <div class="portfolio-grid">
                     <a href="proyecto-residencia.html" class="portfolio-card portfolio-card-tall">
-                        <div class="media-block portfolio-media portfolio-media-warm" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
+                        <div class="media-block portfolio-media" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
                         <h3>Residencia Los Álamos</h3>
                     </a>
                     <a href="proyecto-torre.html" class="portfolio-card portfolio-card-wide">
-                        <div class="media-block portfolio-media portfolio-media-soft" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
+                        <div class="media-block portfolio-media" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
                         <h3>Torre Central</h3>
                     </a>
                     <a href="proyecto-casa-campo.html" class="portfolio-card portfolio-card-tall">
-                        <div class="media-block portfolio-media portfolio-media-cool" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
+                        <div class="media-block portfolio-media" style="background-image:url('Recursos/HeroSection/Proyecto01.png')"></div>
                         <h3>Casa de Campo</h3>
                     </a>
                 </div>
@@ -524,7 +533,38 @@
         </a>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+    (function() {
+        const menuToggle = document.querySelector('.site-header .menu-toggle');
+        const closeToggle = document.querySelector('.mobile-menu-overlay .close-toggle');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
+
+        function openMenu() {
+            document.body.classList.add('menu-open');
+            mobileMenuOverlay.setAttribute('aria-hidden', 'false');
+            menuToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+            document.body.classList.remove('menu-open');
+            mobileMenuOverlay.setAttribute('aria-hidden', 'true');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', openMenu);
+        }
+
+        if (closeToggle) {
+            closeToggle.addEventListener('click', closeMenu);
+        }
+
+        mobileMenuLinks.forEach(function(link) {
+            link.addEventListener('click', closeMenu);
+        });
+    })();
+    </script>
 </body>
 
 </html>

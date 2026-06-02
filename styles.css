@@ -879,12 +879,12 @@ section {
 .philosophy-card {
     padding: 32px;
     background: #fff;
-    border-bottom: 2px solid var(--orange);
+    border-left: 3px solid var(--orange);
     transition: border-color 0.2s;
 }
 
 .philosophy-card:hover {
-    border-bottom-color: var(--ink);
+    border-left-color: var(--ink);
 }
 
 .philosophy-card h3 {
@@ -893,8 +893,6 @@ section {
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.4;
-    padding-left: 16px;
-    border-left: 3px solid var(--orange);
 }
 
 .philosophy-card p {
@@ -1157,44 +1155,40 @@ section {
 }
 
 .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
     gap: 20px;
-    align-items: start;
+    align-items: stretch;
+    flex-wrap: wrap;
 }
 
 .portfolio-card {
     display: block;
     text-decoration: none;
+    flex: 1 1 300px;
 }
 
 .portfolio-media {
     margin-bottom: 24px;
+    min-height: 400px;
 }
 
 .portfolio-card-tall .portfolio-media {
-    min-height: 720px;
+    min-height: 600px;
 }
 
 .portfolio-card-wide .portfolio-media {
-    min-height: 360px;
+    min-height: 400px;
 }
 
 .portfolio-card-wide {
     padding-top: 0;
+    flex: 2 1 400px;
 }
 
-.portfolio-media-warm {
-    background: #7a5439;
-}
-
-.portfolio-media-soft {
-    background: #d9d1c5;
-    color: rgba(16, 16, 16, 0.45);
-}
-
+.portfolio-media-warm,
+.portfolio-media-soft,
 .portfolio-media-cool {
-    background: #223f44;
+    background: none;
 }
 
 .portfolio-card h3 {
@@ -2728,46 +2722,30 @@ section {
         flex-shrink: 0;
     }
 
+    /* Desktop nav hidden on mobile */
     .site-nav {
-        position: fixed;
-        inset: 0;
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 0;
-        padding: 0 24px;
-        background: rgba(16, 16, 16, 0.96);
-        transform: translateY(-100%);
-        transition: transform 0.3s ease;
-    }
-
-    .menu-open .site-nav {
-        transform: translateY(0);
-    }
-
-/* Hide the page header when menu is open */
-    .menu-open .site-header {
-        visibility: hidden;
+        display: none;
     }
 
     /* Mobile menu overlay - fullscreen dark */
-    .site-nav {
+    .mobile-menu-overlay {
         position: fixed;
         inset: 0;
         z-index: 100;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        padding: 0;
-        background: rgba(16, 16, 16, 0.96);
+        background: rgba(16, 16, 16, 0.95);
         transform: translateY(-100%);
         transition: transform 0.3s ease;
     }
 
-    .menu-open .site-nav {
+    .menu-open .mobile-menu-overlay {
         transform: translateY(0);
+    }
+
+    /* Body scroll lock when menu open */
+    body.menu-open {
+        overflow: hidden;
     }
 
     /* Mobile menu header: logo left, X button right */
@@ -2778,6 +2756,7 @@ section {
         min-height: 72px;
         padding: 0 16px;
         width: 100%;
+        flex-shrink: 0;
     }
 
     .mobile-menu-header .brand {
@@ -2850,15 +2829,6 @@ section {
     .menu-toggle {
         display: block;
         flex-shrink: 0;
-    }
-
-    /* Hide desktop nav links when menu is open (they're now inside .mobile-menu-links) */
-    .site-nav > a {
-        display: none;
-    }
-
-.menu-overlay {
-        display: none;
     }
 
     section {
