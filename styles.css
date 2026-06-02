@@ -1974,86 +1974,44 @@ section {
 /* ── Contact Page editorial (Minnaro-style) ── */
 .contacto-page {
     background: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.contacto-hero {
-    padding: 140px 0 120px;
+.contacto-main {
+    display: flex;
+    flex: 1;
 }
 
 .contacto-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(60px, 8vw, 120px);
-    align-items: start;
+    display: flex;
+    flex: 1;
+    width: 100%;
 }
 
 /* ── Left column ── */
-.contacto-info .eyebrow {
-    margin-bottom: 16px;
-}
-
-.contacto-info h1 {
-    margin: 0 0 24px;
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(2.5rem, 3.5vw, 4rem);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.025em;
-    color: var(--ink);
-}
-
-.contacto-desc {
-    margin: 0 0 56px;
-    max-width: 400px;
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-.contacto-details {
+.contacto-info {
+    flex: 1;
+    padding: 140px max(30px, calc((100vw - var(--max)) / 2)) 80px 30px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-}
-
-.contacto-detail-group h3 {
-    margin: 0 0 12px;
-    font-family: "Urbanist", sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink);
-}
-
-.contacto-detail-group p {
-    margin: 0 0 6px;
-    color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.6;
-}
-
-.contacto-detail-group a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.15s ease;
-}
-
-.contacto-detail-group a:hover {
-    color: var(--orange);
+    justify-content: flex-start;
 }
 
 /* ── Right column (fondo oscuro/imagen con panel glass) ── */
 .contacto-form-col {
     position: relative;
-    min-height: 600px;
+    width: 42%;
+    min-width: 480px;
+    flex-shrink: 0;
     background: #1a1a1a;
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px 40px;
+    padding: 80px 48px;
 }
 
 .banner-cta-panel--contact {
@@ -2091,10 +2049,10 @@ section {
         100% 1px,
         100% 1px;
     background-position:
-        40px center,
-        calc(100% - 40px) center,
-        center 48px,
-        center calc(100% - 48px);
+        48px center,
+        calc(100% - 48px) center,
+        center 80px,
+        center calc(100% - 80px);
     background-repeat: no-repeat;
 }
 
@@ -3973,30 +3931,35 @@ section {
 
 /* ── Contact page mobile ── */
 @media (max-width: 760px) {
-    .contacto-hero {
-        padding: 100px 0 80px;
+    .contacto-page {
+        display: block;
+        min-height: auto;
+    }
+
+    .contacto-main {
+        display: block;
     }
 
     .contacto-layout {
-        grid-template-columns: 1fr;
-        gap: 56px;
+        display: block;
     }
 
-    .contacto-desc {
-        max-width: none;
+    .contacto-info {
+        padding: 100px 30px 60px;
     }
 
     .contacto-form-col {
-        min-height: auto;
-        padding: 32px 20px;
+        width: 100%;
+        min-width: 0;
+        padding: 48px 24px;
     }
 
     .banner-grid-lines--contact {
         background-position:
-            20px center,
-            calc(100% - 20px) center,
-            center 32px,
-            center calc(100% - 32px);
+            24px center,
+            calc(100% - 24px) center,
+            center 48px,
+            center calc(100% - 48px);
     }
 
     .banner-cta-panel--contact {
