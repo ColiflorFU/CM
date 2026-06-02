@@ -109,10 +109,17 @@
 1. **Footer** — Ya estaba bien, backup guardado en memoria
 2. **Botón brackets** — Diseño propio, backup guardado en memoria
 3. **form.php** — Funcional, no tocar lógica
+4. **Studio section ("Conoce el estudio")** — PROTEGIDA
+5. **Services section ("Servicios")** — PROTEGIDA
+6. **Banner CTA ("Consulta de proyecto")** — PROTEGIDA
+7. **Portfolio grid** — PROTEGIDA (fotos reales próximas)
+8. **Process section ("Nuestro proceso")** — PROTEGIDA
+
+> **Nota:** Mobile tiene problemas pero se ve bien — no es prioridad ahora.
 
 ---
 
-## PENDIENTE DE ARREGLAR
+## PENDIENTE — CRÍTICO
 
 ### CRÍTICO
 1. **Navbar desktop** — No se ve, no funciona. Necesita revisión urgente contra D-NAVBAR.png
