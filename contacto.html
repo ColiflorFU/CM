@@ -90,46 +90,48 @@
                     </div>
                 </div>
 
-                <!-- Right: form -->
+                <!-- Right: form con fondo oscuro/imagen -->
                 <div class="contacto-form-col">
-                    <p class="contacto-form-intro">
-                        Si tenés un proyecto, consulta o presupuesto en mente, completá el formulario y te escribimos a la brevedad.
-                    </p>
+                    <div class="banner-cta-panel banner-cta-panel--contact">
+                        <p class="contacto-form-intro">
+                            Si tenés un proyecto, consulta o presupuesto en mente, completá el formulario y te escribimos a la brevedad.
+                        </p>
 
-                    <form id="contactForm" action="form.php" method="POST" novalidate>
-                        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+                        <form id="contactForm" action="form.php" method="POST" novalidate>
+                            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
 
-                        <div class="form-field">
-                            <label for="formName">Nombre</label>
-                            <input id="formName" name="name" type="text" required placeholder="Tu nombre">
-                        </div>
+                            <div class="form-field">
+                                <label for="formName">Nombre</label>
+                                <input id="formName" name="name" type="text" required placeholder="Tu nombre">
+                            </div>
 
-                        <div class="form-field">
-                            <label for="formEmail">Correo electrónico</label>
-                            <input id="formEmail" name="email" type="email" required placeholder="tu@email.cl">
-                        </div>
+                            <div class="form-field">
+                                <label for="formEmail">Correo electrónico</label>
+                                <input id="formEmail" name="email" type="email" required placeholder="tu@email.cl">
+                            </div>
 
-                        <div class="form-field">
-                            <label for="formCity">Ciudad</label>
-                            <input id="formCity" name="city" type="text" placeholder="Tu ciudad">
-                        </div>
+                            <div class="form-field">
+                                <label for="formCity">Ciudad</label>
+                                <input id="formCity" name="city" type="text" placeholder="Tu ciudad">
+                            </div>
 
-                        <div class="form-field">
-                            <label for="formPhone">Teléfono</label>
-                            <input id="formPhone" name="phone" type="tel" placeholder="+56 9 ...">
-                        </div>
+                            <div class="form-field">
+                                <label for="formPhone">Teléfono</label>
+                                <input id="formPhone" name="phone" type="tel" placeholder="+56 9 ...">
+                            </div>
 
-                        <div class="form-field">
-                            <label for="formMessage">Mensaje</label>
-                            <textarea id="formMessage" name="message" rows="4" required placeholder="Contanos sobre tu proyecto..."></textarea>
-                        </div>
+                            <div class="form-field">
+                                <label for="formMessage">Mensaje</label>
+                                <textarea id="formMessage" name="message" rows="4" required placeholder="Contanos sobre tu proyecto..."></textarea>
+                            </div>
 
-                        <button class="contacto-submit" type="submit">
-                            Enviar mensaje <span>&rarr;</span>
-                        </button>
+                            <button class="contacto-submit" type="submit">
+                                Enviar mensaje <span>&rarr;</span>
+                            </button>
 
-                        <p class="form-feedback" aria-live="polite"></p>
-                    </form>
+                            <p class="form-feedback" aria-live="polite"></p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
