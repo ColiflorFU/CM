@@ -1196,7 +1196,7 @@ blockquote {
     max-width: 540px;
 }
 
-/* CTA Button — corner brackets */
+/* CTA Button — corner brackets (print/crop marks, opening outward) */
 .cta-btn {
     position: relative;
     display: inline-flex;
@@ -1205,27 +1205,12 @@ blockquote {
     width: 270px;
     height: 52px;
     background: transparent;
-    border: none;
+    border: 1px solid var(--bracket-color);
     cursor: pointer;
     text-decoration: none;
     color: #000;
     overflow: visible;
 }
-
-.cta-btn::before,
-.cta-btn::after {
-    content: "";
-    position: absolute;
-    left: -23px;
-    right: -23px;
-    height: 1px;
-    background: var(--bracket-color);
-    z-index: 1;
-    pointer-events: none;
-}
-
-.cta-btn::before { top: 0; }
-.cta-btn::after  { bottom: 0; }
 
 .cta-btn-inner {
     position: relative;
@@ -1235,7 +1220,6 @@ blockquote {
     justify-content: center;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.06);
     background: transparent;
     font-size: 14px;
     font-weight: 600;
@@ -1246,68 +1230,26 @@ blockquote {
     transition: background 0.2s ease;
 }
 
-.cta-btn-inner::before,
-.cta-btn-inner::after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    pointer-events: none;
-}
-
-.cta-btn-inner::before {
-    top: -23px;
-    border-top: 1px solid var(--bracket-color);
-    border-left: 1px solid var(--bracket-color);
-}
-
-.cta-btn-inner::after {
-    bottom: -23px;
-    border-bottom: 1px solid var(--bracket-color);
-    border-right: 1px solid var(--bracket-color);
-}
-
-/* TL bracket */
-.cta-btn::before { top: 0; left: 0; }
-.cta-btn .cta-bracket-tl {
-    position: absolute;
-    top: -23px; left: 0;
-    width: 12px; height: 12px;
-    border-top: 1px solid var(--bracket-color);
-    border-left: 1px solid var(--bracket-color);
-    pointer-events: none;
-    z-index: 3;
-}
-/* TR bracket */
-.cta-btn .cta-bracket-tr {
-    position: absolute;
-    top: -23px; right: 0;
-    width: 12px; height: 12px;
-    border-top: 1px solid var(--bracket-color);
-    border-right: 1px solid var(--bracket-color);
-    pointer-events: none;
-    z-index: 3;
-}
-/* BL bracket */
-.cta-btn .cta-bracket-bl {
-    position: absolute;
-    bottom: -23px; left: 0;
-    width: 12px; height: 12px;
-    border-bottom: 1px solid var(--bracket-color);
-    border-left: 1px solid var(--bracket-color);
-    pointer-events: none;
-    z-index: 3;
-}
-/* BR bracket */
+/* 4 corner brackets — 6×6px at -6px, opening outward (crop mark style) */
+.cta-btn .cta-bracket-tl,
+.cta-btn .cta-bracket-tr,
+.cta-btn .cta-bracket-bl,
 .cta-btn .cta-bracket-br {
     position: absolute;
-    bottom: -23px; right: 0;
-    width: 12px; height: 12px;
-    border-bottom: 1px solid var(--bracket-color);
-    border-right: 1px solid var(--bracket-color);
+    width: 6px;
+    height: 6px;
     pointer-events: none;
     z-index: 3;
 }
+
+/* TL: lines on bottom+right edges → L opens toward top-left outer corner */
+.cta-btn .cta-bracket-tl { top: -6px; left: -6px; border-bottom: 1px solid var(--bracket-color); border-right: 1px solid var(--bracket-color); }
+/* TR: lines on bottom+left edges → L opens toward top-right outer corner */
+.cta-btn .cta-bracket-tr { top: -6px; right: -6px; border-bottom: 1px solid var(--bracket-color); border-left: 1px solid var(--bracket-color); }
+/* BL: lines on top+right edges → L opens toward bottom-left outer corner */
+.cta-btn .cta-bracket-bl { bottom: -6px; left: -6px; border-top: 1px solid var(--bracket-color); border-right: 1px solid var(--bracket-color); }
+/* BR: lines on top+left edges → L opens toward bottom-right outer corner */
+.cta-btn .cta-bracket-br { bottom: -6px; right: -6px; border-top: 1px solid var(--bracket-color); border-left: 1px solid var(--bracket-color); }
 
 .cta-btn:hover .cta-btn-inner {
     background: rgba(0, 0, 0, 0.03);
@@ -1359,12 +1301,17 @@ blockquote {
     color: var(--orange);
 }
 
+.footer-address {
+    overflow-wrap: break-word;
+}
+
 .footer-address p {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.6;
     color: var(--ink);
     margin: 0 0 12px;
+    overflow-wrap: break-word;
 }
 
 .footer-address a {
@@ -1375,6 +1322,7 @@ blockquote {
     text-decoration: none;
     line-height: 1.8;
     transition: color 0.15s ease;
+    overflow-wrap: break-word;
 }
 
 .footer-address a:hover {
@@ -1506,9 +1454,12 @@ blockquote {
     min-height: 120px;
 }
 
+/* Form Submit Button — corner brackets (opening outward) */
 .form-submit {
+    position: relative;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 14px 28px;
     background: var(--ink);
@@ -1521,6 +1472,22 @@ blockquote {
     cursor: pointer;
     transition: background 0.2s ease;
 }
+
+.form-submit .bracket-tl,
+.form-submit .bracket-tr,
+.form-submit .bracket-bl,
+.form-submit .bracket-br {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.form-submit .bracket-tl { top: -6px; left: -6px; border-bottom: 1px solid rgba(255,255,255,0.35); border-right: 1px solid rgba(255,255,255,0.35); }
+.form-submit .bracket-tr { top: -6px; right: -6px; border-bottom: 1px solid rgba(255,255,255,0.35); border-left: 1px solid rgba(255,255,255,0.35); }
+.form-submit .bracket-bl { bottom: -6px; left: -6px; border-top: 1px solid rgba(255,255,255,0.35); border-right: 1px solid rgba(255,255,255,0.35); }
+.form-submit .bracket-br { bottom: -6px; right: -6px; border-top: 1px solid rgba(255,255,255,0.35); border-left: 1px solid rgba(255,255,255,0.35); }
 
 .form-submit:hover {
     background: var(--orange);
@@ -1882,6 +1849,547 @@ blockquote {
     }
 }
 
+/* ── Project Page — single sticky image left / all content scrolls right ── */
+
+.proj-page {
+    padding-top: 86px;
+    display: flex;
+    align-items: stretch;
+}
+
+.proj-img-fixed {
+    flex: 0 0 50%;
+    height: calc(100vh - 86px);
+    position: sticky;
+    top: 86px;
+    overflow: hidden;
+}
+
+.proj-img-fixed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.proj-content {
+    flex: 1;
+    min-width: 0;
+    background: var(--paper);
+    position: sticky;
+    top: 86px;
+    height: calc(100vh - 86px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.proj-intro {
+    padding: 80px 72px 0;
+}
+
+.proj-body {
+    padding: 0 72px 0;
+    flex: 1;
+}
+
+.proj-nav {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+/* ── Intro ── */
+
+.proj-intro {
+    padding: 80px 72px 0;
+}
+
+.proj-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 16px;
+}
+
+.proj-title {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 64px;
+}
+
+.proj-intro__text {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0 0 48px;
+    max-width: 640px;
+}
+
+/* ── Body text ── */
+
+.proj-body__subheading {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 48px 0 18px;
+}
+
+.proj-body__text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin: 0 0 20px;
+    max-width: 640px;
+}
+
+.proj-body__quote {
+    margin: 48px 0;
+    padding: 0;
+    border: none;
+}
+
+.proj-body__quote p {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.2rem, 1.6vw, 1.7rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+}
+
+/* ── Meta grid (below quote in body section) ── */
+
+.proj-body {
+    padding: 0 72px 80px;
+}
+
+.proj-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    margin-top: 64px;
+}
+
+.proj-meta__item {
+    flex: 1 1 140px;
+    min-width: 0;
+    padding: 18px 22px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.proj-meta__key {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+}
+
+.proj-meta__val {
+    font-family: "Urbanist", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+/* ── Prev / Next ── */
+
+.proj-nav {
+    display: flex;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.proj-nav__link {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 48px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.proj-nav__link:hover {
+    background: var(--soft);
+}
+
+.proj-nav__link--next {
+    text-align: right;
+    border-left: 1px solid var(--line);
+}
+
+.proj-nav__dir {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.proj-nav__name {
+    font-family: "Urbanist", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+    .proj-page {
+        flex-direction: column;
+        padding-top: 72px;
+    }
+
+    .proj-img-fixed {
+        flex: none;
+        width: 100%;
+        height: 50vh;
+        position: relative;
+        top: auto;
+    }
+
+    .proj-content {
+        position: static;
+        height: auto;
+        overflow: visible;
+    }
+
+    .proj-intro {
+        padding: 48px 24px 0;
+    }
+
+    .proj-body {
+        padding: 0 24px 0;
+    }
+
+    .proj-title {
+        margin-bottom: 40px;
+    }
+
+    .proj-nav {
+        margin-top: 48px;
+    }
+}
+
+@media (max-width: 600px) {
+    .proj-meta__item {
+        flex: 1 1 50%;
+    }
+
+    .proj-nav__link {
+        padding: 28px 20px;
+    }
+
+    .proj-nav__name {
+        font-size: 1.05rem;
+    }
+}
+
+.proj-row {
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.proj-img-col {
+    flex: 0 0 50%;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.proj-img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.proj-text-col {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: var(--paper);
+}
+
+.proj-text-inner {
+    padding: 80px 72px;
+    max-width: 640px;
+}
+
+/* ── Intro / Meta ── */
+
+.proj-intro__text {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0 0 48px;
+}
+
+.proj-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.proj-meta__item {
+    flex: 1 1 140px;
+    min-width: 0;
+    padding: 18px 22px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.proj-meta__key {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+}
+
+.proj-meta__val {
+    font-family: "Urbanist", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+/* ── Typography ── */
+
+.proj-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 16px;
+}
+
+.proj-title {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 64px;
+}
+
+.proj-body__heading {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 28px;
+}
+
+.proj-body__lead {
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 24px;
+}
+
+.proj-body p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin: 0 0 20px;
+}
+
+.proj-body__figure {
+    margin: 0 0 48px;
+}
+
+.proj-body__figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.proj-body__figure figcaption {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.proj-body__subheading {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 48px 0 18px;
+}
+
+.proj-body__quote {
+    margin: 48px 0;
+    padding: 0;
+    border: none;
+}
+
+.proj-body__quote p {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.2rem, 1.6vw, 1.7rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+}
+
+/* ── Prev / Next ── */
+
+.proj-nav {
+    display: flex;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.proj-nav__link {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 48px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.proj-nav__link:hover {
+    background: var(--soft);
+}
+
+.proj-nav__link--next {
+    text-align: right;
+    border-left: 1px solid var(--line);
+}
+
+.proj-nav__dir {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.proj-nav__name {
+    font-family: "Urbanist", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+    .proj-page {
+        padding-top: 72px;
+    }
+
+    .proj-row {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .proj-img-col {
+        flex: none;
+        width: 100%;
+        height: 50vh;
+        position: relative;
+        top: auto;
+    }
+
+    .proj-text-inner {
+        padding: 48px 24px;
+    }
+
+.proj-title {
+        margin-bottom: 40px;
+    }
+
+    .proj-meta__item {
+        flex: 1 1 50%;
+    }
+
+    .proj-nav__link {
+        padding: 28px 20px;
+    }
+
+    .proj-nav__name {
+        font-size: 1.05rem;
+    }
+
+    .project-article {
+        padding-top: 72px;
+    }
+
+    .project-hero {
+        padding: 100px 0 56px;
+    }
+
+    .project-hero h1 {
+        font-size: 2rem;
+    }
+
+    .project-content {
+        padding: 56px 0 64px;
+    }
+
+    .project-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .project-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .project-related {
+        padding: 64px 0;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .sidebar-card {
+        padding: 24px;
+    }
+}
+}
+
+.related-tag {
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
 @media (max-width: 760px) {
     .container {
         width: min(100% - 32px, var(--max));
@@ -2011,6 +2519,7 @@ blockquote {
         position: static;
         margin: 0 24px;
         width: fit-content;
+    }
 
     .founder-media {
         min-height: 460px;
@@ -2116,7 +2625,6 @@ blockquote {
         line-height: 1.12;
     }
 
-    /* ── Footer Frame responsive at 760px ── */
     .footer-frame {
         padding: 12px;
         overflow: hidden;
@@ -2143,7 +2651,9 @@ blockquote {
     }
 
     .footer-grid {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
         width: 100%;
     }
 
@@ -2152,29 +2662,45 @@ blockquote {
         width: 100%;
         max-width: 100%;
         overflow-wrap: break-word;
+        word-break: break-word;
         box-sizing: border-box;
+        padding: 0 16px;
     }
 
     .footer-grid > * + * {
-        margin-top: 48px;
+        margin-top: 40px;
     }
 
     .footer-cta-col {
         grid-column: unset;
+        padding: 0 16px;
+        width: 100%;
     }
 
     .footer-cta-col h2 {
         font-size: clamp(1.6rem, 7vw, 2rem);
         margin-bottom: 24px;
         overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .footer-cta-col p,
+    .footer-cta-col a {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     .footer-col-label {
         margin-bottom: 16px;
     }
 
-    .footer-col-links {
+    .footer-col-links,
+    .footer-col-links a {
         width: 100%;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     .footer-col-links a {
@@ -2184,6 +2710,20 @@ blockquote {
 
     .footer-address {
         width: 100%;
+        padding: 0 16px;
+    }
+
+    .footer-address p,
+    .footer-address a {
+        font-size: 15px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+    }
+
+    .footer-disclaimer {
+        width: 100%;
+        padding: 0 16px;
     }
 
     .footer-address p {
@@ -2206,31 +2746,161 @@ blockquote {
         overflow-wrap: break-word;
     }
 
-    .architectural-button {
+    .cta-btn {
         width: 100%;
-    }
-
-    .architectural-button::before,
-    .architectural-button::after {
-        left: -8px;
-        right: -8px;
-    }
-
-    .architectural-button__marks {
-        top: -8px;
-        bottom: -8px;
-    }
-
-    .architectural-button__label {
-        padding-block: 1.4em;
-        padding-inline: 3em;
     }
 
     .architectural-button-wrap {
         padding: 6px 0 24px;
     }
 
-/* ── Print Button — blueprint registration marks ── */
+    .btn-microcopy {
+        font-size: 15px;
+    }
+
+    .scroll-top-fab {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .banner-cta-section {
+        min-height: 100dvh;
+        aspect-ratio: unset;
+        max-height: none;
+    }
+
+    .banner-grid-lines {
+        background-size: 50% calc(100% / 3);
+    }
+
+    .banner-cta-panel {
+        left: 16px;
+        right: 16px;
+        top: 50%;
+        bottom: auto;
+        width: min(330px, calc(100% - 32px));
+        min-height: 410px;
+        padding: 32px 26px 26px;
+        transform: translateY(-50%);
+    }
+
+    .banner-cta-panel h2 {
+        font-size: 1.65rem;
+    }
+
+    .portfolio-heading {
+        display: block;
+    }
+
+    .portfolio-heading .text-link {
+        margin-top: 24px;
+    }
+
+    .portfolio-section {
+        padding-top: 92px;
+        padding-bottom: 92px;
+    }
+
+    .portfolio-grid {
+        gap: 42px;
+    }
+
+    .portfolio-controls {
+        justify-content: flex-start;
+        margin-top: 42px;
+        font-size: 1.8rem;
+    }
+
+    .process-intro {
+        margin: 40px 0 42px;
+    }
+
+    .process-sketch {
+        display: none;
+    }
+
+    .process-accordion summary {
+        grid-template-columns: 30px 1fr 20px;
+        padding: 20px 0;
+        font-size: 1.12rem;
+    }
+
+    .process-accordion details p {
+        margin-left: 40px;
+        font-size: 0.9rem;
+    }
+
+    .process-feature-media {
+        min-height: 520px;
+    }
+
+    .process-image-top {
+        width: 82%;
+        min-height: 240px;
+    }
+
+    .process-image-main {
+        min-height: 360px;
+    }
+
+    .project-article {
+        padding-top: 72px;
+    }
+
+    .project-hero {
+        padding: 100px 0 56px;
+    }
+
+    .project-hero h1 {
+        font-size: 2rem;
+    }
+
+    .project-content {
+        padding: 56px 0 64px;
+    }
+
+    .project-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .project-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .project-related {
+        padding: 64px 0;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .sidebar-card {
+        padding: 24px;
+    }
+
+    .contact-faq-section {
+        padding: 72px 0;
+    }
+
+    .contact-faq-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .faq-list summary {
+        font-size: 1rem;
+        padding: 18px 0;
+    }
+
+    .faq-list details p {
+        font-size: 0.88rem;
+    }
+/* Print Button — corner brackets (opening outward, same style as cta-btn) */
 .print-button {
     position: relative;
     display: inline-flex;
@@ -2250,54 +2920,41 @@ blockquote {
     overflow: visible;
 }
 
-.print-button::before,
-.print-button::after {
-    content: "";
-    position: absolute;
-    left: -0.8em;
-    right: -0.8em;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-}
-
-.print-button::before { top: 0; }
-
-.print-button::after { bottom: 0; }
-
-.print-button span {
+.print-button-inner {
     position: relative;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 1.2em 2.8em;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: transparent;
     transition: background 0.2s ease;
 }
 
-.print-button span::before,
-.print-button span::after {
-    content: "";
+/* Corner brackets — 6×6px at -6px, opening outward */
+.print-button .bracket-tl,
+.print-button .bracket-tr,
+.print-button .bracket-bl,
+.print-button .bracket-br {
     position: absolute;
-    top: -0.6em;
-    bottom: -0.6em;
-    width: 1px;
-    background: rgba(0, 0, 0, 0.2);
+    width: 6px;
+    height: 6px;
     pointer-events: none;
+    z-index: 3;
 }
 
-.print-button span::before { left: 0; }
+.print-button .bracket-tl { top: -6px; left: -6px; border-bottom: 1px solid rgba(0,0,0,0.20); border-right: 1px solid rgba(0,0,0,0.20); }
+.print-button .bracket-tr { top: -6px; right: -6px; border-bottom: 1px solid rgba(0,0,0,0.20); border-left: 1px solid rgba(0,0,0,0.20); }
+.print-button .bracket-bl { bottom: -6px; left: -6px; border-top: 1px solid rgba(0,0,0,0.20); border-right: 1px solid rgba(0,0,0,0.20); }
+.print-button .bracket-br { bottom: -6px; right: -6px; border-top: 1px solid rgba(0,0,0,0.20); border-left: 1px solid rgba(0,0,0,0.20); }
 
-.print-button span::after { right: 0; }
-
-.print-button:hover span {
+.print-button:hover .print-button-inner {
     background: rgba(0, 0, 0, 0.03);
 }
 
-.btn-microcopy {
-        font-size: 15px;
-    }
-
+@media (max-width: 760px) {
+    .btn-microcopy,
     .footer-col-label {
         margin-bottom: 16px;
     }
@@ -2322,12 +2979,11 @@ blockquote {
         overflow-wrap: break-word;
     }
 
-    .footer-fab {
+    .scroll-top-fab {
         bottom: 16px;
         right: 16px;
         width: 40px;
         height: 40px;
-        font-size: 18px;
     }
 
     .banner-cta-section {
@@ -2411,60 +3067,23 @@ blockquote {
     }
 
     /* ── Project mobile ── */
-
-    .project-article {
-        padding-top: 72px;
+    .proj-intro {
+        padding: 48px 0 32px;
     }
 
-    .project-hero {
-        padding: 100px 0 56px;
+    .proj-meta {
+        max-width: 100%;
     }
 
-    .project-hero h1 {
-        font-size: 2rem;
+    .proj-meta__item {
+        flex: 1 1 50%;
     }
 
-    .project-content {
-        padding: 56px 0 64px;
+    .proj-nav__link {
+        padding: 28px 20px;
     }
 
-    .project-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
-    }
-
-    .project-grid-2 {
-        grid-template-columns: 1fr;
-    }
-
-    .project-related {
-        padding: 64px 0;
-    }
-
-    .related-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-    }
-
-    .sidebar-card {
-        padding: 24px;
-    }
-
-    .contact-faq-section {
-        padding: 72px 0;
-    }
-
-    .contact-faq-grid {
-        grid-template-columns: 1fr;
-        gap: 56px;
-    }
-
-    .faq-list summary {
-        font-size: 1rem;
-        padding: 18px 0;
-    }
-
-    .faq-list details p {
-        font-size: 0.88rem;
+    .proj-nav__name {
+        font-size: 1.05rem;
     }
 }
