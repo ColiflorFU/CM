@@ -2589,7 +2589,6 @@ section {
 /* ── Project Page — single sticky image left / all content scrolls right ── */
 
 .proj-page {
-    padding-top: 86px;
     display: flex;
     align-items: stretch;
 }
