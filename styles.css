@@ -3705,7 +3705,11 @@ section {
 
     /* ── Project mobile ── */
     .proj-intro {
-        padding: 48px 0 32px;
+        padding: 48px 24px 32px;
+    }
+
+    .proj-body {
+        padding: 0 24px 80px;
     }
 
     .proj-meta {

@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 02-06-2026_
 
+## v1.2 — 2026-06-02
+
+Hotfix: márgenes mobile en páginas de proyecto.
+
+| Fecha | Descripción |
+|---|---|
+| 02-06-2026 | **v1.2**: Fix márgenes mobile en `.proj-intro` y `.proj-body` de páginas proyecto. El breakpoint 760px pisaba el padding lateral a 0, dejando el contenido pegado al borde. Restaurado padding 24px lateral + bottom padding 80px en `.proj-body`. |
+
 ## v1.1 — 2026-06-02
 
 Contenido real: plantilla de proyecto, hotfixes, footer unificado, cleanup.
