@@ -12,6 +12,7 @@
     --grid-line: rgba(0, 0, 0, 0.04);
     --bracket-color: rgba(0,0,0,0.35);
     --max: 1700px;
+    --font-sans: 'DM Sans', sans-serif;
 }
 
 * {
@@ -1244,36 +1245,6 @@ section {
     letter-spacing: 0.05em;
 }
 
-/* ── GALLERY BREAK ── */
-.gallery-break-section {
-    padding: 0;
-}
-
-.gallery-break-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 320px 320px;
-    gap: 4px;
-}
-
-.gallery-break-item {
-    overflow: hidden;
-}
-
-.gallery-break-item-wide {
-    grid-column: span 2;
-}
-
-.gallery-break-item .media-block {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.4s ease;
-}
-
-.gallery-break-item:hover .media-block {
-    transform: scale(1.02);
-}
-
 .banner-grid-lines {
     position: absolute;
     inset: 0;
@@ -2106,9 +2077,15 @@ section {
 }
 
 .banner-cta-panel--contact .form-field input,
-.banner-cta-panel--contact .form-field textarea {
+.banner-cta-panel--contact .form-field textarea,
+.banner-cta-panel--contact .form-field select {
     border-bottom-color: rgba(255, 255, 255, 0.2);
     color: #fff;
+}
+
+.banner-cta-panel--contact .form-field select option {
+    color: var(--ink);
+    background: #fff;
 }
 
 .banner-cta-panel--contact .form-field input::placeholder,
@@ -2117,7 +2094,8 @@ section {
 }
 
 .banner-cta-panel--contact .form-field input:focus,
-.banner-cta-panel--contact .form-field textarea:focus {
+.banner-cta-panel--contact .form-field textarea:focus,
+.banner-cta-panel--contact .form-field select:focus {
     border-bottom-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -2167,7 +2145,8 @@ section {
 }
 
 .form-field input,
-.form-field textarea {
+.form-field textarea,
+.form-field select {
     width: 100%;
     padding: 12px 0;
     background: transparent;
@@ -2178,6 +2157,21 @@ section {
     font-size: 0.95rem;
     color: var(--ink);
     transition: border-color 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-field select {
+    cursor: pointer;
+    padding-right: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+}
+
+.form-field select option {
+    color: var(--ink);
+    background: #fff;
 }
 
 .form-field input::placeholder,
@@ -2187,7 +2181,8 @@ section {
 }
 
 .form-field input:focus,
-.form-field textarea:focus {
+.form-field textarea:focus,
+.form-field select:focus {
     outline: none;
     border-bottom-color: var(--ink);
 }
@@ -2626,15 +2621,6 @@ section {
     flex-direction: column;
 }
 
-.proj-intro {
-    padding: 80px 72px 0;
-}
-
-.proj-body {
-    padding: 0 72px 0;
-    flex: 1;
-}
-
 .proj-nav {
     margin-top: auto;
     flex-shrink: 0;
@@ -2711,6 +2697,7 @@ section {
 
 .proj-body {
     padding: 0 72px 80px;
+    flex: 1;
 }
 
 .proj-meta {
@@ -2843,251 +2830,6 @@ section {
     }
 }
 
-.proj-row {
-    display: flex;
-    min-height: 100vh;
-    align-items: stretch;
-}
-
-.proj-img-col {
-    flex: 0 0 50%;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.proj-img-col img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.proj-text-col {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    background: var(--paper);
-}
-
-.proj-text-inner {
-    padding: 80px 72px;
-    max-width: 640px;
-}
-
-/* ── Intro / Meta ── */
-
-.proj-intro__text {
-    font-size: 1.05rem;
-    line-height: 1.65;
-    color: var(--muted);
-    margin: 0 0 48px;
-}
-
-.proj-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
-}
-
-.proj-meta__item {
-    flex: 1 1 140px;
-    min-width: 0;
-    padding: 18px 22px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-}
-
-.proj-meta__key {
-    display: block;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 5px;
-}
-
-.proj-meta__val {
-    font-family: "Urbanist", sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--ink);
-}
-
-/* ── Typography ── */
-
-.proj-label {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 16px;
-}
-
-.proj-title {
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(2.5rem, 4vw, 4.5rem);
-    font-weight: 500;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    color: var(--ink);
-    margin: 0 0 64px;
-}
-
-.proj-body__heading {
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(1.6rem, 2.2vw, 2.4rem);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-    color: var(--ink);
-    margin: 0 0 28px;
-}
-
-.proj-body__lead {
-    font-size: 1.08rem;
-    line-height: 1.6;
-    color: var(--ink);
-    margin: 0 0 24px;
-}
-
-.proj-body p {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: var(--muted);
-    margin: 0 0 20px;
-}
-
-.proj-body__figure {
-    margin: 0 0 48px;
-}
-
-.proj-body__figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.proj-body__figure figcaption {
-    margin-top: 12px;
-    font-size: 0.8rem;
-    color: var(--muted);
-}
-
-.proj-body__subheading {
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(1.2rem, 1.6vw, 1.6rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin: 48px 0 18px;
-}
-
-.proj-body__quote {
-    margin: 48px 0;
-    padding: 0;
-    border: none;
-}
-
-.proj-body__quote p {
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(1.2rem, 1.6vw, 1.7rem);
-    font-style: italic;
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--ink);
-}
-
-/* ── Prev / Next ── */
-
-.proj-nav {
-    display: flex;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-}
-
-.proj-nav__link {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 36px 48px;
-    text-decoration: none;
-    transition: background 0.2s ease;
-}
-
-.proj-nav__link:hover {
-    background: var(--soft);
-}
-
-.proj-nav__link--next {
-    text-align: right;
-    border-left: 1px solid var(--line);
-}
-
-.proj-nav__dir {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-}
-
-.proj-nav__name {
-    font-family: "Urbanist", sans-serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--ink);
-}
-
-/* ── Responsive ── */
-
-@media (max-width: 900px) {
-    .proj-page {
-        padding-top: 72px;
-    }
-
-    .proj-row {
-        flex-direction: column;
-        min-height: auto;
-    }
-
-    .proj-img-col {
-        flex: none;
-        width: 100%;
-        height: 50vh;
-        position: relative;
-        top: auto;
-    }
-
-    .proj-text-inner {
-        padding: 48px 24px;
-    }
-
-.proj-title {
-        margin-bottom: 40px;
-    }
-
-    .proj-meta__item {
-        flex: 1 1 50%;
-    }
-
-    .proj-nav__link {
-        padding: 28px 20px;
-    }
-
-    .proj-nav__name {
-        font-size: 1.05rem;
-    }
-
-    .project-article {
-        padding-top: 72px;
-    }
 
     .project-hero {
         padding: 100px 0 56px;
@@ -3122,8 +2864,7 @@ section {
     .sidebar-card {
         padding: 24px;
     }
-}
-}
+    }
 
 .related-tag {
     color: var(--muted);
@@ -3153,17 +2894,10 @@ section {
     .menu-toggle {
         display: flex;
         flex-shrink: 0;
-    }
-
-    .nav-contact-btn {
-        display: none;
-    }
-
-    .site-header .brand {
         margin-left: auto;
     }
 
-    .desktop-dropdown-toggle {
+    .nav-contact-btn {
         display: none;
     }
 
@@ -4002,19 +3736,6 @@ section {
         text-align: left;
     }
 
-    /* Gallery break mobile */
-    .gallery-break-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-    }
-
-    .gallery-break-item-wide {
-        grid-column: span 2;
-    }
-
-    .gallery-break-item .media-block {
-        min-height: 200px;
-    }
 }
 
 /* ── Contact page mobile ── */

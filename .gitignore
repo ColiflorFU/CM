@@ -2,3 +2,13 @@ CM/
 .atl/
 bkp/
 SESSION_CONTEXT.md
+
+# Composer (PHPMailer)
+vendor/
+
+# Sensible (no subir a GitHub si configurás SMTP)
+.env
+.env.local
+
+# Imágenes originales de la clienta (muy pesadas para git)
+_backups/Imagenes-Proyectos/

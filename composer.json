@@ -1,0 +1,12 @@
+{
+    "name": "contreras-martinez/cm-website",
+    "description": "Contreras Martínez Arquitectura Integral — Sitio web",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^7.1"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

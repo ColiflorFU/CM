@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Contacta a Contreras Martínez — conversemos sobre tu proyecto, consulta o presupuesto.">
+    <meta name="description" content="Contacta a Contreras Martínez — conversemos sobre tu proyecto, consulta o presupuesto. Estudio de arquitectura en Santiago Centro, Chile.">
     <title>Contacto | Contreras Martínez</title>
     <link rel="icon" type="image/png" href="Recursos/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,17 +13,67 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Urbanist:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- SEO: Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://contrerasmartinez.cl/contacto.html">
+    <meta property="og:title" content="Contacto | Contreras Martínez">
+    <meta property="og:description" content="Contacta a Contreras Martínez — conversemos sobre tu proyecto, consulta o presupuesto. Estudio de arquitectura en Santiago Centro, Chile.">
+    <meta property="og:image" content="https://contrerasmartinez.cl/Recursos/og-image.jpg">
+    <meta property="og:site_name" content="Contreras Martínez · Arquitectura Integral">
+    <meta property="og:locale" content="es_CL">
+    <!-- SEO: Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://contrerasmartinez.cl/contacto.html">
+    <meta name="twitter:title" content="Contacto | Contreras Martínez">
+    <meta name="twitter:description" content="Contacta a Contreras Martínez — conversemos sobre tu proyecto, consulta o presupuesto. Estudio de arquitectura en Santiago Centro, Chile.">
+    <meta name="twitter:image" content="https://contrerasmartinez.cl/Recursos/og-image.jpg">
+    <!-- SEO: Canonical -->
+    <link rel="canonical" href="https://contrerasmartinez.cl/contacto.html">
+    <!-- JSON-LD: ContactPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contacto Contreras Martínez",
+        "url": "https://contrerasmartinez.cl/contacto.html",
+        "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Contreras Martínez · Arquitectura Integral",
+            "image": "https://contrerasmartinez.cl/Recursos/og-image.jpg",
+            "@id": "https://contrerasmartinez.cl/",
+            "url": "https://contrerasmartinez.cl/",
+            "telephone": "+56 9 5127 8937",
+            "email": "elizabethyelizabeth@gmail.com",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Paseo Ahumada 341, Of. 504",
+                "addressLocality": "Santiago",
+                "addressRegion": "Región Metropolitana",
+                "addressCountry": "CL"
+            },
+            "priceRange": "$$",
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                    "opens": "09:00",
+                    "closes": "18:00"
+                }
+            ]
+        }
+    }
+    </script>
 </head>
 
 <body class="contacto-page">
     <header class="site-header" id="top">
+        <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
+            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
+        </a>
         <button class="menu-toggle desktop-dropdown-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
             <span></span>
             <span></span>
         </button>
-        <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
-            <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
-        </a>
         <nav class="site-nav" aria-label="Navegación principal">
             <a href="index.html#services">ARQUITECTURA</a>
             <span class="nav-sep">/</span>
@@ -40,6 +89,12 @@
                 <a href="proyecto-casa-campo.html" class="desktop-dropdown-item">Casa en el campo</a>
                 <a href="proyecto-residencia.html" class="desktop-dropdown-item">Residencia urbana</a>
                 <a href="proyecto-torre.html" class="desktop-dropdown-item">Torre moderna</a>
+                <a href="proyecto-ito-mapocho.html" class="desktop-dropdown-item">ITO Estación Mapocho</a>
+                <a href="proyecto-diseno-inspeccion.html" class="desktop-dropdown-item">Diseño e inspección</a>
+                <a href="proyecto-la-florida.html" class="desktop-dropdown-item">La Florida</a>
+                <a href="proyecto-estacion-central.html" class="desktop-dropdown-item">Local Estación Central</a>
+                <a href="proyecto-carlos-hernandez.html" class="desktop-dropdown-item">Carlos Hernández</a>
+                <a href="proyecto-ofwayne.html" class="desktop-dropdown-item">OfWayne</a>
                 <a href="elizabeth.html" class="desktop-dropdown-item">El estudio</a>
             </div>
         </div>
@@ -103,7 +158,7 @@
                                     Si tenés un proyecto, consulta o presupuesto en mente, completá el formulario y te escribimos a la brevedad.
                                 </p>
 
-                                <form id="contactForm" action="form.php" method="POST" novalidate="">
+                                 <form id="contactForm" action="form.php" method="POST">
                                     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
 
                                     <div class="form-field is-visible" data-reveal="" style="transition-delay: 0.18s;">
@@ -124,6 +179,17 @@
                                     <div class="form-field is-visible" data-reveal="" style="transition-delay: 0.12s;">
                                         <label for="formPhone">Teléfono</label>
                                         <input id="formPhone" name="phone" type="tel" placeholder="+56 9 ...">
+                                    </div>
+
+                                    <div class="form-field is-visible" data-reveal="" style="transition-delay: 0.14s;">
+                                        <label for="formProjectType">Tipo de proyecto</label>
+                                        <select id="formProjectType" name="project_type">
+                                            <option value="">Seleccioná una opción</option>
+                                            <option value="residencial">Residencial</option>
+                                            <option value="comercial">Comercial</option>
+                                            <option value="regularizacion">Regularización</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-field is-visible" data-reveal="" style="transition-delay: 0.18s;">
