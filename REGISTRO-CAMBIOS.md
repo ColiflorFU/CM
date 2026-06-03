@@ -44,7 +44,15 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 30-05-2026_
+_Última actualización: 02-06-2026_
+
+## v1.1 — 2026-06-02
+
+Contenido real: plantilla de proyecto, hotfixes, footer unificado, cleanup.
+
+| Fecha | Descripción |
+|---|---|
+| 02-06-2026 | **v1.1**: Plantilla `proyecto-ito-mapocho.html` con banner y tag `.eyebrow`. Hotfixes CSS (stray `}`, `--font-sans`, dead code eliminado). Footer unificado con redes reales y español. Mobile overlay responsive (hamburguesa + close-toggle). Nav flechas "Anterior"/"Siguiente". Gallery-break section eliminada. Backups movidos a `_backups/`. Formulario con PHPMailer + `composer.json`. `.env.example` creado. robots.txt + sitemap.xml SEO. |
 
 ## v1.0 — 2026-05-30
 
