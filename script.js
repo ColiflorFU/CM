@@ -1,4 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // ── Custom cursor ──
+    const cursor = document.querySelector(".cursor-dot");
+    if (cursor) {
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.left = e.clientX + "px";
+            cursor.style.top = e.clientY + "px";
+        });
+        // Agrandar sobre interactivos
+        document.addEventListener("mouseover", (e) => {
+            if (e.target.closest("a, button, input, textarea, summary, [role=\"button\"], details summary")) {
+                cursor.classList.add("hover");
+            }
+        });
+        document.addEventListener("mouseout", (e) => {
+            if (e.target.closest("a, button, input, textarea, summary, [role=\"button\"], details summary")) {
+                cursor.classList.remove("hover");
+            }
+        });
+    }
+
+    // ── Resto del código ──
     const body = document.body;
     const menuToggle = document.querySelector(".menu-toggle");
     const closeToggle = document.querySelector(".close-toggle");
@@ -314,6 +335,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
             /* Set initial scroll state */
             handleScroll();
+        }
+    }
+
+    /* ── Portfolio Carousel ── */
+    const portfolioTrack = document.getElementById('portfolioTrack');
+    if (portfolioTrack) {
+        const cards = portfolioTrack.querySelectorAll('.portfolio-card');
+        const prevBtn = document.getElementById('portfolioPrev');
+        const nextBtn = document.getElementById('portfolioNext');
+
+        if (cards.length > 1 && prevBtn && nextBtn) {
+            let current = 0;
+            let perView = 1;
+            let max = 0;
+
+            function calcLayout() {
+                perView = window.innerWidth < 768 ? 1 : 3;
+                portfolioTrack.style.setProperty('--per-view', perView);
+                max = Math.max(0, cards.length - perView);
+                if (current > max) current = max;
+                refresh();
+            }
+
+            function refresh() {
+                const offset = -(current * (100 / perView));
+                portfolioTrack.style.transform = `translateX(${offset}%)`;
+                prevBtn.disabled = current === 0;
+                nextBtn.disabled = current >= max;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (current > 0) { current--; refresh(); }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (current < max) { current++; refresh(); }
+            });
+
+            /* Keyboard */
+            const section = portfolioTrack.closest('.portfolio-section');
+            if (section) {
+                section.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') { prevBtn.click(); e.preventDefault(); }
+                    if (e.key === 'ArrowRight') { nextBtn.click(); e.preventDefault(); }
+                });
+            }
+
+            /* Resize */
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(calcLayout, 200);
+            });
+
+            calcLayout();
         }
     }
 });

@@ -46,6 +46,15 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 02-06-2026_
 
+## v1.3 — 2026-06-02
+
+SEO cross-page + rediseño sección FAQ.
+
+| Fecha | Descripción |
+|---|---|
+| 02-06-2026 | **v1.3 SEO**: Open Graph + Twitter Cards + canonical en 8 HTMLs. JSON-LD LocalBusiness en todas las páginas. FAQPage schema replicado. Meta descriptions únicas por página. Encoding mojibake arreglado en index.html. Alt text mejorados en hero slides. sitemap.xml y robots.txt creados. |
+| 02-06-2026 | **v1.3 FAQ**: Rediseño sección FAQ en `index.html` con layout split-screen (imagen + tarjeta blanca superpuesta, inspirado en minimalarc.liquid-themes.com "Our Services"). Estilo overlap: imagen 70% izquierda (placeholder negro), tarjeta 48% derecha con offset vertical 18%. Estilo accordion nuestro mantenido. h2 pegado al primer item, sin separador en primer/último item. `.process-section` y `.faq-section` ahora con fondo `#fff` para contraste con footer. |
+
 ## v1.2 — 2026-06-02
 
 Hotfix: márgenes mobile en páginas de proyecto.

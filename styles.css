@@ -17,6 +17,7 @@
 
 * {
     box-sizing: border-box;
+    cursor: none;
 }
 
 html {
@@ -34,6 +35,35 @@ body {
     font-size: 15px;
     font-weight: 400;
     line-height: 1.5;
+}
+
+.cursor-dot {
+    display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .cursor-dot {
+        display: block;
+        position: fixed;
+        width: 12px;
+        height: 12px;
+        background: #000;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background 0.2s;
+        will-change: transform;
+    }
+
+    /* Hover en links y botones agranda el dot */
+    .cursor-dot.hover {
+        width: 28px;
+        height: 28px;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
 }
 
 ::selection {
@@ -1344,6 +1374,7 @@ section {
     color: var(--orange);
 }
 
+/* ── Portfolio Carousel ── */
 .portfolio-section {
     background: #fff;
     padding-top: 150px;
@@ -1358,41 +1389,41 @@ section {
     margin-bottom: 72px;
 }
 
+.portfolio-heading h2 {
+    margin: 0;
+}
+
 .portfolio-grid {
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio-track {
     display: flex;
+    flex-wrap: nowrap;
+    transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
     gap: 20px;
-    align-items: stretch;
-    flex-wrap: wrap;
+    --per-view: 3;
 }
 
 .portfolio-card {
     display: block;
     text-decoration: none;
-    flex: 1 1 300px;
+    flex: 0 0 calc((100% - (var(--per-view) - 1) * 20px) / var(--per-view));
+    min-width: 0;
 }
 
 .portfolio-media {
     margin-bottom: 24px;
-    min-height: 400px;
+    min-height: 340px;
 }
 
 .portfolio-card-tall .portfolio-media {
-    min-height: 600px;
+    min-height: 480px;
 }
 
 .portfolio-card-wide .portfolio-media {
-    min-height: 400px;
-}
-
-.portfolio-card-wide {
-    padding-top: 0;
-    flex: 2 1 400px;
-}
-
-.portfolio-media-warm,
-.portfolio-media-soft,
-.portfolio-media-cool {
-    background: none;
+    min-height: 340px;
 }
 
 .portfolio-card h3 {
@@ -1408,14 +1439,51 @@ section {
     color: var(--orange);
 }
 
+.portfolio-tag {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
 .portfolio-controls {
     display: flex;
     justify-content: flex-end;
-    gap: 22px;
+    gap: 0;
     margin-top: 64px;
+}
+
+.portfolio-nav-btn {
+    background: none;
+    border: none;
+    padding: 16px 28px;
+    margin: 0;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 300;
     color: var(--ink);
-    font-size: 2.2rem;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background 0.3s ease;
+    position: relative;
     line-height: 1;
+}
+
+.portfolio-nav-btn + .portfolio-nav-btn {
+    border-left: 1px solid #e8e8e8;
+}
+
+.portfolio-nav-btn:hover {
+    opacity: 1;
+    background: #f8f8f8;
+}
+
+.portfolio-nav-btn:disabled {
+    opacity: 0.12;
+    pointer-events: none;
 }
 
 .process-feature-grid {
@@ -1490,12 +1558,12 @@ section {
     opacity: 0.42;
 }
 
-.process-accordion {
-    border-top: 1px solid rgba(16, 16, 16, 0.18);
-}
-
 .process-accordion details {
     border-bottom: 1px solid rgba(16, 16, 16, 0.18);
+}
+
+.process-accordion details:last-of-type {
+    border-bottom: none;
 }
 
 .process-accordion summary {
@@ -1921,25 +1989,168 @@ section {
     line-height: 1.6;
 }
 
-/* ── FAQ standalone (sin formulario) ── */
-.faq-section {
-    padding: 100px 0 140px;
-    background: #f7f7f7;
+/* ═══════════════════════════════════════════════════════════
+   ARCHITECTURAL SECTION — Image + Floating Accordion Card
+   Inspired by: premium architecture studio layouts
+   ═══════════════════════════════════════════════════════════ */
+.arch-section {
+    position: relative;
+    background: #fff;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 0;
 }
 
-.faq-section .faq-block {
-    padding-left: 0;
-    max-width: 760px;
+/* Contenedor centrado — columna única */
+.arch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 720px;
     margin: 0 auto;
+    padding: 0 40px;
+    width: 100%;
 }
 
-.faq-section .faq-block .eyebrow {
-    text-align: center;
+/* Imagen — oculta, arriba del card */
+.arch-image-wrap {
+    display: none;
 }
 
-.faq-section .faq-block h2 {
-    text-align: center;
-    margin-bottom: 48px;
+/* Card centrado */
+.arch-card {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    z-index: 2;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    padding: 56px 48px 48px;
+    max-width: 680px;
+    width: 100%;
+}
+
+/* Label */
+
+/* ── Pill genérico (tags de proyecto, etc.) ── */
+.pill {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: #ececec;
+    padding: 0.35rem 0.75rem;
+    border-radius: 2px;
+}
+
+/* Headline — forzar 2 líneas con max-width */
+.arch-headline {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #101010;
+    max-width: 12ch;
+    margin-bottom: 2.5rem;
+}
+
+/* Accordion */
+.arch-accordion details {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.arch-accordion details:last-of-type {
+    border-bottom: none;
+}
+
+.arch-accordion details summary {
+    display: grid;
+    grid-template-columns: 30px 1fr 20px;
+    gap: 12px;
+    align-items: center;
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+    cursor: pointer;
+    list-style: none;
+}
+
+.arch-accordion details summary::-webkit-details-marker {
+    display: none;
+}
+
+.arch-accordion details summary span {
+    color: #8a8a8a;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.arch-accordion details summary::after {
+    content: "+";
+    justify-self: end;
+    font-size: 1.35rem;
+    font-weight: 300;
+    color: #101010;
+    flex-shrink: 0;
+}
+
+/* Open state: plus to minus */
+.arch-accordion details[open] summary::after {
+    content: "−";
+    font-weight: 300;
+}
+
+.arch-item-body {
+    padding: 0 0 1rem;
+}
+
+.arch-item-body p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* ── Mobile (860px) ── */
+@media (max-width: 860px) {
+    .arch-section {
+        min-height: 0;
+        padding: 60px 0 80px;
+    }
+
+    .arch-dot {
+        top: 8%;
+        left: 6%;
+    }
+
+    .arch-image-wrap {
+        display: none;
+    }
+
+    .arch-card {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        max-width: 100%;
+        margin-top: 0;
+        padding: 40px 24px 48px;
+    }
+
+    .arch-headline {
+        max-width: none;
+    }
+
+    .arch-accordion details summary {
+        font-size: 0.92rem;
+        padding: 0.85rem 0;
+    }
 }
 
 /* ── Contact Page editorial (Minnaro-style) ── */
@@ -2248,12 +2459,12 @@ section {
 
 /* ── FAQ ── */
 
-.faq-list {
-    border-top: 1px solid rgba(16, 16, 16, 0.12);
-}
-
 .faq-list details {
     border-bottom: 1px solid rgba(16, 16, 16, 0.12);
+}
+
+.faq-list details:last-of-type {
+    border-bottom: none;
 }
 
 .faq-list summary {
@@ -2546,8 +2757,8 @@ section {
         display: none;
     }
 
-    .portfolio-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .portfolio-track {
+        gap: 20px;
     }
 
     .banner-cta-panel {
@@ -3176,8 +3387,7 @@ section {
     }
 
     .studio-image-small,
-    .portfolio-card-tall .portfolio-media,
-    .portfolio-card-wide .portfolio-media {
+    .portfolio-media {
         min-height: 300px;
     }
 
@@ -3431,23 +3641,18 @@ section {
         display: block;
     }
 
-    .portfolio-heading .text-link {
-        margin-top: 24px;
-    }
-
     .portfolio-section {
         padding-top: 92px;
         padding-bottom: 92px;
     }
 
-    .portfolio-grid {
+    .portfolio-track {
         gap: 42px;
     }
 
     .portfolio-controls {
         justify-content: flex-start;
         margin-top: 42px;
-        font-size: 1.8rem;
     }
 
     .process-intro {
@@ -3652,23 +3857,18 @@ section {
         display: block;
     }
 
-    .portfolio-heading .text-link {
-        margin-top: 24px;
-    }
-
     .portfolio-section {
         padding-top: 92px;
         padding-bottom: 92px;
     }
 
-    .portfolio-grid {
+    .portfolio-track {
         gap: 42px;
     }
 
     .portfolio-controls {
         justify-content: flex-start;
         margin-top: 42px;
-        font-size: 1.8rem;
     }
 
     .process-intro {

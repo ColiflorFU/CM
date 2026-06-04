@@ -91,14 +91,21 @@
 
 ## SECCIONES PROTEGIDAS (NO MODIFICAR SIN PERMISIÓN)
 
-1. **Footer** — Ya estaba bien, backup guardado en memoria
-2. **Botón brackets** — Diseño propio, backup guardado en memoria
-3. **form.php** — Funcional, no tocar lógica
-4. **Studio section ("Conoce el estudio")** — PROTEGIDA
-5. **Services section ("Servicios")** — PROTEGIDA
-6. **Banner CTA ("Consulta de proyecto")** — PROTEGIDA
-7. **Portfolio grid** — PROTEGIDA (fotos reales próximas)
-8. **Process section ("Nuestro proceso")** — PROTEGIDA
+> ⚠️ **Importante (2026-06-02):** Esta lista NO está formalizada en un archivo dedicado (`AGENTS.md` o similar). El enforcement es por convención. Se recomienda crear un doc canónico aparte antes de la siguiente sesión para evitar drift.
+
+Regla: cualquier cambio a estas secciones requiere OK explícito de Patrick (verbal o por escrito en sesión).
+
+| # | Sección / archivo | Razón | Backup |
+|---|-------------------|-------|--------|
+| 1 | **Footer** (`.site-footer` + 5 HTMLs) | Ya estaba bien, rediseño aplicado via openspec | Memoria: "CM: backup footer completo" |
+| 2 | **Botón brackets** (`.cta-btn` con 4 L) | Diseño propio, esquinas con `::before`/`::after` | Memoria: "CM: backup botón principal con brackets" |
+| 3 | **`form.php`** | Funcional, lógica de envío | — |
+| 4 | **Studio section** ("Conoce el estudio") | Diseño cerrado | — |
+| 5 | **Services section** ("Servicios") | Diseño cerrado | — |
+| 6 | **Banner CTA** ("Consulta de proyecto") | Diseño cerrado | — |
+| 7 | **Portfolio grid** | Diseño cerrado, faltan fotos reales | — |
+| 8 | **Process section** ("Nuestro proceso") | Diseño cerrado (accordion 4 pasos) | — |
+| 9 | **Navbar** (desktop + mobile) | Decisión 2026-06-02: lo dejamos con OpenCode, revisar en revisiones finales | — |
 
 > **Nota:** Mobile tiene problemas pero se ve bien — no es prioridad ahora.
 
@@ -122,20 +129,42 @@ Coli siempre:
 
 ## PENDIENTE
 
-### CRÍTICO
-1. **Navbar desktop** — Verificar visual contra D-NAVBAR.png usando `/coli`
-2. **Navbar mobile** — Verificar contra M-MENU.png usando `/coli`
-3. **Hamburger dropdown** — Falta animación de cierre, el toggle del dropdown no funciona
+### PAUSADO — REVISIONES FINALES (decisión Patrick 2026-06-02)
+1. **Navbar desktop** — Resuelto con OpenCode. Revisión visual final contra `D-NAVBAR.png` en `/coli`
+2. **Navbar mobile** — Resuelto con OpenCode. Revisión visual final contra `M-MENU.png` en `/coli`
+3. **Hamburger dropdown** — Resuelto con OpenCode. Verificar animación de cierre y toggle del dropdown en revisión final
 
-### IMPORTANTE
-4. **Philosophy cards** — Verificar contra D-NUESTRAMIRADA.png usando `/coli`
+### IMPORTANTE — VERIFICACIÓN VISUAL
+4. **Philosophy cards** — Verificar contra `D-NUESTRAMIRADA.png` usando `/coli`
 5. **Hero desktop** — Verificar que funcione después del fix del dropdown
 
+### MEJORAS PENDIENTES — FAQ (nuevo 2026-06-02)
+6. **FAQ — contenido** — Auditar y mejorar redacción de las preguntas existentes (revisar tono, claridad, completitud, agregar las que falten relevantes al estudio)
+7. **FAQ — JSON-LD** — Replicar el bloque FAQPage schema en `elizabeth.html`, `proyecto-*.html`, `project-template.html` y `equipo-elizabeth-contreras.html`
+8. **FAQ — accesibilidad** — Verificar que el accordion use ARIA correcto (`aria-expanded`, `aria-controls`, `<button>` en vez de `<summary>` si es custom), y que sea navegable por teclado
+9. **FAQ — encoding** — El JSON-LD de `index.html` tiene mojibake UTF-8 (se ve "Mart��nez" en algunos strings). Revisar y limpiar.
+
+### MEJORAS PENDIENTES — SEO (nuevo 2026-06-02)
+10. **Encoding UTF-8 global** — Resolver mojibake en `index.html` y demás HTMLs ("Mart��nez", "��QuǸ", "tǸcnica", etc.). Probable causa: el archivo se guardó como UTF-8 pero la declaración `<meta charset>` no se respetó al servir, o se aplicó encoding dos veces. Verificar BOM y charset.
+11. **Open Graph** — Agregar `og:title`, `og:description`, `og:image`, `og:url`, `og:type`, `og:site_name` en TODAS las páginas (index + 3 proyectos + template + elizabeth + contacto + equipo)
+12. **Twitter Cards** — Agregar `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image` en todas las páginas
+13. **Canonical link** — Agregar `<link rel="canonical">` en cada página apuntando a la URL final (definir dominio primero: `contrerasmartinez.cl`?)
+14. **JSON-LD Organization + LocalBusiness** — Agregar schema de organización/negocio local en TODAS las páginas con datos consistentes (nombre, dirección, teléfono, email, horario)
+15. **Alt text imágenes** — Auditar todas las imágenes: mejorar "Proyecto 1" / "Proyecto 2" del hero slider con descripciones reales, confirmar que los íconos SVG decorativos tengan `alt=""` (ya está correcto)
+16. **Sitemap y robots.txt** — Crear `sitemap.xml` y `robots.txt` antes de subir a Hostinger
+17. **Performance / Core Web Vitals** — Lazy-load ya está en algunos íconos. Auditar: ¿todas las imágenes? ¿preload de fuentes? ¿compresión de Recursos/Miscelaneos/?
+18. **Meta description por página** — Cada HTML debe tener su propia meta description única (no duplicada)
+
 ### PARA PRÓXIMA SESIÓN
-6. Subir fotos reales al portfolio (reemplazar placeholder Proyecto01.png)
-7. Descomentar sección CTA HABLEMOS y llevarla a elizabeth.html y proyecto-*.html
-8. Verificar form.php en Hostinger (una vez alojado)
-9. Agregar links reales de Instagram/LinkedIn si ya están definidos
+19. Subir fotos reales al portfolio (reemplazar placeholder Proyecto01.png)
+20. Descomentar sección CTA HABLEMOS y llevarla a `elizabeth.html` y `proyecto-*.html`
+21. Verificar `form.php` en Hostinger (una vez alojado)
+22. Agregar links reales de Instagram/LinkedIn si ya están definidos
+
+### DECISIÓN PENDIENTE — Doc formal de protegidas
+- ¿Crear `SECCIONES-PROTEGIDAS.md` como archivo canónico (recomendado)? Beneficios: enforcement claro, fácil de referenciar en PRs, sobrevive a rotación de sesiones. Costo: un archivo más que mantener.
+- ¿O dejar la tabla en `SESSION-CONTEXT.md` y llamarlo "suficiente"?
+- **Decisión a tomar por Patrick** antes de la siguiente sesión de cambios al código.
 
 ---
 
