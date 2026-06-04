@@ -113,13 +113,9 @@ a {
 .site-nav {
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 20px;
     margin-left: auto;
-}
-
-/* Hide hamburger on desktop — only mobile needs it */
-.desktop-dropdown-toggle {
-    display: none;
+    white-space: nowrap;
 }
 
 .nav-sep {
