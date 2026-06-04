@@ -151,6 +151,40 @@ a {
     color: var(--orange);
 }
 
+/* Nav dropdown button (desktop) */
+.nav-dropdown-btn {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-dropdown-btn:hover {
+    color: var(--orange);
+}
+
+.nav-arrow {
+    font-size: 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown-btn[aria-expanded="true"] .nav-arrow {
+    transform: rotate(180deg);
+}
+
+/* Hide old hamburger on desktop */
+.desktop-dropdown-toggle {
+    display: none;
+}
+
 .nav-contact-btn {
     display: inline-flex;
     align-items: center;

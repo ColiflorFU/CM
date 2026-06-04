@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector(".menu-toggle");
     const closeToggle = document.querySelector(".close-toggle");
     const mobileMenuLinks = document.querySelector(".mobile-menu-links");
-    const desktopDropdownToggle = document.querySelector(".desktop-dropdown-toggle");
+    const navDropdownBtn = document.querySelector(".nav-dropdown-btn");
+    const desktopDropdown = document.querySelector("#desktop-dropdown");
 
     // Mobile menu
     function openMobileMenu() {
@@ -54,24 +55,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Desktop dropdown - toggle without scroll lock
-    if (desktopDropdownToggle) {
-        desktopDropdownToggle.addEventListener("click", (e) => {
+    if (navDropdownBtn && desktopDropdown) {
+        navDropdownBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             const isOpen = body.classList.contains("dropdown-open");
             if (isOpen) {
                 body.classList.remove("dropdown-open");
-                desktopDropdownToggle.setAttribute("aria-expanded", "false");
+                navDropdownBtn.setAttribute("aria-expanded", "false");
+                desktopDropdown.setAttribute("aria-hidden", "true");
             } else {
                 body.classList.add("dropdown-open");
-                desktopDropdownToggle.setAttribute("aria-expanded", "true");
+                navDropdownBtn.setAttribute("aria-expanded", "true");
+                desktopDropdown.setAttribute("aria-hidden", "false");
             }
         });
 
         // Close dropdown when clicking outside
         document.addEventListener("click", (event) => {
-            if (!event.target.closest(".desktop-dropdown") && !event.target.closest(".desktop-dropdown-toggle")) {
+            if (!event.target.closest("#desktop-dropdown") && !event.target.closest(".nav-dropdown-btn")) {
                 body.classList.remove("dropdown-open");
-                desktopDropdownToggle.setAttribute("aria-expanded", "false");
+                navDropdownBtn.setAttribute("aria-expanded", "false");
+                desktopDropdown.setAttribute("aria-hidden", "true");
             }
         });
     }
