@@ -44,7 +44,15 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 02-06-2026_
+_Última actualización: 04-06-2026_
+
+## v1.4 — 2026-06-04
+
+FAQ centrado, carrusel portfolio, hero cinemático y cursor dot.
+
+| Fecha | Descripción |
+|---|---|
+| 04-06-2026 | **v1.4**: FAQ centrada — quitada imagen lateral y card flotante, layout centrado con card max-width 720px, bg blanco (#fff). Carrusel portfolio con navegación ←/→, 6 proyectos reales, 3 por vista desktop, 1 mobile. Hero slider con transición cinemática, parallax scroll y zoom de entrada. Cursor personalizado (dot negro) que agranda en interactivos. Custom cursor y reveal animations en script.js. |
 
 ## v1.3 — 2026-06-02
 
