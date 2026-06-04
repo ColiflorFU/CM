@@ -227,85 +227,30 @@ a {
     filter: brightness(0) saturate(100%);
 }
 
-.desktop-dropdown-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* Nav dropdown wrapper */
+.nav-dropdown-wrap {
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 1px solid #d9d9d9;
-    border-radius: 50%;
-    background: transparent;
-    cursor: pointer;
 }
 
-.desktop-dropdown-toggle span {
-    display: block;
-    width: 28px;
-    height: 2px;
-    margin: 0 auto 6px;
-    background: var(--ink);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform-origin: center center;
-}
-
-.desktop-dropdown-toggle span:last-child {
-    margin-bottom: 0;
-}
-
-.menu-toggle {
-    /* display set by .desktop-dropdown-toggle on desktop, media query on mobile */
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    background: transparent;
-    cursor: pointer;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 26px;
-    height: 2px;
-    margin: 0 auto 8px;
-    background: var(--ink);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform-origin: center center;
-}
-
-.menu-toggle span:first-child {
-    width: 16px;
-}
-
-.menu-toggle span:last-child {
-    margin-bottom: 0;
-}
-
-.menu-open .menu-toggle span:first-child {
-    transform: rotate(45deg) translateY(8px);
-}
-
-.menu-open .menu-toggle span:last-child {
-    transform: rotate(-45deg) translateY(-8px);
-}
-
+/* Dropdown — positioned below the nav item */
 .desktop-dropdown {
     position: absolute;
     top: 100%;
-    left: 36px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
     right: auto;
     z-index: 60;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
 }
 
 .dropdown-open .desktop-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 .desktop-dropdown-inner {
@@ -313,9 +258,9 @@ a {
     border: 1px solid var(--line);
     border-top: none;
     padding: 12px 0;
-    min-width: 200px;
+    min-width: 240px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    margin-left: 36px;
+    margin-left: 0;
 }
 
 .desktop-dropdown-item {

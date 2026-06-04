@@ -115,10 +115,7 @@
         <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
             <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
         </a>
-        <button class="menu-toggle desktop-dropdown-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
-            <span></span>
-            <span></span>
-        </button>
+        
         <nav class="site-nav" aria-label="Navegación principal">
             <a href="index.html">HOME</a>
             <span class="nav-sep">/</span>
@@ -126,23 +123,25 @@
             <span class="nav-sep">/</span>
             <a href="#services">SERVICIOS</a>
             <span class="nav-sep">/</span>
-            <button class="nav-dropdown-btn" type="button" aria-expanded="false" aria-controls="desktop-dropdown">PORTAFOLIO <span class="nav-arrow">▾</span></button>
+            <div class="nav-dropdown-wrap">
+                <button class="nav-dropdown-btn" type="button" aria-expanded="false">PORTAFOLIO <span class="nav-arrow">▾</span></button>
+                <div class="desktop-dropdown" id="desktop-dropdown" aria-hidden="true">
+                    <div class="desktop-dropdown-inner">
+                        <a href="proyecto-ito-mapocho.html" class="desktop-dropdown-item">ITO Estación Mapocho</a>
+                        <a href="proyecto-diseno-inspeccion.html" class="desktop-dropdown-item">Diseño e inspección</a>
+                        <a href="proyecto-la-florida.html" class="desktop-dropdown-item">La Florida</a>
+                        <a href="proyecto-estacion-central.html" class="desktop-dropdown-item">Local Estación Central</a>
+                        <a href="proyecto-carlos-hernandez.html" class="desktop-dropdown-item">Carlos Hernández</a>
+                        <a href="proyecto-ofwayne.html" class="desktop-dropdown-item">OfWayne</a>
+                        <a href="elizabeth.html" class="desktop-dropdown-item">El estudio</a>
+                    </div>
+                </div>
+            </div>
             <span class="nav-sep">/</span>
             <a href="#process">PROCESO</a>
             <span class="nav-sep">/</span>
             <a href="contacto.html">CONTACTO</a>
         </nav>
-        <div class="desktop-dropdown" id="desktop-dropdown" aria-hidden="true">
-            <div class="desktop-dropdown-inner">
-                <a href="proyecto-ito-mapocho.html" class="desktop-dropdown-item">ITO Estación Mapocho</a>
-                <a href="proyecto-diseno-inspeccion.html" class="desktop-dropdown-item">Diseño e inspección</a>
-                <a href="proyecto-la-florida.html" class="desktop-dropdown-item">La Florida</a>
-                <a href="proyecto-estacion-central.html" class="desktop-dropdown-item">Local Estación Central</a>
-                <a href="proyecto-carlos-hernandez.html" class="desktop-dropdown-item">Carlos Hernández</a>
-                <a href="proyecto-ofwayne.html" class="desktop-dropdown-item">OfWayne</a>
-                <a href="elizabeth.html" class="desktop-dropdown-item">El estudio</a>
-            </div>
-        </div>
     </header>
 
     <div class="mobile-menu-overlay" aria-hidden="true">
