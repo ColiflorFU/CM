@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const btn = form.querySelector(".form-submit");
+            const btn = form.querySelector("button[type=submit]");
             const originalText = btn.innerHTML;
             btn.disabled = true;
             btn.textContent = "Enviando...";

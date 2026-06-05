@@ -86,48 +86,70 @@
         <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
             <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
         </a>
-
-        <button class="menu-toggle desktop-dropdown-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
             <span></span>
             <span></span>
         </button>
-
         <nav class="site-nav" aria-label="Navegación principal">
-            <a href="index.html#studio">Estudio</a>
-            <a href="index.html#services">Servicios</a>
-            <a href="index.html#portfolio">Proyectos</a>
-            <a href="index.html#process">Proceso</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-        <div class="desktop-dropdown" aria-hidden="true">
-            <div class="desktop-dropdown-inner">
-                <a href="proyecto-ito-mapocho.html" class="desktop-dropdown-item">ITO Estación Mapocho</a>
-                <a href="proyecto-diseno-inspeccion.html" class="desktop-dropdown-item">Diseño e inspección</a>
-                <a href="proyecto-la-florida.html" class="desktop-dropdown-item">La Florida</a>
-                <a href="proyecto-estacion-central.html" class="desktop-dropdown-item">Local Estación Central</a>
-                <a href="proyecto-carlos-hernandez.html" class="desktop-dropdown-item">Carlos Hernández</a>
-                <a href="proyecto-ofwayne.html" class="desktop-dropdown-item">OfWayne</a>
-                <a href="elizabeth.html" class="desktop-dropdown-item">El estudio</a>
+            <a href="index.html">HOME</a>
+            <span class="nav-sep">/</span>
+            <a href="index.html#studio">ESTUDIO</a>
+            <span class="nav-sep">/</span>
+            <a href="index.html#services">SERVICIOS</a>
+            <span class="nav-sep">/</span>
+            <div class="nav-dropdown-wrap">
+                <button class="nav-dropdown-btn" type="button" aria-expanded="false">PORTAFOLIO <span class="nav-arrow">▾</span></button>
+                <div class="desktop-dropdown" id="desktop-dropdown" aria-hidden="true">
+                    <div class="desktop-dropdown-inner">
+                        <a href="proyecto-ito-mapocho.html" class="desktop-dropdown-item">ITO Estación Mapocho</a>
+                        <a href="proyecto-diseno-inspeccion.html" class="desktop-dropdown-item">Diseño e inspección</a>
+                        <a href="proyecto-la-florida.html" class="desktop-dropdown-item">La Florida</a>
+                        <a href="proyecto-estacion-central.html" class="desktop-dropdown-item">Local Estación Central</a>
+                        <a href="proyecto-carlos-hernandez.html" class="desktop-dropdown-item">Carlos Hernández</a>
+                        <a href="proyecto-ofwayne.html" class="desktop-dropdown-item">OfWayne</a>
+                        <a href="elizabeth.html" class="desktop-dropdown-item">El estudio</a>
+                    </div>
+                </div>
             </div>
-        </div>
+            <span class="nav-sep">/</span>
+            <a href="index.html#process">PROCESO</a>
+            <span class="nav-sep">/</span>
+            <a href="contacto.html">CONTACTO</a>
+        </nav>
     </header>
 
     <div class="mobile-menu-overlay" aria-hidden="true">
         <div class="mobile-menu-header">
             <button class="close-toggle" type="button" aria-label="Cerrar menú" aria-expanded="false">
-                <span></span>
-                <span></span>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
             </button>
             <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
                 <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
             </a>
         </div>
         <div class="mobile-menu-links">
-            <a href="index.html#services">ARQUITECTURA</a>
-            <a href="index.html#services">DISEÑO</a>
-            <a href="contacto.html">CONSTRUCCIÓN</a>
-            <a href="contacto.html">REGULARIZACIÓN</a>
-            <a class="mobile-contact-btn" href="contacto.html">CONTACTO</a>
+            <a href="index.html">HOME</a>
+            <a href="index.html#studio">ESTUDIO</a>
+            <a href="index.html#services">SERVICIOS</a>
+            <div class="mobile-portfolio-accordion">
+                <button class="mobile-portfolio-btn" type="button" aria-expanded="false">
+                    PORTAFOLIO <span class="mobile-portfolio-arrow">▾</span>
+                </button>
+                <div class="mobile-portfolio-items" aria-hidden="true">
+                    <a href="proyecto-ito-mapocho.html" class="mobile-portfolio-item">ITO Estación Mapocho</a>
+                    <a href="proyecto-diseno-inspeccion.html" class="mobile-portfolio-item">Diseño e inspección</a>
+                    <a href="proyecto-la-florida.html" class="mobile-portfolio-item">La Florida</a>
+                    <a href="proyecto-estacion-central.html" class="mobile-portfolio-item">Local Estación Central</a>
+                    <a href="proyecto-carlos-hernandez.html" class="mobile-portfolio-item">Carlos Hernández</a>
+                    <a href="proyecto-ofwayne.html" class="mobile-portfolio-item">OfWayne</a>
+                    <a href="elizabeth.html" class="mobile-portfolio-item">El estudio</a>
+                </div>
+            </div>
+            <a href="index.html#process">PROCESO</a>
+            <a href="contacto.html">CONTACTO</a>
         </div>
     </div>
 

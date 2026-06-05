@@ -3051,41 +3051,6 @@ section {
 }
 
 
-    .project-hero {
-        padding: 100px 0 56px;
-    }
-
-    .project-hero h1 {
-        font-size: 2rem;
-    }
-
-    .project-content {
-        padding: 56px 0 64px;
-    }
-
-    .project-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
-    }
-
-    .project-grid-2 {
-        grid-template-columns: 1fr;
-    }
-
-    .project-related {
-        padding: 64px 0;
-    }
-
-    .related-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-    }
-
-    .sidebar-card {
-        padding: 24px;
-    }
-    }
-
 .related-tag {
     color: var(--muted);
     font-size: 0.7rem;
@@ -3167,33 +3132,17 @@ section {
         filter: brightness(0) invert(1);
     }
 
-    /* X close button - white, top right */
+    /* X close button - white */
     .close-toggle {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 44px;
         height: 44px;
         padding: 0;
         border: 0;
         background: transparent;
         cursor: pointer;
-    }
-
-    .close-toggle span {
-        display: block;
-        width: 28px;
-        height: 2px;
-        margin: 0 auto;
-        background: white;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        transform-origin: center center;
-    }
-
-    .close-toggle span:first-child {
-        transform: rotate(45deg) translateY(11px);
-    }
-
-    .close-toggle span:last-child {
-        transform: rotate(-45deg) translateY(-11px);
     }
 
     /* Nav links - large, stacked, centered vertically */
