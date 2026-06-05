@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.addEventListener("click", (event) => {
-        const clickedMenu = event.target.closest(".site-nav") || event.target.closest(".menu-toggle");
+        const clickedMenu = event.target.closest(".site-nav") || event.target.closest(".menu-toggle") || event.target.closest(".mobile-menu-overlay");
         if (!clickedMenu && body.classList.contains("menu-open")) {
             closeMobileMenu();
         }
