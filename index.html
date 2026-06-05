@@ -115,7 +115,10 @@
         <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
             <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
         </a>
-        
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
         <nav class="site-nav" aria-label="Navegación principal">
             <a href="index.html">HOME</a>
             <span class="nav-sep">/</span>
@@ -155,11 +158,25 @@
             </a>
         </div>
         <div class="mobile-menu-links">
-            <a href="#services">ARQUITECTURA</a>
-            <a href="#services">DISEÑO</a>
-            <a href="contacto.html">CONSTRUCCIÓN</a>
-            <a href="contacto.html">REGULARIZACIÓN</a>
-            <a class="mobile-contact-btn" href="contacto.html">CONTACTO</a>
+            <a href="index.html">HOME</a>
+            <a href="#studio">ESTUDIO</a>
+            <a href="#services">SERVICIOS</a>
+            <div class="mobile-portfolio-accordion">
+                <button class="mobile-portfolio-btn" type="button" aria-expanded="false">
+                    PORTAFOLIO <span class="mobile-portfolio-arrow">▾</span>
+                </button>
+                <div class="mobile-portfolio-items" aria-hidden="true">
+                    <a href="proyecto-ito-mapocho.html" class="mobile-portfolio-item">ITO Estación Mapocho</a>
+                    <a href="proyecto-diseno-inspeccion.html" class="mobile-portfolio-item">Diseño e inspección</a>
+                    <a href="proyecto-la-florida.html" class="mobile-portfolio-item">La Florida</a>
+                    <a href="proyecto-estacion-central.html" class="mobile-portfolio-item">Local Estación Central</a>
+                    <a href="proyecto-carlos-hernandez.html" class="mobile-portfolio-item">Carlos Hernández</a>
+                    <a href="proyecto-ofwayne.html" class="mobile-portfolio-item">OfWayne</a>
+                    <a href="elizabeth.html" class="mobile-portfolio-item">El estudio</a>
+                </div>
+            </div>
+            <a href="#process">PROCESO</a>
+            <a href="contacto.html">CONTACTO</a>
         </div>
     </div>
 

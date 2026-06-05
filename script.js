@@ -26,6 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileMenuLinks = document.querySelector(".mobile-menu-links");
     const navDropdownBtn = document.querySelector(".nav-dropdown-btn");
     const desktopDropdown = document.querySelector("#desktop-dropdown");
+    const mobilePortfolioBtn = document.querySelector(".mobile-portfolio-btn");
+    const mobilePortfolioItems = document.querySelector(".mobile-portfolio-items");
+
+    // Mobile portfolio accordion
+    if (mobilePortfolioBtn && mobilePortfolioItems) {
+        mobilePortfolioBtn.addEventListener("click", () => {
+            const isOpen = mobilePortfolioBtn.getAttribute("aria-expanded") === "true";
+            mobilePortfolioBtn.setAttribute("aria-expanded", String(!isOpen));
+            mobilePortfolioItems.classList.toggle("is-open");
+            mobilePortfolioItems.setAttribute("aria-hidden", String(isOpen));
+        });
+    }
 
     // Mobile menu
     function openMobileMenu() {
