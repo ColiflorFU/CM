@@ -3091,14 +3091,14 @@ section {
         display: none;
     }
 
-    /* Mobile menu overlay - fullscreen dark */
+    /* Mobile menu overlay - fullscreen blanco */
     .mobile-menu-overlay {
         position: fixed;
         inset: 0;
         z-index: 100;
         display: flex;
         flex-direction: column;
-        background: rgba(16, 16, 16, 0.95);
+        background: #fff;
         transform: translateY(-100%);
         transition: transform 0.3s ease;
     }
@@ -3129,10 +3129,10 @@ section {
 
     .mobile-menu-header .brand img {
         width: 160px;
-        filter: brightness(0) invert(1);
+        filter: brightness(0);
     }
 
-    /* X close button - white */
+    /* X close button */
     .close-toggle {
         display: flex;
         align-items: center;
@@ -3143,6 +3143,7 @@ section {
         border: 0;
         background: transparent;
         cursor: pointer;
+        color: var(--ink);
     }
 
     /* Nav links - large, stacked, centered vertically */
@@ -3165,7 +3166,7 @@ section {
         font-size: 20px;
         font-weight: 600;
         letter-spacing: 0.12em;
-        color: white;
+        color: var(--ink);
         text-decoration: none;
         transition: color 0.2s ease;
     }
@@ -3189,7 +3190,7 @@ section {
         font-size: 20px;
         font-weight: 600;
         letter-spacing: 0.12em;
-        color: white;
+        color: var(--ink);
         cursor: pointer;
         transition: color 0.2s ease;
     }
@@ -3224,7 +3225,7 @@ section {
         font-size: 14px;
         font-weight: 500;
         letter-spacing: 0.08em;
-        color: rgba(255,255,255,0.7);
+        color: rgba(0,0,0,0.6);
         text-decoration: none;
         transition: color 0.2s ease;
     }
