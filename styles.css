@@ -110,6 +110,11 @@ a {
     flex-shrink: 0;
 }
 
+/* Hamburger hidden on desktop, shown via mobile media query */
+.menu-toggle {
+    display: none;
+}
+
 .site-nav {
     display: flex;
     align-items: center;
