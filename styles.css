@@ -115,6 +115,11 @@ a {
     display: none;
 }
 
+/* Mobile overlay hidden on desktop, shown via mobile media query */
+.mobile-menu-overlay {
+    display: none;
+}
+
 .site-nav {
     display: flex;
     align-items: center;
