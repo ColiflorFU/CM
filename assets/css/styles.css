@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --ink: #101010;
     --muted: #5e5e5e;
     --line: #e5e1da;
@@ -85,7 +85,7 @@ a {
     margin: 0 auto;
 }
 
-/* ── Grid Background Utility ── */
+/* â”€â”€ Grid Background Utility â”€â”€ */
 .grid-bg {
     background-image:
         linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -216,7 +216,7 @@ a {
 }
 
 .nav-contact-btn::after {
-    content: "→";
+    content: "â†’";
     font-size: 1rem;
     line-height: 1;
     transition: transform 0.2s ease;
@@ -245,7 +245,7 @@ a {
     align-items: center;
 }
 
-/* Dropdown — positioned below the nav item */
+/* Dropdown â€” positioned below the nav item */
 .desktop-dropdown {
     position: absolute;
     top: 100%;
@@ -313,7 +313,7 @@ section {
     text-decoration: none;
 }
 
-/* ── Hero Section (Cinematic Slider) ── */
+/* â”€â”€ Hero Section (Cinematic Slider) â”€â”€ */
 .hero-slider {
     height: calc(100vh - 86px);
     height: calc(100dvh - 86px);
@@ -322,11 +322,11 @@ section {
     padding: 0;
 }
 
-/* ── Background texture ── */
+/* â”€â”€ Background texture â”€â”€ */
 .hero__texture {
     position: absolute;
     inset: 0;
-    background-image: url('Recursos/Miscelaneos/ArchImage-BG.png');
+    background-image: url('../../Recursos/Miscelaneos/ArchImage-BG.png');
     background-size: 53% auto;
     background-position: center left;
     background-repeat: no-repeat;
@@ -335,7 +335,7 @@ section {
     z-index: 0;
 }
 
-/* ── Track ── */
+/* â”€â”€ Track â”€â”€ */
 .hero__track {
     position: absolute;
     inset: 0;
@@ -348,7 +348,7 @@ section {
     transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Slide ── */
+/* â”€â”€ Slide â”€â”€ */
 .hero__slide {
     flex: 0 0 100%;
     display: grid;
@@ -362,7 +362,7 @@ section {
     pointer-events: auto;
 }
 
-/* ── Text elements initial state (hidden) ── */
+/* â”€â”€ Text elements initial state (hidden) â”€â”€ */
 .hero__slide .hero__label,
 .hero__slide .hero__desc,
 .hero__slide .hero__actions {
@@ -370,7 +370,7 @@ section {
     opacity: 0;
 }
 
-/* ── Split line wrapper ── */
+/* â”€â”€ Split line wrapper â”€â”€ */
 .hero__line {
     display: block;
     overflow: hidden;
@@ -382,7 +382,7 @@ section {
     opacity: 0;
 }
 
-/* ── Page load animation ── */
+/* â”€â”€ Page load animation â”€â”€ */
 .hero-loaded .hero__slide.active .hero__label {
     transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
                 opacity 1s ease 0.2s;
@@ -415,7 +415,7 @@ section {
     opacity: 1;
 }
 
-/* ── Enter animation (slide transition) ── */
+/* â”€â”€ Enter animation (slide transition) â”€â”€ */
 .hero__slide.enter .hero__right img {
     clip-path: inset(0 100% 0 0);
 }
@@ -465,13 +465,13 @@ section {
     opacity: 1;
 }
 
-/* ── Exit parallax (image moves opposite to track) ── */
+/* â”€â”€ Exit parallax (image moves opposite to track) â”€â”€ */
 .hero__slide.is-exiting .hero__right img {
     transform: translateX(5%);
     transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Content ── */
+/* â”€â”€ Content â”€â”€ */
 .hero__left {
     position: relative;
     display: flex;
@@ -542,7 +542,7 @@ section {
     color: var(--orange);
 }
 
-/* ── Image ── */
+/* â”€â”€ Image â”€â”€ */
 .hero__right {
     position: relative;
     overflow: hidden;
@@ -561,7 +561,7 @@ section {
     transform: translateX(0) scale(1);
 }
 
-/* ── Slider Navigation ── */
+/* â”€â”€ Slider Navigation â”€â”€ */
 .hero__slider {
     position: absolute;
     bottom: 0;
@@ -701,6 +701,13 @@ section {
 
 .studio-image-small {
     min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.studio-image-small::before {
+    display: none;
 }
 
 .studio-image-large {
@@ -712,7 +719,7 @@ section {
 
 .image-elizabeth-hero {
     background-image:
-        url("Recursos/Miscelaneos/elizabeth-hero.png");
+        url("../../Recursos/Miscelaneos/elizabeth-hero.png");
     background-color: #201f1d;
     background-size: cover;
     background-position: center center;
@@ -806,7 +813,7 @@ section {
     transform: translateX(-34px) rotate(180deg);
 }
 
-/* ── Nuestra Mirada (Editorial Philosophy Section) ── */
+/* â”€â”€ Nuestra Mirada (Editorial Philosophy Section) â”€â”€ */
 .philosophy-section {
     background: #f3f3f3;
     padding: 120px 0 100px;
@@ -817,7 +824,7 @@ section {
     flex-direction: column;
 }
 
-/* ── Top Level: Text + Image ── */
+/* â”€â”€ Top Level: Text + Image â”€â”€ */
 .philosophy-top {
     display: grid;
     grid-template-columns: 35fr 50fr;
@@ -875,7 +882,7 @@ section {
     object-fit: cover;
 }
 
-/* ── Bottom Level: 3 Values ── */
+/* â”€â”€ Bottom Level: 3 Values â”€â”€ */
 .philosophy-values {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -937,7 +944,7 @@ section {
     background: #fff;
 }
 
-/* ── Elizabeth Bio Section ── */
+/* â”€â”€ Elizabeth Bio Section â”€â”€ */
 .elizabeth-page {
     padding-top: 140px;
 }
@@ -1147,7 +1154,7 @@ section {
     padding: 0;
     background:
         linear-gradient(90deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.12)),
-        url("Recursos/Miscelaneos/mesa.png") center / cover no-repeat,
+        url("../../Recursos/Miscelaneos/mesa.png") center / cover no-repeat,
         #26211d;
     overflow: hidden;
 }
@@ -1159,12 +1166,12 @@ section {
     max-height: 500px;
     padding: 0;
     background:
-        url("Recursos/Miscelaneos/fondofirma.png") center / cover no-repeat,
+        url("../../Recursos/Miscelaneos/fondofirma.png") center / cover no-repeat,
         #26211d;
     overflow: hidden;
 }
 
-/* ── CONVERSEMOS CTA ── */
+/* â”€â”€ CONVERSEMOS CTA â”€â”€ */
 .conversemos-section {
     background: #f7f7f7;
     padding: 100px 0;
@@ -1207,7 +1214,7 @@ section {
     line-height: 1.5;
 }
 
-/* ── CTA HABLEMOS ── */
+/* â”€â”€ CTA HABLEMOS â”€â”€ */
 .cta-hablemos-section {
     background: #f7f7f7;
     padding: 120px 0;
@@ -1364,7 +1371,7 @@ section {
     color: var(--orange);
 }
 
-/* ── Portfolio Carousel ── */
+/* â”€â”€ Portfolio Carousel â”€â”€ */
 .portfolio-section {
     background: #fff;
     padding-top: 150px;
@@ -1564,6 +1571,9 @@ section {
     padding: 22px 0;
     color: var(--ink);
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: none;
     font-family: "Urbanist", sans-serif;
     font-size: 1.28rem;
     font-weight: 500;
@@ -1597,9 +1607,18 @@ section {
 
 .process-accordion details p {
     max-width: 520px;
-    margin: 0 0 28px 42px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0 0 0 42px;
     color: var(--muted);
     font-size: 0.94rem;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+.process-accordion details[open] p {
+    max-height: 600px;
+    opacity: 1;
+    margin: 0 0 28px 42px;
 }
 
 .process-feature-media {
@@ -1628,7 +1647,7 @@ section {
     background-size: cover;
 }
 
-/* ── Footer Frame (tarjeta con marco de impresión) ── */
+/* â”€â”€ Footer Frame (tarjeta con marco de impresión) â”€â”€ */
 
 .footer-frame {
     position: relative;
@@ -1636,7 +1655,7 @@ section {
     background: #fff;
 }
 
-/* Línea horizontal top — cruza todo el viewport */
+/* Línea horizontal top â€” cruza todo el viewport */
 .footer-frame::before {
     content: "";
     position: absolute;
@@ -1648,7 +1667,7 @@ section {
     pointer-events: none;
 }
 
-/* Línea horizontal bottom — cruza todo el viewport */
+/* Línea horizontal bottom â€” cruza todo el viewport */
 .footer-frame::after {
     content: "";
     position: absolute;
@@ -1679,7 +1698,7 @@ section {
     bottom: 0;
 }
 
-/* ── Site Footer (tarjeta interior) ── */
+/* â”€â”€ Site Footer (tarjeta interior) â”€â”€ */
 
 .site-footer {
     background: var(--footer-bg);
@@ -1706,7 +1725,7 @@ section {
     max-width: 540px;
 }
 
-/* CTA Button — corner brackets (print/crop marks, opening outward) */
+/* CTA Button â€” corner brackets (print/crop marks, opening outward) */
 .cta-btn {
     position: relative;
     display: inline-flex;
@@ -1740,7 +1759,7 @@ section {
     transition: background 0.2s ease;
 }
 
-/* 4 corner brackets — 6×6px at -6px, opening outward (crop mark style) */
+/* 4 corner brackets â€” 6×6px at -6px, opening outward (crop mark style) */
 .cta-btn .cta-bracket-tl,
 .cta-btn .cta-bracket-tr,
 .cta-btn .cta-bracket-bl,
@@ -1752,13 +1771,13 @@ section {
     z-index: 3;
 }
 
-/* TL: lines on bottom+right edges → L opens toward top-left outer corner */
+/* TL: lines on bottom+right edges â†’ L opens toward top-left outer corner */
 .cta-btn .cta-bracket-tl { top: -6px; left: -6px; border-bottom: 1px solid var(--bracket-color); border-right: 1px solid var(--bracket-color); }
-/* TR: lines on bottom+left edges → L opens toward top-right outer corner */
+/* TR: lines on bottom+left edges â†’ L opens toward top-right outer corner */
 .cta-btn .cta-bracket-tr { top: -6px; right: -6px; border-bottom: 1px solid var(--bracket-color); border-left: 1px solid var(--bracket-color); }
-/* BL: lines on top+right edges → L opens toward bottom-left outer corner */
+/* BL: lines on top+right edges â†’ L opens toward bottom-left outer corner */
 .cta-btn .cta-bracket-bl { bottom: -6px; left: -6px; border-top: 1px solid var(--bracket-color); border-right: 1px solid var(--bracket-color); }
-/* BR: lines on top+left edges → L opens toward bottom-right outer corner */
+/* BR: lines on top+left edges â†’ L opens toward bottom-right outer corner */
 .cta-btn .cta-bracket-br { bottom: -6px; right: -6px; border-top: 1px solid var(--bracket-color); border-left: 1px solid var(--bracket-color); }
 
 .cta-btn:hover .cta-btn-inner {
@@ -1881,7 +1900,7 @@ section {
     transform: translateY(0);
 }
 
-/* ── Contact + FAQ ── */
+/* â”€â”€ Contact + FAQ â”€â”€ */
 
 .contact-faq-section {
     padding: 120px 0;
@@ -1950,6 +1969,9 @@ section {
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: none;
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -1973,16 +1995,25 @@ section {
 }
 
 .faq-list details p {
-    margin: 16px 0 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0;
     color: var(--muted);
     font-size: 0.9rem;
     line-height: 1.6;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+.faq-list details[open] p {
+    max-height: 600px;
+    opacity: 1;
+    margin: 16px 0 0;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   ARCHITECTURAL SECTION — Image + Floating Accordion Card
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ARCHITECTURAL SECTION â€” Image + Floating Accordion Card
    Inspired by: premium architecture studio layouts
-   ═══════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .arch-section {
     position: relative;
     background: #fff;
@@ -1992,7 +2023,7 @@ section {
     padding: 100px 0;
 }
 
-/* Contenedor centrado — imagen + card lado a lado */
+/* Contenedor centrado â€” imagen + card lado a lado */
 .arch-container {
     display: flex;
     justify-content: center;
@@ -2020,7 +2051,7 @@ section {
     object-fit: cover;
 }
 
-/* Card — al lado derecho, centrado con la imagen */
+/* Card â€” al lado derecho, centrado con la imagen */
 .arch-card {
     position: relative;
     top: auto;
@@ -2038,7 +2069,7 @@ section {
 
 /* Label */
 
-/* ── Pill genérico (tags de proyecto, etc.) ── */
+/* â”€â”€ Pill genérico (tags de proyecto, etc.) â”€â”€ */
 .pill {
     display: inline-block;
     font-size: 0.7rem;
@@ -2050,7 +2081,7 @@ section {
     border-radius: 2px;
 }
 
-/* Headline — forzar 2 líneas con max-width */
+/* Headline â€” forzar 2 líneas con max-width */
 .arch-headline {
     font-family: "Urbanist", sans-serif;
     font-size: clamp(2rem, 3vw, 2.8rem);
@@ -2080,6 +2111,9 @@ section {
     font-weight: 600;
     color: #222;
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: none;
     list-style: none;
 }
 
@@ -2110,6 +2144,15 @@ section {
 }
 
 .arch-item-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+.arch-accordion details[open] .arch-item-body {
+    max-height: 600px;
+    opacity: 1;
     padding: 0 0 1rem;
 }
 
@@ -2119,7 +2162,7 @@ section {
     color: #555;
 }
 
-/* ── Mobile (860px) ── */
+/* â”€â”€ Mobile (860px) â”€â”€ */
 @media (max-width: 860px) {
     .arch-section {
         min-height: 0;
@@ -2163,12 +2206,12 @@ section {
     }
 }
 
-/* ── Contact Page editorial (Minnaro-style) ── */
+/* â”€â”€ Contact Page editorial (Minnaro-style) â”€â”€ */
 .contacto-page {
     background: #f3f3f3;
 }
 
-/* Left column content — hero__left handles layout/padding */
+/* Left column content â€” hero__left handles layout/padding */
 .contacto-info .eyebrow {
     margin-bottom: 16px;
 }
@@ -2224,12 +2267,12 @@ section {
     color: var(--orange);
 }
 
-/* ── Contacto: override hero left for top alignment ── */
+/* â”€â”€ Contacto: override hero left for top alignment â”€â”€ */
 .contacto-hero .hero__left {
     justify-content: flex-start;
 }
 
-/* ── Right column (fills hero__right) ── */
+/* â”€â”€ Right column (fills hero__right) â”€â”€ */
 .contacto-form-col {
     position: relative;
     height: 100%;
@@ -2414,7 +2457,7 @@ section {
     line-height: 1.5;
 }
 
-/* Form Submit Button — corner brackets (opening outward) */
+/* Form Submit Button â€” corner brackets (opening outward) */
 .form-submit {
     position: relative;
     display: inline-flex;
@@ -2467,7 +2510,7 @@ section {
     color: #27ae60;
 }
 
-/* ── FAQ ── */
+/* â”€â”€ FAQ â”€â”€ */
 
 .faq-list details {
     border-bottom: 1px solid rgba(16, 16, 16, 0.12);
@@ -2507,14 +2550,23 @@ section {
 }
 
 .faq-list details p {
-    margin: 0 0 24px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0;
     max-width: 540px;
     color: var(--muted);
     font-size: 0.92rem;
     line-height: 1.5;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+.faq-list details[open] p {
+    max-height: 600px;
+    opacity: 1;
+    margin: 0 0 24px;
 }
 
-/* ── Project Article ── */
+/* â”€â”€ Project Article â”€â”€ */
 
 .project-article {
     padding-top: 86px;
@@ -2646,7 +2698,7 @@ section {
     margin: 42px 0;
 }
 
-/* ── Sidebar ── */
+/* â”€â”€ Sidebar â”€â”€ */
 
 .sidebar-card {
     padding: 32px;
@@ -2709,7 +2761,7 @@ section {
     background: var(--orange);
 }
 
-/* ── Related Projects ── */
+/* â”€â”€ Related Projects â”€â”€ */
 
 .project-related {
     padding: 100px 0;
@@ -2792,7 +2844,7 @@ section {
         min-height: 440px;
     }
 
-    /* ── Footer responsive at 1100px ── */
+    /* â”€â”€ Footer responsive at 1100px â”€â”€ */
     .footer-grid {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 40px;
@@ -2807,7 +2859,7 @@ section {
     }
 }
 
-/* ── Project Page — single sticky image left / all content scrolls right ── */
+/* â”€â”€ Project Page â€” single sticky image left / all content scrolls right â”€â”€ */
 
 .proj-page {
     display: flex;
@@ -2846,7 +2898,7 @@ section {
     flex-shrink: 0;
 }
 
-/* ── Intro ── */
+/* â”€â”€ Intro â”€â”€ */
 
 .proj-intro {
     padding: 80px 72px 0;
@@ -2879,7 +2931,7 @@ section {
     max-width: 640px;
 }
 
-/* ── Body text ── */
+/* â”€â”€ Body text â”€â”€ */
 
 .proj-body__subheading {
     font-family: "Urbanist", sans-serif;
@@ -2913,7 +2965,7 @@ section {
     color: var(--ink);
 }
 
-/* ── Meta grid (below quote in body section) ── */
+/* â”€â”€ Meta grid (below quote in body section) â”€â”€ */
 
 .proj-body {
     padding: 0 72px 80px;
@@ -2954,7 +3006,7 @@ section {
     color: var(--ink);
 }
 
-/* ── Prev / Next ── */
+/* â”€â”€ Prev / Next â”€â”€ */
 
 .proj-nav {
     display: flex;
@@ -2996,7 +3048,7 @@ section {
     color: var(--ink);
 }
 
-/* ── Responsive ── */
+/* â”€â”€ Responsive â”€â”€ */
 
 @media (max-width: 900px) {
     .proj-page {
@@ -3254,7 +3306,7 @@ section {
     }
 
     .mobile-contact-btn::after {
-        content: "→";
+        content: "â†’";
         font-size: 1.1rem;
         line-height: 1;
         transition: transform 0.2s ease;
@@ -3395,17 +3447,17 @@ section {
         min-height: 460px;
     }
 
-    /* ── Descanso mobile ── */
+    /* â”€â”€ Descanso mobile â”€â”€ */
     .cta-descanso {
         height: 600px;
         max-height: 600px;
         min-height: 0;
         background:
-            url("Recursos/Miscelaneos/fondofirmamobile.png") center / cover no-repeat,
+            url("../../Recursos/Miscelaneos/fondofirmamobile.png") center / cover no-repeat,
             #26211d;
     }
 
-    /* ── Philosophy mobile ── */
+    /* â”€â”€ Philosophy mobile â”€â”€ */
     .philosophy-section {
         padding: 80px 0 60px;
     }
@@ -3671,10 +3723,16 @@ section {
         min-height: 100dvh;
         aspect-ratio: unset;
         max-height: none;
+        background-position: center;
     }
 
     .banner-grid-lines {
-        background-size: 50% calc(100% / 3);
+        background-size: 1px 100%, 1px 100%, 100% 1px, 100% 1px;
+        background-position:
+            16px center,
+            calc(100% - 16px) center,
+            center calc(100% / 6),
+            center calc(100% - 100% / 6);
     }
 
     .banner-cta-panel {
@@ -3797,7 +3855,7 @@ section {
     .faq-list details p {
         font-size: 0.88rem;
     }
-/* Print Button — corner brackets (opening outward, same style as cta-btn) */
+/* Print Button â€” corner brackets (opening outward, same style as cta-btn) */
 .print-button {
     position: relative;
     display: inline-flex;
@@ -3829,7 +3887,7 @@ section {
     transition: background 0.2s ease;
 }
 
-/* Corner brackets — 6×6px at -6px, opening outward */
+/* Corner brackets â€” 6×6px at -6px, opening outward */
 .print-button .bracket-tl,
 .print-button .bracket-tr,
 .print-button .bracket-bl,
@@ -3887,10 +3945,16 @@ section {
         min-height: 100dvh;
         aspect-ratio: unset;
         max-height: none;
+        background-position: center;
     }
 
     .banner-grid-lines {
-        background-size: 50% calc(100% / 3);
+        background-size: 1px 100%, 1px 100%, 100% 1px, 100% 1px;
+        background-position:
+            16px center,
+            calc(100% - 16px) center,
+            center calc(100% / 6),
+            center calc(100% - 100% / 6);
     }
 
     .banner-cta-panel {
@@ -3958,7 +4022,7 @@ section {
         min-height: 360px;
     }
 
-    /* ── Project mobile ── */
+    /* â”€â”€ Project mobile â”€â”€ */
     .proj-intro {
         padding: 48px 24px 32px;
     }
@@ -3996,7 +4060,7 @@ section {
 
 }
 
-/* ── Contact page mobile ── */
+/* â”€â”€ Contact page mobile â”€â”€ */
 @media (max-width: 760px) {
     .contacto-hero .hero__left {
         justify-content: flex-start;
@@ -4029,3 +4093,4 @@ section {
         max-width: none;
     }
 }
+

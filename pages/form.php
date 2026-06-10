@@ -1,36 +1,36 @@
-<?php
+﻿<?php
 /**
- * Contact Form Handler — Contreras Martínez
+ * Contact Form Handler â€” Contreras MartÃ­nez
  * 
- * Envía leads calificados a la arquitecta y auto-respuesta al cliente.
- * Soporta PHPMailer (vía Composer) con fallback a mail().
+ * EnvÃ­a leads calificados a la arquitecta y auto-respuesta al cliente.
+ * Soporta PHPMailer (vÃ­a Composer) con fallback a mail().
  * 
  * Modo de uso:
  *   1. En Hostinger: correr "composer install" para activar PHPMailer
- *   2. Sin Composer: funciona con mail() automáticamente
+ *   2. Sin Composer: funciona con mail() automÃ¡ticamente
  * 
- * Configuración SMTP (opcional, para delivery garantizado):
- *   Si querés usar Gmail SMTP en vez del mail() de Hostinger:
- *   1. Activá 2FA en tu Gmail
- *   2. Generá una "App Password" en https://myaccount.google.com/apppasswords
- *   3. Configurá las constantes SMTP_* abajo
+ * ConfiguraciÃ³n SMTP (opcional, para delivery garantizado):
+ *   Si querÃ©s usar Gmail SMTP en vez del mail() de Hostinger:
+ *   1. ActivÃ¡ 2FA en tu Gmail
+ *   2. GenerÃ¡ una "App Password" en https://myaccount.google.com/apppasswords
+ *   3. ConfigurÃ¡ las constantes SMTP_* abajo
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// ─── CONFIGURACIÓN ──────────────────────────────────────────
+// â”€â”€â”€ CONFIGURACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-// A dónde llegan los leads
+// A dÃ³nde llegan los leads
 define('TO_EMAIL', 'elizabethyelizabeth@gmail.com');
 define('TO_NAME', 'Elizabeth Contreras');
 
-// De quién parece venir el mail (usá un dominio real cuando esté configurado)
+// De quiÃ©n parece venir el mail (usÃ¡ un dominio real cuando estÃ© configurado)
 define('FROM_EMAIL', 'noreply@contrerasmartinez.cl');
-define('FROM_NAME', 'Contreras Martínez · Web');
+define('FROM_NAME', 'Contreras MartÃ­nez Â· Web');
 
-// ─── SMTP (opcional) ────────────────────────────────────────
-// Si completás estos datos, PHPMailer los usa en vez de mail()
-// Dejá vacío para usar mail() automáticamente.
+// â”€â”€â”€ SMTP (opcional) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Si completÃ¡s estos datos, PHPMailer los usa en vez de mail()
+// DejÃ¡ vacÃ­o para usar mail() automÃ¡ticamente.
 
 define('SMTP_HOST',     '');     // ej: 'smtp.gmail.com'
 define('SMTP_PORT',     587);    // 587 (TLS) o 465 (SSL)
@@ -38,31 +38,31 @@ define('SMTP_USER',     '');     // tu email completo
 define('SMTP_PASS',     '');     // App Password de Gmail
 define('SMTP_ENCRYPT',  'tls');  // 'tls' o 'ssl'
 
-// ─── RATE LIMITING ──────────────────────────────────────────
-// Previene que un mismo IP envíe muchos formularios seguidos.
+// â”€â”€â”€ RATE LIMITING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Previene que un mismo IP envÃ­e muchos formularios seguidos.
 
 define('RATE_LIMIT_WINDOW', 300);    // ventana en segundos (5 min)
-define('RATE_LIMIT_MAX', 3);         // máx de submits por ventana
+define('RATE_LIMIT_MAX', 3);         // mÃ¡x de submits por ventana
 
-// ────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 // Solo POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['success' => false, 'error' => 'Método no permitido.']);
+    echo json_encode(['success' => false, 'error' => 'MÃ©todo no permitido.']);
     exit;
 }
 
-// ─── HONEYPOT ───────────────────────────────────────────────
-// Campo oculto — si tiene contenido, es un bot.
+// â”€â”€â”€ HONEYPOT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Campo oculto â€” si tiene contenido, es un bot.
 
 if (!empty($_POST['website'])) {
-    // Respondemos éxito para no alertar al bot
+    // Respondemos Ã©xito para no alertar al bot
     echo json_encode(['success' => true, 'message' => 'Mensaje enviado, te responderemos pronto.']);
     exit;
 }
 
-// ─── RATE LIMITING ──────────────────────────────────────────
+// â”€â”€â”€ RATE LIMITING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $client_ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $rate_file = sys_get_temp_dir() . '/cm_rate_' . md5($client_ip);
@@ -75,7 +75,7 @@ if (file_exists($rate_file)) {
     if (time() - $window_start < RATE_LIMIT_WINDOW) {
         if ($count >= RATE_LIMIT_MAX) {
             http_response_code(429);
-            echo json_encode(['success' => false, 'error' => 'Enviaste varios mensajes muy seguido. Esperá unos minutos e intentá de nuevo.']);
+            echo json_encode(['success' => false, 'error' => 'Enviaste varios mensajes muy seguido. EsperÃ¡ unos minutos e intentÃ¡ de nuevo.']);
             exit;
         }
         $data['count'] = $count + 1;
@@ -88,12 +88,12 @@ if (file_exists($rate_file)) {
 
 file_put_contents($rate_file, json_encode($data), LOCK_EX);
 
-// ─── CAPTURA Y VALIDACIÓN ───────────────────────────────────
+// â”€â”€â”€ CAPTURA Y VALIDACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $fields = [
     'name'         => ['label' => 'Nombre',          'required' => true,  'max' => 100],
-    'email'        => ['label' => 'Correo electrónico','required' => true, 'max' => 255],
-    'phone'        => ['label' => 'Teléfono',        'required' => false, 'max' => 30],
+    'email'        => ['label' => 'Correo electrÃ³nico','required' => true, 'max' => 255],
+    'phone'        => ['label' => 'TelÃ©fono',        'required' => false, 'max' => 30],
     'city'         => ['label' => 'Ciudad',          'required' => false, 'max' => 100],
     'project_type' => ['label' => 'Tipo de proyecto','required' => false, 'max' => 50],
     'message'      => ['label' => 'Mensaje',         'required' => true,  'max' => 5000],
@@ -111,21 +111,21 @@ foreach ($fields as $key => $cfg) {
     }
 
     if ($value !== '' && mb_strlen($value) > $cfg['max']) {
-        $errors[] = "{$cfg['label']} es demasiado largo (máx {$cfg['max']} caracteres).";
+        $errors[] = "{$cfg['label']} es demasiado largo (mÃ¡x {$cfg['max']} caracteres).";
         continue;
     }
 
     $input[$key] = $value;
 }
 
-// Validación específica de email
+// ValidaciÃ³n especÃ­fica de email
 if ($input['email'] !== '' && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-    $errors[] = 'El correo electrónico no tiene un formato válido.';
+    $errors[] = 'El correo electrÃ³nico no tiene un formato vÃ¡lido.';
 }
 
-// Validar teléfono si se ingresó (solo dígitos, +, -, espacios)
+// Validar telÃ©fono si se ingresÃ³ (solo dÃ­gitos, +, -, espacios)
 if ($input['phone'] !== '' && !preg_match('/^[0-9\s\+\-\(\)]{7,20}$/', $input['phone'])) {
-    $errors[] = 'El teléfono tiene un formato incorrecto.';
+    $errors[] = 'El telÃ©fono tiene un formato incorrecto.';
 }
 
 if (!empty($errors)) {
@@ -134,7 +134,7 @@ if (!empty($errors)) {
     exit;
 }
 
-// ─── SANITIZACIÓN PARA OUTPUT ───────────────────────────────
+// â”€â”€â”€ SANITIZACIÃ“N PARA OUTPUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $safe = [];
 foreach ($input as $key => $value) {
@@ -144,29 +144,29 @@ foreach ($input as $key => $value) {
 $safe_email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
 if (!filter_var($safe_email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(422);
-    echo json_encode(['success' => false, 'error' => 'El correo electrónico no es válido.']);
+    echo json_encode(['success' => false, 'error' => 'El correo electrÃ³nico no es vÃ¡lido.']);
     exit;
 }
 
-// ─── CONSTRUIR EMAILS ───────────────────────────────────────
+// â”€â”€â”€ CONSTRUIR EMAILS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 $project_type_labels = [
     ''              => 'Sin especificar',
     'residencial'   => 'Residencial',
     'comercial'     => 'Comercial',
-    'regularizacion'=> 'Regularización',
+    'regularizacion'=> 'RegularizaciÃ³n',
     'otro'          => 'Otro',
 ];
 
 $project_label = $project_type_labels[$input['project_type']] ?? htmlspecialchars($input['project_type']);
 
 $lead_date = date('d/m/Y H:i');
-$lead_phone = $input['phone'] ?: '—';
-$lead_city  = $input['city'] ?: '—';
+$lead_phone = $input['phone'] ?: 'â€”';
+$lead_city  = $input['city'] ?: 'â€”';
 
-// ── Email para la arquitecta (HTML) ─────────────────────────
+// â”€â”€ Email para la arquitecta (HTML) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-$subject_lead = "🟢 Nuevo lead — {$safe['name']} — {$project_label}";
+$subject_lead = "ðŸŸ¢ Nuevo lead â€” {$safe['name']} â€” {$project_label}";
 
 $body_lead_html = <<<HTML
 <!DOCTYPE html>
@@ -188,40 +188,40 @@ hr { border: none; border-top: 1px solid #eee; margin: 20px 0; }
 </style></head>
 <body>
 <div class="container">
-<div class="header"><h1>🟢 Nuevo Lead</h1><p>{$lead_date}</p></div>
+<div class="header"><h1>ðŸŸ¢ Nuevo Lead</h1><p>{$lead_date}</p></div>
 <div class="body">
 <div class="field"><div class="field-label">Nombre</div><div class="field-value">{$safe['name']}</div></div>
 <div class="field"><div class="field-label">Correo</div><div class="field-value"><a href="mailto:{$safe_email}">{$safe_email}</a></div></div>
-<div class="field"><div class="field-label">Teléfono</div><div class="field-value">{$lead_phone}</div></div>
+<div class="field"><div class="field-label">TelÃ©fono</div><div class="field-value">{$lead_phone}</div></div>
 <div class="field"><div class="field-label">Ciudad</div><div class="field-value">{$lead_city}</div></div>
 <div class="field"><div class="field-label">Tipo de proyecto</div><div class="field-value"><span class="tag">{$project_label}</span></div></div>
 <hr>
 <div class="field"><div class="field-label">Mensaje</div><div class="field-value" style="white-space:pre-wrap;">{$safe['message']}</div></div>
 </div>
-<div class="footer">Contreras Martínez · Arquitectura Integral</div>
+<div class="footer">Contreras MartÃ­nez Â· Arquitectura Integral</div>
 </div>
 </body>
 </html>
 HTML;
 
-$body_lead_text = "🟢 NUEVO LEAD
-────────────────
+$body_lead_text = "ðŸŸ¢ NUEVO LEAD
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 Fecha: {$lead_date}
 
 Nombre: {$safe['name']}
 Email: {$safe_email}
-Teléfono: {$lead_phone}
+TelÃ©fono: {$lead_phone}
 Ciudad: {$lead_city}
 Tipo de proyecto: {$project_label}
 
 Mensaje:
 {$input['message']}
-────────────────
-Contreras Martínez · Arquitectura Integral";
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+Contreras MartÃ­nez Â· Arquitectura Integral";
 
-// ── Auto-respuesta para el cliente ──────────────────────────
+// â”€â”€ Auto-respuesta para el cliente â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-$subject_auto = "Recibimos tu mensaje — Contreras Martínez";
+$subject_auto = "Recibimos tu mensaje â€” Contreras MartÃ­nez";
 
 $body_auto_html = <<<HTML
 <!DOCTYPE html>
@@ -242,15 +242,15 @@ p { font-size: 15px; color: #333; line-height: 1.6; }
 <div class="header"><h1>Recibimos tu mensaje</h1></div>
 <div class="body">
 <p>Hola <strong>{$safe['name']}</strong>,</p>
-<p>Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversación.</p>
-<p>Mientras tanto, si necesitás algo urgente, no dudes en escribirnos directamente a <a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a> o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.</p>
+<p>Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversaciÃ³n.</p>
+<p>Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a <a href="mailto:elizabeth@contrerasmartinez.cl">elizabeth@contrerasmartinez.cl</a> o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.</p>
 <div class="signature">
 <strong>Elizabeth Contreras</strong><br>
-Arquitecta — Contreras Martínez · Arquitectura Integral<br>
+Arquitecta â€” Contreras MartÃ­nez Â· Arquitectura Integral<br>
 Paseo Ahumada 341, Of. 504, Santiago Centro
 </div>
 </div>
-<div class="footer">Este mensaje fue generado automáticamente desde nuestro sitio web.</div>
+<div class="footer">Este mensaje fue generado automÃ¡ticamente desde nuestro sitio web.</div>
 </div>
 </body>
 </html>
@@ -258,19 +258,19 @@ HTML;
 
 $body_auto_text = "Hola {$safe['name']},
 
-Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversación.
+Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversaciÃ³n.
 
-Mientras tanto, si necesitás algo urgente, no dudes en escribirnos directamente a elizabeth@contrerasmartinez.cl o llamarnos al +56 9 5127 8937.
+Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a elizabeth@contrerasmartinez.cl o llamarnos al +56 9 5127 8937.
 
-—
+â€”
 Elizabeth Contreras
-Arquitecta — Contreras Martínez · Arquitectura Integral
+Arquitecta â€” Contreras MartÃ­nez Â· Arquitectura Integral
 Paseo Ahumada 341, Of. 504, Santiago Centro";
 
-// ─── ENVÍO ──────────────────────────────────────────────────
+// â”€â”€â”€ ENVÃO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-// Intentar con PHPMailer si está disponible
-$phpmailer_available = file_exists(__DIR__ . '/vendor/autoload.php');
+// Intentar con PHPMailer si estÃ¡ disponible
+$phpmailer_available = file_exists(__DIR__ . '/../vendor/autoload.php');
 
 if ($phpmailer_available && SMTP_HOST !== '') {
     $sent = sendWithPHPMailer($safe_email, $safe['name']);
@@ -287,7 +287,7 @@ if ($sent) {
     echo json_encode(['success' => false, 'error' => 'Error al enviar el mensaje. Intenta nuevamente o escribinos directamente a elizabeth@contrerasmartinez.cl.']);
 }
 
-// ─── FUNCIONES DE ENVÍO ────────────────────────────────────
+// â”€â”€â”€ FUNCIONES DE ENVÃO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  * Enviar con PHPMailer + SMTP
@@ -298,7 +298,7 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
            $subject_auto, $body_auto_html, $body_auto_text,
            $input;
 
-    require __DIR__ . '/vendor/autoload.php';
+    require __DIR__ . '/../vendor/autoload.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
@@ -306,7 +306,7 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
     $mail = new PHPMailer(true);
 
     try {
-        // ── Config SMTP ──
+        // â”€â”€ Config SMTP â”€â”€
         $mail->isSMTP();
         $mail->Host       = SMTP_HOST;
         $mail->SMTPAuth   = true;
@@ -317,7 +317,7 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
         $mail->CharSet    = PHPMailer::CHARSET_UTF8;
         $mail->XMailer    = 'CM Website';
 
-        // ── Email 1: lead → arquitecta ──
+        // â”€â”€ Email 1: lead â†’ arquitecta â”€â”€
         $mail->clearAddresses();
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
         $mail->addAddress(TO_EMAIL, TO_NAME);
@@ -328,7 +328,7 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
         $mail->AltBody = $body_lead_text;
         $mail->send();
 
-        // ── Email 2: auto-respuesta → cliente ──
+        // â”€â”€ Email 2: auto-respuesta â†’ cliente â”€â”€
         $mail->clearAddresses();
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
         $mail->addAddress($client_email, $client_name);
@@ -355,7 +355,7 @@ function sendWithPHPMailerMail(string $client_email, string $client_name): bool
     global $subject_lead, $body_lead_html, $body_lead_text,
            $subject_auto, $body_auto_html, $body_auto_text;
 
-    require __DIR__ . '/vendor/autoload.php';
+    require __DIR__ . '/../vendor/autoload.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
@@ -397,7 +397,7 @@ function sendWithPHPMailerMail(string $client_email, string $client_name): bool
 }
 
 /**
- * Enviar con mail() — respaldo sin PHPMailer
+ * Enviar con mail() â€” respaldo sin PHPMailer
  */
 function sendWithMail(string $client_email, string $client_name): bool
 {
@@ -406,7 +406,7 @@ function sendWithMail(string $client_email, string $client_name): bool
 
     $separator = md5(uniqid((string) time(), true));
 
-    // ── Email 1: lead → arquitecta ──
+    // â”€â”€ Email 1: lead â†’ arquitecta â”€â”€
 
     $headers_lead  = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
     $headers_lead .= "Reply-To: {$client_email}\r\n";
@@ -423,7 +423,7 @@ function sendWithMail(string $client_email, string $client_name): bool
 
     $sent1 = mail(TO_EMAIL, $subject_lead, $body_lead, $headers_lead);
 
-    // ── Email 2: auto-respuesta → cliente ──
+    // â”€â”€ Email 2: auto-respuesta â†’ cliente â”€â”€
 
     $separator2 = md5(uniqid((string) time(), true));
 
@@ -443,3 +443,4 @@ function sendWithMail(string $client_email, string $client_name): bool
 
     return $sent1 && $sent2;
 }
+
