@@ -3385,6 +3385,7 @@ section {
         width: 100% !important;
         flex: none !important;
         grid-template-columns: 1fr;
+        min-height: calc(100dvh - 72px);
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto;
