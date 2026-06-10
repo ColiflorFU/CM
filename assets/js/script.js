@@ -326,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const leftCol = slider.querySelector('.hero__left');
 
             function handleScroll() {
+                if (isMobile) { scrollTicking = false; return; }
                 const st = window.scrollY;
                 const vh = window.innerHeight;
                 if (st < vh) {
