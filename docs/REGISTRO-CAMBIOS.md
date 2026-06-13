@@ -44,7 +44,15 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 10-06-2026_
+_Última actualización: 12-06-2026_
+
+## v1.9 — 2026-06-12
+
+Grilla de contacto proporcional como CTA del home.
+
+| Fecha | Descripción |
+|---|---|
+| 12-06-2026 | **v1.9**: Grilla de contacto (`banner-grid-lines--contact`) refactorizada a valores proporcionales con `clamp()`, igual que el CTA del home (v1.8). Eliminados valores fijos `48px`/`80px`. Container `.contacto-form-col` y panel `.banner-cta-panel--contact` también migrados a `clamp()`. Eliminados overrides mobile redundantes. |
 
 ## v1.8 — 2026-06-10
 

@@ -165,7 +165,7 @@ Coli siempre:
 - ✅ REGISTRO-CAMBIOS.md actualizado hasta v1.8
 
 ### NUEVOS PENDIENTES (agregados 2026-06-10)
-23. **Grillas en contacto** — Solucionar problema de grillas en la página de contacto (`contacto.html`)
+23. ~~**Grillas en contacto**~~ ✅ Resuelto v1.9 — refactorizado a valores proporcionales con `clamp()` como el CTA del home
 24. **Múltiples fotos por proyecto** — Agregar más de 1 foto por proyecto (galería interna en cada `proyecto-*.html`)
 25. **Img fondo menú mobile** — Agregar imagen de fondo al menú mobile overlay
 
