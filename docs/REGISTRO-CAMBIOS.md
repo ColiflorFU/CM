@@ -44,7 +44,39 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 04-06-2026_
+_Última actualización: 10-06-2026_
+
+## v1.8 — 2026-06-10
+
+Fixes mobile: parallax, hero height, banner grid lines, CTA panel proporcional.
+
+| Fecha | Descripción |
+|---|---|
+| 10-06-2026 | **v1.8**: Refactor `.banner-cta-panel` mobile — de valores fijos a custom properties proporcionales para que escale con el viewport. Fix parallax hero scroll desactivado en mobile. Reorganización root: styles.css → `assets/css/`, script.js → `assets/js/`, páginas → `pages/`, docs → `docs/`. |
+
+## v1.7 — 2026-06-10
+
+Fix hero slide altura mobile.
+
+| Fecha | Descripción |
+|---|---|
+| 10-06-2026 | **v1.7**: Hero slides ahora mantienen misma altura en mobile — evita salto visual al transicionar entre slides. |
+
+## v1.6 — 2026-06-10
+
+Fix banner grid lines mobile.
+
+| Fecha | Descripción |
+|---|---|
+| 10-06-2026 | **v1.6**: Banner grid lines arregladas en mobile — las líneas del grid desktop usaban `calc()` basado en 5 columnas que se rompía en mobile. Background image centrada explícitamente en mobile. |
+
+## v1.5 — 2026-06-04
+
+Navbar unificado + mobile menu.
+
+| Fecha | Descripción |
+|---|---|
+| 04-06-2026 | **v1.5**: Navbar nuevo unificado en las 12 páginas: Home, Estudio, Servicios, Portafolio (dropdown), Proceso, Contacto. Dropdown centrado bajo Portafolio. Mobile menu con hamburguesa y acordeón Portafolio. Overlay mobile cambiado de oscuro a blanco. Acordeón portfolio ya no cierra el menú al clickear. Form fix, CSS limpio, ícono X en SVG. ~857 inserciones, ~472 eliminaciones en 17 archivos. |
 
 ## v1.4 — 2026-06-04
 
@@ -52,7 +84,7 @@ FAQ centrado, carrusel portfolio, hero cinemático y cursor dot.
 
 | Fecha | Descripción |
 |---|---|
-| 04-06-2026 | **v1.4**: FAQ centrada — quitada imagen lateral y card flotante, layout centrado con card max-width 720px, bg blanco (#fff). Carrusel portfolio con navegación ←/→, 6 proyectos reales, 3 por vista desktop, 1 mobile. Hero slider con transición cinemática, parallax scroll y zoom de entrada. Cursor personalizado (dot negro) que agranda en interactivos. Custom cursor y reveal animations en script.js. |
+| 04-06-2026 | **v1.4**: FAQ centrada — quitada imagen lateral y card flotante, layout centrado con card max-width 720px, bg blanco (#fff). FAQ imagen + card centrados juntos, max-width 1100px. Carrusel portfolio con navegación ←/→, 6 proyectos reales, 3 por vista desktop, 1 mobile. Hero slider con transición cinemática, parallax scroll y zoom de entrada. Cursor personalizado (dot negro) que agranda en interactivos. Custom cursor y reveal animations en script.js. Oculto hamburger en desktop. |
 
 ## v1.3 — 2026-06-02
 

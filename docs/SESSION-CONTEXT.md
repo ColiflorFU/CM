@@ -1,6 +1,6 @@
 # CM Website — Session Documentation
 
-**Última actualización:** 2026-06-02
+**Última actualización:** 2026-06-12
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 
@@ -155,16 +155,25 @@ Coli siempre:
 17. **Performance / Core Web Vitals** — Lazy-load ya está en algunos íconos. Auditar: ¿todas las imágenes? ¿preload de fuentes? ¿compresión de Recursos/Miscelaneos/?
 18. **Meta description por página** — Cada HTML debe tener su propia meta description única (no duplicada)
 
+### COMPLETADO (desde última sesión)
+- ✅ `SECCIONES-PROTEGIDAS.md` creado como archivo canónico
+- ✅ Sitemap + robots.txt existentes y funcionales
+- ✅ Fotos reales en portfolio (6 proyectos)
+- ✅ Links reales de Instagram/LinkedIn en footer
+- ✅ Tags v1.3 → v1.8 creados y pusheados
+- ✅ VERSION bump a 1.8
+- ✅ REGISTRO-CAMBIOS.md actualizado hasta v1.8
+
+### NUEVOS PENDIENTES (agregados 2026-06-10)
+23. **Grillas en contacto** — Solucionar problema de grillas en la página de contacto (`contacto.html`)
+24. **Múltiples fotos por proyecto** — Agregar más de 1 foto por proyecto (galería interna en cada `proyecto-*.html`)
+25. **Img fondo menú mobile** — Agregar imagen de fondo al menú mobile overlay
+
 ### PARA PRÓXIMA SESIÓN
-19. Subir fotos reales al portfolio (reemplazar placeholder Proyecto01.png)
+19. ~~Subir fotos reales al portfolio~~ ✅ Hecho
 20. Descomentar sección CTA HABLEMOS y llevarla a `elizabeth.html` y `proyecto-*.html`
 21. Verificar `form.php` en Hostinger (una vez alojado)
-22. Agregar links reales de Instagram/LinkedIn si ya están definidos
-
-### DECISIÓN PENDIENTE — Doc formal de protegidas
-- ¿Crear `SECCIONES-PROTEGIDAS.md` como archivo canónico (recomendado)? Beneficios: enforcement claro, fácil de referenciar en PRs, sobrevive a rotación de sesiones. Costo: un archivo más que mantener.
-- ¿O dejar la tabla en `SESSION-CONTEXT.md` y llamarlo "suficiente"?
-- **Decisión a tomar por Patrick** antes de la siguiente sesión de cambios al código.
+22. ~~Agregar links reales de Instagram/LinkedIn~~ ✅ Hecho
 
 ---
 
