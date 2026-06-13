@@ -2282,7 +2282,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 48px;
+    padding: clamp(48px, 6vh, 80px) clamp(24px, 3vw, 48px);
 }
 
 .banner-cta-panel--contact {
@@ -2295,7 +2295,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 40px 36px 36px;
+    padding: clamp(32px, 3vw, 40px) clamp(24px, 2.5vw, 36px) clamp(28px, 2.5vw, 36px);
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03)),
         rgba(18, 14, 11, 0.46);
@@ -2306,8 +2306,10 @@ section {
     -webkit-backdrop-filter: blur(38px) saturate(130%);
 }
 
-/* Grid lines that match the panel edges */
+/* Grid lines that match the panel edges — proportional como el CTA del home (v1.8) */
 .banner-grid-lines--contact {
+    --contact-gx: clamp(24px, 3vw, 48px); /* matchea .contacto-form-col padding sides */
+    --contact-gy: clamp(48px, 6vh, 80px); /* matchea .contacto-form-col padding top/bottom */
     z-index: 3;
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
@@ -2320,10 +2322,10 @@ section {
         100% 1px,
         100% 1px;
     background-position:
-        48px center,
-        calc(100% - 48px) center,
-        center 80px,
-        center calc(100% - 80px);
+        var(--contact-gx) center,
+        calc(100% - var(--contact-gx)) center,
+        center var(--contact-gy),
+        center calc(100% - var(--contact-gy));
     background-repeat: no-repeat;
 }
 
@@ -4191,19 +4193,6 @@ section {
     .contacto-form-col {
         height: auto;
         min-height: 460px;
-        padding: 48px 24px;
-    }
-
-    .banner-grid-lines--contact {
-        background-position:
-            24px center,
-            calc(100% - 24px) center,
-            center 48px,
-            center calc(100% - 48px);
-    }
-
-    .banner-cta-panel--contact {
-        padding: 32px 24px 28px;
     }
 
     .banner-cta-panel--contact .contacto-form-intro {
