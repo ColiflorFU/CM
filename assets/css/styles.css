@@ -2014,63 +2014,137 @@ section {
    ARCHITECTURAL SECTION â€” Image + Floating Accordion Card
    Inspired by: premium architecture studio layouts
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-.arch-section {
-    position: relative;
-    background: #fff;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    padding: 100px 0;
-}
-
-/* Contenedor centrado — imagen + card lado a lado */
-.arch-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    max-width: 1180px;
+/* FAQ Section — Grid with overlapping card */
+.faq-section {
+    width: min(1200px, calc(100% - 48px));
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 120px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+    align-items: center;
+}
+
+.faq-section__media {
+    min-height: 620px;
+    overflow: hidden;
+}
+
+.faq-section__media img {
     width: 100%;
-    gap: 0;
-}
-
-/* Imagen */
-.arch-image-wrap {
-    flex: 0 1 68%;
-    position: relative;
-    z-index: 1;
-}
-
-.arch-image-wrap img {
+    height: 100%;
+    min-height: 620px;
     display: block;
-    width: 100%;
-    height: clamp(420px, 52vw, 620px);
     object-fit: cover;
 }
 
-/* Card — superpuesta al borde derecho de la imagen */
-.arch-card {
+.faq-section__content {
     position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
     z-index: 2;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
-    padding: 56px 48px 48px;
-    max-width: 420px;
-    width: 38%;
-    min-width: 360px;
-    margin-left: -72px;
-    flex-shrink: 0;
+    margin-left: -80px;
+    padding: 56px 48px;
+    background: #f7f5f1;
+    box-shadow: 0 20px 60px rgb(0 0 0 / 8%);
 }
 
-/* Label */
+.faq-section__eyebrow {
+    margin: 0 0 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+}
 
-/* â”€â”€ Pill genérico (tags de proyecto, etc.) â”€â”€ */
+.faq-section__headline {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #101010;
+    margin: 0 0 32px;
+}
+
+.faq-list details {
+    border-top: 1px solid rgb(0 0 0 / 18%);
+}
+
+.faq-list details:last-child {
+    border-bottom: 1px solid rgb(0 0 0 / 18%);
+}
+
+.faq-list summary {
+    position: relative;
+    padding: 22px 40px 22px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-list summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.faq-list details[open] summary::after {
+    content: "−";
+}
+
+.faq-list p {
+    max-width: 48ch;
+    margin: -4px 0 24px;
+    color: #656565;
+    line-height: 1.6;
+    font-size: 0.92rem;
+}
+
+/* FAQ Mobile — 900px */
+@media (max-width: 900px) {
+    .faq-section {
+        width: min(100% - 32px, 720px);
+        padding: 72px 0;
+        grid-template-columns: 1fr;
+    }
+
+    .faq-section__media,
+    .faq-section__media img {
+        min-height: 420px;
+    }
+
+    .faq-section__content {
+        margin: -48px 16px 0;
+        padding: 40px 28px;
+    }
+}
+
+/* FAQ Mobile — 560px */
+@media (max-width: 560px) {
+    .faq-section {
+        width: 100%;
+        padding: 56px 0;
+    }
+
+    .faq-section__media,
+    .faq-section__media img {
+        min-height: 320px;
+    }
+
+    .faq-section__content {
+        margin: -24px 16px 0;
+        padding: 32px 24px;
+    }
+}
+
+/* Pill genérico (tags de proyecto, etc.) */
 .pill {
     display: inline-block;
     font-size: 0.7rem;
@@ -2082,138 +2156,6 @@ section {
     border-radius: 2px;
 }
 
-/* Headline â€” forzar 2 líneas con max-width */
-.arch-headline {
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(2rem, 3vw, 2.8rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: #101010;
-    max-width: 12ch;
-    margin-bottom: 2.5rem;
-}
-
-/* Accordion */
-.arch-accordion details {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.arch-accordion details:last-of-type {
-    border-bottom: none;
-}
-
-.arch-accordion details summary {
-    display: grid;
-    grid-template-columns: 30px 1fr 20px;
-    gap: 12px;
-    align-items: center;
-    padding: 1rem 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #222;
-    cursor: pointer;
-    -webkit-user-select: none;
-    user-select: none;
-    outline: none;
-    list-style: none;
-}
-
-.arch-accordion details summary::-webkit-details-marker {
-    display: none;
-}
-
-.arch-accordion details summary span {
-    color: #8a8a8a;
-    font-family: "DM Sans", sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-}
-
-.arch-accordion details summary::after {
-    content: "+";
-    justify-self: end;
-    font-size: 1.35rem;
-    font-weight: 300;
-    color: #101010;
-    flex-shrink: 0;
-}
-
-/* Open state: plus to minus */
-.arch-accordion details[open] summary::after {
-    content: "−";
-    font-weight: 300;
-}
-
-.arch-item-body {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    padding: 0;
-    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
-}
-.arch-accordion details[open] .arch-item-body {
-    max-height: 600px;
-    opacity: 1;
-    padding: 0 0 1rem;
-}
-
-.arch-item-body p {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: #555;
-}
-
-/* â”€â”€ Mobile (860px) â”€â”€ */
-@media (max-width: 860px) {
-    .arch-section {
-        min-height: 0;
-        padding: 60px 0 80px;
-    }
-
-    .arch-container {
-        flex-direction: column;
-        padding: 0 24px;
-        gap: 0;
-    }
-
-    .arch-image-wrap {
-        display: block;
-        flex: none;
-        width: 100%;
-    }
-
-    .arch-image-wrap img {
-        height: auto;
-        aspect-ratio: 4 / 3;
-    }
-
-    .arch-card {
-        position: relative;
-        right: auto;
-        top: auto;
-        transform: none;
-        max-width: 100%;
-        width: 100%;
-        min-width: 0;
-        margin-left: 0;
-        margin-top: 0;
-        padding: 40px 24px 48px;
-        margin-top: 0;
-        padding: 40px 24px 48px;
-        flex: none;
-    }
-
-    .arch-headline {
-        max-width: none;
-    }
-
-    .arch-accordion details summary {
-        font-size: 0.92rem;
-        padding: 0.85rem 0;
-    }
-}
-
-/* â”€â”€ Contact Page editorial (Minnaro-style) â”€â”€ */
 .contacto-page {
     background: #f3f3f3;
 }
