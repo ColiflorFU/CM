@@ -44,7 +44,15 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 12-06-2026_
+_Última actualización: 12-07-2026_
+
+## v2.0 — 2026-07-12
+
+MVP listo para producción: encoding UTF-8 limpio en todos los HTML.
+
+| Fecha | Descripción |
+|---|---|
+| 12-07-2026 | **v2.0 — MVP**: Fix encoding mojibake en 8 páginas (`â€"` → `—` em dash, `â"€` → `─` box drawing). Corregidos meta tags (description, OG, Twitter Cards), JSON-LD, alt text, y comments HTML. Todos los 13 HTMLs ahora tienen UTF-8 limpio. |
 
 ## v1.9 — 2026-06-12
 
