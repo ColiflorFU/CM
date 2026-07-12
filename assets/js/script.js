@@ -19,6 +19,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ── Contact Modal ──
+    const contactModal = document.getElementById("contactModal");
+    if (contactModal) {
+        const openBtns = document.querySelectorAll("[data-open-contact], .open-contact-modal");
+        const closeBtns = contactModal.querySelectorAll("[data-close-contact]");
+
+        function openContactModal(e) {
+            if (e) e.preventDefault();
+            contactModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+            contactModal.querySelector("input[name=name], input[name=email]")?.focus();
+            // Close mobile menu if open
+            const mobileOverlay = document.querySelector(".mobile-menu-overlay");
+            if (mobileOverlay && mobileOverlay.getAttribute("aria-hidden") === "false") {
+                mobileOverlay.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("menu-open");
+            }
+        }
+
+        function closeContactModal() {
+            contactModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+        }
+
+        openBtns.forEach(btn => btn.addEventListener("click", openContactModal));
+        closeBtns.forEach(btn => btn.addEventListener("click", closeContactModal));
+
+        contactModal.addEventListener("click", (e) => {
+            if (e.target === contactModal) closeContactModal();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && contactModal.getAttribute("aria-hidden") === "false") {
+                closeContactModal();
+            }
+        });
+
+        // Auto-open if URL hash is #contact
+        if (window.location.hash === "#contact") {
+            setTimeout(openContactModal, 100);
+        }
+    }
+
     // ── Resto del código ──
     const body = document.body;
     const menuToggle = document.querySelector(".menu-toggle");

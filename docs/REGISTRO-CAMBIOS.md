@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 12-07-2026_
 
+## v2.1 — 2026-07-12
+
+Contacto simplificado a modal popup — eliminada página standalone.
+
+| Fecha | Descripción |
+|---|---|
+| 12-07-2026 | **v2.1**: Contacto convertido de página standalone a modal/popup. Formulario limpio con 5 campos (nombre, email, teléfono, tipo proyecto, mensaje). Botones CONTACTO en nav, mobile menu, services, CTA y footer abren modal. Escape/backdrop cierran. Páginas internas (12) redirigen a `index.html#contact`. Eliminada `pages/contacto.html`. Actualizado sitemap. |
+
 ## v2.0 — 2026-07-12
 
 MVP listo para producción: encoding UTF-8 limpio en todos los HTML.

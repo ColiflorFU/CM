@@ -2459,6 +2459,155 @@ section {
     line-height: 1.5;
 }
 
+/* Contact Modal */
+.contact-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.contact-modal-overlay[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.contact-modal {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 2px;
+    padding: clamp(32px, 4vw, 48px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.contact-modal-overlay[aria-hidden="false"] .contact-modal {
+    transform: translateY(0);
+}
+
+.contact-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.contact-modal-close:hover {
+    opacity: 1;
+}
+
+.contact-modal-content .eyebrow {
+    margin-bottom: 12px;
+}
+
+.contact-modal-content h2 {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: var(--ink);
+}
+
+.contact-modal-desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 28px;
+}
+
+.contact-modal .form-field label {
+    color: var(--muted);
+}
+
+.contact-modal .form-field input,
+.contact-modal .form-field textarea,
+.contact-modal .form-field select {
+    color: var(--ink);
+    border-bottom-color: var(--line);
+}
+
+.contact-modal .form-field input:focus,
+.contact-modal .form-field textarea:focus,
+.contact-modal .form-field select:focus {
+    border-bottom-color: var(--ink);
+}
+
+.contact-modal .contacto-submit {
+    margin-top: 8px;
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+}
+
+.contact-modal .contacto-submit:hover {
+    background: #333;
+    color: #fff;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Nav button style for CONTACTO */
+.open-contact-modal {
+    background: none;
+    border: none;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+}
+
+.open-contact-modal:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .contact-modal {
+        max-height: 100vh;
+        height: 100%;
+        border-radius: 0;
+        padding: 24px;
+    }
+
+    .contact-modal-overlay {
+        padding: 0;
+    }
+}
+
 /* Form Submit Button â€” corner brackets (opening outward) */
 .form-submit {
     position: relative;
