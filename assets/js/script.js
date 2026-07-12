@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 /* Move track */
                 track.classList.add('animating');
-                track.style.transform = `translateX(-${index * 50}%)`;
+                track.style.transform = `translateX(-${index * 100}%)`;
 
                 /* Update buttons */
                 btns.forEach(b => b.classList.remove('hero__slider--active'));
