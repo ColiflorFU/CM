@@ -2667,6 +2667,17 @@ body.modal-open {
     margin: 0 0 24px;
 }
 
+/* Homepage FAQ override — avoid legacy FAQ icon rotation */
+.faq-section .faq-list summary::after {
+    content: "+";
+    transform: translateY(-50%);
+}
+
+.faq-section .faq-list details[open] summary::after {
+    content: "−";
+    transform: translateY(-50%);
+}
+
 /* â”€â”€ Project Article â”€â”€ */
 
 .project-article {
