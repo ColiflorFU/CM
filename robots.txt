@@ -1,5 +1,5 @@
 # robots.txt — Contreras Martínez · Arquitectura Integral
-# https://contrerasmartinez.cl/
+# https://ecmaquitectura.cl/
 
 User-agent: *
 Allow: /
@@ -9,4 +9,4 @@ Disallow: /*-backup.html$
 Disallow: /project-template.html
 
 # Sitemap
-Sitemap: https://contrerasmartinez.cl/sitemap.xml
+Sitemap: https://ecmaquitectura.cl/sitemap.xml
