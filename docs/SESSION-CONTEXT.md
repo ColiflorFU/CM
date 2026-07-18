@@ -1,6 +1,6 @@
 # CM Website — Session Documentation
 
-**Última actualización:** 2026-07-17
+**Última actualización:** 2026-07-18
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 **Dominio:** ecmarquitectura.cl
@@ -24,7 +24,7 @@
 | FAQ section | ✅ | v2.3 | CSS Grid, card superpuesta, accordion limpio |
 | Contact modal | ✅ | v2.1 | Popup con 5 campos, reemplaza página standalone |
 | Footer | ✅ | v1.5 | 5 columnas con CTA, redes, dirección |
-| form.php | ✅ | v1.1 | Envía a elizabethyelizabeth@gmail.com via mail() |
+| form.php | ✅ | v1.2 | Envía lead + auto-respuesta via SMTP nativo (ZNet). Ver `FLUJO-CORREO.md` |
 | elizabeth.html | ✅ | v1.0 | Landing page con bio, timeline, specialties |
 | SEO básico | ✅ | v2.0 | OG, Twitter Cards, canonical, JSON-LD LocalBusiness + FAQPage |
 | Dominio canónico | ✅ | v2.3.3 | `ecmarquitectura.cl` en todos los meta tags |
@@ -36,7 +36,7 @@
 | Navbar Desktop | ⚠️ | Media | Funciona pero no verificada contra referencia visual final |
 | Navbar Mobile | ⚠️ | Media | Abre/cierra pero no se parece al mockup |
 | Hosting / Deploy | 🔲 | Alta | Dominio y hosting listos, falta migrar |
-| form.php en hosting | 🔲 | Alta | Verificar que mail() funcione en Hostinger |
+| form.php SMTP (Gmail config) | 🔲 | Alta | Configurar "Send mail as" en Gmail para elizabeth@. Ver `FLUJO-CORREO.md` |
 | SSL / HTTPS | 🔲 | Alta | Configurar certificado tras apuntar dominio |
 
 ---
@@ -71,8 +71,9 @@
 5. ✅ Deploy automático — Git Version Control en ZNet cPanel configurado (branch: main)
 6. ✅ form.php reescrito con encoding UTF-8 limpio (mojibake eliminado)
 7. ✅ Correo `elizabeth@ecmarquitectura.cl` creado en ZNet
-8. 🔲 **form.php SMTP** — configurar SMTP de ZNet en vez de mail() (mail() no funciona en hosting compartido)
-9. **Verificar SEO** — canonical, sitemap, robots.txt accesibles en producción
+8. ✅ **form.php SMTP** — reescrito con SMTP nativo (ZNet), sin dependencias. Ver `FLUJO-CORREO.md`
+9. **Gmail "Send mail as"** — configurar para elizabeth@ecmarquitectura.cl vía ZNet SMTP
+10. **Verificar SEO** — canonical, sitemap, robots.txt accesibles en producción
 
 ### Mejoras post-deploy
 7. **Navbar** — verificación visual final contra referencias
@@ -118,7 +119,8 @@ En `/Referencias/`:
 
 - **Dominio:** ecmarquitectura.cl
 - **Email:** elizabeth@ecmarquitectura.cl
-- **Email form:** elizabethyelizabeth@gmail.com (pendiente migrar)
+- **Email auto:** contacto@ecmarquitectura.cl (buzón de automatización)
+- **Flujo correo:** Ver `FLUJO-CORREO.md`
 - **Teléfono:** +56 9 5127 8937
 - **Dirección:** Paseo Ahumada 341, Of. 504, Santiago Centro, Chile
 
