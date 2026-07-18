@@ -228,21 +228,22 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.textContent = "Enviando...";
 
             try {
-                const res = await fetch("https://formspree.io/f/xdkebogw", {
+                const res = await fetch(form.action, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, message }),
+                    body: new FormData(form),
                 });
+                const rawResponse = await res.text();
+                const data = JSON.parse(rawResponse.replace(/^\uFEFF/, ""));
 
-                if (res.ok) {
-                    feedback.textContent = "Mensaje enviado con éxito. Te contactaremos pronto.";
+                if (res.ok && data.success) {
+                    feedback.textContent = data.message || "Mensaje enviado con éxito. Te contactaremos pronto.";
                     feedback.classList.add("is-success");
                     form.reset();
                 } else {
-                    throw new Error();
+                    throw new Error(data.error || "Error al enviar el formulario.");
                 }
-            } catch {
-                feedback.textContent = "Hubo un error al enviar. Intenta nuevamente o escríbenos directo a elizabeth@contrerasmartinez.cl.";
+            } catch (error) {
+                feedback.textContent = error.message || "Hubo un error al enviar. Intenta nuevamente o escríbenos a elizabeth@ecmarquitectura.cl.";
                 feedback.classList.add("is-error");
             } finally {
                 btn.disabled = false;
