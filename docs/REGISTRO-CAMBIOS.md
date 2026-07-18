@@ -44,7 +44,111 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 12-07-2026_
+_Última actualización: 17-07-2026_
+
+## v2.3.4 — 2026-07-17
+
+FAQ: imagen de referencia actualizada.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.3.4**: Imagen `faq.jpg` en `Recursos/Miscelaneos/` actualizada con versión de mayor resolución. Agregada imagen de referencia `faq.jpg` en `/Referencias/`. Eliminado archivo `FICHA MARITEX.af` (24MB) de Misceláneos. |
+
+## v2.3.3 — 2026-07-17
+
+Dominio y email canónicos actualizados a ecmarquitectura.cl.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.3.3**: Canonical URL y email de contacto actualizados de `contrerasmartinez.cl` a `ecmarquitectura.cl` en todos los meta tags (OG, Twitter Cards, canonical), JSON-LD LocalBusiness, y footer. |
+
+## v2.3.2 — 2026-07-17
+
+FAQ: fix rotación del ícono del accordion.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.3.2**: Corregida rotación del ícono `▾` en el accordion de FAQ — ahora rota correctamente al abrir/cerrar cada item. |
+
+## v2.3.1 — 2026-07-17
+
+FAQ: altura de imagen desktop ajustada.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.3.1**: Altura de imagen desktop en `.faq-section__media` ajustada para coincidir con la altura de la card de contenido. |
+
+## v2.3 — 2026-07-17
+
+FAQ refactorizado con CSS Grid y card superpuesta.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.3**: Refactor completo de la sección FAQ. Layout migrado a CSS Grid con imagen a la izquierda y card blanca superpuesta a la derecha. Accordion limpio con `<details>`/`<summary>`. Separadores entre items eliminados en primer/último. Sección `.faq-section` con fondo `#fff`. |
+
+## v2.2.7 — 2026-07-17
+
+FAQ: card se superpone a la imagen, composición tipo mockup.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2.7**: Card de FAQ ajustada para superponerse a la imagen con `offset` vertical, composición inspirada en mockup de referencia. |
+
+## v2.2.6 — 2026-07-17
+
+FAQ: imagen con flex grow, sin max-width.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2.6**: Imagen de FAQ ajustada con `flex: 1` para llenar el contenedor, eliminado `max-width` que limitaba el tamaño. |
+
+## v2.2.5 — 2026-07-17
+
+FAQ: imagen real reemplaza placeholder.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2.5**: Sección FAQ ahora usa `faq.jpg` real en vez de imagen placeholder negra. |
+
+## v2.2.4 — 2026-07-17
+
+Hero slider: imágenes nuevas y textura adaptada.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2.4**: Agregadas imágenes `slider1.jpeg` y `slider2.jpeg` al hero. Imagen `hero.jpeg` actualizada a mayor resolución (2.5MB). Textura del hero con `background-size: cover` para adaptarse al contenedor. |
+
+## v2.2.3 — 2026-07-17
+
+Hero slider: copy final de los slides.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2.3**: Texto final de los slides del hero — Slide 1: servicios de arquitectura y remodelación. Slide 2: arquitectura residencial y diseño interior. |
+
+## v2.2.2 — 2026-07-17
+
+Hero slider: textos actualizados.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2.2**: Textos del hero slider ajustados (mantención + residencial). |
+
+## v2.2.1 — 2026-07-17
+
+Hero slider: fix translateX.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2.1**: Fix en `.hero__track` — `translateX` cambiado de `50%` a `100%` para que cada slide ocupe el 100% del viewport y se muestre completo. |
+
+## v2.2 — 2026-07-17
+
+Hero slider: imágenes reales.
+
+| Fecha | Descripción |
+|---|---|
+| 17-07-2026 | **v2.2**: Hero slider ahora usa `slider1.jpeg` y `slider2.jpeg` en vez de placeholders. |
 
 ## v2.1 — 2026-07-12
 

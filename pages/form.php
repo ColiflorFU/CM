@@ -21,11 +21,11 @@ header('Content-Type: application/json; charset=utf-8');
 // â”€â”€â”€ CONFIGURACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 // A dÃ³nde llegan los leads
-define('TO_EMAIL', 'elizabeth@ecmaquitectura.cl');
+define('TO_EMAIL', 'elizabeth@ecmarquitectura.cl');
 define('TO_NAME', 'Elizabeth Contreras');
 
 // De quiÃ©n parece venir el mail (usÃ¡ un dominio real cuando estÃ© configurado)
-define('FROM_EMAIL', 'noreply@ecmaquitectura.cl');
+define('FROM_EMAIL', 'noreply@ecmarquitectura.cl');
 define('FROM_NAME', 'Contreras MartÃ­nez Â· Web');
 
 // â”€â”€â”€ SMTP (opcional) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -243,7 +243,7 @@ p { font-size: 15px; color: #333; line-height: 1.6; }
 <div class="body">
 <p>Hola <strong>{$safe['name']}</strong>,</p>
 <p>Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversaciÃ³n.</p>
-<p>Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a <a href="mailto:elizabeth@ecmaquitectura.cl">elizabeth@ecmaquitectura.cl</a> o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.</p>
+<p>Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a <a href="mailto:elizabeth@ecmarquitectura.cl">elizabeth@ecmarquitectura.cl</a> o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.</p>
 <div class="signature">
 <strong>Elizabeth Contreras</strong><br>
 Arquitecta â€” Contreras MartÃ­nez Â· Arquitectura Integral<br>
@@ -260,7 +260,7 @@ $body_auto_text = "Hola {$safe['name']},
 
 Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversaciÃ³n.
 
-Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a elizabeth@ecmaquitectura.cl o llamarnos al +56 9 5127 8937.
+Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a elizabeth@ecmarquitectura.cl o llamarnos al +56 9 5127 8937.
 
 â€”
 Elizabeth Contreras
@@ -284,7 +284,7 @@ if ($sent) {
     echo json_encode(['success' => true, 'message' => 'Mensaje enviado, te responderemos pronto.']);
 } else {
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Error al enviar el mensaje. Intenta nuevamente o escribinos directamente a elizabeth@ecmaquitectura.cl.']);
+    echo json_encode(['success' => false, 'error' => 'Error al enviar el mensaje. Intenta nuevamente o escribinos directamente a elizabeth@ecmarquitectura.cl.']);
 }
 
 // â”€â”€â”€ FUNCIONES DE ENVÃO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
