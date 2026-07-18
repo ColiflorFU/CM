@@ -25,6 +25,7 @@
 | Contact modal | ✅ | v2.1 | Popup con 5 campos, reemplaza página standalone |
 | Footer | ✅ | v1.5 | 5 columnas con CTA, redes, dirección |
 | form.php | ✅ | v1.2 | Envía lead + auto-respuesta via SMTP nativo (ZNet). Ver `FLUJO-CORREO.md` |
+| Flujo email completo | ✅ | — | `contacto@` → acknowledge + lead → Elizabeth en Gmail → responde como `elizabeth@`. Ver `FLUJO-CORREO.md` |
 | elizabeth.html | ✅ | v1.0 | Landing page con bio, timeline, specialties |
 | SEO básico | ✅ | v2.0 | OG, Twitter Cards, canonical, JSON-LD LocalBusiness + FAQPage |
 | Dominio canónico | ✅ | v2.3.3 | `ecmarquitectura.cl` en todos los meta tags |
@@ -64,6 +65,9 @@
 ## PENDIENTE
 
 ### Deploy a producción (17-07-2026)
+
+**Workflow exacto:** Work local → commit/push `main` → ZNet cPanel Git Version Control → Deploy automático.
+
 1. ✅ Dominio `ecmarquitectura.cl` — DNS configurados por ZNet
 2. ✅ Archivos subidos vía File Manager a `public_html`
 3. ✅ index.php placeholder eliminado
@@ -72,14 +76,17 @@
 6. ✅ form.php reescrito con encoding UTF-8 limpio (mojibake eliminado)
 7. ✅ Correo `elizabeth@ecmarquitectura.cl` creado en ZNet
 8. ✅ **form.php SMTP** — reescrito con SMTP nativo (ZNet), sin dependencias. Ver `FLUJO-CORREO.md`
-9. **Gmail "Send mail as"** — configurar para elizabeth@ecmarquitectura.cl vía ZNet SMTP
-10. **Verificar SEO** — canonical, sitemap, robots.txt accesibles en producción
+9. **Gmail "Send mail as"** — configurar para `elizabeth@ecmarquitectura.cl` vía ZNet SMTP (`mail.ecmarquitectura.cl:587/TLS`). Marcar como default. Ver `FLUJO-CORREO.md`
+10. **Gmail filtro** — label "Lead Web" para emails de `contacto@ecmarquitectura.cl`, archivar del inbox principal
+11. **Verificar SEO** — canonical, sitemap, robots.txt accesibles en producción
 
 ### Mejoras post-deploy
 7. **Navbar** — verificación visual final contra referencias
-8. **Múltiples fotos por proyecto** — galería interna
-9. **Img fondo menú mobile** — agregar imagen de fondo
-10. **Performance** — lazy-load completo, compresión de imágenes
+8. **Templates email branding** — plantillas HTML para auto-respuesta y lead interno con identidad visual CM
+9. **Múltiples fotos por proyecto** — galería interna
+10. **Img fondo menú mobile** — agregar imagen de fondo
+11. **Performance** — lazy-load completo, compresión de imágenes
+12. **Feedback/clientes** — sección de testimonios o reviews (pendiente definir enfoque)
 
 ### Completado (checklist)
 - ✅ Hero slider con imágenes reales
@@ -119,8 +126,8 @@ En `/Referencias/`:
 
 - **Dominio:** ecmarquitectura.cl
 - **Email:** elizabeth@ecmarquitectura.cl
-- **Email auto:** contacto@ecmarquitectura.cl (buzón de automatización)
-- **Flujo correo:** Ver `FLUJO-CORREO.md`
+- **Email auto:** contacto@ecmarquitectura.cl (buzón de automatización: acknowledge + lead routing)
+- **Flujo correo completo:** Ver `FLUJO-CORREO.md`
 - **Teléfono:** +56 9 5127 8937
 - **Dirección:** Paseo Ahumada 341, Of. 504, Santiago Centro, Chile
 

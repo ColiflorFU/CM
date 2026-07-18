@@ -54,15 +54,21 @@ Elizabeth aplica un filtro/label en Gmail para identificar leads del formulario 
 
 ### Gmail: "Send mail as" (elizabeth@ via ZNet SMTP)
 
-Elizabeth configura en Gmail → Configuración → Cuentas → "Enviar correo como":
+Elizabeth configura desde **Gmail desktop** (no celular):
 
-1. Nombre: `Elizabeth Contreras`
-2. Email: `elizabeth@ecmarquitectura.cl`
-3. SMTP Server: datos de ZNet (puerto 587, TLS)
-4. Credenciales: mismas de la cuenta ZNet `elizabeth@ecmarquitectura.cl`
-5. Verificar vía email de confirmación
+1. **Settings → Accounts and Import → Send mail as → Add another email address**
+2. Nombre: `Elizabeth Contreras`
+3. Email: `elizabeth@ecmarquitectura.cl`
+4. SMTP Server: `mail.ecmarquitectura.cl`
+5. Puerto: `587`
+6. Encryption: **TLS**
+7. Username: `elizabeth@ecmarquitectura.cl`
+8. Password: credenciales ZNet de la cuenta `elizabeth@ecmarquitectura.cl`
+9. Completar verificación enviando email de confirmación al buzón corporativo
+10. **Marcar `elizabeth@ecmarquitectura.cl` como dirección por defecto**
+11. **Seleccionar "always reply from default address"** en la sección "When replying to a message"
 
-Esto permite que Elizabeth responda desde Gmail y el "From" sea `elizabeth@ecmarquitectura.cl`.
+**Resultado:** Elizabeth responde desde Gmail y el remitente visible es `elizabeth@ecmarquitectura.cl` con identidad corporativa. No se expone nunca la dirección personal de Gmail.
 
 ### Gmail: Filtro de leads web
 
@@ -86,6 +92,8 @@ El texto actual dice:
 | `.gitignore` | Excluye `smtp-config.php`, `.env`, `.env.local` |
 | `smtp-config.example.php` | Template sin credenciales, seguro para repo |
 | No secretos en docs | Ningún password, token, o dirección personal aparece en documentación |
+
+**⚠️ Riesgo conocido:** Una contraseña SMTP anterior aparece en el historial de Git (commit anterior, ya eliminada del código). La contraseña fue rotada en ZNet. Si el repo es público, asumir que esa contraseña está comprometida aunque ya no sirva.
 
 **Ruta SSH/ZNet:**
 ```
