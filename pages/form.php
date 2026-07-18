@@ -1,69 +1,49 @@
 ﻿<?php
 /**
- * Contact Form Handler â€” Contreras MartÃ­nez
- * 
- * EnvÃ­a leads calificados a la arquitecta y auto-respuesta al cliente.
- * Soporta PHPMailer (vÃ­a Composer) con fallback a mail().
- * 
- * Modo de uso:
- *   1. En Hostinger: correr "composer install" para activar PHPMailer
- *   2. Sin Composer: funciona con mail() automÃ¡ticamente
- * 
- * ConfiguraciÃ³n SMTP (opcional, para delivery garantizado):
- *   Si querÃ©s usar Gmail SMTP en vez del mail() de Hostinger:
- *   1. ActivÃ¡ 2FA en tu Gmail
- *   2. GenerÃ¡ una "App Password" en https://myaccount.google.com/apppasswords
- *   3. ConfigurÃ¡ las constantes SMTP_* abajo
+ * Contact Form Handler — Contreras Martinez
+ *
+ * Envía leads calificados a la arquitecta y auto-respuesta al cliente.
+ * Soporta PHPMailer (vía Composer) con fallback a mail().
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// â”€â”€â”€ CONFIGURACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- CONFIGURACIÓN ---
 
-// A dÃ³nde llegan los leads
-define('TO_EMAIL', 'elizabeth@ecmarquitectura.cl');
+// A dónde llegan los leads
+// TODO: cambiar a elizabeth@ecmarquitectura.cl cuando el correo esté creado en ZNet
+define('TO_EMAIL', 'elizabethyelizabeth@gmail.com');
 define('TO_NAME', 'Elizabeth Contreras');
 
-// De quiÃ©n parece venir el mail (usÃ¡ un dominio real cuando estÃ© configurado)
+// De quién parece venir el mail
 define('FROM_EMAIL', 'noreply@ecmarquitectura.cl');
-define('FROM_NAME', 'Contreras MartÃ­nez Â· Web');
+define('FROM_NAME', 'Contreras Martinez · Web');
 
-// â”€â”€â”€ SMTP (opcional) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// Si completÃ¡s estos datos, PHPMailer los usa en vez de mail()
-// DejÃ¡ vacÃ­o para usar mail() automÃ¡ticamente.
+// --- SMTP (opcional) ---
+define('SMTP_HOST',     '');
+define('SMTP_PORT',     587);
+define('SMTP_USER',     '');
+define('SMTP_PASS',     '');
+define('SMTP_ENCRYPT',  'tls');
 
-define('SMTP_HOST',     '');     // ej: 'smtp.gmail.com'
-define('SMTP_PORT',     587);    // 587 (TLS) o 465 (SSL)
-define('SMTP_USER',     '');     // tu email completo
-define('SMTP_PASS',     '');     // App Password de Gmail
-define('SMTP_ENCRYPT',  'tls');  // 'tls' o 'ssl'
+// --- RATE LIMITING ---
+define('RATE_LIMIT_WINDOW', 300);
+define('RATE_LIMIT_MAX', 3);
 
-// â”€â”€â”€ RATE LIMITING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// Previene que un mismo IP envÃ­e muchos formularios seguidos.
-
-define('RATE_LIMIT_WINDOW', 300);    // ventana en segundos (5 min)
-define('RATE_LIMIT_MAX', 3);         // mÃ¡x de submits por ventana
-
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-
-// Solo POST
+// --- Solo POST ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['success' => false, 'error' => 'MÃ©todo no permitido.']);
+    echo json_encode(['success' => false, 'error' => 'Método no permitido.']);
     exit;
 }
 
-// â”€â”€â”€ HONEYPOT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// Campo oculto â€” si tiene contenido, es un bot.
-
+// --- HONEYPOT ---
 if (!empty($_POST['website'])) {
-    // Respondemos Ã©xito para no alertar al bot
     echo json_encode(['success' => true, 'message' => 'Mensaje enviado, te responderemos pronto.']);
     exit;
 }
 
-// â”€â”€â”€ RATE LIMITING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-
+// --- RATE LIMITING ---
 $client_ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $rate_file = sys_get_temp_dir() . '/cm_rate_' . md5($client_ip);
 
@@ -75,7 +55,7 @@ if (file_exists($rate_file)) {
     if (time() - $window_start < RATE_LIMIT_WINDOW) {
         if ($count >= RATE_LIMIT_MAX) {
             http_response_code(429);
-            echo json_encode(['success' => false, 'error' => 'Enviaste varios mensajes muy seguido. EsperÃ¡ unos minutos e intentÃ¡ de nuevo.']);
+            echo json_encode(['success' => false, 'error' => 'Enviaste varios mensajes muy seguido. Esperá unos minutos e intentá de nuevo.']);
             exit;
         }
         $data['count'] = $count + 1;
@@ -88,15 +68,14 @@ if (file_exists($rate_file)) {
 
 file_put_contents($rate_file, json_encode($data), LOCK_EX);
 
-// â”€â”€â”€ CAPTURA Y VALIDACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- CAPTURA Y VALIDACIÓN ---
 
 $fields = [
-    'name'         => ['label' => 'Nombre',          'required' => true,  'max' => 100],
-    'email'        => ['label' => 'Correo electrÃ³nico','required' => true, 'max' => 255],
-    'phone'        => ['label' => 'TelÃ©fono',        'required' => false, 'max' => 30],
-    'city'         => ['label' => 'Ciudad',          'required' => false, 'max' => 100],
-    'project_type' => ['label' => 'Tipo de proyecto','required' => false, 'max' => 50],
-    'message'      => ['label' => 'Mensaje',         'required' => true,  'max' => 5000],
+    'name'         => ['label' => 'Nombre',           'required' => true,  'max' => 100],
+    'email'        => ['label' => 'Correo electrónico','required' => true,  'max' => 255],
+    'phone'        => ['label' => 'Teléfono',         'required' => false, 'max' => 30],
+    'project_type' => ['label' => 'Tipo de proyecto', 'required' => false, 'max' => 50],
+    'message'      => ['label' => 'Mensaje',          'required' => true,  'max' => 5000],
 ];
 
 $input = [];
@@ -111,21 +90,21 @@ foreach ($fields as $key => $cfg) {
     }
 
     if ($value !== '' && mb_strlen($value) > $cfg['max']) {
-        $errors[] = "{$cfg['label']} es demasiado largo (mÃ¡x {$cfg['max']} caracteres).";
+        $errors[] = "{$cfg['label']} es demasiado largo (máx {$cfg['max']} caracteres).";
         continue;
     }
 
     $input[$key] = $value;
 }
 
-// ValidaciÃ³n especÃ­fica de email
-if ($input['email'] !== '' && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-    $errors[] = 'El correo electrÃ³nico no tiene un formato vÃ¡lido.';
+// Validación de email
+if (!empty($input['email']) && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
+    $errors[] = 'El correo electrónico no tiene un formato válido.';
 }
 
-// Validar telÃ©fono si se ingresÃ³ (solo dÃ­gitos, +, -, espacios)
-if ($input['phone'] !== '' && !preg_match('/^[0-9\s\+\-\(\)]{7,20}$/', $input['phone'])) {
-    $errors[] = 'El telÃ©fono tiene un formato incorrecto.';
+// Validar teléfono
+if (!empty($input['phone']) && !preg_match('/^[0-9\s\+\-\(\)]{7,20}$/', $input['phone'])) {
+    $errors[] = 'El teléfono tiene un formato incorrecto.';
 }
 
 if (!empty($errors)) {
@@ -134,7 +113,7 @@ if (!empty($errors)) {
     exit;
 }
 
-// â”€â”€â”€ SANITIZACIÃ“N PARA OUTPUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- SANITIZACIÓN ---
 
 $safe = [];
 foreach ($input as $key => $value) {
@@ -142,31 +121,24 @@ foreach ($input as $key => $value) {
 }
 
 $safe_email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
-if (!filter_var($safe_email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(422);
-    echo json_encode(['success' => false, 'error' => 'El correo electrÃ³nico no es vÃ¡lido.']);
-    exit;
-}
 
-// â”€â”€â”€ CONSTRUIR EMAILS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- CONSTRUIR EMAILS ---
 
 $project_type_labels = [
-    ''              => 'Sin especificar',
-    'residencial'   => 'Residencial',
-    'comercial'     => 'Comercial',
-    'regularizacion'=> 'RegularizaciÃ³n',
-    'otro'          => 'Otro',
+    ''               => 'Sin especificar',
+    'residencial'    => 'Residencial',
+    'comercial'      => 'Comercial',
+    'regularizacion' => 'Regularización',
+    'otro'           => 'Otro',
 ];
 
 $project_label = $project_type_labels[$input['project_type']] ?? htmlspecialchars($input['project_type']);
-
 $lead_date = date('d/m/Y H:i');
-$lead_phone = $input['phone'] ?: 'â€”';
-$lead_city  = $input['city'] ?: 'â€”';
+$lead_phone = $input['phone'] ?: '—';
 
-// â”€â”€ Email para la arquitecta (HTML) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- Email para la arquitecta (HTML) ---
 
-$subject_lead = "ðŸŸ¢ Nuevo lead â€” {$safe['name']} â€” {$project_label}";
+$subject_lead = "Nuevo lead — {$safe['name']} — {$project_label}";
 
 $body_lead_html = <<<HTML
 <!DOCTYPE html>
@@ -188,40 +160,26 @@ hr { border: none; border-top: 1px solid #eee; margin: 20px 0; }
 </style></head>
 <body>
 <div class="container">
-<div class="header"><h1>ðŸŸ¢ Nuevo Lead</h1><p>{$lead_date}</p></div>
+<div class="header"><h1>Nuevo Lead</h1><p>{$lead_date}</p></div>
 <div class="body">
 <div class="field"><div class="field-label">Nombre</div><div class="field-value">{$safe['name']}</div></div>
 <div class="field"><div class="field-label">Correo</div><div class="field-value"><a href="mailto:{$safe_email}">{$safe_email}</a></div></div>
-<div class="field"><div class="field-label">TelÃ©fono</div><div class="field-value">{$lead_phone}</div></div>
-<div class="field"><div class="field-label">Ciudad</div><div class="field-value">{$lead_city}</div></div>
+<div class="field"><div class="field-label">Teléfono</div><div class="field-value">{$lead_phone}</div></div>
 <div class="field"><div class="field-label">Tipo de proyecto</div><div class="field-value"><span class="tag">{$project_label}</span></div></div>
 <hr>
 <div class="field"><div class="field-label">Mensaje</div><div class="field-value" style="white-space:pre-wrap;">{$safe['message']}</div></div>
 </div>
-<div class="footer">Contreras MartÃ­nez Â· Arquitectura Integral</div>
+<div class="footer">Contreras Martinez · Arquitectura Integral</div>
 </div>
 </body>
 </html>
 HTML;
 
-$body_lead_text = "ðŸŸ¢ NUEVO LEAD
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-Fecha: {$lead_date}
+$body_lead_text = "NUEVO LEAD\nFecha: {$lead_date}\n\nNombre: {$safe['name']}\nEmail: {$safe_email}\nTeléfono: {$lead_phone}\nTipo de proyecto: {$project_label}\n\nMensaje:\n{$input['message']}\n\nContreras Martinez · Arquitectura Integral";
 
-Nombre: {$safe['name']}
-Email: {$safe_email}
-TelÃ©fono: {$lead_phone}
-Ciudad: {$lead_city}
-Tipo de proyecto: {$project_label}
+// --- Auto-respuesta para el cliente ---
 
-Mensaje:
-{$input['message']}
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-Contreras MartÃ­nez Â· Arquitectura Integral";
-
-// â”€â”€ Auto-respuesta para el cliente â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-
-$subject_auto = "Recibimos tu mensaje â€” Contreras MartÃ­nez";
+$subject_auto = "Recibimos tu mensaje — Contreras Martinez";
 
 $body_auto_html = <<<HTML
 <!DOCTYPE html>
@@ -242,34 +200,24 @@ p { font-size: 15px; color: #333; line-height: 1.6; }
 <div class="header"><h1>Recibimos tu mensaje</h1></div>
 <div class="body">
 <p>Hola <strong>{$safe['name']}</strong>,</p>
-<p>Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversaciÃ³n.</p>
-<p>Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a <a href="mailto:elizabeth@ecmarquitectura.cl">elizabeth@ecmarquitectura.cl</a> o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.</p>
+<p>Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversación.</p>
+<p>Mientras tanto, si necesitás algo urgente, no dudes en escribirnos directamente a <a href="mailto:elizabeth@ecmarquitectura.cl">elizabeth@ecmarquitectura.cl</a> o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.</p>
 <div class="signature">
 <strong>Elizabeth Contreras</strong><br>
-Arquitecta â€” Contreras MartÃ­nez Â· Arquitectura Integral<br>
+Arquitecta — Contreras Martinez · Arquitectura Integral<br>
 Paseo Ahumada 341, Of. 504, Santiago Centro
 </div>
 </div>
-<div class="footer">Este mensaje fue generado automÃ¡ticamente desde nuestro sitio web.</div>
+<div class="footer">Este mensaje fue generado automáticamente desde nuestro sitio web.</div>
 </div>
 </body>
 </html>
 HTML;
 
-$body_auto_text = "Hola {$safe['name']},
+$body_auto_text = "Hola {$safe['name']},\n\nGracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversación.\n\nMientras tanto, si necesitás algo urgente, escribinos a elizabeth@ecmarquitectura.cl o llamanos al +56 9 5127 8937.\n\nElizabeth Contreras\nArquitecta — Contreras Martinez · Arquitectura Integral\nPaseo Ahumada 341, Of. 504, Santiago Centro";
 
-Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversaciÃ³n.
+// --- ENVÍO ---
 
-Mientras tanto, si necesitÃ¡s algo urgente, no dudes en escribirnos directamente a elizabeth@ecmarquitectura.cl o llamarnos al +56 9 5127 8937.
-
-â€”
-Elizabeth Contreras
-Arquitecta â€” Contreras MartÃ­nez Â· Arquitectura Integral
-Paseo Ahumada 341, Of. 504, Santiago Centro";
-
-// â”€â”€â”€ ENVÃO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-
-// Intentar con PHPMailer si estÃ¡ disponible
 $phpmailer_available = file_exists(__DIR__ . '/../vendor/autoload.php');
 
 if ($phpmailer_available && SMTP_HOST !== '') {
@@ -284,19 +232,15 @@ if ($sent) {
     echo json_encode(['success' => true, 'message' => 'Mensaje enviado, te responderemos pronto.']);
 } else {
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Error al enviar el mensaje. Intenta nuevamente o escribinos directamente a elizabeth@ecmarquitectura.cl.']);
+    echo json_encode(['success' => false, 'error' => 'Error al enviar el mensaje. Intenta nuevamente o escribinos a elizabeth@ecmarquitectura.cl.']);
 }
 
-// â”€â”€â”€ FUNCIONES DE ENVÃO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- FUNCIONES DE ENVÍO ---
 
-/**
- * Enviar con PHPMailer + SMTP
- */
 function sendWithPHPMailer(string $client_email, string $client_name): bool
 {
     global $subject_lead, $body_lead_html, $body_lead_text,
-           $subject_auto, $body_auto_html, $body_auto_text,
-           $input;
+           $subject_auto, $body_auto_html, $body_auto_text;
 
     require __DIR__ . '/../vendor/autoload.php';
 
@@ -306,7 +250,6 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
     $mail = new PHPMailer(true);
 
     try {
-        // â”€â”€ Config SMTP â”€â”€
         $mail->isSMTP();
         $mail->Host       = SMTP_HOST;
         $mail->SMTPAuth   = true;
@@ -317,7 +260,6 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
         $mail->CharSet    = PHPMailer::CHARSET_UTF8;
         $mail->XMailer    = 'CM Website';
 
-        // â”€â”€ Email 1: lead â†’ arquitecta â”€â”€
         $mail->clearAddresses();
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
         $mail->addAddress(TO_EMAIL, TO_NAME);
@@ -328,7 +270,6 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
         $mail->AltBody = $body_lead_text;
         $mail->send();
 
-        // â”€â”€ Email 2: auto-respuesta â†’ cliente â”€â”€
         $mail->clearAddresses();
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
         $mail->addAddress($client_email, $client_name);
@@ -342,14 +283,10 @@ function sendWithPHPMailer(string $client_email, string $client_name): bool
 
     } catch (Exception $e) {
         error_log('PHPMailer error: ' . $e->getMessage());
-        // Si falla PHPMailer, intentar con mail() como respaldo
         return sendWithMail($client_email, $client_name);
     }
 }
 
-/**
- * Enviar con PHPMailer usando mail() (sin SMTP)
- */
 function sendWithPHPMailerMail(string $client_email, string $client_name): bool
 {
     global $subject_lead, $body_lead_html, $body_lead_text,
@@ -367,7 +304,6 @@ function sendWithPHPMailerMail(string $client_email, string $client_name): bool
         $mail->CharSet = PHPMailer::CHARSET_UTF8;
         $mail->XMailer = 'CM Website';
 
-        // Email 1: lead
         $mail->clearAddresses();
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
         $mail->addAddress(TO_EMAIL, TO_NAME);
@@ -378,7 +314,6 @@ function sendWithPHPMailerMail(string $client_email, string $client_name): bool
         $mail->AltBody = $body_lead_text;
         $mail->send();
 
-        // Email 2: auto-respuesta
         $mail->clearAddresses();
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
         $mail->addAddress($client_email, $client_name);
@@ -396,9 +331,6 @@ function sendWithPHPMailerMail(string $client_email, string $client_name): bool
     }
 }
 
-/**
- * Enviar con mail() â€” respaldo sin PHPMailer
- */
 function sendWithMail(string $client_email, string $client_name): bool
 {
     global $subject_lead, $body_lead_html, $body_lead_text,
@@ -406,8 +338,7 @@ function sendWithMail(string $client_email, string $client_name): bool
 
     $separator = md5(uniqid((string) time(), true));
 
-    // â”€â”€ Email 1: lead â†’ arquitecta â”€â”€
-
+    // Email 1: lead -> arquitecta
     $headers_lead  = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
     $headers_lead .= "Reply-To: {$client_email}\r\n";
     $headers_lead .= "MIME-Version: 1.0\r\n";
@@ -423,8 +354,7 @@ function sendWithMail(string $client_email, string $client_name): bool
 
     $sent1 = mail(TO_EMAIL, $subject_lead, $body_lead, $headers_lead);
 
-    // â”€â”€ Email 2: auto-respuesta â†’ cliente â”€â”€
-
+    // Email 2: auto-respuesta -> cliente
     $separator2 = md5(uniqid((string) time(), true));
 
     $headers_auto  = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
@@ -443,4 +373,3 @@ function sendWithMail(string $client_email, string $client_name): bool
 
     return $sent1 && $sent2;
 }
-
