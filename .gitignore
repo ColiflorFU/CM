@@ -9,6 +9,7 @@ vendor/
 # Sensible (no subir a GitHub si configurás SMTP)
 .env
 .env.local
+smtp-config.php
 
 # Imágenes originales de la clienta (muy pesadas para git)
 _backups/Imagenes-Proyectos/

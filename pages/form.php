@@ -8,24 +8,50 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
-// --- CONFIGURACION ---
+// --- SMTP CONFIG (loaded from outside document root) ---
 
-define('TO_EMAIL', 'elizabeth@ecmarquitectura.cl');
-define('TO_NAME', 'Elizabeth Contreras');
-define('FROM_EMAIL', 'elizabeth@ecmarquitectura.cl');
-define('FROM_NAME', 'Contreras Martinez · Web');
+$smtp_config_path = dirname(__DIR__, 2) . '/smtp-config.php';
 
-// SMTP ZNet
-define('SMTP_HOST',    'mail.ecmarquitectura.cl');
-define('SMTP_PORT',    587);
-define('SMTP_USER',    'elizabeth@ecmarquitectura.cl');
-define('SMTP_PASS',    'Ab0ecd501');
-define('SMTP_ENCRYPT', 'tls');
-define('SMTP_TIMEOUT', 10);
+if (!file_exists($smtp_config_path)) {
+    error_log('CM contact form: smtp-config.php not found at ' . $smtp_config_path);
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Error interno. Intenta de nuevo o escribinos a contacto@ecmarquitectura.cl.']);
+    exit;
+}
 
-// Rate limiting
+$smtp_cfg = require $smtp_config_path;
+
+if (!is_array($smtp_cfg)
+    || empty($smtp_cfg['host'])
+    || empty($smtp_cfg['port'])
+    || empty($smtp_cfg['user'])
+    || empty($smtp_cfg['pass'])
+    || empty($smtp_cfg['from_email'])
+    || empty($smtp_cfg['from_name'])
+    || empty($smtp_cfg['to_email'])
+    || empty($smtp_cfg['to_name'])
+) {
+    error_log('CM contact form: smtp-config.php is missing required keys');
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Error interno. Intenta de nuevo o escribinos a contacto@ecmarquitectura.cl.']);
+    exit;
+}
+
+// --- Rate limiting
 define('RATE_LIMIT_WINDOW', 300);
 define('RATE_LIMIT_MAX', 3);
+
+// --- SMTP constants from config ---
+define('SMTP_HOST',    $smtp_cfg['host']);
+define('SMTP_PORT',    $smtp_cfg['port']);
+define('SMTP_USER',    $smtp_cfg['user']);
+define('SMTP_PASS',    $smtp_cfg['pass']);
+define('SMTP_ENCRYPT', $smtp_cfg['encrypt']);
+define('SMTP_TIMEOUT', 10);
+define('FROM_EMAIL',   $smtp_cfg['from_email']);
+define('FROM_NAME',    $smtp_cfg['from_name']);
+define('TO_EMAIL',     $smtp_cfg['to_email']);
+define('TO_NAME',      $smtp_cfg['to_name']);
 
 // --- Solo POST ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
