@@ -161,6 +161,7 @@ $auto_html .= "</div></body></html>";
 // --- SMTP nativo ---
 
 function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
+    global $boundary;
     $host = SMTP_HOST;
     $port = SMTP_PORT;
     $user = SMTP_USER;
@@ -173,6 +174,7 @@ function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
         error_log("SMTP connect failed: $errstr ($errno)");
         return false;
     }
+    stream_set_timeout($fp, 15);
 
     $response = fgets($fp, 512);
 
@@ -210,15 +212,15 @@ function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
 
     // FROM
     fputs($fp, "MAIL FROM:<" . FROM_EMAIL . ">\r\n");
-    fgets($fp, 512);
+    $resp = fgets($fp, 512);
 
     // TO
     fputs($fp, "RCPT TO:<$to>\r\n");
-    fgets($fp, 512);
+    $resp = fgets($fp, 512);
 
     // DATA
     fputs($fp, "DATA\r\n");
-    fgets($fp, 512);
+    $resp = fgets($fp, 512);
 
     $headers = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
     $headers .= "Reply-To: $to\r\n";
@@ -237,7 +239,7 @@ function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
     $body .= "--{$boundary}--\r\n.\r\n";
 
     fputs($fp, $headers . $body);
-    fgets($fp, 512);
+    $resp = fgets($fp, 512);
 
     fputs($fp, "QUIT\r\n");
     fgets($fp, 512);
