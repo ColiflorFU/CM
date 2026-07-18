@@ -63,13 +63,16 @@
 
 ## PENDIENTE
 
-### Deploy a producción (NUEVO — 17-07-2026)
-1. **Apuntar dominio** `ecmarquitectura.cl` al hosting (DNS A record)
-2. **Subir archivos** del repo al hosting (FTP o Git deploy)
-3. **Verificar form.php** — mail() funciona en Hostinger?
-4. **SSL/HTTPS** — certificado activo tras propagación DNS
-5. **Verificar SEO** — canonical, sitemap, robots.txt accesibles
-6. **Email** — configurar elizabeth@ecmarquitectura.cl
+### Deploy a producción (17-07-2026)
+1. ✅ Dominio `ecmarquitectura.cl` — DNS configurados por ZNet
+2. ✅ Archivos subidos vía File Manager a `public_html`
+3. ✅ index.php placeholder eliminado
+4. ✅ SSL/HTTPS activo automáticamente
+5. ✅ Deploy automático — Git Version Control en ZNet cPanel configurado (branch: main)
+6. ✅ form.php reescrito con encoding UTF-8 limpio (mojibake eliminado)
+7. ✅ Correo `elizabeth@ecmarquitectura.cl` creado en ZNet
+8. 🔲 **form.php SMTP** — configurar SMTP de ZNet en vez de mail() (mail() no funciona en hosting compartido)
+9. **Verificar SEO** — canonical, sitemap, robots.txt accesibles en producción
 
 ### Mejoras post-deploy
 7. **Navbar** — verificación visual final contra referencias
@@ -124,4 +127,4 @@ En `/Referencias/`:
 ## Credenciales
 
 - **GitHub:** https://github.com/ColiflorFU/CM
-- **Hostinger:** (pendiente verificar acceso)
+- **ZNet Panel:** https://cp.znet-host.com (credenciales en keychain, NO en repo)

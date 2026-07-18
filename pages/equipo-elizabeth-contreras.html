@@ -291,8 +291,12 @@
                 Podemos revisar el estado actual de tu propiedad, el alcance del encargo y los pasos necesarios para
                 proyectar, construir o regularizar.
             </p>
-            <a href="../index.html#contact" class="btn btn-outline-accent btn-xl font-montserrat fw-light">
-                INICIAR CONTACTO &rarr;
+            <a href="#contact" class="cta-btn" data-open-contact>
+                <span class="cta-bracket-tl"></span>
+                <span class="cta-bracket-tr"></span>
+                <span class="cta-bracket-bl"></span>
+                <span class="cta-bracket-br"></span>
+                <span class="cta-btn-inner">INICIAR CONTACTO</span>
             </a>
         </div>
     </section>
@@ -359,6 +363,66 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Contact Modal -->
+    <div class="contact-modal-overlay" id="contactModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Formulario de contacto">
+        <div class="contact-modal-backdrop" data-close-contact></div>
+        <div class="contact-modal">
+            <button class="contact-modal-close" type="button" aria-label="Cerrar formulario" data-close-contact>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="contact-modal-content">
+                <p class="eyebrow">Contacto</p>
+                <h2>Conversemos<br>sobre tu proyecto</h2>
+                <p class="contact-modal-desc">Completá el formulario y te respondemos a la brevedad.</p>
+
+                <form id="contactForm" action="form.php" method="POST">
+                    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+
+                    <div class="form-field">
+                        <label for="modalName">Nombre</label>
+                        <input id="modalName" name="name" type="text" required placeholder="Tu nombre">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="modalEmail">Correo electrónico</label>
+                        <input id="modalEmail" name="email" type="email" required placeholder="tu@email.cl">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="modalPhone">Teléfono</label>
+                        <input id="modalPhone" name="phone" type="tel" placeholder="+56 9 ...">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="modalProjectType">Tipo de proyecto</label>
+                        <select id="modalProjectType" name="project_type">
+                            <option value="">Seleccioná una opción</option>
+                            <option value="residencial">Residencial</option>
+                            <option value="comercial">Comercial</option>
+                            <option value="regularizacion">Regularización</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="modalMessage">Mensaje</label>
+                        <textarea id="modalMessage" name="message" rows="4" required placeholder="Contanos sobre tu proyecto..."></textarea>
+                    </div>
+
+                    <button class="contacto-submit" type="submit">
+                        Enviar mensaje <span>&rarr;</span>
+                    </button>
+
+                    <p class="form-feedback" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="../assets/js/script.js"></script>
 </body>
 
