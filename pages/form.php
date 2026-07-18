@@ -21,6 +21,7 @@ define('SMTP_PORT',    587);
 define('SMTP_USER',    'elizabeth@ecmarquitectura.cl');
 define('SMTP_PASS',    'Ab0ecd501');
 define('SMTP_ENCRYPT', 'tls');
+define('SMTP_TIMEOUT', 10);
 
 // Rate limiting
 define('RATE_LIMIT_WINDOW', 300);
@@ -123,7 +124,6 @@ $project_labels = [
 $project_label = $project_labels[$input['project_type']] ?? htmlspecialchars($input['project_type']);
 $lead_date = date('d/m/Y H:i');
 $lead_phone = $input['phone'] ?: '-';
-$boundary = md5(uniqid((string) time(), true));
 
 // --- Email lead -> Elizabeth ---
 
@@ -160,8 +160,58 @@ $auto_html .= "</div></body></html>";
 
 // --- SMTP nativo ---
 
-function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
-    global $boundary;
+/**
+ * Read full SMTP response (handles multi-line replies).
+ *
+ * SMTP multi-line rule: lines where the 4th character is a hyphen (e.g. "250-")
+ * are continuation lines. When the 4th character is a space (e.g. "250 "), the
+ * response is complete.
+ *
+ * Returns the full response string or false on timeout/EOF.
+ */
+function smtp_read_response($fp) {
+    $response = '';
+    $line = fgets($fp, 512);
+    if ($line === false) {
+        return false;
+    }
+    $response .= $line;
+
+    // Multi-line: 4th char is '-' → more lines follow; ' ' → final line.
+    while (isset($line[3]) && $line[3] === '-') {
+        $line = fgets($fp, 512);
+        if ($line === false) {
+            return false;
+        }
+        $response .= $line;
+    }
+
+    return $response;
+}
+
+/**
+ * Send an SMTP command and read + validate the response.
+ *
+ * @param resource $fp     Socket
+ * @param string   $cmd    Command to send (without \r\n)
+ * @param int      $expect Expected 3-digit code
+ * @return string|false    Response on success, false on failure
+ */
+function smtp_command($fp, $cmd, $expect) {
+    if ($cmd !== '') {
+        fputs($fp, $cmd . "\r\n");
+    }
+    $response = smtp_read_response($fp);
+    if ($response === false) {
+        return false;
+    }
+    if (strpos($response, (string) $expect) !== 0) {
+        return false;
+    }
+    return $response;
+}
+
+function smtp_send($to, $to_name, $subject, $html_body, $text_body, $reply_to) {
     $host = SMTP_HOST;
     $port = SMTP_PORT;
     $user = SMTP_USER;
@@ -174,56 +224,82 @@ function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
         error_log("SMTP connect failed: $errstr ($errno)");
         return false;
     }
-    stream_set_timeout($fp, 15);
+    stream_set_timeout($fp, SMTP_TIMEOUT);
 
-    $response = fgets($fp, 512);
-
-    // TLS
-    if (SMTP_ENCRYPT === 'tls') {
-        fputs($fp, "EHLO ecmarquitectura.cl\r\n");
-        while ($line = fgets($fp, 512)) { if (strpos($line, '250 ') === 0 || strpos($line, '250-') === 0) continue; break; }
-
-        fputs($fp, "STARTTLS\r\n");
-        $response = fgets($fp, 512);
-        if (strpos($response, '220') !== 0) {
-            fclose($fp);
-            error_log("STARTTLS failed: $response");
-            return false;
-        }
-        stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT);
-    }
-
-    // EHLO again after TLS
-    fputs($fp, "EHLO ecmarquitectura.cl\r\n");
-    while ($line = fgets($fp, 512)) { if (strpos($line, '250 ') === 0 || strpos($line, '250-') === 0) continue; break; }
-
-    // AUTH
-    fputs($fp, "AUTH LOGIN\r\n");
-    $response = fgets($fp, 512);
-    fputs($fp, base64_encode($user) . "\r\n");
-    $response = fgets($fp, 512);
-    fputs($fp, base64_encode($pass) . "\r\n");
-    $response = fgets($fp, 512);
-    if (strpos($response, '235') !== 0) {
+    // Banner
+    $banner = smtp_read_response($fp);
+    if ($banner === false || strpos($banner, '220') !== 0) {
         fclose($fp);
-        error_log("SMTP auth failed: $response");
         return false;
     }
 
-    // FROM
-    fputs($fp, "MAIL FROM:<" . FROM_EMAIL . ">\r\n");
-    $resp = fgets($fp, 512);
+    if (SMTP_ENCRYPT === 'tls') {
+        // EHLO before STARTTLS
+        if (smtp_command($fp, 'EHLO ecmarquitectura.cl', 250) === false) {
+            fclose($fp);
+            return false;
+        }
 
-    // TO
-    fputs($fp, "RCPT TO:<$to>\r\n");
-    $resp = fgets($fp, 512);
+        // STARTTLS
+        $starttls = smtp_command($fp, 'STARTTLS', 220);
+        if ($starttls === false) {
+            fclose($fp);
+            return false;
+        }
+
+        if (!stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT)) {
+            fclose($fp);
+            return false;
+        }
+    }
+
+    // EHLO after TLS (or plain)
+    if (smtp_command($fp, 'EHLO ecmarquitectura.cl', 250) === false) {
+        fclose($fp);
+        return false;
+    }
+
+    // AUTH LOGIN
+    if (smtp_command($fp, 'AUTH LOGIN', 334) === false) {
+        fclose($fp);
+        return false;
+    }
+
+    // Username
+    if (smtp_command($fp, base64_encode($user), 334) === false) {
+        fclose($fp);
+        return false;
+    }
+
+    // Password
+    if (smtp_command($fp, base64_encode($pass), 235) === false) {
+        fclose($fp);
+        return false;
+    }
+
+    // MAIL FROM
+    if (smtp_command($fp, 'MAIL FROM:<' . FROM_EMAIL . '>', 250) === false) {
+        fclose($fp);
+        return false;
+    }
+
+    // RCPT TO
+    if (smtp_command($fp, 'RCPT TO:<' . $to . '>', 250) === false) {
+        fclose($fp);
+        return false;
+    }
 
     // DATA
-    fputs($fp, "DATA\r\n");
-    $resp = fgets($fp, 512);
+    if (smtp_command($fp, 'DATA', 354) === false) {
+        fclose($fp);
+        return false;
+    }
+
+    // MIME body with unique boundary
+    $boundary = md5(uniqid((string) time(), true));
 
     $headers = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
-    $headers .= "Reply-To: $to\r\n";
+    $headers .= "Reply-To: " . $reply_to . "\r\n";
     $headers .= "To: $to_name <$to>\r\n";
     $headers .= "Subject: =?UTF-8?B?" . base64_encode($subject) . "?=\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
@@ -236,24 +312,32 @@ function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
     $body .= "--{$boundary}\r\n";
     $body .= "Content-Type: text/html; charset=UTF-8\r\n\r\n";
     $body .= $html_body . "\r\n\r\n";
-    $body .= "--{$boundary}--\r\n.\r\n";
+    $body .= "--{$boundary}--\r\n";
 
-    fputs($fp, $headers . $body);
-    $resp = fgets($fp, 512);
+    $data_end = "\r\n.\r\n";
 
+    // Send headers + body + end marker as one stream
+    fwrite($fp, $headers . $body . $data_end);
+
+    // Final "message accepted" response
+    if (smtp_command($fp, '', 250) === false) {
+        fclose($fp);
+        return false;
+    }
+
+    // QUIT
     fputs($fp, "QUIT\r\n");
-    fgets($fp, 512);
-
     fclose($fp);
     return true;
 }
 
 // --- ENVIAR ---
 
-$sent_lead = smtp_send(TO_EMAIL, TO_NAME, $subject_lead, $lead_html, $lead_text);
+// Lead: Reply-To is visitor email so Elizabeth can reply to the visitor
+$sent_lead = smtp_send(TO_EMAIL, TO_NAME, $subject_lead, $lead_html, $lead_text, $safe_email);
 
-// Auto-respuesta (best effort)
-smtp_send($safe_email, $safe['name'], $subject_auto, $auto_html, $auto_text);
+// Auto-respuesta: Reply-To is Elizabeth so visitor can reply to her
+smtp_send($safe_email, $safe['name'], $subject_auto, $auto_html, $auto_text, FROM_EMAIL);
 
 if ($sent_lead) {
     echo json_encode(['success' => true, 'message' => 'Mensaje enviado, te responderemos pronto.']);
