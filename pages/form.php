@@ -2,44 +2,40 @@
 /**
  * Contact Form Handler — Contreras Martinez
  *
- * Envía leads calificados a la arquitecta y auto-respuesta al cliente.
- * Soporta PHPMailer (vía Composer) con fallback a mail().
+ * Envía leads a Elizabeth y auto-respuesta al cliente via SMTP nativo.
+ * Sin dependencias externas.
  */
 
 header('Content-Type: application/json; charset=utf-8');
 
-// --- CONFIGURACIÓN ---
+// --- CONFIGURACION ---
 
-// A dónde llegan los leads
-// TODO: cambiar a elizabeth@ecmarquitectura.cl cuando el correo esté creado en ZNet
-define('TO_EMAIL', 'elizabethyelizabeth@gmail.com');
+define('TO_EMAIL', 'elizabeth@ecmarquitectura.cl');
 define('TO_NAME', 'Elizabeth Contreras');
-
-// De quién parece venir el mail
-define('FROM_EMAIL', 'noreply@ecmarquitectura.cl');
+define('FROM_EMAIL', 'elizabeth@ecmarquitectura.cl');
 define('FROM_NAME', 'Contreras Martinez · Web');
 
-// --- SMTP (opcional) ---
-define('SMTP_HOST',     '');
-define('SMTP_PORT',     587);
-define('SMTP_USER',     '');
-define('SMTP_PASS',     '');
-define('SMTP_ENCRYPT',  'tls');
+// SMTP ZNet
+define('SMTP_HOST',    'mail.ecmarquitectura.cl');
+define('SMTP_PORT',    587);
+define('SMTP_USER',    'elizabeth@ecmarquitectura.cl');
+define('SMTP_PASS',    'Ab0ecd501');
+define('SMTP_ENCRYPT', 'tls');
 
-// --- RATE LIMITING ---
+// Rate limiting
 define('RATE_LIMIT_WINDOW', 300);
 define('RATE_LIMIT_MAX', 3);
 
 // --- Solo POST ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['success' => false, 'error' => 'Método no permitido.']);
+    echo json_encode(['success' => false, 'error' => 'Metodo no permitido.']);
     exit;
 }
 
 // --- HONEYPOT ---
 if (!empty($_POST['website'])) {
-    echo json_encode(['success' => true, 'message' => 'Mensaje enviado, te responderemos pronto.']);
+    echo json_encode(['success' => true, 'message' => 'Mensaje enviado.']);
     exit;
 }
 
@@ -55,7 +51,7 @@ if (file_exists($rate_file)) {
     if (time() - $window_start < RATE_LIMIT_WINDOW) {
         if ($count >= RATE_LIMIT_MAX) {
             http_response_code(429);
-            echo json_encode(['success' => false, 'error' => 'Enviaste varios mensajes muy seguido. Esperá unos minutos e intentá de nuevo.']);
+            echo json_encode(['success' => false, 'error' => 'Enviaste varios mensajes seguido. Espera unos minutos.']);
             exit;
         }
         $data['count'] = $count + 1;
@@ -65,17 +61,16 @@ if (file_exists($rate_file)) {
 } else {
     $data = ['window' => time(), 'count' => 1];
 }
-
 file_put_contents($rate_file, json_encode($data), LOCK_EX);
 
-// --- CAPTURA Y VALIDACIÓN ---
+// --- CAPTURA Y VALIDACION ---
 
 $fields = [
-    'name'         => ['label' => 'Nombre',           'required' => true,  'max' => 100],
-    'email'        => ['label' => 'Correo electrónico','required' => true,  'max' => 255],
-    'phone'        => ['label' => 'Teléfono',         'required' => false, 'max' => 30],
-    'project_type' => ['label' => 'Tipo de proyecto', 'required' => false, 'max' => 50],
-    'message'      => ['label' => 'Mensaje',          'required' => true,  'max' => 5000],
+    'name'         => ['label' => 'Nombre',            'required' => true,  'max' => 100],
+    'email'        => ['label' => 'Correo electronico', 'required' => true, 'max' => 255],
+    'phone'        => ['label' => 'Telefono',          'required' => false, 'max' => 30],
+    'project_type' => ['label' => 'Tipo de proyecto',  'required' => false, 'max' => 50],
+    'message'      => ['label' => 'Mensaje',           'required' => true,  'max' => 5000],
 ];
 
 $input = [];
@@ -88,23 +83,18 @@ foreach ($fields as $key => $cfg) {
         $errors[] = "{$cfg['label']} es obligatorio.";
         continue;
     }
-
     if ($value !== '' && mb_strlen($value) > $cfg['max']) {
-        $errors[] = "{$cfg['label']} es demasiado largo (máx {$cfg['max']} caracteres).";
+        $errors[] = "{$cfg['label']} es demasiado largo.";
         continue;
     }
-
     $input[$key] = $value;
 }
 
-// Validación de email
 if (!empty($input['email']) && !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-    $errors[] = 'El correo electrónico no tiene un formato válido.';
+    $errors[] = 'El correo electronico no es valido.';
 }
-
-// Validar teléfono
 if (!empty($input['phone']) && !preg_match('/^[0-9\s\+\-\(\)]{7,20}$/', $input['phone'])) {
-    $errors[] = 'El teléfono tiene un formato incorrecto.';
+    $errors[] = 'El telefono tiene un formato incorrecto.';
 }
 
 if (!empty($errors)) {
@@ -113,263 +103,159 @@ if (!empty($errors)) {
     exit;
 }
 
-// --- SANITIZACIÓN ---
+// --- SANITIZACION ---
 
 $safe = [];
 foreach ($input as $key => $value) {
     $safe[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
-
 $safe_email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
 
 // --- CONSTRUIR EMAILS ---
 
-$project_type_labels = [
+$project_labels = [
     ''               => 'Sin especificar',
     'residencial'    => 'Residencial',
     'comercial'      => 'Comercial',
-    'regularizacion' => 'Regularización',
+    'regularizacion' => 'Regularizacion',
     'otro'           => 'Otro',
 ];
-
-$project_label = $project_type_labels[$input['project_type']] ?? htmlspecialchars($input['project_type']);
+$project_label = $project_labels[$input['project_type']] ?? htmlspecialchars($input['project_type']);
 $lead_date = date('d/m/Y H:i');
-$lead_phone = $input['phone'] ?: '—';
+$lead_phone = $input['phone'] ?: '-';
+$boundary = md5(uniqid((string) time(), true));
 
-// --- Email para la arquitecta (HTML) ---
+// --- Email lead -> Elizabeth ---
 
-$subject_lead = "Nuevo lead — {$safe['name']} — {$project_label}";
+$subject_lead = "Nuevo lead - {$safe['name']} - {$project_label}";
 
-$body_lead_html = <<<HTML
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><style>
-body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-.container { max-width: 600px; margin: 20px auto; background: #fff; border-radius: 8px; overflow: hidden; }
-.header { background: #1a1a2e; color: #fff; padding: 24px 32px; }
-.header h1 { margin: 0; font-size: 20px; font-weight: 600; }
-.header p { margin: 4px 0 0; font-size: 13px; opacity: 0.7; }
-.body { padding: 24px 32px; }
-.field { margin-bottom: 16px; }
-.field-label { font-size: 11px; text-transform: uppercase; color: #888; letter-spacing: 1px; margin-bottom: 2px; }
-.field-value { font-size: 15px; color: #1a1a2e; line-height: 1.4; }
-.field-value a { color: #c9a94e; text-decoration: none; }
-hr { border: none; border-top: 1px solid #eee; margin: 20px 0; }
-.footer { padding: 16px 32px 24px; font-size: 12px; color: #999; text-align: center; }
-.tag { display: inline-block; background: #c9a94e; color: #fff; font-size: 12px; padding: 2px 10px; border-radius: 3px; font-weight: 600; }
-</style></head>
-<body>
-<div class="container">
-<div class="header"><h1>Nuevo Lead</h1><p>{$lead_date}</p></div>
-<div class="body">
-<div class="field"><div class="field-label">Nombre</div><div class="field-value">{$safe['name']}</div></div>
-<div class="field"><div class="field-label">Correo</div><div class="field-value"><a href="mailto:{$safe_email}">{$safe_email}</a></div></div>
-<div class="field"><div class="field-label">Teléfono</div><div class="field-value">{$lead_phone}</div></div>
-<div class="field"><div class="field-label">Tipo de proyecto</div><div class="field-value"><span class="tag">{$project_label}</span></div></div>
-<hr>
-<div class="field"><div class="field-label">Mensaje</div><div class="field-value" style="white-space:pre-wrap;">{$safe['message']}</div></div>
-</div>
-<div class="footer">Contreras Martinez · Arquitectura Integral</div>
-</div>
-</body>
-</html>
-HTML;
+$lead_text = "NUEVO LEAD\nFecha: {$lead_date}\n\nNombre: {$safe['name']}\nEmail: {$safe_email}\nTelefono: {$lead_phone}\nTipo: {$project_label}\n\nMensaje:\n{$input['message']}\n\nContreras Martinez";
 
-$body_lead_text = "NUEVO LEAD\nFecha: {$lead_date}\n\nNombre: {$safe['name']}\nEmail: {$safe_email}\nTeléfono: {$lead_phone}\nTipo de proyecto: {$project_label}\n\nMensaje:\n{$input['message']}\n\nContreras Martinez · Arquitectura Integral";
+$lead_html = "<html><body style='font-family:Arial,sans-serif;max-width:600px;margin:0 auto;'>";
+$lead_html .= "<div style='background:#1a1a2e;color:#fff;padding:20px;'><h2 style='margin:0;'>Nuevo Lead</h2><p style='margin:4px 0 0;opacity:.7;'>{$lead_date}</p></div>";
+$lead_html .= "<div style='padding:20px;'>";
+$lead_html .= "<p><strong>Nombre:</strong> {$safe['name']}</p>";
+$lead_html .= "<p><strong>Email:</strong> <a href='mailto:{$safe_email}'>{$safe_email}</a></p>";
+$lead_html .= "<p><strong>Telefono:</strong> {$lead_phone}</p>";
+$lead_html .= "<p><strong>Tipo:</strong> {$project_label}</p>";
+$lead_html .= "<hr style='border:none;border-top:1px solid #eee;margin:16px 0;'>";
+$lead_html .= "<p><strong>Mensaje:</strong></p>";
+$lead_html .= "<p style='white-space:pre-wrap;'>{$safe['message']}</p>";
+$lead_html .= "</div></body></html>";
 
-// --- Auto-respuesta para el cliente ---
+// --- Auto-respuesta -> cliente ---
 
-$subject_auto = "Recibimos tu mensaje — Contreras Martinez";
+$subject_auto = "Recibimos tu mensaje - Contreras Martinez";
 
-$body_auto_html = <<<HTML
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><style>
-body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-.container { max-width: 600px; margin: 20px auto; background: #fff; border-radius: 8px; overflow: hidden; }
-.header { background: #1a1a2e; color: #fff; padding: 24px 32px; }
-.header h1 { margin: 0; font-size: 20px; font-weight: 600; }
-.body { padding: 24px 32px; }
-p { font-size: 15px; color: #333; line-height: 1.6; }
-.signature { margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; font-size: 13px; color: #666; }
-.signature strong { color: #1a1a2e; }
-.footer { padding: 16px 32px 24px; font-size: 12px; color: #999; text-align: center; }
-</style></head>
-<body>
-<div class="container">
-<div class="header"><h1>Recibimos tu mensaje</h1></div>
-<div class="body">
-<p>Hola <strong>{$safe['name']}</strong>,</p>
-<p>Gracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversación.</p>
-<p>Mientras tanto, si necesitás algo urgente, no dudes en escribirnos directamente a <a href="mailto:elizabeth@ecmarquitectura.cl">elizabeth@ecmarquitectura.cl</a> o llamarnos al <a href="tel:+56951278937">+56 9 5127 8937</a>.</p>
-<div class="signature">
-<strong>Elizabeth Contreras</strong><br>
-Arquitecta — Contreras Martinez · Arquitectura Integral<br>
-Paseo Ahumada 341, Of. 504, Santiago Centro
-</div>
-</div>
-<div class="footer">Este mensaje fue generado automáticamente desde nuestro sitio web.</div>
-</div>
-</body>
-</html>
-HTML;
+$auto_text = "Hola {$safe['name']},\n\nGracias por escribirnos. Recibimos tu consulta y te responderemos pronto.\n\nMientras tanto, escribinos a elizabeth@ecmarquitectura.cl o llamanos al +56 9 5127 8937.\n\nElizabeth Contreras\nContreras Martinez - Arquitectura Integral";
 
-$body_auto_text = "Hola {$safe['name']},\n\nGracias por escribirnos. Recibimos tu consulta y en breve nos pondremos en contacto con vos para coordinar una conversación.\n\nMientras tanto, si necesitás algo urgente, escribinos a elizabeth@ecmarquitectura.cl o llamanos al +56 9 5127 8937.\n\nElizabeth Contreras\nArquitecta — Contreras Martinez · Arquitectura Integral\nPaseo Ahumada 341, Of. 504, Santiago Centro";
+$auto_html = "<html><body style='font-family:Arial,sans-serif;max-width:600px;margin:0 auto;'>";
+$auto_html .= "<div style='background:#1a1a2e;color:#fff;padding:20px;'><h2 style='margin:0;'>Recibimos tu mensaje</h2></div>";
+$auto_html .= "<div style='padding:20px;'>";
+$auto_html .= "<p>Hola <strong>{$safe['name']}</strong>,</p>";
+$auto_html .= "<p>Gracias por escribirnos. Recibimos tu consulta y te responderemos pronto.</p>";
+$auto_html .= "<p>Mientras tanto, escribinos a <a href='mailto:elizabeth@ecmarquitectura.cl'>elizabeth@ecmarquitectura.cl</a> o llamanos al +56 9 5127 8937.</p>";
+$auto_html .= "<p style='margin-top:24px;font-size:13px;color:#666;'><strong>Elizabeth Contreras</strong><br>Contreras Martinez - Arquitectura Integral<br>Paseo Ahumada 341, Of. 504, Santiago Centro</p>";
+$auto_html .= "</div></body></html>";
 
-// --- ENVÍO ---
+// --- SMTP nativo ---
 
-$phpmailer_available = file_exists(__DIR__ . '/../vendor/autoload.php');
+function smtp_send($to, $to_name, $subject, $html_body, $text_body) {
+    $host = SMTP_HOST;
+    $port = SMTP_PORT;
+    $user = SMTP_USER;
+    $pass = SMTP_PASS;
 
-if ($phpmailer_available && SMTP_HOST !== '') {
-    $sent = sendWithPHPMailer($safe_email, $safe['name']);
-} elseif ($phpmailer_available) {
-    $sent = sendWithPHPMailerMail($safe_email, $safe['name']);
-} else {
-    $sent = sendWithMail($safe_email, $safe['name']);
+    $errno = 0;
+    $errstr = '';
+    $fp = fsockopen($host, $port, $errno, $errstr, 10);
+    if (!$fp) {
+        error_log("SMTP connect failed: $errstr ($errno)");
+        return false;
+    }
+
+    $response = fgets($fp, 512);
+
+    // TLS
+    if (SMTP_ENCRYPT === 'tls') {
+        fputs($fp, "EHLO ecmarquitectura.cl\r\n");
+        while ($line = fgets($fp, 512)) { if (strpos($line, '250 ') === 0 || strpos($line, '250-') === 0) continue; break; }
+
+        fputs($fp, "STARTTLS\r\n");
+        $response = fgets($fp, 512);
+        if (strpos($response, '220') !== 0) {
+            fclose($fp);
+            error_log("STARTTLS failed: $response");
+            return false;
+        }
+        stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT);
+    }
+
+    // EHLO again after TLS
+    fputs($fp, "EHLO ecmarquitectura.cl\r\n");
+    while ($line = fgets($fp, 512)) { if (strpos($line, '250 ') === 0 || strpos($line, '250-') === 0) continue; break; }
+
+    // AUTH
+    fputs($fp, "AUTH LOGIN\r\n");
+    $response = fgets($fp, 512);
+    fputs($fp, base64_encode($user) . "\r\n");
+    $response = fgets($fp, 512);
+    fputs($fp, base64_encode($pass) . "\r\n");
+    $response = fgets($fp, 512);
+    if (strpos($response, '235') !== 0) {
+        fclose($fp);
+        error_log("SMTP auth failed: $response");
+        return false;
+    }
+
+    // FROM
+    fputs($fp, "MAIL FROM:<" . FROM_EMAIL . ">\r\n");
+    fgets($fp, 512);
+
+    // TO
+    fputs($fp, "RCPT TO:<$to>\r\n");
+    fgets($fp, 512);
+
+    // DATA
+    fputs($fp, "DATA\r\n");
+    fgets($fp, 512);
+
+    $headers = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
+    $headers .= "Reply-To: $to\r\n";
+    $headers .= "To: $to_name <$to>\r\n";
+    $headers .= "Subject: =?UTF-8?B?" . base64_encode($subject) . "?=\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: multipart/alternative; boundary=\"{$boundary}\"\r\n";
+    $headers .= "\r\n";
+
+    $body = "--{$boundary}\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n\r\n";
+    $body .= $text_body . "\r\n\r\n";
+    $body .= "--{$boundary}\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n\r\n";
+    $body .= $html_body . "\r\n\r\n";
+    $body .= "--{$boundary}--\r\n.\r\n";
+
+    fputs($fp, $headers . $body);
+    fgets($fp, 512);
+
+    fputs($fp, "QUIT\r\n");
+    fgets($fp, 512);
+
+    fclose($fp);
+    return true;
 }
 
-if ($sent) {
+// --- ENVIAR ---
+
+$sent_lead = smtp_send(TO_EMAIL, TO_NAME, $subject_lead, $lead_html, $lead_text);
+
+// Auto-respuesta (best effort)
+smtp_send($safe_email, $safe['name'], $subject_auto, $auto_html, $auto_text);
+
+if ($sent_lead) {
     echo json_encode(['success' => true, 'message' => 'Mensaje enviado, te responderemos pronto.']);
 } else {
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Error al enviar el mensaje. Intenta nuevamente o escribinos a elizabeth@ecmarquitectura.cl.']);
-}
-
-// --- FUNCIONES DE ENVÍO ---
-
-function sendWithPHPMailer(string $client_email, string $client_name): bool
-{
-    global $subject_lead, $body_lead_html, $body_lead_text,
-           $subject_auto, $body_auto_html, $body_auto_text;
-
-    require __DIR__ . '/../vendor/autoload.php';
-
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host       = SMTP_HOST;
-        $mail->SMTPAuth   = true;
-        $mail->Username   = SMTP_USER;
-        $mail->Password   = SMTP_PASS;
-        $mail->SMTPSecure = SMTP_ENCRYPT;
-        $mail->Port       = SMTP_PORT;
-        $mail->CharSet    = PHPMailer::CHARSET_UTF8;
-        $mail->XMailer    = 'CM Website';
-
-        $mail->clearAddresses();
-        $mail->setFrom(FROM_EMAIL, FROM_NAME);
-        $mail->addAddress(TO_EMAIL, TO_NAME);
-        $mail->addReplyTo($client_email, $client_name);
-        $mail->Subject = $subject_lead;
-        $mail->isHTML(true);
-        $mail->Body    = $body_lead_html;
-        $mail->AltBody = $body_lead_text;
-        $mail->send();
-
-        $mail->clearAddresses();
-        $mail->setFrom(FROM_EMAIL, FROM_NAME);
-        $mail->addAddress($client_email, $client_name);
-        $mail->Subject = $subject_auto;
-        $mail->isHTML(true);
-        $mail->Body    = $body_auto_html;
-        $mail->AltBody = $body_auto_text;
-        $mail->send();
-
-        return true;
-
-    } catch (Exception $e) {
-        error_log('PHPMailer error: ' . $e->getMessage());
-        return sendWithMail($client_email, $client_name);
-    }
-}
-
-function sendWithPHPMailerMail(string $client_email, string $client_name): bool
-{
-    global $subject_lead, $body_lead_html, $body_lead_text,
-           $subject_auto, $body_auto_html, $body_auto_text;
-
-    require __DIR__ . '/../vendor/autoload.php';
-
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isMail();
-        $mail->CharSet = PHPMailer::CHARSET_UTF8;
-        $mail->XMailer = 'CM Website';
-
-        $mail->clearAddresses();
-        $mail->setFrom(FROM_EMAIL, FROM_NAME);
-        $mail->addAddress(TO_EMAIL, TO_NAME);
-        $mail->addReplyTo($client_email, $client_name);
-        $mail->Subject = $subject_lead;
-        $mail->isHTML(true);
-        $mail->Body    = $body_lead_html;
-        $mail->AltBody = $body_lead_text;
-        $mail->send();
-
-        $mail->clearAddresses();
-        $mail->setFrom(FROM_EMAIL, FROM_NAME);
-        $mail->addAddress($client_email, $client_name);
-        $mail->Subject = $subject_auto;
-        $mail->isHTML(true);
-        $mail->Body    = $body_auto_html;
-        $mail->AltBody = $body_auto_text;
-        $mail->send();
-
-        return true;
-
-    } catch (Exception $e) {
-        error_log('PHPMailer(mail) error: ' . $e->getMessage());
-        return sendWithMail($client_email, $client_name);
-    }
-}
-
-function sendWithMail(string $client_email, string $client_name): bool
-{
-    global $subject_lead, $body_lead_html, $body_lead_text,
-           $subject_auto, $body_auto_html, $body_auto_text;
-
-    $separator = md5(uniqid((string) time(), true));
-
-    // Email 1: lead -> arquitecta
-    $headers_lead  = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
-    $headers_lead .= "Reply-To: {$client_email}\r\n";
-    $headers_lead .= "MIME-Version: 1.0\r\n";
-    $headers_lead .= "Content-Type: multipart/alternative; boundary=\"{$separator}\"\r\n";
-
-    $body_lead  = "--{$separator}\r\n";
-    $body_lead .= "Content-Type: text/plain; charset=UTF-8\r\n\r\n";
-    $body_lead .= $body_lead_text . "\r\n\r\n";
-    $body_lead .= "--{$separator}\r\n";
-    $body_lead .= "Content-Type: text/html; charset=UTF-8\r\n\r\n";
-    $body_lead .= $body_lead_html . "\r\n\r\n";
-    $body_lead .= "--{$separator}--";
-
-    $sent1 = mail(TO_EMAIL, $subject_lead, $body_lead, $headers_lead);
-
-    // Email 2: auto-respuesta -> cliente
-    $separator2 = md5(uniqid((string) time(), true));
-
-    $headers_auto  = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
-    $headers_auto .= "MIME-Version: 1.0\r\n";
-    $headers_auto .= "Content-Type: multipart/alternative; boundary=\"{$separator2}\"\r\n";
-
-    $body_auto  = "--{$separator2}\r\n";
-    $body_auto .= "Content-Type: text/plain; charset=UTF-8\r\n\r\n";
-    $body_auto .= $body_auto_text . "\r\n\r\n";
-    $body_auto .= "--{$separator2}\r\n";
-    $body_auto .= "Content-Type: text/html; charset=UTF-8\r\n\r\n";
-    $body_auto .= $body_auto_html . "\r\n\r\n";
-    $body_auto .= "--{$separator2}--";
-
-    $sent2 = mail($client_email, $subject_auto, $body_auto, $headers_auto);
-
-    return $sent1 && $sent2;
+    echo json_encode(['success' => false, 'error' => 'Error al enviar. Escribinos a elizabeth@ecmarquitectura.cl o llamanos al +56 9 5127 8937.']);
 }
