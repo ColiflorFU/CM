@@ -17,7 +17,7 @@
 
 * {
     box-sizing: border-box;
-    cursor: none;
+    cursor: auto;
 }
 
 html {
@@ -37,34 +37,7 @@ body {
     line-height: 1.5;
 }
 
-.cursor-dot {
-    display: none;
-}
 
-@media (hover: hover) and (pointer: fine) {
-
-    .cursor-dot {
-        display: block;
-        position: fixed;
-        width: 12px;
-        height: 12px;
-        background: #000;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 99999;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s, background 0.2s;
-        will-change: transform;
-    }
-
-    /* Hover en links y botones agranda el dot */
-    .cursor-dot.hover {
-        width: 28px;
-        height: 28px;
-        background: rgba(0, 0, 0, 0.4);
-    }
-
-}
 
 ::selection {
     background: #000;
@@ -1412,15 +1385,9 @@ section {
 
 .portfolio-media {
     margin-bottom: 24px;
-    min-height: 340px;
-}
-
-.portfolio-card-tall .portfolio-media {
-    min-height: 480px;
-}
-
-.portfolio-card-wide .portfolio-media {
-    min-height: 340px;
+    min-height: 360px;
+    background-size: cover;
+    background-position: center;
 }
 
 .portfolio-card h3 {

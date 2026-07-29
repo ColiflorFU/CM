@@ -129,7 +129,7 @@ En `/Referencias/`:
 - **Email auto:** contacto@ecmarquitectura.cl (buzón de automatización: acknowledge + lead routing)
 - **Flujo correo completo:** Ver `FLUJO-CORREO.md`
 - **Teléfono:** +56 9 5127 8937
-- **Dirección:** Paseo Ahumada 341, Of. 504, Santiago Centro, Chile
+- **Dirección:** Paseo Bulnes 209, Oficina 62, Santiago Centro, Chile
 
 ---
 

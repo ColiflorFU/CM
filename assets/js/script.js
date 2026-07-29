@@ -1,23 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ── Custom cursor ──
-    const cursor = document.querySelector(".cursor-dot");
-    if (cursor) {
-        document.addEventListener("mousemove", (e) => {
-            cursor.style.left = e.clientX + "px";
-            cursor.style.top = e.clientY + "px";
-        });
-        // Agrandar sobre interactivos
-        document.addEventListener("mouseover", (e) => {
-            if (e.target.closest("a, button, input, textarea, summary, [role=\"button\"], details summary")) {
-                cursor.classList.add("hover");
-            }
-        });
-        document.addEventListener("mouseout", (e) => {
-            if (e.target.closest("a, button, input, textarea, summary, [role=\"button\"], details summary")) {
-                cursor.classList.remove("hover");
-            }
-        });
-    }
 
     // ── Contact Modal ──
     const contactModal = document.getElementById("contactModal");
