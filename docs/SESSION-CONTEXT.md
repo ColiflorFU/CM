@@ -4,7 +4,7 @@
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 **Dominio:** ecmarquitectura.cl
-**Versión actual:** v2.3.6
+**Versión actual:** v2.3.7
 
 ---
 
@@ -42,7 +42,13 @@
 
 ---
 
-## CAMBIOS REALIZADOS (resumen hasta v2.3.6)
+## CAMBIOS REALIZADOS (resumen hasta v2.3.7)
+
+### v2.3.6 → v2.3.7 (13-08-2026) — Última tanda contenido
+- "Nuestra Mirada" → "Nuestro Método": tarjetas Escuchar y Empatizar / Proyectar con Funcionalidad / Buenas Prácticas Constructivas
+- Sección Proceso → "Metodología de proyecto": nueva bajada, paso 01 "Concepto y expresión"
+- CTA banner → texto largo único con `.banner-cta-text`
+- Imagen OfWayne reemplazada (1382×1710), `object-fit: contain` en página de proyecto
 
 ### v2.3.5 → v2.3.6 (13-08-2026) — Tanda final clienta
 - Texto del estudio reemplazado por copy definitivo (Paseo Bulnes / origen)

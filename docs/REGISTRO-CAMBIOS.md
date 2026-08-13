@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 13-08-2026_
 
+## v2.3.7 — 2026-08-13
+
+Última tanda de cambios de la clienta (contenido).
+
+| Fecha | Descripción |
+|---|---|
+| 13-08-2026 | **v2.3.7**: Sección "Nuestra Mirada" redefinida como "Nuestro Método" — tarjetas: Escuchar y Empatizar (Guía la empatía), Proyectar con Funcionalidad (Fundamenta la simpleza), Buenas Prácticas Constructivas (Construye con cuidado). Sección Proceso → "Metodología de proyecto" con nueva bajada y paso 01 "Concepto y expresión" (texto de la clienta). CTA banner adaptado a texto largo único (clase `.banner-cta-text`). Imagen OfWayne reemplazada (1382×1710) y adaptada con `object-fit: contain` en la página del proyecto. |
+
 ## v2.3.6 — 2026-08-13
 
 Tanda final de cambios solicitados por la clienta.
