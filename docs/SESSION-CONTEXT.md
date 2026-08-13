@@ -4,7 +4,7 @@
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 **Dominio:** ecmarquitectura.cl
-**Versión actual:** v2.3.7
+**Versión actual:** v2.3.8
 
 ---
 
@@ -42,7 +42,11 @@
 
 ---
 
-## CAMBIOS REALIZADOS (resumen hasta v2.3.7)
+## CAMBIOS REALIZADOS (resumen hasta v2.3.8)
+
+### v2.3.7 → v2.3.8 (13-08-2026) — Corrección Nuestro Método
+- Paso 01 del acordeón de metodología restaurado a "Diagnóstico" + texto original
+- Párrafo "Defino la arquitectura integral como..." agregado en sección Nuestro Método (clase `.philosophy-desc`)
 
 ### v2.3.6 → v2.3.7 (13-08-2026) — Última tanda contenido
 - "Nuestra Mirada" → "Nuestro Método": tarjetas Escuchar y Empatizar / Proyectar con Funcionalidad / Buenas Prácticas Constructivas

@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 13-08-2026_
 
+## v2.3.8 — 2026-08-13
+
+Corrección en sección Nuestro Método.
+
+| Fecha | Descripción |
+|---|---|
+| 13-08-2026 | **v2.3.8**: Paso 01 del acordeón de metodología restaurado a "Diagnóstico" con su texto original (el texto "Concepto y expresión" no correspondía ahí). Agregado párrafo de la clienta ("Defino la arquitectura integral como...") en la sección Nuestro Método, luego del titular, con nueva clase `.philosophy-desc`. |
+
 ## v2.3.7 — 2026-08-13
 
 Última tanda de cambios de la clienta (contenido).
