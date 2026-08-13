@@ -44,7 +44,23 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 17-07-2026_
+_Última actualización: 13-08-2026_
+
+## v2.3.6 — 2026-08-13
+
+Tanda final de cambios solicitados por la clienta.
+
+| Fecha | Descripción |
+|---|---|
+| 13-08-2026 | **v2.3.6**: Texto del estudio reemplazado por el copy definitivo de la clienta (Paseo Bulnes / origen). "Especialidades Técnicas" actualizado a "Cálculo estructural, certificaciones eléctricas, sanitarias y gas" (servicio, FAQ y JSON-LD). Primera imagen de "Conoce el estudio" reemplazada por `Recursos/estudio01.jpeg`. Agregada página interna `pages/gmail-config.html` (noindex) con guía paso a paso para configurar Gmail "Send mail as" con el correo corporativo. `.DS_Store` removido del tracking. |
+
+## v2.3.5 — 2026-07-29
+
+Cambios solicitados por la clienta en reunión (no documentados en su momento).
+
+| Fecha | Descripción |
+|---|---|
+| 29-07-2026 | **v2.3.5**: Dirección actualizada a Paseo Bulnes 209, Oficina 62, Santiago Centro en 12 páginas + JSON-LD. Cursor personalizado (dot) eliminado, restaurado cursor tradicional. Imágenes de galería de proyectos unificadas a misma altura (360px, `background-size: cover`). |
 
 ## v2.3.4 — 2026-07-17
 

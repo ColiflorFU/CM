@@ -1,10 +1,10 @@
 # CM Website — Session Documentation
 
-**Última actualización:** 2026-07-18
+**Última actualización:** 2026-08-13
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 **Dominio:** ecmarquitectura.cl
-**Versión actual:** v2.3.4
+**Versión actual:** v2.3.6
 
 ---
 
@@ -42,7 +42,18 @@
 
 ---
 
-## CAMBIOS REALIZADOS (resumen hasta v2.3.4)
+## CAMBIOS REALIZADOS (resumen hasta v2.3.6)
+
+### v2.3.5 → v2.3.6 (13-08-2026) — Tanda final clienta
+- Texto del estudio reemplazado por copy definitivo (Paseo Bulnes / origen)
+- "Especialidades Técnicas": Cálculo estructural, certificaciones eléctricas, sanitarias y gas (servicio + FAQ + JSON-LD)
+- Primera imagen "Conoce el estudio" → `Recursos/estudio01.jpeg`
+- Página interna `pages/gmail-config.html` (noindex) — guía Gmail "Send mail as"
+
+### v2.3.4 → v2.3.5 (29-07-2026)
+- Dirección → Paseo Bulnes 209, Oficina 62, Santiago Centro (12 páginas + JSON-LD)
+- Cursor dot eliminado, cursor tradicional restaurado
+- Galería de proyectos con altura uniforme (360px, cover)
 
 ### v2.2 → v2.3.4 (17-07-2026) — Otra máquina
 - **Hero slider**: imágenes reales (`slider1.jpeg`, `slider2.jpeg`, `hero.jpeg`), copy final, fix `translateX`
