@@ -239,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const track = slider.querySelector('.hero__track');
         const slides = slider.querySelectorAll('.hero__slide');
         const btns = slider.querySelectorAll('.hero__slider-btn');
+        const srStatus = slider.querySelector('.hero__sr-status');
         if (track && slides.length > 1 && btns.length) {
             let current = 0;
             let animating = true; /* Locked during page load */
@@ -246,6 +247,30 @@ document.addEventListener("DOMContentLoaded", () => {
             let isMobile = window.matchMedia('(max-width: 760px)').matches;
             const mm = window.matchMedia('(max-width: 760px)');
             mm.addEventListener('change', (e) => { isMobile = e.matches; });
+
+            /* ── ARIA helpers ── */
+            function syncAria(idx) {
+                btns.forEach((b, i) => {
+                    b.setAttribute('aria-selected', String(i === idx));
+                    b.setAttribute('tabindex', i === idx ? '0' : '-1');
+                    b.classList.toggle('hero__slider--active', i === idx);
+                });
+                slides.forEach((s, i) => {
+                    s.setAttribute('aria-hidden', String(i !== idx));
+                });
+            }
+
+            function announceSlide(idx) {
+                if (!srStatus) return;
+                const label = slides[idx].querySelector('.hero__label');
+                srStatus.textContent = '';
+                requestAnimationFrame(() => {
+                    srStatus.textContent = label ? label.textContent.trim() : `Slide ${idx + 1} de ${slides.length}`;
+                });
+            }
+
+            /* Initialize initial ARIA state */
+            syncAria(0);
 
             /* ── Texture: page load zoom-out ── */
             const texture = slider.querySelector('.hero__texture');
@@ -260,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            /* ── Text split: wrap h1 lines ── */
+            /* ── Text split: wrap h1 lines (skip hero__subtitle) ── */
             slides.forEach(slide => {
                 const h1 = slide.querySelector('h1');
                 if (h1 && !h1.dataset.split) {
@@ -292,8 +317,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (isMobile) {
                     slides.forEach(s => s.classList.remove('active'));
                     slides[index].classList.add('active');
-                    btns.forEach(b => b.classList.remove('hero__slider--active'));
-                    btns[index].classList.add('hero__slider--active');
+                    syncAria(index);
+                    announceSlide(index);
                     current = index;
                     return;
                 }
@@ -316,9 +341,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 track.classList.add('animating');
                 track.style.transform = `translateX(-${index * 100}%)`;
 
-                /* Update buttons */
-                btns.forEach(b => b.classList.remove('hero__slider--active'));
-                btns[index].classList.add('hero__slider--active');
+                /* Sync ARIA immediately on transition start */
+                syncAria(index);
+                announceSlide(index);
 
                 /* Cleanup */
                 setTimeout(() => {
@@ -340,6 +365,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     goTo(idx);
                     interval = setInterval(autoAdvance, 6000);
                 });
+            });
+
+            /* ── Arrow-key navigation (WAI-ARIA tabs pattern) ── */
+            slider.addEventListener('keydown', (e) => {
+                if (!e.target.classList.contains('hero__slider-btn')) return;
+                let idx = -1;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    idx = (current + 1) % slides.length;
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    idx = (current - 1 + slides.length) % slides.length;
+                } else if (e.key === 'Home') {
+                    idx = 0;
+                } else if (e.key === 'End') {
+                    idx = slides.length - 1;
+                }
+                if (idx >= 0 && idx !== current) {
+                    e.preventDefault();
+                    clearInterval(interval);
+                    btns[idx].focus();
+                    goTo(idx);
+                    interval = setInterval(autoAdvance, 6000);
+                }
             });
 
             function autoAdvance() {

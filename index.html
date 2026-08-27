@@ -77,7 +77,7 @@
                 "name": "¿Trabajan con proyectos residenciales y comerciales?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Sí. Desarrollamos viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándonos a la normativa de cada caso."
+                    "text": "Sí. El estudio desarrolla viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándose a la normativa de cada caso."
                 }
             },
             {
@@ -93,7 +93,7 @@
                 "name": "¿En qué zonas trabajan?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Principalmente en Santiago y Región Metropolitana, pero gestionamos proyectos en otras regiones mediante coordinación remota y visitas programadas."
+                    "text": "Principalmente en Santiago y Región Metropolitana, pero se gestionan proyectos en otras regiones mediante coordinación remota y visitas programadas."
                 }
             },
             {
@@ -101,7 +101,7 @@
                 "name": "¿Cómo inicio un proyecto con ustedes?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Coordinamos una reunión para entender tu idea y definir el mejor camino."
+                    "text": "Se agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Se coordina una reunión para comprender la idea del cliente y definir el mejor camino."
                 }
             }
         ]
@@ -186,7 +186,32 @@
         <section class="hero hero-slider">
             <div class="hero__texture"></div>
             <div class="hero__track">
-                <div class="hero__slide active">
+                <div class="hero__slide active" id="hero-slide-0" role="tabpanel" aria-labelledby="hero-tab-0" aria-hidden="false">
+                    <div class="hero__left">
+                        <div class="hero__content">
+                            <span class="hero__label">ARQUITECTA FUNDADORA · CONTRERAS MARTÍNEZ</span>
+                            <h1>Elizabeth Contreras</h1>
+                            <p class="hero__subtitle">Arquitectura con criterio técnico y sentido del lugar.</p>
+                            <p class="hero__desc">Proyectos de arquitectura, remodelación e interiorismo con oficio técnico. Desde 2015 en Santiago.</p>
+
+                            <div class="hero__actions">
+                                <a class="cta-btn" href="#portfolio">
+                                    <span class="cta-bracket-tl"></span>
+                                    <span class="cta-bracket-tr"></span>
+                                    <span class="cta-bracket-bl"></span>
+                                    <span class="cta-bracket-br"></span>
+                                    <span class="cta-btn-inner">VER PROYECTOS</span>
+                                </a>
+                                <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__right">
+                        <img class="hero__portrait" src="Recursos/Miscelaneos/elizabeth-hero.png" alt="Elizabeth Contreras — Arquitecta fundadora de Contreras Martínez" loading="eager">
+                    </div>
+                </div>
+
+                <div class="hero__slide" id="hero-slide-1" role="tabpanel" aria-labelledby="hero-tab-1" aria-hidden="true">
                     <div class="hero__left">
                         <div class="hero__content">
                             <span class="hero__label">SERVICIOS DE ARQUITECTURA Y REMODELACIÓN</span>
@@ -206,39 +231,16 @@
                         </div>
                     </div>
                     <div class="hero__right">
-                        <img src="Recursos/Miscelaneos/slider2.jpeg" alt="Arquitectura y remodelación — servicios de Contreras Martínez" loading="eager">
-                    </div>
-                </div>
-
-                <div class="hero__slide">
-                    <div class="hero__left">
-                        <div class="hero__content">
-                            <span class="hero__label">ARQUITECTURA RESIDENCIAL Y DISEÑO INTERIOR</span>
-                            <h1>Espacios funcionales,<br>diseñados para las personas.</h1>
-                            <p class="hero__desc">Creamos propuestas coherentes con el contexto, el presupuesto y la vida cotidiana de quienes las habitan, desde la idea inicial hasta su desarrollo.</p>
-
-                            <div class="hero__actions">
-                                <a class="cta-btn" href="#portfolio">
-                                    <span class="cta-bracket-tl"></span>
-                                    <span class="cta-bracket-tr"></span>
-                                    <span class="cta-bracket-bl"></span>
-                                    <span class="cta-bracket-br"></span>
-                                    <span class="cta-btn-inner">VER PROYECTOS</span>
-                                </a>
-                                <p class="hero__cta">O LLÁMANOS <a href="tel:+56951278937" class="hero__phone">+56 9 5127 8937</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero__right">
-                        <img src="Recursos/Miscelaneos/slider1.jpeg" alt="Arquitectura residencial y diseño interior — Contreras Martínez" loading="lazy">
+                        <img src="Recursos/Miscelaneos/slider2.jpeg" alt="Arquitectura y remodelación — servicios de Contreras Martínez" loading="lazy">
                     </div>
                 </div>
             </div>
 
             <div class="hero__slider" role="tablist" aria-label="Navegación del slider">
-                <button class="hero__slider-btn hero__slider--active" role="tab" aria-selected="true" data-slide="0">01</button>
-                <button class="hero__slider-btn" role="tab" aria-selected="false" data-slide="1">02</button>
+                <button class="hero__slider-btn hero__slider--active" role="tab" aria-selected="true" aria-controls="hero-slide-0" id="hero-tab-0" data-slide="0">01</button>
+                <button class="hero__slider-btn" role="tab" aria-selected="false" aria-controls="hero-slide-1" id="hero-tab-1" data-slide="1">02</button>
             </div>
+            <div class="hero__sr-status" aria-live="polite" aria-atomic="true"></div>
         </section>
 
         <section class="studio-section" id="studio">
@@ -254,22 +256,22 @@
                 <div class="studio-copy">
                     <p>
                         Nace en el eje cívico de Santiago con la idea de entregar un espacio céntrico que reciba a los
-                        clientes de las distintas comunas o ciudades, facilitando el acceso y enriqueciéndonos con la
-                        identidad de nuestros espacios públicos, la antesala de nuestras vidas.
+                        clientes de las distintas comunas o ciudades, facilitando el acceso y enriqueciéndose con la
+                        identidad de los espacios públicos, la antesala de la vida cotidiana.
                     </p>
                     <p>
-                        En Paseo Bulnes comienza entonces a funcionar el estudio, desde el año 2015, lugar que ha sido
-                        un histórico en el proceso de la creatividad y que permite la diversidad y conectividad de las
-                        distintas personas que han confiado en mi trabajo, manteniéndome en este eje a pesar de los
+                        En Paseo Bulnes comienza entonces a funcionar el estudio, desde el año 2015, un lugar que ha sido
+                        histórico en el proceso de la creatividad y que permite la diversidad y conectividad de las
+                        distintas personas que han confiado en su trabajo, manteniéndose en este eje a pesar de los
                         cambios, valorando la historia de este paseo peatonal como recordatorio de cómo comenzaron los
-                        arquitectos de la época a diseñar el Gran Santiago, permite de esta forma llegar a lugares
+                        arquitectos de la época a diseñar el Gran Santiago, permitiendo llegar a lugares
                         innovadores y recordar que la evolución de la arquitectura, el diseño y la construcción tienen
                         como base la solidez de un edificio antiguo y robusto y que puede evolucionar hacia nuevos
                         diseños, tanto interior como exterior.
                     </p>
                     <p>
-                        Es el Paseo Bulnes mi antesala para no olvidar que el desarrollo y la tecnología son necesarias
-                        para el avance, sin dejar atrás nuestro origen.
+                        El Paseo Bulnes es la antesala del estudio para no olvidar que el desarrollo y la tecnología son necesarias
+                        para el avance, sin dejar atrás el origen.
                     </p>
                     <a class="text-link studio-mobile-link" href="#services">Conocer servicios <span>&rarr;</span></a>
                     <div class="studio-badge">
@@ -352,24 +354,21 @@
             <div class="container philosophy-layout">
                 <div class="philosophy-top">
                     <div class="philosophy-text">
-                        <p class="philosophy-eyebrow">Nuestro método</p>
+                        <p class="philosophy-eyebrow">El método</p>
                         <h2 class="philosophy-headline">
                             <span>Guía la empatía.</span>
                             <span>Fundamenta la simpleza.</span>
                             <span>Construye con cuidado.</span>
                         </h2>
-                        <p class="philosophy-desc">Defino la arquitectura integral como el diseño de un proyecto en la
-                            totalidad de lo que esto significa, diseño, plástica y funcionalidad, es decir, diseñar a
-                            partir de una idea y requerimiento de un cliente y plasmarlo en un espacio exterior e
-                            interiormente resuelto a los ojos de quien lo habitará y que la funcionalidad como lo son
-                            las especialidades (instalaciones eléctricas, sanitarias, gas, estructura, entre otros) sean
-                            desarrolladas acorde a lo que el mandante crea importante mostrar o ver, siempre eligiendo
-                            lo que prevalece en cada uno, cumpliendo con las normativas y evitando imponer el gusto
-                            personal en línea de arquitectura, para lograrlo es importante conocer las diferentes líneas
-                            de diseño y por supuesto entender que un proyecto es único en sus distintas dimensiones.</p>
+                        <p class="philosophy-desc">La arquitectura integral se define como el diseño coherente de un proyecto en
+                            todas sus dimensiones: estética, funcionalidad y técnica. Parte de las necesidades del cliente
+                            para crear espacios interiores y exteriores que se habitan con claridad y sentido.
+                        </p>
+                        <p class="philosophy-desc">Las especialidades —eléctrica, sanitaria, gas y estructura— se integran
+                            respetando las prioridades del mandante, la normativa y la identidad propia de cada proyecto.</p>
                     </div>
                     <div class="philosophy-image">
-                        <img src="Recursos/Miscelaneos/trabajando.jpg" alt="Arquitecta trabajando en estudio">
+                        <img src="Recursos/Miscelaneos/trabajando.png" alt="Arquitecta trabajando en estudio">
                     </div>
                 </div>
 
@@ -453,7 +452,7 @@
         <section class="banner-cta-section" aria-label="Consulta de proyecto">
             <div class="banner-grid-lines" aria-hidden="true"></div>
             <div class="banner-cta-panel">
-                <h2 class="banner-cta-text">Defino la arquitectura integral como el diseño de un proyecto en la totalidad de lo que esto significa, diseño, plástica y funcionalidad.</h2>
+                <h2 class="banner-cta-text">La arquitectura integral se define como el diseño de un proyecto en la totalidad de lo que esto significa: diseño, plástica y funcionalidad.</h2>
                 <a href="#contact" data-open-contact>Agendar una conversación</a>
             </div>
         </section>
@@ -464,8 +463,8 @@
                     <p class="eyebrow">Metodología de proyecto</p>
                     <h2>Idea Inicial<br>Proyección Integral<br>Decisiones en equipo</h2>
                     <p class="process-intro">
-                        Integramos diseño, coordinación técnica y decisiones normativas en conjunto cliente-arquitecto
-                        para que cada etapa se cumpla, desde la primera conversación hasta la ejecución y recepción
+                        Diseño, coordinación técnica y decisiones normativas se integran en conjunto cliente-arquitecto
+                        en cada etapa del proyecto, desde la primera conversación hasta la ejecución y recepción
                         final.
                     </p>
 
@@ -476,22 +475,22 @@
                     <div class="process-accordion">
                         <details open>
                             <summary><span>01</span> Diagnóstico</summary>
-                            <p>Levantamos necesidades, revisamos contexto, normativa, posibilidades del espacio y
+                            <p>Se levantan necesidades, se revisa contexto, normativa, posibilidades del espacio y
                                 objetivos del encargo.</p>
                         </details>
                         <details>
                             <summary><span>02</span> Planificación</summary>
-                            <p>Definimos alcance, etapas, documentación requerida, especialidades y ruta técnica para
+                            <p>Se define alcance, etapas, documentación requerida, especialidades y ruta técnica para
                                 avanzar sin improvisar.</p>
                         </details>
                         <details>
                             <summary><span>03</span> Diseño</summary>
-                            <p>Desarrollamos una propuesta coherente con la identidad del cliente, el uso cotidiano y
+                            <p>Se desarrolla una propuesta coherente con la identidad del cliente, el uso cotidiano y
                                 la factibilidad constructiva.</p>
                         </details>
                         <details>
                             <summary><span>04</span> Ejecución</summary>
-                            <p>Coordinamos obra, revisión técnica, permisos o regularización según las necesidades de
+                            <p>Se coordina obra, revisión técnica, permisos o regularización según las necesidades de
                                 cada proyecto.</p>
                         </details>
                     </div>
@@ -533,7 +532,7 @@
             </div>
             <div class="faq-section__content">
                 <p class="faq-section__eyebrow">Preguntas frecuentes</p>
-                <h2 class="faq-section__headline">Resolvemos tus dudas</h2>
+                <h2 class="faq-section__headline">Preguntas frecuentes</h2>
                 <div class="faq-list">
                     <details open>
                         <summary>¿Qué servicios ofrece el estudio?</summary>
@@ -541,7 +540,7 @@
                     </details>
                     <details>
                         <summary>¿Trabajan con proyectos residenciales y comerciales?</summary>
-                        <p>Sí. Desarrollamos viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándonos a la normativa de cada caso.</p>
+                        <p>Sí. El estudio desarrolla viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándose a la normativa de cada caso.</p>
                     </details>
                     <details>
                         <summary>¿Cuánto cuesta contratar un arquitecto?</summary>
@@ -549,11 +548,11 @@
                     </details>
                     <details>
                         <summary>¿En qué zonas trabajan?</summary>
-                        <p>Principalmente en Santiago y Región Metropolitana, pero gestionamos proyectos en otras regiones mediante coordinación remota y visitas programadas.</p>
+                        <p>Principalmente en Santiago y Región Metropolitana, pero se gestionan proyectos en otras regiones mediante coordinación remota y visitas programadas.</p>
                     </details>
                     <details>
                         <summary>¿Cómo inicio un proyecto con ustedes?</summary>
-                        <p>Agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Coordinamos una reunión para entender tu idea y definir el mejor camino.</p>
+                        <p>Se agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Se coordina una reunión para comprender la idea del cliente y definir el mejor camino.</p>
                     </details>
                 </div>
             </div>
