@@ -2722,6 +2722,27 @@ body.modal-open {
     background: rgba(0, 0, 0, 0.03);
 }
 
+/* Keep the accent treatment exclusive to the Calendly popup CTA. */
+.agenda-modal .agenda-cta {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+}
+
+.agenda-modal .agenda-cta::before {
+    border-bottom-color: var(--orange);
+    border-right-color: var(--orange);
+}
+
+.agenda-modal .agenda-cta::after {
+    border-top-color: var(--orange);
+    border-left-color: var(--orange);
+}
+
+.agenda-modal .agenda-cta:hover {
+    background: #df850c;
+}
+
 @media (max-width: 768px) {
     .agenda-modal-overlay {
         padding: 16px;
@@ -4499,4 +4520,3 @@ body.modal-open {
         max-width: none;
     }
 }
-
