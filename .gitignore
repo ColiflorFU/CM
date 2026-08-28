@@ -14,3 +14,6 @@ smtp-config.php
 
 # Imágenes originales de la clienta (muy pesadas para git)
 _backups/Imagenes-Proyectos/
+
+# JPG untracked de OfWayne (no versionar, proteger de git add .)
+Recursos/Proyectos/Viviendas/OfWayne/Sin título.jpg

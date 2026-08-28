@@ -369,6 +369,25 @@
         </div>
     </div>
 
+    <!-- Agenda Modal (non-intrusive, once per session) -->
+    <div class="agenda-modal-overlay" id="agendaModal" aria-hidden="true" role="dialog" aria-label="Agendar reunión">
+        <div class="agenda-modal-backdrop" data-close-agenda></div>
+        <div class="agenda-modal">
+            <button class="agenda-modal-close" type="button" aria-label="Cerrar" data-close-agenda>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+            </button>
+            <div class="agenda-modal-content">
+                <p class="eyebrow">Primera reunión gratis</p>
+                <h2>¿Conversamos sobre tu proyecto?</h2>
+                <p class="agenda-modal-desc">Elige el día y horario que más te convenga para una primera reunión.</p>
+                <a class="agenda-cta" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">AGENDAR REUNIÓN</a>
+            </div>
+        </div>
+    </div>
+
     <script src="../assets/js/script.js"></script>
 </body>
 

@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ── Shared modal coordination state ──
+    let agendaTimer = null;
+    let agendaPrevFocusEl = null;
+
     // ── Contact Modal ──
     const contactModal = document.getElementById("contactModal");
     if (contactModal) {
@@ -8,6 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function openContactModal(e) {
             if (e) e.preventDefault();
+            if (agendaTimer) {
+                clearTimeout(agendaTimer);
+                agendaTimer = null;
+            }
+            if (agendaModal && agendaModal.getAttribute("aria-hidden") === "false" && typeof closeAgendaModal === "function") {
+                closeAgendaModal();
+            }
             contactModal.setAttribute("aria-hidden", "false");
             document.body.classList.add("modal-open");
             contactModal.querySelector("input[name=name], input[name=email]")?.focus();
@@ -31,17 +42,98 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target === contactModal) closeContactModal();
         });
 
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && contactModal.getAttribute("aria-hidden") === "false") {
-                closeContactModal();
-            }
-        });
-
         // Auto-open if URL hash is #contact
         if (window.location.hash === "#contact") {
             setTimeout(openContactModal, 100);
         }
     }
+
+    // ── Agenda Modal (non-intrusive, once per session) ──
+    const agendaModal = document.getElementById("agendaModal");
+    if (agendaModal) {
+        const AGENDA_KEY = "agendaModalSeen";
+
+        function setAgendaModalState(visible) {
+            agendaModal.setAttribute("aria-hidden", String(!visible));
+            if (visible) {
+                agendaModal.setAttribute("aria-modal", "true");
+            } else {
+                agendaModal.removeAttribute("aria-modal");
+            }
+            // Make aria-modal="true" truthful: non-modal siblings are inert while shown
+            Array.from(document.body.children).forEach((child) => {
+                if (child === agendaModal || (contactModal && child === contactModal)) return;
+                if (child.tagName === "SCRIPT") return;
+                if (visible) child.setAttribute("inert", "");
+                else child.removeAttribute("inert");
+            });
+        }
+
+        function closeAgendaModal() {
+            sessionStorage.setItem(AGENDA_KEY, "1");
+            setAgendaModalState(false);
+            const focusTarget = agendaPrevFocusEl;
+            agendaPrevFocusEl = null;
+            if (focusTarget && typeof focusTarget.focus === "function" && focusTarget.isConnected) {
+                focusTarget.focus();
+            }
+        }
+
+        agendaModal.addEventListener("click", (e) => {
+            if (e.target.closest("[data-close-agenda]") || e.target === agendaModal) {
+                closeAgendaModal();
+            }
+        });
+
+        const ctaLink = agendaModal.querySelector(".agenda-cta");
+        if (ctaLink) {
+            ctaLink.addEventListener("click", () => {
+                closeAgendaModal();
+            });
+        }
+
+        // Mobile: close immediately on touch-scroll, never block site scroll
+        let agendaTouchStartY = 0;
+        document.addEventListener("touchstart", (e) => {
+            if (agendaModal.getAttribute("aria-hidden") === "false") {
+                agendaTouchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        document.addEventListener("touchmove", (e) => {
+            if (agendaModal.getAttribute("aria-hidden") === "false") {
+                const deltaY = e.touches[0].clientY - agendaTouchStartY;
+                if (Math.abs(deltaY) > 8) {
+                    closeAgendaModal();
+                }
+            }
+        }, { passive: true });
+
+        // Show once per session only, after a brief delay so it never interrupts first render
+        if (sessionStorage.getItem(AGENDA_KEY) !== "1") {
+            agendaTimer = setTimeout(() => {
+                agendaTimer = null;
+                if (sessionStorage.getItem(AGENDA_KEY) === "1") return;
+                // Never stack over the contact modal; yield to a #contact landing
+                if (contactModal && (contactModal.getAttribute("aria-hidden") === "false" || window.location.hash === "#contact")) return;
+                const activeEl = document.activeElement;
+                agendaPrevFocusEl = (activeEl && activeEl !== document.body && activeEl !== document.documentElement && typeof activeEl.focus === "function") ? activeEl : null;
+                setAgendaModalState(true);
+                const cta = agendaModal.querySelector(".agenda-cta");
+                (cta || agendaModal.querySelector("button"))?.focus();
+            }, 1800);
+        }
+    }
+
+    // Escape closes only the top-most visible modal (agenda and contact never coexist)
+    document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (contactModal && contactModal.getAttribute("aria-hidden") === "false") {
+            closeContactModal();
+        } else if (agendaModal && agendaModal.getAttribute("aria-hidden") === "false") {
+            closeAgendaModal();
+        }
+    });
 
     // ── Resto del código ──
     const body = document.body;
