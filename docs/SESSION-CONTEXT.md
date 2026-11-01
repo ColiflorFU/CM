@@ -4,7 +4,7 @@
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 **Dominio:** ecmarquitectura.cl
-**Versión en `VERSION`:** 2.4.1 (commit + tag `v2.4.0` publicados en local; falta el push)
+**Versión en `VERSION`:** 2.4.7 (8 commits y 8 tags creados en local; **falta el push**, ver credenciales)
 
 ---
 
@@ -22,10 +22,11 @@ Sitio estático de 13 páginas (home + 12 en `pages/`). Sin build. El rediseño 
 | Servicios | ✅ | v2.4.0 | 8 ítems reescritos, ITO al final, Ley del Mono dentro de Regularización |
 | Certificaciones | ✅ | v2.4.0 | Eléctricas, Gas y Sanitarias como subservicios independientes |
 | Locales Comerciales | ✅ | v2.4.0 | Servicio nuevo según brief |
-| El Método | ✅ | v2.4.0 | Conserva título, texto e imagen. Se quitó la fila de 3 iconos y el cierre suelto |
-| Preguntas Frecuentes | ✅ | v2.4.0 | Sección propia (`id="faq"`), separada de Proceso |
+| El Método | ✅ | v2.4.7 | Título, texto e imagen 16:9 (`metodo-ecm.jpg`). Sin fila de iconos ni cierre suelto; columna de texto ensanchada y centrada |
+| Preguntas Frecuentes | ✅ | v2.4.1 | Sección propia (`id="faq"`), separada de Proceso, con la foto nueva de la arquitecta |
 | Portfolio landing | ✅ | v2.4.0 | `pages/portfolio.html`, vertical, 3 categorías, 6 proyectos reales |
-| Navbar desktop/mobile | ✅ | v2.4.0 | Orden: Home, Servicios, Proceso, Portafolio, Quiénes Somos, FAQ, Contacto |
+| Navbar desktop/mobile | ✅ | v2.4.3 | Orden del brief. Portafolio con desplegable de 3 categorías en desktop; mobile sin cambios |
+| Acordeones | ✅ | v2.4.2 | FAQ y Proceso con altura animada (260 ms) y fundido del texto; respeta `prefers-reduced-motion` |
 | Sitemap | ✅ | v2.4.0 | 13 URLs, rutas `/pages/` corregidas |
 | FAB WhatsApp | ✅ | v2.4.0 | Círculo negro 44px con ícono, alineado con el de volver arriba, en las 13 páginas |
 | FAB volver arriba | ✅ | v2.4.0 | Círculo blanco 44px con flecha; es la base de la pila (el de WhatsApp va arriba) |
@@ -60,8 +61,23 @@ Tanda grande: implementación del brief del cliente + landing de portafolio.
 - **Sitemap**: URLs corregidas a `/pages/…`, agregadas la landing y las 8 páginas de proyecto que faltaban (13 URLs).
 - **FAB WhatsApp**: componente nuevo en CSS + markup en las 13 páginas.
 
-Al cierre de esta documentación, todo esto está **sin commitear** en el working tree
-(15 archivos modificados + `pages/portfolio.html` nuevo + 3 `.af` sin trackear), más ajustes manuales menores de Patrick hechos esa misma tarde.
+## CIERRE DE JORNADA — 2026-11-01
+
+Todo lo de abajo quedó commiteado en local, con tag por tanda (rollback: `git checkout v2.4.X -- .`).
+
+| Tag | Qué entró |
+|---|---|
+| `v2.4.0` | Rediseño del brief: menú, servicios, FAQ propia, landing de portafolio, sitemap, FABs, docs (`AGENTS.md`) |
+| `v2.4.1` | Foto nueva en Preguntas Frecuentes (`faq.jpg`), respaldo de la anterior |
+| `v2.4.2` | Acordeones con animación real de altura; se evitó el FAB de WhatsApp duplicado que inyectaba el JS |
+| `v2.4.3` | Desplegable de categorías en Portafolio + `scroll-margin-top`; se cerró una llave `}` faltante en el CSS |
+| `v2.4.4` | Foto de El Método (primer recorte, desde el archivo chico) |
+| `v2.4.5` | Misma foto desde el original en alta (1414×795, sin reescalado) |
+| `v2.4.6` | Columna de texto de El Método más ancha (se quitó el `max-width: 340px`) |
+| `v2.4.7` | Segundo ajuste: 48fr/50fr, `60ch`, bloque centrado verticalmente |
+
+Incluye ajustes manuales menores de Patrick hechos durante la tarde.
+Los 3 archivos `.af` de `Recursos/Miscelaneos/` siguen sin trackear a propósito (17 MB).
 
 ---
 
@@ -69,9 +85,13 @@ Al cierre de esta documentación, todo esto está **sin commitear** en el workin
 
 ### Antes de publicar
 
-1. Revisar en local las 13 páginas (`python -m http.server 8081`) con foco en el FAB de WhatsApp en mobile.
-2. Decidir qué hacer con los `.af` sueltos (~17 MB): versionar o agregar a `.gitignore`.
-3. Commit + tag `v2.4.0` y push a `main` (recordar: el push deploya a producción).
+1. **Push a `main` pendiente.** Los 8 commits y 8 tags (`v2.4.0` … `v2.4.7`) están solo en local.
+   El 01-11 falló por credenciales: Git Credential Manager tiene guardada la cuenta **Diseno-Propulsow**,
+   que no tiene permiso sobre `ColiflorFU/CM` (403). Hay que autenticarse con la cuenta dueña del repo
+   (`git credential-manager github login`) y después `git push origin main --follow-tags`.
+   Ojo: el push deploya a producción por ZNet.
+2. Revisar en local las 13 páginas (`python -m http.server 8081`): desplegable de Portafolio, acordeones y FABs en mobile.
+3. Decidir qué hacer con los `.af` sueltos (~17 MB): versionar o agregar a `.gitignore`.
 
 ### Después del deploy
 

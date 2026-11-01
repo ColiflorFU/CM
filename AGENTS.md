@@ -57,8 +57,10 @@ Implementado y verificado:
 - Método: se conserva la sección (título, texto e imagen) sin la fila de iconos ni el cierre suelto.
 - Landing vertical `pages/portfolio.html` con 3 categorías y 6 proyectos reales.
 - Sitemap corregido a rutas `/pages/` y ampliado.
-- FABs en las 13 páginas: círculo blanco con flecha (volver arriba, 24px desde abajo) y círculo negro con
-  ícono de WhatsApp encima (mismo ancho, 12px de separación). Número del footer: +56 9 5127 8937.
+- FABs en las 13 páginas: círculo blanco con flecha (volver arriba) y círculo negro con ícono de WhatsApp
+  encima (mismo ancho, 12px de separación). Número del footer: +56 9 5127 8937.
+- Portafolio: desplegable de 3 categorías en desktop, con ancla a `portfolio.html#portfolio-…`.
+- Acordeones de FAQ y Proceso con altura animada.
 
 Pendiente:
 - Categoría "Obras Menores y Remodelaciones" del portafolio: sin assets en el repo, no se creó (comentario en `pages/portfolio.html`).
@@ -78,6 +80,7 @@ Pendiente:
 ## Cómo retomar
 
 1. Leer este archivo y `docs/SESSION-CONTEXT.md`.
-2. `git status` y `git log --oneline -10`: puede haber trabajo sin commitear.
+2. `git status` y `git log --oneline -10`. Al 01-11 hay 8 commits locales sin pushear: revisá si corresponde pushear
+   (el push deploya a producción) y si la credencial es la cuenta dueña del repo, no `Diseno-Propulsow`.
 3. Recién ahí proponer cambios. Si el pedido toca zona protegida, listar primero qué se propone y pedir OK.
 4. Al cerrar: `VERSION` + entrada en `REGISTRO-CAMBIOS` + actualizar `SESSION-CONTEXT`.
