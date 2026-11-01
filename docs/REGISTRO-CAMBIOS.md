@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 01-11-2026_
 
+## v2.4.5 — 2026-11-01
+
+Foto de El Metodo en alta resolucion.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.5**: se reemplazó metodo-ecm.jpg por un recorte 16:9 del original en alta (1414×2121 → 1414×795, sin reescalado). Se mantiene el encuadre (cabeza, torso y manos) que funcionaba en la versión chica, ahora nítido. |
+
 ## v2.4.4 — 2026-11-01
 
 Nueva foto en la seccion Arquitectura integral.
