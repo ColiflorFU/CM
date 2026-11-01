@@ -1,7 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+    const whatsappLink = document.createElement("a");
+    whatsappLink.className = "whatsapp-fab";
+    whatsappLink.href = "https://wa.me/56951278937";
+    whatsappLink.target = "_blank";
+    whatsappLink.rel = "noopener noreferrer";
+    whatsappLink.innerHTML = '<svg class="whatsapp-fab__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.08 0C5.55 0 .24 5.31.24 11.84c0 2.09.55 4.13 1.59 5.93L.14 23.86l6.23-1.64a11.83 11.83 0 0 0 5.7 1.46h.01c6.52 0 11.83-5.31 11.83-11.84 0-3.16-1.23-6.13-3.41-8.34Zm-8.42 18.2h-.01a9.83 9.83 0 0 1-5.01-1.37l-.36-.21-3.7.97.99-3.61-.23-.37a9.83 9.83 0 0 1-1.5-5.27C2.26 6.42 6.67 2 12.08 2c2.62 0 5.08 1.02 6.93 2.87a9.75 9.75 0 0 1 2.87 6.95c0 5.41-4.4 9.83-9.8 9.88Zm5.39-7.37c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.69.63.71.23 1.35.2 1.86.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg><span class="whatsapp-fab__label">WhatsApp</span>';
+    whatsappLink.setAttribute("aria-label", "Contactar por WhatsApp");
+    document.body.appendChild(whatsappLink);
+
+    document.querySelectorAll(".scroll-top-fab").forEach((action) => {
+        action.addEventListener("click", (event) => {
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            });
+        });
+    });
+
+    const syncFloatingActions = () => {
+        const hidden = body.classList.contains("menu-open") || body.classList.contains("modal-open");
+        document.querySelectorAll(".whatsapp-fab, .scroll-top-fab").forEach((action) => {
+            action.setAttribute("aria-hidden", String(hidden));
+            if (hidden) {
+                if (action.dataset.restoreTabindex === undefined) {
+                    action.dataset.restoreTabindex = action.getAttribute("tabindex") || "";
+                }
+                action.setAttribute("tabindex", "-1");
+            } else if (action.dataset.restoreTabindex !== undefined) {
+                action.setAttribute("tabindex", action.dataset.restoreTabindex);
+                delete action.dataset.restoreTabindex;
+            } else {
+                action.removeAttribute("tabindex");
+            }
+        });
+    };
+
     // ── Custom cursor ──
     const cursor = document.querySelector(".cursor-dot");
-    if (cursor) {
+    if (cursor && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
         document.addEventListener("mousemove", (e) => {
             cursor.style.left = e.clientX + "px";
             cursor.style.top = e.clientY + "px";
@@ -24,23 +62,79 @@ document.addEventListener("DOMContentLoaded", () => {
     if (contactModal) {
         const openBtns = document.querySelectorAll("[data-open-contact], .open-contact-modal");
         const closeBtns = contactModal.querySelectorAll("[data-close-contact]");
+        let openingTrigger = null;
+
+        const isUsableTrigger = (trigger) => trigger?.isConnected
+            && !trigger.disabled
+            && trigger.getAttribute("aria-disabled") !== "true"
+            && trigger.offsetParent !== null
+            && getComputedStyle(trigger).visibility !== "hidden"
+            && !trigger.closest("[inert]");
+
+        const restoreFocus = () => {
+            const trigger = openingTrigger;
+            if (!trigger) return;
+
+            const restoreWhenReady = () => {
+                if (trigger.closest(".mobile-menu-overlay") && !isUsableTrigger(trigger)) {
+                    openMobileMenu();
+                }
+
+                requestAnimationFrame(() => {
+                    const target = isUsableTrigger(trigger) ? trigger : Array.from(openBtns).find(isUsableTrigger);
+                    target?.focus({ preventScroll: true });
+                    openingTrigger = null;
+                });
+            };
+
+            const waitUntilHidden = () => {
+                if (getComputedStyle(contactModal).visibility !== "hidden") {
+                    requestAnimationFrame(waitUntilHidden);
+                    return;
+                }
+                restoreWhenReady();
+            };
+
+            requestAnimationFrame(waitUntilHidden);
+        };
+
+        const getModalFocusable = () => Array.from(contactModal.querySelectorAll(
+            "button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex=\"-1\"])"
+        )).filter((element) => element.offsetParent !== null);
+
+        const focusModalWhenReady = () => {
+            if (contactModal.getAttribute("aria-hidden") !== "false") return;
+            const field = contactModal.querySelector("input[name=name], input[name=email]");
+            if (!field) return;
+
+            const isVisible = getComputedStyle(contactModal).visibility === "visible";
+            if (!isVisible || field.offsetParent === null) {
+                requestAnimationFrame(focusModalWhenReady);
+                return;
+            }
+
+            field.focus({ preventScroll: true });
+        };
 
         function openContactModal(e) {
             if (e) e.preventDefault();
+            openingTrigger = e?.currentTarget || document.activeElement;
             contactModal.setAttribute("aria-hidden", "false");
             document.body.classList.add("modal-open");
-            contactModal.querySelector("input[name=name], input[name=email]")?.focus();
+            syncFloatingActions();
             // Close mobile menu if open
             const mobileOverlay = document.querySelector(".mobile-menu-overlay");
             if (mobileOverlay && mobileOverlay.getAttribute("aria-hidden") === "false") {
-                mobileOverlay.setAttribute("aria-hidden", "true");
-                document.body.classList.remove("menu-open");
+                closeMobileMenu();
             }
+            requestAnimationFrame(focusModalWhenReady);
         }
 
         function closeContactModal() {
             contactModal.setAttribute("aria-hidden", "true");
             document.body.classList.remove("modal-open");
+            syncFloatingActions();
+            restoreFocus();
         }
 
         openBtns.forEach(btn => btn.addEventListener("click", openContactModal));
@@ -51,8 +145,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && contactModal.getAttribute("aria-hidden") === "false") {
+            if (contactModal.getAttribute("aria-hidden") !== "false") return;
+
+            if (e.key === "Escape") {
+                e.preventDefault();
                 closeContactModal();
+                return;
+            }
+
+            if (e.key === "Tab") {
+                const focusable = getModalFocusable();
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
             }
         });
 
@@ -63,35 +175,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ── Resto del código ──
-    const body = document.body;
     const menuToggle = document.querySelector(".menu-toggle");
     const closeToggle = document.querySelector(".close-toggle");
+    const mobileOverlay = document.querySelector(".mobile-menu-overlay");
+    mobileOverlay?.setAttribute("inert", "");
     const mobileMenuLinks = document.querySelector(".mobile-menu-links");
-    const navDropdownBtn = document.querySelector(".nav-dropdown-btn");
-    const desktopDropdown = document.querySelector("#desktop-dropdown");
-    const mobilePortfolioBtn = document.querySelector(".mobile-portfolio-btn");
-    const mobilePortfolioItems = document.querySelector(".mobile-portfolio-items");
-
-    // Mobile portfolio accordion
-    if (mobilePortfolioBtn && mobilePortfolioItems) {
-        mobilePortfolioBtn.addEventListener("click", () => {
-            const isOpen = mobilePortfolioBtn.getAttribute("aria-expanded") === "true";
-            mobilePortfolioBtn.setAttribute("aria-expanded", String(!isOpen));
-            mobilePortfolioItems.classList.toggle("is-open");
-            mobilePortfolioItems.setAttribute("aria-hidden", String(isOpen));
-        });
-    }
 
     // Mobile menu
     function openMobileMenu() {
         body.classList.add("menu-open");
+        syncFloatingActions();
         menuToggle.setAttribute("aria-expanded", "true");
+        mobileOverlay?.removeAttribute("inert");
+        mobileOverlay?.setAttribute("aria-hidden", "false");
         document.documentElement.style.overflow = "hidden";
     }
 
     function closeMobileMenu() {
         body.classList.remove("menu-open");
+        syncFloatingActions();
         menuToggle.setAttribute("aria-expanded", "false");
+        mobileOverlay?.setAttribute("aria-hidden", "true");
+        mobileOverlay?.setAttribute("inert", "");
         document.documentElement.style.overflow = "";
     }
 
@@ -104,33 +209,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     openMobileMenu();
                 }
-            }
-            // Desktop: toggle dropdown only (no scroll lock)
-        });
-    }
-
-    // Desktop dropdown - toggle without scroll lock
-    if (navDropdownBtn && desktopDropdown) {
-        navDropdownBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const isOpen = body.classList.contains("dropdown-open");
-            if (isOpen) {
-                body.classList.remove("dropdown-open");
-                navDropdownBtn.setAttribute("aria-expanded", "false");
-                desktopDropdown.setAttribute("aria-hidden", "true");
-            } else {
-                body.classList.add("dropdown-open");
-                navDropdownBtn.setAttribute("aria-expanded", "true");
-                desktopDropdown.setAttribute("aria-hidden", "false");
-            }
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener("click", (event) => {
-            if (!event.target.closest("#desktop-dropdown") && !event.target.closest(".nav-dropdown-btn")) {
-                body.classList.remove("dropdown-open");
-                navDropdownBtn.setAttribute("aria-expanded", "false");
-                desktopDropdown.setAttribute("aria-hidden", "true");
             }
         });
     }
@@ -158,7 +236,10 @@ document.addEventListener("DOMContentLoaded", () => {
         "section .eyebrow, section h1, section h2, .media-block, .studio-copy, .service-row, .philosophy-card, .banner-cta-panel, .portfolio-card, .process-accordion details, .contact-form-block, .faq-block, .faq-list details, .form-field, .conversemos-section, .cta-hablemos-section, .gallery-break-section, .conversemos-heading, .cta-hablemos-content"
     );
 
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && revealTargets.length) {
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        && revealTargets.length
+        && "IntersectionObserver" in window) {
+        document.documentElement.classList.add("has-reveal");
         revealTargets.forEach((element, index) => {
             element.setAttribute("data-reveal", "");
             element.style.transitionDelay = `${Math.min(index % 4, 3) * 0.06}s`;
@@ -258,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const track = slider.querySelector('.hero__track');
         const slides = slider.querySelectorAll('.hero__slide');
         const btns = slider.querySelectorAll('.hero__slider-btn');
-        if (track && slides.length > 1 && btns.length) {
+        if (track && slides.length && btns.length) {
             let current = 0;
             let animating = true; /* Locked during page load */
             let interval;

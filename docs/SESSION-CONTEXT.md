@@ -1,124 +1,99 @@
 # CM Website — Session Documentation
 
-**Última actualización:** 2026-07-18
+**Última actualización:** 2026-11-01
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 **Dominio:** ecmarquitectura.cl
-**Versión actual:** v2.3.4
+**Versión en `VERSION`:** 2.4.0 (sin commit ni tag todavía)
 
 ---
 
 ## ESTADO ACTUAL
 
+Sitio estático de 13 páginas (home + 12 en `pages/`). Sin build. El rediseño pedido por el cliente en
+`Puntos Web ECM Arquitectura.pdf` está implementado; falta decidir dos detalles menores y commitear.
+
 ### Lo que está funcionando ✅
 
-| Sección | Estado | Versión | Notas |
-|---------|--------|---------|-------|
-| Hero slider | ✅ | v2.2.4 | 2 slides con imágenes reales, copy final, transiciones cinemáticas |
-| Studio section | ✅ | v1.0 | Grid con imagen Elizabeth, texto, badge CM |
-| Services section | ✅ | v1.0 | 6 servicios en lista con números |
-| Philosophy (Nuestra mirada) | ✅ | v1.4 | 3 cards con iconos SVG reales |
-| Portfolio grid | ✅ | v1.4 | Carrusel con 6 proyectos reales, navegación ←/→ |
-| Banner CTA | ✅ | v1.8 | Valores proporcionales con `clamp()` |
-| Process section | ✅ | v1.0 | Accordion con 4 pasos |
-| FAQ section | ✅ | v2.3 | CSS Grid, card superpuesta, accordion limpio |
-| Contact modal | ✅ | v2.1 | Popup con 5 campos, reemplaza página standalone |
-| Footer | ✅ | v1.5 | 5 columnas con CTA, redes, dirección |
-| form.php | ✅ | v1.2 | Envía lead + auto-respuesta via SMTP nativo (ZNet). Ver `FLUJO-CORREO.md` |
-| Flujo email completo | ✅ | — | `contacto@` → acknowledge + lead → Elizabeth en Gmail → responde como `elizabeth@`. Ver `FLUJO-CORREO.md` |
-| elizabeth.html | ✅ | v1.0 | Landing page con bio, timeline, specialties |
-| SEO básico | ✅ | v2.0 | OG, Twitter Cards, canonical, JSON-LD LocalBusiness + FAQPage |
-| Dominio canónico | ✅ | v2.3.3 | `ecmarquitectura.cl` en todos los meta tags |
+| Sección | Estado | v | Notas |
+|---------|--------|---|-------|
+| Hero | ✅ | v2.4.0 | Un solo slide. Se eliminó el slide 2 ("Transformamos necesidades…") |
+| Quiénes Somos (ex Estudio) | ✅ | v2.4.0 | Texto nuevo del brief (eje cívico, Paseo Bulnes) |
+| Servicios | ✅ | v2.4.0 | 8 ítems reescritos, ITO al final, Ley del Mono dentro de Regularización |
+| Certificaciones | ✅ | v2.4.0 | Eléctricas, Gas y Sanitarias como subservicios independientes |
+| Locales Comerciales | ✅ | v2.4.0 | Servicio nuevo según brief |
+| El Método | ✅ | v2.4.0 | Conserva título, texto e imagen. Se quitó la fila de 3 iconos y el cierre suelto |
+| Preguntas Frecuentes | ✅ | v2.4.0 | Sección propia (`id="faq"`), separada de Proceso |
+| Portfolio landing | ✅ | v2.4.0 | `pages/portfolio.html`, vertical, 3 categorías, 6 proyectos reales |
+| Navbar desktop/mobile | ✅ | v2.4.0 | Orden: Home, Servicios, Proceso, Portafolio, Quiénes Somos, FAQ, Contacto |
+| Sitemap | ✅ | v2.4.0 | 13 URLs, rutas `/pages/` corregidas |
+| FAB WhatsApp | ✅ | v2.4.0 | Círculo negro 44px con ícono, alineado con el de volver arriba, en las 13 páginas |
+| FAB volver arriba | ✅ | v2.4.0 | Círculo blanco 44px con flecha; es la base de la pila (el de WhatsApp va arriba) |
+| Contact modal | ✅ | v2.3 | Sin cambios en esta tanda |
+| form.php | ✅ | v2.3 | SMTP nativo ZNet. No tocar sin OK |
+| SEO | ⚠️ | — | Meta/JSON-LD previos intactos; falta reverificar canonical y sitemap en producción |
+| Deploy | ⚠️ | — | Push a `main` dispara deploy automático en ZNet. No ejecutado en esta tanda |
 
-### Lo que necesita trabajo ⚠️
+### Decisiones tomadas en esta tanda
 
-| Sección | Estado | Prioridad | Notas |
-|---------|--------|-----------|-------|
-| Navbar Desktop | ⚠️ | Media | Funciona pero no verificada contra referencia visual final |
-| Navbar Mobile | ⚠️ | Media | Abre/cierra pero no se parece al mockup |
-| Hosting / Deploy | 🔲 | Alta | Dominio y hosting listos, falta migrar |
-| form.php SMTP (Gmail config) | 🔲 | Alta | Configurar "Send mail as" en Gmail para elizabeth@. Ver `FLUJO-CORREO.md` |
-| SSL / HTTPS | 🔲 | Alta | Configurar certificado tras apuntar dominio |
+1. **Portafolio con 3 categorías, no 4.** El PDF pedía también "Obras Menores y Remodelaciones", pero no hay
+   proyectos ni fotos en `Recursos/Proyectos/`. Regla del brief: no inventar. Queda comentario en el HTML y se
+   agrega cuando existan assets reales.
+2. **WhatsApp reutiliza el número del footer** (+56 9 5127 8937), como pedía el brief ("reutilizar el contacto
+   ya configurado"). Sin mensaje precargado.
+3. **La sección "Procesos" no se borró.** La anotación "BORRAS ESO" de la página 6 del PDF quedó sin resolver;
+   se separó FAQ de Proceso sin eliminar contenido.
 
 ---
 
-## CAMBIOS REALIZADOS (resumen hasta v2.3.4)
+## CAMBIOS v2.4.0 — 2026-11-01
 
-### v2.2 → v2.3.4 (17-07-2026) — Otra máquina
-- **Hero slider**: imágenes reales (`slider1.jpeg`, `slider2.jpeg`, `hero.jpeg`), copy final, fix `translateX`
-- **FAQ section**: rediseño completo con CSS Grid, card superpuesta, accordion limpio
-- **Dominio**: canonical y email actualizados a `ecmarquitectura.cl`
-- **Limpieza**: eliminado `FICHA MARITEX.af` (24MB), `pages/contacto.html`
+Tanda grande: implementación del brief del cliente + landing de portafolio.
 
-### v2.0 → v2.1 (12-07-2026)
-- Contacto convertido de página standalone a modal/popup
-- Encoding UTF-8 limpio en 13 HTMLs (MVP producción)
+- **Contenido**: El Método quedó solo con título, texto e imagen (se quitaron la fila de iconos y el cierre suelto); menú reordenado; slide 2 eliminado; Estudio → Quiénes Somos con texto nuevo; 8 servicios
+  reescritos/ampliados; 3 certificaciones separadas; Ley del Mono absorbida por Regularización de Viviendas;
+  Método renombrado a Escuchar/Diseñar/Concretar; FAQ independizada.
+- **Portafolio**: nueva `pages/portfolio.html` con Viviendas, Locales Comerciales y Espacios Públicos; 6 cards
+  con foto y descripción breve, enlazadas a las páginas de proyecto existentes.
+- **Navegación**: el desplegable de portafolio se reemplazó por enlace a la landing, en desktop y mobile.
+- **Mobile**: corregidos FABs que tapaban texto, textos de reveal que desaparecían sin JS, overflow y cierres de menú.
+- **Sitemap**: URLs corregidas a `/pages/…`, agregadas la landing y las 8 páginas de proyecto que faltaban (13 URLs).
+- **FAB WhatsApp**: componente nuevo en CSS + markup en las 13 páginas.
 
-### v1.5 → v1.9 (04-06 al 12-06-2026)
-- Navbar unificado + mobile menu
-- FAQ centrado, carrusel portfolio, hero cinemático, cursor dot
-- Grilla contacto proporcional con `clamp()`
-- Fixes mobile: parallax, hero, banner grid
+Al cierre de esta documentación, todo esto está **sin commitear** en el working tree
+(15 archivos modificados + `pages/portfolio.html` nuevo + 3 `.af` sin trackear), más ajustes manuales menores de Patrick hechos esa misma tarde.
 
 ---
 
 ## PENDIENTE
 
-### Deploy a producción (17-07-2026)
+### Antes de publicar
 
-**Workflow exacto:** Work local → commit/push `main` → ZNet cPanel Git Version Control → Deploy automático.
+1. Revisar en local las 13 páginas (`python -m http.server 8081`) con foco en el FAB de WhatsApp en mobile.
+2. Decidir qué hacer con los `.af` sueltos (~17 MB): versionar o agregar a `.gitignore`.
+3. Commit + tag `v2.4.0` y push a `main` (recordar: el push deploya a producción).
 
-1. ✅ Dominio `ecmarquitectura.cl` — DNS configurados por ZNet
-2. ✅ Archivos subidos vía File Manager a `public_html`
-3. ✅ index.php placeholder eliminado
-4. ✅ SSL/HTTPS activo automáticamente
-5. ✅ Deploy automático — Git Version Control en ZNet cPanel configurado (branch: main)
-6. ✅ form.php reescrito con encoding UTF-8 limpio (mojibake eliminado)
-7. ✅ Correo `elizabeth@ecmarquitectura.cl` creado en ZNet
-8. ✅ **form.php SMTP** — reescrito con SMTP nativo (ZNet), sin dependencias. Ver `FLUJO-CORREO.md`
-9. **Gmail "Send mail as"** — configurar para `elizabeth@ecmarquitectura.cl` vía ZNet SMTP (`mail.ecmarquitectura.cl:587/TLS`). Marcar como default. Ver `FLUJO-CORREO.md`
-10. **Gmail filtro** — label "Lead Web" para emails de `contacto@ecmarquitectura.cl`, archivar del inbox principal
-11. **Verificar SEO** — canonical, sitemap, robots.txt accesibles en producción
+### Después del deploy
 
-### Mejoras post-deploy
-7. **Navbar** — verificación visual final contra referencias
-8. **Templates email branding** — plantillas HTML para auto-respuesta y lead interno con identidad visual CM
-9. **Múltiples fotos por proyecto** — galería interna
-10. **Img fondo menú mobile** — agregar imagen de fondo
-11. **Performance** — lazy-load completo, compresión de imágenes
-12. **Feedback/clientes** — sección de testimonios o reviews (pendiente definir enfoque)
-
-### Completado (checklist)
-- ✅ Hero slider con imágenes reales
-- ✅ FAQ rediseñado con CSS Grid
-- ✅ Dominio canónico `ecmarquitectura.cl`
-- ✅ Contacto como modal popup
-- ✅ Encoding UTF-8 limpio
-- ✅ SEO básico (OG, Twitter, JSON-LD)
-- ✅ Sitemap + robots.txt
-- ✅ Fotos reales en portfolio
-- ✅ Links reales Instagram/LinkedIn
+4. Verificar en producción: home, landing de portafolio, sitemap, canonical, y que el formulario siga enviando.
+5. Gmail "Send mail as" para `elizabeth@ecmarquitectura.cl` (ver `FLUJO-CORREO.md`).
+6. Agregar la categoría "Obras Menores y Remodelaciones" cuando haya proyectos con fotos.
+7. Pendientes heredados: plantillas HTML de correo con identidad CM, galería múltiple por proyecto,
+   imagen de fondo del menú mobile, lazy-load, testimonios.
 
 ---
 
-## SECCIONES PROTEGIDAS (resumen)
+## SECCIONES PROTEGIDAS
 
-Ver `SECCIONES-PROTEGIDAS.md` para la lista completa. No modificar sin OK explícito de Patrick.
+Ver `SECCIONES-PROTEGIDAS.md`. Footer, botón brackets, `form.php`, studio, services, banner CTA,
+portfolio grid, process y navbar requieren OK explícito de Patrick.
 
 ---
 
 ## Referencias visuales
 
-En `/Referencias/`:
-- `D-NAVBAR.png` — Navbar desktop
-- `M-NAVBAR.png` — Navbar mobile
-- `M-MENU.png` — Menu mobile fullscreen
-- `D-NUESTRAMIRADA.png` — Cards filosofía desktop
-- `M-NUESTRA MIRANDA.png` — Cards filosofía mobile
-- `M-CTA CINVERSEMOS.png` — Sección conversemos
-- `M-FOOTER.png` — Footer
-- `BOTONES.png` — Botón brackets
-- `faq.jpg` — FAQ (referencia)
+En `/Referencias/`: `D-NAVBAR.png`, `M-NAVBAR.png`, `M-MENU.png`, `D-NUESTRAMIRADA.png`,
+`M-NUESTRA MIRANDA.png`, `M-CTA CINVERSEMOS.png`, `M-FOOTER.png`, `BOTONES.png`, `faq.jpg`.
 
 ---
 
@@ -126,9 +101,8 @@ En `/Referencias/`:
 
 - **Dominio:** ecmarquitectura.cl
 - **Email:** elizabeth@ecmarquitectura.cl
-- **Email auto:** contacto@ecmarquitectura.cl (buzón de automatización: acknowledge + lead routing)
-- **Flujo correo completo:** Ver `FLUJO-CORREO.md`
-- **Teléfono:** +56 9 5127 8937
+- **Email auto:** contacto@ecmarquitectura.cl (acknowledge + lead routing)
+- **Teléfono / WhatsApp:** +56 9 5127 8937
 - **Dirección:** Paseo Ahumada 341, Of. 504, Santiago Centro, Chile
 
 ---
@@ -136,4 +110,5 @@ En `/Referencias/`:
 ## Credenciales
 
 - **GitHub:** https://github.com/ColiflorFU/CM
-- **ZNet Panel:** https://cp.znet-host.com (credenciales en keychain, NO en repo)
+- **ZNet Panel:** https://cp.znet-host.com (credenciales en keychain, NO en el repo)
+- **Flujo de correo:** `FLUJO-CORREO.md`

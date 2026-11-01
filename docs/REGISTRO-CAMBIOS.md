@@ -44,7 +44,19 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 ---
 
-_Última actualización: 17-07-2026_
+_Última actualización: 01-11-2026_
+
+## v2.4.0 — 2026-11-01
+
+Rediseño según brief del cliente + landing de portafolio.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.0 contenido**: menú reordenado (Home, Servicios, Proceso, Portafolio, Quiénes Somos, FAQ, Contacto); eliminado el slide 2 del hero; "Estudio" → "Quiénes Somos" con el texto nuevo del brief; servicios reescritos (Arquitectura y Diseño ampliado, 3 certificaciones separadas, Construcción y Remodelación, Regularización de Viviendas, Locales Comerciales, ITO al final); Ley del Mono absorbida por Regularización de Viviendas; Método con pasos Escuchar → Diseñar → Concretar; Preguntas Frecuentes como sección propia separada de Proceso. |
+| 01-11-2026 | **v2.4.0 portafolio**: nueva `pages/portfolio.html` vertical con categorías Viviendas, Locales Comerciales y Espacios Públicos (6 proyectos reales con foto y descripción). Reemplaza el desplegable del menú. La categoría "Obras Menores y Remodelaciones" queda pendiente por falta de assets. |
+| 01-11-2026 | **v2.4.0 FABs**: botón de WhatsApp rediseñado como círculo negro de 44px con ícono (sin texto), alineado con el botón de volver arriba, que pasó a círculo blanco con flecha `currentColor`. Agregada la flecha en `pages/equipo-elizabeth-contreras.html`, que no la tenía. |
+| 01-11-2026 | **v2.4.0 método**: se quitó de `index.html` la fila de 3 iconos (Escuchar/Diseñar/Concretar) y el cierre suelto "Comprender, integrar y materializar". La sección conserva el título "Arquitectura integral", el texto y la imagen. |
+| 01-11-2026 | **v2.4.0 SEO/UI**: sitemap corregido a rutas `/pages/` y ampliado a 13 URLs; FAB de WhatsApp en las 13 páginas (`wa.me/56951278937`); correcciones mobile de FABs que tapaban texto, textos reveal sin JS y overflow. |
 
 ## v2.3.4 — 2026-07-17
 

@@ -17,7 +17,7 @@
 
 * {
     box-sizing: border-box;
-    cursor: none;
+    cursor: auto;
 }
 
 html {
@@ -42,6 +42,10 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) {
+
+    * {
+        cursor: none;
+    }
 
     .cursor-dot {
         display: block;
@@ -162,40 +166,6 @@ a {
     color: var(--orange);
 }
 
-/* Nav dropdown button (desktop) */
-.nav-dropdown-btn {
-    background: none;
-    border: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: inherit;
-    cursor: pointer;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.nav-dropdown-btn:hover {
-    color: var(--orange);
-}
-
-.nav-arrow {
-    font-size: 0.6rem;
-    transition: transform 0.2s ease;
-}
-
-.nav-dropdown-btn[aria-expanded="true"] .nav-arrow {
-    transform: rotate(180deg);
-}
-
-/* Hide old hamburger on desktop */
-.desktop-dropdown-toggle {
-    display: none;
-}
-
 .nav-contact-btn {
     display: inline-flex;
     align-items: center;
@@ -236,59 +206,6 @@ a {
     width: 260px;
     height: auto;
     filter: brightness(0) saturate(100%);
-}
-
-/* Nav dropdown wrapper */
-.nav-dropdown-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-}
-
-/* Dropdown â€” positioned below the nav item */
-.desktop-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 60;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-    padding: 0 5%;
-}
-
-.dropdown-open .desktop-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.desktop-dropdown-inner {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-top: none;
-    padding: 12px 0;
-    min-width: 240px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-}
-
-.desktop-dropdown-item {
-    display: block;
-    padding: 12px 24px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ink);
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.desktop-dropdown-item:hover {
-    background: var(--soft);
-    color: var(--orange);
 }
 
 main {
@@ -1136,6 +1053,26 @@ section {
     font-size: 0.92rem;
 }
 
+.service-row > div {
+    min-width: 0;
+}
+
+.service-details {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.philosophy-closing {
+    grid-column: 1 / -1;
+    margin: 24px 0 0;
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
 .service-row em {
     color: var(--accent);
     font-style: normal;
@@ -1875,8 +1812,9 @@ section {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #000;
-    color: #fff;
+    background: #fff;
+    color: #111;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1889,13 +1827,159 @@ section {
     opacity: 0.8;
 }
 
-[data-reveal] {
+/* Canonical vertical portfolio landing */
+.portfolio-landing {
+    padding-top: 86px;
+    background: var(--paper);
+}
+
+.portfolio-landing-hero {
+    padding: 150px 0 120px;
+    border-bottom: 1px solid var(--line);
+}
+
+.portfolio-landing-hero h1 {
+    max-width: 760px;
+    margin: 0 0 24px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2.8rem, 6vw, 6rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+}
+
+.portfolio-landing-hero p:last-child {
+    max-width: 480px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.portfolio-landing-content {
+    padding-top: 120px;
+}
+
+.portfolio-category {
+    padding-bottom: 120px;
+}
+
+.portfolio-category-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--line);
+}
+
+.portfolio-category-heading .eyebrow {
+    margin: 0;
+    color: var(--accent);
+}
+
+.portfolio-category-heading h2 {
+    margin: 0 0 18px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(2rem, 3.2vw, 3.2rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.portfolio-landing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px 24px;
+}
+
+.portfolio-landing-card {
+    min-width: 0;
+}
+
+.portfolio-landing-card > a {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+}
+
+.portfolio-landing-card img {
+    width: 100%;
+    aspect-ratio: 1.55;
+    object-fit: cover;
+    margin-bottom: 24px;
+    background: var(--soft);
+}
+
+.portfolio-landing-card-copy h3 {
+    margin: 0 0 12px;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.portfolio-landing-card-copy p {
+    max-width: 620px;
+    min-height: 3.2em;
+    margin: 0 0 24px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.portfolio-landing-card:hover h3 {
+    color: var(--orange);
+}
+
+.whatsapp-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 80px;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.2s ease;
+}
+
+.whatsapp-fab:hover,
+.whatsapp-fab:focus-visible {
+    opacity: 0.8;
+}
+
+.whatsapp-fab__label {
+    display: none;
+}
+
+.whatsapp-fab__icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+body.menu-open .scroll-top-fab,
+body.menu-open .whatsapp-fab,
+body.modal-open .scroll-top-fab,
+body.modal-open .whatsapp-fab {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+html.has-reveal [data-reveal] {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-[data-reveal].is-visible {
+html.has-reveal [data-reveal].is-visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -3224,6 +3308,15 @@ body.modal-open {
 }
 
 @media (max-width: 760px) {
+    /* Keep the compact fixed action rail outside project copy while scrolling. */
+    .proj-content {
+        padding-right: 48px;
+    }
+
+    .proj-nav {
+        margin-right: 48px;
+    }
+
     .container {
         width: min(100% - 32px, var(--max));
     }
@@ -3339,65 +3432,6 @@ body.modal-open {
         color: var(--orange);
     }
 
-    /* Mobile portfolio accordion */
-    .mobile-portfolio-accordion {
-        width: 100%;
-    }
-
-    .mobile-portfolio-btn {
-        display: block;
-        width: 100%;
-        padding: 20px 0;
-        background: transparent;
-        border: none;
-        font-family: var(--font-sans);
-        font-size: 20px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        color: var(--ink);
-        cursor: pointer;
-        transition: color 0.2s ease;
-    }
-
-    .mobile-portfolio-btn:hover {
-        color: var(--orange);
-    }
-
-    .mobile-portfolio-arrow {
-        display: inline-block;
-        margin-left: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .mobile-portfolio-btn[aria-expanded="true"] .mobile-portfolio-arrow {
-        transform: rotate(180deg);
-    }
-
-    .mobile-portfolio-items {
-        display: none;
-        padding: 8px 0 16px;
-    }
-
-    .mobile-portfolio-items.is-open {
-        display: block;
-    }
-
-    .mobile-portfolio-item {
-        display: block;
-        padding: 12px 0;
-        font-family: var(--font-sans);
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        color: rgba(0,0,0,0.6);
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-
-    .mobile-portfolio-item:hover {
-        color: var(--orange);
-    }
-
     .mobile-contact-btn {
         display: inline-flex;
         align-items: center;
@@ -3478,7 +3512,9 @@ body.modal-open {
     }
 
     .hero-slider {
+        height: auto;
         min-height: auto;
+        overflow: visible;
     }
 
     .hero__track {
@@ -3832,6 +3868,27 @@ body.modal-open {
         height: 40px;
     }
 
+    .whatsapp-fab {
+        right: 16px;
+        bottom: 68px;
+        min-width: 40px;
+        width: 40px;
+        min-height: 40px;
+        height: 40px;
+        padding: 0;
+    }
+
+    .whatsapp-fab__label {
+        display: none;
+    }
+
+    .whatsapp-fab__icon {
+        display: block;
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+    }
+
     .banner-cta-section {
         --banner-left: calc(100% / 9);
         --banner-right: calc(100% / 24);
@@ -3923,6 +3980,52 @@ body.modal-open {
 
     .portfolio-heading {
         display: block;
+    }
+
+    .portfolio-landing {
+        padding-top: 72px;
+    }
+
+    .portfolio-landing-hero {
+        padding: 92px 0 72px;
+    }
+
+    .portfolio-landing-hero h1 {
+        font-size: clamp(2.45rem, 12vw, 4rem);
+    }
+
+    .portfolio-landing-content {
+        padding-top: 72px;
+    }
+
+    .portfolio-category {
+        padding-bottom: 76px;
+    }
+
+    .portfolio-category-heading {
+        display: block;
+        margin-bottom: 28px;
+    }
+
+    .portfolio-category-heading .eyebrow {
+        margin-bottom: 10px;
+    }
+
+    .portfolio-category-heading h2 {
+        margin-bottom: 14px;
+    }
+
+    .portfolio-landing-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .portfolio-landing-card img {
+        aspect-ratio: 1.25;
+    }
+
+    .portfolio-landing-card-copy p {
+        min-height: 0;
     }
 
     .portfolio-section {
