@@ -605,4 +605,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
+    /* Dropdown de categorias del portafolio: hover con retardo + teclado */
+    const navDropdown = document.querySelector("[data-nav-dropdown]");
+    if (navDropdown) {
+        const trigger = navDropdown.querySelector(".nav-dropdown__trigger");
+        const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+        let closeTimer = null;
+
+        const openDropdown = () => {
+            window.clearTimeout(closeTimer);
+            navDropdown.classList.add("is-open");
+            trigger.setAttribute("aria-expanded", "true");
+        };
+
+        const closeDropdown = () => {
+            window.clearTimeout(closeTimer);
+            navDropdown.classList.remove("is-open");
+            trigger.setAttribute("aria-expanded", "false");
+        };
+
+        const scheduleClose = () => {
+            window.clearTimeout(closeTimer);
+            closeTimer = window.setTimeout(closeDropdown, 180);
+        };
+
+        if (canHover) {
+            navDropdown.addEventListener("mouseenter", openDropdown);
+            navDropdown.addEventListener("mouseleave", scheduleClose);
+        }
+
+        navDropdown.addEventListener("focusin", openDropdown);
+        navDropdown.addEventListener("focusout", (event) => {
+            if (!navDropdown.contains(event.relatedTarget)) scheduleClose();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeDropdown();
+        });
+    }
+
 });

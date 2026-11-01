@@ -4111,6 +4111,7 @@ body.modal-open {
     .faq-list details p {
         font-size: 0.88rem;
     }
+}
 /* Print Button â€” corner brackets (opening outward, same style as cta-btn) */
 .print-button {
     position: relative;
@@ -4395,3 +4396,56 @@ body.modal-open {
     }
 }
 
+/* Dropdown de categorias del portafolio (desktop) */
+.nav-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown__panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    padding: 10px 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.nav-dropdown.is-open .nav-dropdown__panel,
+.nav-dropdown:focus-within .nav-dropdown__panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.nav-dropdown__panel a {
+    padding: 11px 22px;
+    color: var(--ink);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-dropdown__panel a:hover,
+.nav-dropdown__panel a:focus-visible {
+    background: var(--soft);
+    color: var(--orange);
+}
+
+/* Que el header fijo no tape el titulo de categoria al llegar por ancla */
+.portfolio-category-heading {
+    scroll-margin-top: 110px;
+}

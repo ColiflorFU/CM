@@ -46,6 +46,15 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 01-11-2026_
 
+## v2.4.3 — 2026-11-01
+
+Desplegable de categorias en el menu Portafolio.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.3**: `PORTAFOLIO` vuelve a desplegar, ahora con las 3 categorías (Viviendas, Locales Comerciales, Espacios Públicos) que enlazan a `portfolio.html#portfolio-viviendas`, `#portfolio-comerciales` y `#portfolio-publicos`. El clic sobre PORTAFOLIO lleva al inicio de la landing. Abre con hover (180 ms de gracia al salir), también con foco de teclado, y cierra con `Esc`; en dispositivos táctiles no se muestra y el enlace navega directo. Se agregó `scroll-margin-top` a los títulos de categoría para que el header fijo no los tape. |
+| 01-11-2026 | **v2.4.3 fix**: se cerró una llave `}` faltante en `assets/css/styles.css` (línea ~4113) que dejaba dentro de un `@media (max-width: 760px)` todo el CSS posterior: `.print-button`, dos bloques `@media` y las reglas nuevas. El archivo quedó balanceado (660/660). El menú mobile no se tocó. |
+
 ## v2.4.2 — 2026-11-01
 
 Acordeones con apertura y cierre animados.
