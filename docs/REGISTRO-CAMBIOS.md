@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 01-11-2026_
 
+## v2.4.6 — 2026-11-01
+
+Ajuste de la columna de texto en El Metodo.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.6**: el párrafo de Arquitectura integral estaba limitado a max-width: 340px, lo que lo apretaba en 5 líneas cortas y dejaba un hueco grande antes de la foto. Ahora la columna de texto es 44fr contra 50fr de la imagen, el párrafo usa max-width: 54ch con 1.15rem y el espacio entre columnas bajó a clamp(48px, 5.5vw, 88px). Se ve más aireado en desktop, tablet y mobile. |
+
 ## v2.4.5 — 2026-11-01
 
 Foto de El Metodo en alta resolucion.
