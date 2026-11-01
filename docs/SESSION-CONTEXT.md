@@ -4,7 +4,7 @@
 **Proyecto:** Contreras Martínez Arquitectura Integral
 **Repo:** https://github.com/ColiflorFU/CM
 **Dominio:** ecmarquitectura.cl
-**Versión en `VERSION`:** 2.4.0 (sin commit ni tag todavía)
+**Versión en `VERSION`:** 2.4.1 (commit + tag `v2.4.0` publicados en local; falta el push)
 
 ---
 

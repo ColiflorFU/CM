@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 01-11-2026_
 
+## v2.4.1 — 2026-11-01
+
+Imagen de Preguntas Frecuentes reemplazada por la propuesta del cliente.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.1**: `Recursos/Miscelaneos/faq.jpg` reemplazada por la foto de la arquitecta con cámara que propuso el cliente (`06-preguntas-frecuentes-imagen-propuesta.jpg`, 721×782). La imagen anterior quedó respaldada en `_backups/v2.4.0/faq.jpg` y en el tag `v2.4.0`. |
+
 ## v2.4.0 — 2026-11-01
 
 Rediseño según brief del cliente + landing de portafolio.
