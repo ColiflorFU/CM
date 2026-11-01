@@ -744,9 +744,9 @@ section {
 /* â”€â”€ Top Level: Text + Image â”€â”€ */
 .philosophy-top {
     display: grid;
-    grid-template-columns: minmax(0, 44fr) minmax(0, 50fr);
-    gap: clamp(48px, 5.5vw, 88px);
-    align-items: start;
+    grid-template-columns: minmax(0, 48fr) minmax(0, 50fr);
+    gap: clamp(40px, 4.5vw, 72px);
+    align-items: center;
 }
 
 .philosophy-text {
@@ -845,7 +845,7 @@ section {
     font-size: clamp(1rem, 1.1vw, 1.15rem);
     line-height: 1.75;
     color: #666;
-    max-width: 54ch;
+    max-width: 60ch;
 }
 
 .process-section {

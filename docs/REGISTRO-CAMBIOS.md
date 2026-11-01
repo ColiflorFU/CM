@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 01-11-2026_
 
+## v2.4.7 — 2026-11-01
+
+Segundo ajuste de la columna de texto en El Metodo.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.7**: la columna de texto pasó a 48fr (contra 50fr de la imagen), el párrafo a max-width: 60ch y la separación entre columnas a clamp(40px, 4.5vw, 72px). Además el bloque de texto quedó centrado verticalmente respecto de la foto (lign-items: center), que equilibra el aire sobrante debajo del párrafo. |
+
 ## v2.4.6 — 2026-11-01
 
 Ajuste de la columna de texto en El Metodo.
