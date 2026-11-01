@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 01-11-2026_
 
+## v2.4.2 — 2026-11-01
+
+Acordeones con apertura y cierre animados.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.2**: los acordeones de FAQ y Proceso dejaron de saltar. Se reemplazó el truco de `max-height` (que producía un salto brusco) por una animación real de altura (260 ms, `cubic-bezier(.4,0,.2,1)`) con fundido del texto, respetando `prefers-reduced-motion`. Además se evitó que `script.js` inyectara un segundo FAB de WhatsApp cuando la página ya lo trae en el HTML. |
+
 ## v2.4.1 — 2026-11-01
 
 Imagen de Preguntas Frecuentes reemplazada por la propuesta del cliente.

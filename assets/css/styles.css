@@ -1544,17 +1544,11 @@ section {
 
 .process-accordion details p {
     max-width: 520px;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
     margin: 0 0 0 42px;
     color: var(--muted);
     font-size: 0.94rem;
-    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
 }
 .process-accordion details[open] p {
-    max-height: 600px;
-    opacity: 1;
     margin: 0 0 28px 42px;
 }
 
@@ -2079,18 +2073,12 @@ html.has-reveal [data-reveal].is-visible {
 }
 
 .faq-list details p {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
     margin: 0;
     color: var(--muted);
     font-size: 0.9rem;
     line-height: 1.6;
-    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
 }
 .faq-list details[open] p {
-    max-height: 600px;
-    opacity: 1;
     margin: 16px 0 0;
 }
 
@@ -2735,19 +2723,13 @@ body.modal-open {
 }
 
 .faq-list details p {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
     margin: 0;
     max-width: 540px;
     color: var(--muted);
     font-size: 0.92rem;
     line-height: 1.5;
-    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
 }
 .faq-list details[open] p {
-    max-height: 600px;
-    opacity: 1;
     margin: 0 0 24px;
 }
 
