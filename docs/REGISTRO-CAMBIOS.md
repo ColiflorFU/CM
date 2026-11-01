@@ -46,6 +46,14 @@ git push origin v1.X              # ⬅️ Subir el tag
 
 _Última actualización: 01-11-2026_
 
+## v2.4.4 — 2026-11-01
+
+Nueva foto en la seccion Arquitectura integral.
+
+| Fecha | Descripción |
+|---|---|
+| 01-11-2026 | **v2.4.4**: la sección El Método usa Recursos/Miscelaneos/metodo-ecm.jpg, recorte 16:9 del retrato enviado por la clienta (origen 389×584, escalado a 800×450). Reemplaza a 	rabajando.jpg. Si llega el original en alta resolución, se reemplaza el archivo sin tocar el HTML. |
+
 ## v2.4.3 — 2026-11-01
 
 Desplegable de categorias en el menu Portafolio.
