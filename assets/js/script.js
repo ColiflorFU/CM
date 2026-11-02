@@ -176,6 +176,93 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // ── Agenda Modal (non-intrusive, once per session) ──
+    const agendaModal = document.getElementById("agendaModal");
+    if (agendaModal) {
+        const AGENDA_KEY = "agendaModalSeen";
+
+        function setAgendaModalState(visible) {
+            agendaModal.setAttribute("aria-hidden", String(!visible));
+            if (visible) {
+                agendaModal.setAttribute("aria-modal", "true");
+            } else {
+                agendaModal.removeAttribute("aria-modal");
+            }
+            // Make aria-modal="true" truthful: non-modal siblings are inert while shown
+            Array.from(document.body.children).forEach((child) => {
+                if (child === agendaModal || (contactModal && child === contactModal)) return;
+                if (child.tagName === "SCRIPT") return;
+                if (visible) child.setAttribute("inert", "");
+                else child.removeAttribute("inert");
+            });
+        }
+
+        function closeAgendaModal() {
+            sessionStorage.setItem(AGENDA_KEY, "1");
+            setAgendaModalState(false);
+            const focusTarget = agendaPrevFocusEl;
+            agendaPrevFocusEl = null;
+            if (focusTarget && typeof focusTarget.focus === "function" && focusTarget.isConnected) {
+                focusTarget.focus();
+            }
+        }
+
+        agendaModal.addEventListener("click", (e) => {
+            if (e.target.closest("[data-close-agenda]") || e.target === agendaModal) {
+                closeAgendaModal();
+            }
+        });
+
+        const ctaLink = agendaModal.querySelector(".agenda-cta");
+        if (ctaLink) {
+            ctaLink.addEventListener("click", () => {
+                closeAgendaModal();
+            });
+        }
+
+        // Mobile: close immediately on touch-scroll, never block site scroll
+        let agendaTouchStartY = 0;
+        document.addEventListener("touchstart", (e) => {
+            if (agendaModal.getAttribute("aria-hidden") === "false") {
+                agendaTouchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        document.addEventListener("touchmove", (e) => {
+            if (agendaModal.getAttribute("aria-hidden") === "false") {
+                const deltaY = e.touches[0].clientY - agendaTouchStartY;
+                if (Math.abs(deltaY) > 8) {
+                    closeAgendaModal();
+                }
+            }
+        }, { passive: true });
+
+        // Show once per session only, after a brief delay so it never interrupts first render
+        if (sessionStorage.getItem(AGENDA_KEY) !== "1") {
+            agendaTimer = setTimeout(() => {
+                agendaTimer = null;
+                if (sessionStorage.getItem(AGENDA_KEY) === "1") return;
+                // Never stack over the contact modal; yield to a #contact landing
+                if (contactModal && (contactModal.getAttribute("aria-hidden") === "false" || window.location.hash === "#contact")) return;
+                const activeEl = document.activeElement;
+                agendaPrevFocusEl = (activeEl && activeEl !== document.body && activeEl !== document.documentElement && typeof activeEl.focus === "function") ? activeEl : null;
+                setAgendaModalState(true);
+                const cta = agendaModal.querySelector(".agenda-cta");
+                (cta || agendaModal.querySelector("button"))?.focus();
+            }, 1800);
+        }
+    }
+
+    // Escape closes only the top-most visible modal (agenda and contact never coexist)
+    document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (contactModal && contactModal.getAttribute("aria-hidden") === "false") {
+            closeContactModal();
+        } else if (agendaModal && agendaModal.getAttribute("aria-hidden") === "false") {
+            closeAgendaModal();
+        }
+    });
+
     // ── Resto del código ──
     const menuToggle = document.querySelector(".menu-toggle");
     const closeToggle = document.querySelector(".close-toggle");
@@ -349,6 +436,30 @@ document.addEventListener("DOMContentLoaded", () => {
             const mm = window.matchMedia('(max-width: 760px)');
             mm.addEventListener('change', (e) => { isMobile = e.matches; });
 
+            /* ── ARIA helpers ── */
+            function syncAria(idx) {
+                btns.forEach((b, i) => {
+                    b.setAttribute('aria-selected', String(i === idx));
+                    b.setAttribute('tabindex', i === idx ? '0' : '-1');
+                    b.classList.toggle('hero__slider--active', i === idx);
+                });
+                slides.forEach((s, i) => {
+                    s.setAttribute('aria-hidden', String(i !== idx));
+                });
+            }
+
+            function announceSlide(idx) {
+                if (!srStatus) return;
+                const label = slides[idx].querySelector('.hero__label');
+                srStatus.textContent = '';
+                requestAnimationFrame(() => {
+                    srStatus.textContent = label ? label.textContent.trim() : `Slide ${idx + 1} de ${slides.length}`;
+                });
+            }
+
+            /* Initialize initial ARIA state */
+            syncAria(0);
+
             /* ── Texture: page load zoom-out ── */
             const texture = slider.querySelector('.hero__texture');
             if (texture) {
@@ -362,7 +473,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            /* ── Text split: wrap h1 lines ── */
+            /* ── Text split: wrap h1 lines (skip hero__subtitle) ── */
             slides.forEach(slide => {
                 const h1 = slide.querySelector('h1');
                 if (h1 && !h1.dataset.split) {
@@ -394,8 +505,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (isMobile) {
                     slides.forEach(s => s.classList.remove('active'));
                     slides[index].classList.add('active');
-                    btns.forEach(b => b.classList.remove('hero__slider--active'));
-                    btns[index].classList.add('hero__slider--active');
+                    syncAria(index);
+                    announceSlide(index);
                     current = index;
                     return;
                 }
@@ -418,9 +529,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 track.classList.add('animating');
                 track.style.transform = `translateX(-${index * 100}%)`;
 
-                /* Update buttons */
-                btns.forEach(b => b.classList.remove('hero__slider--active'));
-                btns[index].classList.add('hero__slider--active');
+                /* Sync ARIA immediately on transition start */
+                syncAria(index);
+                announceSlide(index);
 
                 /* Cleanup */
                 setTimeout(() => {
@@ -442,6 +553,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     goTo(idx);
                     interval = setInterval(autoAdvance, 6000);
                 });
+            });
+
+            /* ── Arrow-key navigation (WAI-ARIA tabs pattern) ── */
+            slider.addEventListener('keydown', (e) => {
+                if (!e.target.classList.contains('hero__slider-btn')) return;
+                let idx = -1;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    idx = (current + 1) % slides.length;
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    idx = (current - 1 + slides.length) % slides.length;
+                } else if (e.key === 'Home') {
+                    idx = 0;
+                } else if (e.key === 'End') {
+                    idx = slides.length - 1;
+                }
+                if (idx >= 0 && idx !== current) {
+                    e.preventDefault();
+                    clearInterval(interval);
+                    btns[idx].focus();
+                    goTo(idx);
+                    interval = setInterval(autoAdvance, 6000);
+                }
             });
 
             function autoAdvance() {

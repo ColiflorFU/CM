@@ -63,7 +63,7 @@
         "email": "elizabeth@ecmarquitectura.cl",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Paseo Ahumada 341, Of. 504",
+            "streetAddress": "Paseo Bulnes 209, Oficina 62",
             "addressLocality": "Santiago",
             "addressRegion": "Región Metropolitana",
             "addressCountry": "CL"
@@ -82,7 +82,7 @@
 </head>
 
 <body>
-    <div class="cursor-dot" aria-hidden="true"></div>
+
     <header class="site-header" id="top">
         <a class="brand" href="../index.html" aria-label="Contreras Martínez inicio">
             <img src="../Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
@@ -111,7 +111,7 @@
             <span class="nav-sep">/</span>
             <a href="../index.html#faq">PREGUNTAS FRECUENTES</a>
             <span class="nav-sep">/</span>
-            <a href="../index.html#contact">CONTACTO</a>
+            <button class="open-contact-modal" type="button">CONTACTO</button>
         </nav>
     </header>
 
@@ -200,9 +200,9 @@
                             </dl>
                         </div>
                         <div class="sidebar-card sidebar-cta">
-                            <h4>¿Quieres trabajar con nosotros?</h4>
-                            <p>Conversemos sobre tu próximo proyecto arquitectónico.</p>
-                            <a href="../index.html#contact">Contactar <span>&rarr;</span></a>
+                            <h4>Proyecto con el estudio</h4>
+                            <p>Cada proyecto se revisa según su alcance, necesidades y etapas de desarrollo.</p>
+                            <a href="#contact" data-open-contact>Contactar <span>&rarr;</span></a>
                         </div>
                     </div>
                 </div>
@@ -247,13 +247,16 @@
                     <div class="footer-cta-col">
                         <h2>¿Tienes algo en mente?<br>Hablemos.</h2>
                         <div class="architectural-button-wrap">
-                            <a href="#contact" class="cta-btn" data-open-contact>
-                                <span class="cta-bracket-tl"></span>
-                                <span class="cta-bracket-tr"></span>
-                                <span class="cta-bracket-bl"></span>
-                                <span class="cta-bracket-br"></span>
-                                <span class="cta-btn-inner">ESCRÍBENOS</span>
-                            </a>
+                            <div class="hero__actions">
+                                <a class="cta-btn" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">
+                                    <span class="cta-bracket-tl"></span>
+                                    <span class="cta-bracket-tr"></span>
+                                    <span class="cta-bracket-bl"></span>
+                                    <span class="cta-bracket-br"></span>
+                                    <span class="cta-btn-inner">AGENDAR REUNIÓN</span>
+                                </a>
+                                <p class="hero__cta"><a href="https://wa.me/56951278937" class="hero__phone" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">o escribenos</a></p>
+                            </div>
                             <span class="btn-microcopy">Arquitectura, diseño, construcción y regularización</span>
                         </div>
                     </div>
@@ -263,13 +266,14 @@
                         <ul class="footer-col-links">
                             <li><a href="https://www.instagram.com/contrerasmtz.arq/" target="_blank" rel="noopener">Instagram</a></li>
                             <li><a href="https://www.linkedin.com/company/contreras-mart%C3%ADnez-arquitectura-integral/" target="_blank" rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://wa.me/56951278937" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 class="footer-col-label">Escríbenos</h3>
                         <div class="footer-address">
-                            <p>Paseo Ahumada 341, Of. 504<br>Santiago Centro, Chile</p>
+                            <p>Paseo Bulnes 209, Oficina 62<br>Santiago Centro, Chile</p>
                             <a href="mailto:elizabeth@ecmarquitectura.cl">elizabeth@ecmarquitectura.cl</a>
                             <a href="tel:+56951278937">+56 9 5127 8937</a>
                         </div>
@@ -347,6 +351,25 @@
 
                     <p class="form-feedback" aria-live="polite"></p>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agenda Modal (non-intrusive, once per session) -->
+    <div class="agenda-modal-overlay" id="agendaModal" aria-hidden="true" role="dialog" aria-label="Agendar reunión">
+        <div class="agenda-modal-backdrop" data-close-agenda></div>
+        <div class="agenda-modal">
+            <button class="agenda-modal-close" type="button" aria-label="Cerrar" data-close-agenda>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+            </button>
+            <div class="agenda-modal-content">
+                <p class="eyebrow">Primera reunión gratis</p>
+                <h2>¿Conversamos sobre tu proyecto?</h2>
+                <p class="agenda-modal-desc">Elige el día y horario que más te convenga para una primera reunión.</p>
+                <a class="agenda-cta" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">AGENDAR REUNIÓN</a>
             </div>
         </div>
     </div>

@@ -59,7 +59,7 @@
         "email": "elizabeth@ecmarquitectura.cl",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Paseo Ahumada 341, Of. 504",
+            "streetAddress": "Paseo Bulnes 209, Oficina 62",
             "addressLocality": "Santiago",
             "addressRegion": "Región Metropolitana",
             "addressCountry": "CL"
@@ -78,7 +78,7 @@
 </head>
 
 <body id="page-top" class="team-detail-page">
-    <div class="cursor-dot" aria-hidden="true"></div>
+
     <header class="site-header" id="top">
         <a class="brand" href="../index.html" aria-label="Contreras Martínez inicio">
             <img src="../Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
@@ -107,7 +107,7 @@
             <span class="nav-sep">/</span>
             <a href="../index.html#faq">PREGUNTAS FRECUENTES</a>
             <span class="nav-sep">/</span>
-            <a href="../index.html#contact">CONTACTO</a>
+            <button class="open-contact-modal" type="button">CONTACTO</button>
         </nav>
     </header>
 
@@ -149,7 +149,7 @@
                         Desde Paseo Bulnes, Elizabeth desarrolla una arquitectura que valora la historia, el contexto y
                         la evolución de los espacios hacia nuevas formas de habitar, diseñar y construir.
                     </p>
-                    <a href="../index.html#contact" class="btn btn-outline-accent btn-xl font-montserrat fw-light">
+                    <a href="#contact" class="btn btn-outline-accent btn-xl font-montserrat fw-light" data-open-contact>
                         CONTACTAR &rarr;
                     </a>
                 </div>
@@ -270,19 +270,22 @@
         <div class="container px-4 px-lg-5 text-center">
             <div class="sub-heading text-accent mb-3 ls-3 fw-bold text-uppercase">Contacto</div>
             <h2 class="font-montserrat fw-bold display-5 text-white text-uppercase mb-4">
-                Conversemos sobre tu proyecto
+                Sobre el proyecto
             </h2>
             <p class="text-white-50 font-montserrat fw-light lead mx-auto mb-5">
-                Podemos revisar el estado actual de tu propiedad, el alcance del encargo y los pasos necesarios para
+                Se puede revisar el estado actual de la propiedad, el alcance del encargo y los pasos necesarios para
                 proyectar, construir o regularizar.
             </p>
-            <a href="#contact" class="cta-btn" data-open-contact>
-                <span class="cta-bracket-tl"></span>
-                <span class="cta-bracket-tr"></span>
-                <span class="cta-bracket-bl"></span>
-                <span class="cta-bracket-br"></span>
-                <span class="cta-btn-inner">INICIAR CONTACTO</span>
-            </a>
+            <div class="hero__actions justify-content-center">
+                <a class="cta-btn" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">
+                    <span class="cta-bracket-tl"></span>
+                    <span class="cta-bracket-tr"></span>
+                    <span class="cta-bracket-bl"></span>
+                    <span class="cta-bracket-br"></span>
+                    <span class="cta-btn-inner">AGENDAR REUNIÓN</span>
+                </a>
+                <p class="hero__cta"><a href="https://wa.me/56951278937" class="hero__phone" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">o escribenos</a></p>
+            </div>
         </div>
     </section>
 
@@ -297,12 +300,13 @@
                         <a class="btn btn-outline-secondary btn-circle" href="#!">F</a>
                         <a class="btn btn-outline-secondary btn-circle" href="#!">T</a>
                         <a class="btn btn-outline-secondary btn-circle" href="#!">I</a>
+                        <a class="btn btn-outline-secondary btn-circle" href="https://wa.me/56951278937" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">W</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                     <h5 class="text-white font-montserrat fw-bold mb-4">Nuestra Dirección</h5>
                     <p class="text-white-50 mb-0 font-montserrat fw-light">
-                        Paseo Ahumada 341, Of. 504<br>
+                        Paseo Bulnes 209, Oficina 62<br>
                         Santiago Centro, RM<br>
                         Chile
                     </p>
@@ -329,8 +333,8 @@
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     <div class="small text-white-50 font-montserrat fw-light">
-                        Copyright &copy; 2025 Contreras Martínez. Designed by <span class="text-accent">Patrick Zapata
-                            2025</span>
+                        Copyright &copy; 2026 Contreras Martínez. Designed by <span class="text-accent">Patrick Zapata
+                            2026</span>
                     </div>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
@@ -339,8 +343,8 @@
                             href="../index.html#intro">Sobre Nosotros</a>
                         <a class="text-white-50 text-decoration-none me-3 font-montserrat fw-light"
                             href="../index.html#services">Servicios</a>
-                        <a class="text-white-50 text-decoration-none font-montserrat fw-light"
-                            href="../index.html#contact">Contacto</a>
+                        <a class="text-white-50 text-decoration-none font-montserrat fw-light" data-open-contact
+                            href="#contact">Contacto</a>
                     </div>
                 </div>
             </div>
@@ -408,6 +412,25 @@
         </div>
     </div>
 
+    <!-- Agenda Modal (non-intrusive, once per session) -->
+    <div class="agenda-modal-overlay" id="agendaModal" aria-hidden="true" role="dialog" aria-label="Agendar reunión">
+        <div class="agenda-modal-backdrop" data-close-agenda></div>
+        <div class="agenda-modal">
+            <button class="agenda-modal-close" type="button" aria-label="Cerrar" data-close-agenda>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+            </button>
+            <div class="agenda-modal-content">
+                <p class="eyebrow">Primera reunión gratis</p>
+                <h2>¿Conversamos sobre tu proyecto?</h2>
+                <p class="agenda-modal-desc">Elige el día y horario que más te convenga para una primera reunión.</p>
+                <a class="agenda-cta" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">AGENDAR REUNIÓN</a>
+            </div>
+        </div>
+    </div>
+
     <script src="../assets/js/script.js"></script>
 
     <a href="#top" class="scroll-top-fab" aria-label="Volver arriba">
@@ -423,5 +446,4 @@
 </body>
 
 </html>
-
 

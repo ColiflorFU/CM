@@ -37,9 +37,6 @@ body {
     line-height: 1.5;
 }
 
-.cursor-dot {
-    display: none;
-}
 
 @media (hover: hover) and (pointer: fine) {
 
@@ -281,13 +278,14 @@ section {
 
 /* â”€â”€ Text elements initial state (hidden) â”€â”€ */
 .hero__slide .hero__label,
+.hero__slide .hero__subtitle,
 .hero__slide .hero__desc,
 .hero__slide .hero__actions {
     transform: translateY(20px);
     opacity: 0;
 }
 
-/* â”€â”€ Split line wrapper â”€â”€ */
+/* Split line wrapper */
 .hero__line {
     display: block;
     overflow: hidden;
@@ -318,6 +316,13 @@ section {
     transition-delay: 0.6s;
 }
 
+.hero-loaded .hero__slide.active .hero__subtitle {
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.65s,
+                opacity 1s ease 0.65s;
+    transform: translateY(0);
+    opacity: 1;
+}
+
 .hero-loaded .hero__slide.active .hero__desc {
     transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.8s,
                 opacity 1s ease 0.8s;
@@ -339,6 +344,7 @@ section {
 
 .hero__slide.enter .hero__label,
 .hero__slide.enter .hero__line-inner,
+.hero__slide.enter .hero__subtitle,
 .hero__slide.enter .hero__desc,
 .hero__slide.enter .hero__actions {
     transform: translateY(100%);
@@ -366,6 +372,13 @@ section {
 
 .hero__slide.enter-active .hero__line:nth-child(2) .hero__line-inner {
     transition-delay: 0.5s;
+}
+
+.hero__slide.enter-active .hero__subtitle {
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s,
+                opacity 1s ease 0.55s;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .hero__slide.enter-active .hero__desc {
@@ -474,8 +487,42 @@ section {
     transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.hero__portrait {
+    object-position: center 25%;
+}
+
+@media (max-width: 390px) {
+    .hero__portrait {
+        object-position: center 15%;
+    }
+}
+
+.hero__subtitle {
+    display: block;
+    font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.4;
+    letter-spacing: 0;
+}
+
 .hero__slide.active .hero__right img {
     transform: translateX(0) scale(1);
+}
+
+
+/* Screen-reader-only live region */
+.hero__sr-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* â”€â”€ Slider Navigation â”€â”€ */
@@ -782,6 +829,14 @@ section {
 
 .philosophy-headline span + span {
     margin-top: 0.05em;
+}
+
+.philosophy-desc {
+    margin: clamp(20px, 2vw, 32px) 0 0;
+    max-width: 560px;
+    font-size: clamp(0.95rem, 1vw, 1.05rem);
+    line-height: 1.6;
+    color: #555;
 }
 
 .philosophy-image {
@@ -1283,6 +1338,12 @@ section {
     letter-spacing: -0.025em;
 }
 
+.banner-cta-panel h2.banner-cta-text {
+    font-size: clamp(1.05rem, 1.15vw, 1.35rem);
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+}
+
 .banner-cta-panel p {
     max-width: 230px;
     margin: auto 0 24px;
@@ -1349,15 +1410,9 @@ section {
 
 .portfolio-media {
     margin-bottom: 24px;
-    min-height: 340px;
-}
-
-.portfolio-card-tall .portfolio-media {
-    min-height: 480px;
-}
-
-.portfolio-card-wide .portfolio-media {
-    min-height: 340px;
+    min-height: 360px;
+    background-size: cover;
+    background-position: center;
 }
 
 .portfolio-card h3 {
@@ -2630,6 +2685,170 @@ body.modal-open {
     }
 }
 
+/* Agenda Modal (non-intrusive, once per session) */
+.agenda-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.agenda-modal-overlay[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.agenda-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.agenda-modal {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    background: #fff;
+    border-radius: 2px;
+    padding: clamp(32px, 4vw, 48px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.agenda-modal-overlay[aria-hidden="false"] .agenda-modal {
+    transform: translateY(0);
+}
+
+.agenda-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    z-index: 2;
+}
+
+.agenda-modal-close:hover {
+    opacity: 1;
+}
+
+.agenda-modal-content .eyebrow {
+    margin-bottom: 12px;
+}
+
+.agenda-modal-content h2 {
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: var(--ink);
+}
+
+.agenda-modal-desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0 auto 28px;
+    max-width: 360px;
+    line-height: 1.6;
+}
+
+.agenda-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 270px;
+    height: 52px;
+    background: transparent;
+    border: 1px solid var(--bracket-color);
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: inherit;
+    transition: background 0.2s ease;
+}
+
+.agenda-cta::before,
+.agenda-cta::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+}
+
+.agenda-cta::before {
+    top: -6px;
+    left: -6px;
+    border-bottom: 1px solid var(--bracket-color);
+    border-right: 1px solid var(--bracket-color);
+}
+
+.agenda-cta::after {
+    bottom: -6px;
+    right: -6px;
+    border-top: 1px solid var(--bracket-color);
+    border-left: 1px solid var(--bracket-color);
+}
+
+.agenda-cta:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* Keep the accent treatment exclusive to the Calendly popup CTA. */
+.agenda-modal .agenda-cta {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+}
+
+.agenda-modal .agenda-cta::before {
+    border-bottom-color: var(--orange);
+    border-right-color: var(--orange);
+}
+
+.agenda-modal .agenda-cta::after {
+    border-top-color: var(--orange);
+    border-left-color: var(--orange);
+}
+
+.agenda-modal .agenda-cta:hover {
+    background: #df850c;
+}
+
+@media (max-width: 768px) {
+    .agenda-modal-overlay {
+        padding: 16px;
+    }
+
+    .agenda-cta {
+        width: 100%;
+    }
+}
+
 /* Form Submit Button â€” corner brackets (opening outward) */
 .form-submit {
     position: relative;
@@ -3050,12 +3269,13 @@ body.modal-open {
     position: sticky;
     top: 86px;
     overflow: hidden;
+    background: var(--paper);
 }
 
 .proj-img-fixed img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
@@ -3535,6 +3755,11 @@ body.modal-open {
         opacity: 1 !important;
     }
 
+    .hero__slide .hero__subtitle {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
     .hero__slide .hero__line-inner {
         transform: none !important;
         opacity: 1 !important;
@@ -3935,6 +4160,11 @@ body.modal-open {
         letter-spacing: -0.025em;
     }
 
+    .banner-cta-panel h2.banner-cta-text {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+
     .banner-cta-panel p {
         max-width: 230px;
         margin: auto 0 24px;
@@ -4260,6 +4490,11 @@ body.modal-open {
         font-weight: 500;
         line-height: 1.18;
         letter-spacing: -0.025em;
+    }
+
+    .banner-cta-panel h2.banner-cta-text {
+        font-size: 1.2rem;
+        line-height: 1.4;
     }
 
     .banner-cta-panel p {

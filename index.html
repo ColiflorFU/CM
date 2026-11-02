@@ -42,7 +42,7 @@
         "email": "elizabeth@ecmarquitectura.cl",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Paseo Ahumada 341, Of. 504",
+            "streetAddress": "Paseo Bulnes 209, Oficina 62",
             "addressLocality": "Santiago",
             "addressRegion": "Región Metropolitana",
             "addressCountry": "CL"
@@ -77,7 +77,7 @@
                 "name": "¿Trabajan con proyectos residenciales y comerciales?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Sí. Desarrollamos viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándonos a la normativa de cada caso."
+                    "text": "Sí. El estudio desarrolla viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándose a la normativa de cada caso."
                 }
             },
             {
@@ -93,7 +93,7 @@
                 "name": "¿En qué zonas trabajan?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Principalmente en Santiago y Región Metropolitana, pero gestionamos proyectos en otras regiones mediante coordinación remota y visitas programadas."
+                    "text": "Principalmente en Santiago y Región Metropolitana, pero se gestionan proyectos en otras regiones mediante coordinación remota y visitas programadas."
                 }
             },
             {
@@ -101,7 +101,7 @@
                 "name": "¿Cómo inicio un proyecto con ustedes?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Coordinamos una reunión para entender tu idea y definir el mejor camino."
+                    "text": "Se agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Se coordina una reunión para comprender la idea del cliente y definir el mejor camino."
                 }
             }
         ]
@@ -110,7 +110,7 @@
 </head>
 
 <body>
-    <div class="cursor-dot" aria-hidden="true"></div>
+
     <header class="site-header" id="top">
         <a class="brand" href="index.html" aria-label="Contreras Martínez inicio">
             <img src="Recursos/Logos/LOGO WEB DESK.svg" alt="Contreras Martínez Arquitectura Integral">
@@ -170,7 +170,32 @@
         <section class="hero hero-slider">
             <div class="hero__texture"></div>
             <div class="hero__track">
-                <div class="hero__slide active">
+                <div class="hero__slide active" id="hero-slide-0" role="tabpanel" aria-labelledby="hero-tab-0" aria-hidden="false">
+                    <div class="hero__left">
+                        <div class="hero__content">
+                            <span class="hero__label">ARQUITECTA FUNDADORA · CONTRERAS MARTÍNEZ</span>
+                            <h1>Elizabeth Contreras</h1>
+                            <p class="hero__subtitle">Arquitectura con criterio técnico y sentido del lugar.</p>
+                            <p class="hero__desc">Proyectos de arquitectura, remodelación e interiorismo con oficio técnico. Desde 2015 en Santiago.</p>
+
+                            <div class="hero__actions">
+                                <a class="cta-btn" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">
+                                    <span class="cta-bracket-tl"></span>
+                                    <span class="cta-bracket-tr"></span>
+                                    <span class="cta-bracket-bl"></span>
+                                    <span class="cta-bracket-br"></span>
+                                    <span class="cta-btn-inner">AGENDAR REUNIÓN</span>
+                                </a>
+                                <p class="hero__cta"><a href="https://wa.me/56951278937" class="hero__phone" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">o escribenos</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__right">
+                        <img class="hero__portrait" src="Recursos/Miscelaneos/elizabeth-hero.png" alt="Elizabeth Contreras — Arquitecta fundadora de Contreras Martínez" loading="eager">
+                    </div>
+                </div>
+
+                <div class="hero__slide" id="hero-slide-1" role="tabpanel" aria-labelledby="hero-tab-1" aria-hidden="true">
                     <div class="hero__left">
                         <div class="hero__content">
                             <span class="hero__label">Elizabeth Contreras</span>
@@ -198,6 +223,7 @@
             <div class="hero__slider" role="tablist" aria-label="Navegación del slider">
                 <button class="hero__slider-btn hero__slider--active" role="tab" aria-selected="true" data-slide="0">01</button>
             </div>
+            <div class="hero__sr-status" aria-live="polite" aria-atomic="true"></div>
         </section>
 
         <section class="studio-section" id="studio">
@@ -208,7 +234,7 @@
                     <a class="text-link studio-heading-link" href="#services">Conocer servicios <span>&rarr;</span></a>
                 </div>
 
-                <div class="studio-image-small media-block" style="background-image:url('Recursos/Miscelaneos/materiales.png')"></div>
+                <div class="studio-image-small media-block" style="background-image:url('Recursos/estudio01.jpeg')"></div>
 
                 <div class="studio-copy">
                     <p>
@@ -338,32 +364,32 @@
 
                 <div class="portfolio-grid">
                     <div class="portfolio-track" id="portfolioTrack">
-                        <a href="pages/proyecto-ito-mapocho.html" class="portfolio-card portfolio-card-tall">
+                        <a href="pages/proyecto-ito-mapocho.html" class="portfolio-card">
                             <div class="media-block portfolio-media" style="background-image:url('Recursos/Proyectos/En la obra/ITO Estación Mapocho/PROYECTOBANNER.PNG')"></div>
                             <h3>ITO Estación Mapocho</h3>
                             <span class="portfolio-tag">Inspección Técnica</span>
                         </a>
-                        <a href="pages/proyecto-diseno-inspeccion.html" class="portfolio-card portfolio-card-wide">
+                        <a href="pages/proyecto-diseno-inspeccion.html" class="portfolio-card">
                             <div class="media-block portfolio-media" style="background-image:url('Recursos/Proyectos/En la obra/Diseño e inspección Cierro Plaza Pezoa Parque Almagro/BANNERPROYECTO.JPEG')"></div>
                             <h3>Diseño e inspección</h3>
                             <span class="portfolio-tag">Arquitectura</span>
                         </a>
-                        <a href="pages/proyecto-la-florida.html" class="portfolio-card portfolio-card-tall">
+                        <a href="pages/proyecto-la-florida.html" class="portfolio-card">
                             <div class="media-block portfolio-media" style="background-image:url('Recursos/Proyectos/Locales comerciales/La Florida/bANNER.JPEG')"></div>
                             <h3>La Florida</h3>
                             <span class="portfolio-tag">Local Comercial</span>
                         </a>
-                        <a href="pages/proyecto-estacion-central.html" class="portfolio-card portfolio-card-wide">
+                        <a href="pages/proyecto-estacion-central.html" class="portfolio-card">
                             <div class="media-block portfolio-media" style="background-image:url('Recursos/Proyectos/Locales comerciales/Estación Central/banner.JPEG')"></div>
                             <h3>Local Estación Central</h3>
                             <span class="portfolio-tag">Local Comercial</span>
                         </a>
-                        <a href="pages/proyecto-carlos-hernandez.html" class="portfolio-card portfolio-card-tall">
+                        <a href="pages/proyecto-carlos-hernandez.html" class="portfolio-card">
                             <div class="media-block portfolio-media" style="background-image:url('Recursos/Proyectos/Viviendas/Carlos Hernández/BANNER.jpg')"></div>
                             <h3>Carlos Hernández</h3>
                             <span class="portfolio-tag">Remodelación</span>
                         </a>
-                        <a href="pages/proyecto-ofwayne.html" class="portfolio-card portfolio-card-wide">
+                        <a href="pages/proyecto-ofwayne.html" class="portfolio-card">
                             <div class="media-block portfolio-media" style="background-image:url('Recursos/Proyectos/Viviendas/OfWayne/BANNER.JPEG')"></div>
                             <h3>OfWayne</h3>
                             <span class="portfolio-tag">Local Comercial</span>
@@ -381,8 +407,7 @@
         <section class="banner-cta-section" aria-label="Consulta de proyecto">
             <div class="banner-grid-lines" aria-hidden="true"></div>
             <div class="banner-cta-panel">
-                <h2>Diseño integral, cercano y técnicamente claro.</h2>
-                <p>Revisemos tu idea, propiedad o regularización para definir el camino más adecuado.</p>
+                <h2 class="banner-cta-text">La arquitectura integral se define como el diseño de un proyecto en la totalidad de lo que esto significa: diseño, plástica y funcionalidad.</h2>
                 <a href="#contact" data-open-contact>Agendar una conversación</a>
             </div>
         </section>
@@ -390,11 +415,12 @@
 <section class="process-section" id="process">
             <div class="container process-feature-grid">
                 <div class="process-feature-copy">
-                    <p class="eyebrow">Nuestro proceso</p>
-                    <h2>Pasos claros. Ritmo cuidado. Flujo colaborativo.</h2>
+                    <p class="eyebrow">Metodología de proyecto</p>
+                    <h2>Idea Inicial<br>Proyección Integral<br>Decisiones en equipo</h2>
                     <p class="process-intro">
-                        Integgramos diseño, coordinación técnica y decisiones normativas para que cada etapa avance con
-                        claridad, desde la primera conversación hasta la ejecución o regularización.
+                        Diseño, coordinación técnica y decisiones normativas se integran en conjunto cliente-arquitecto
+                        en cada etapa del proyecto, desde la primera conversación hasta la ejecución y recepción
+                        final.
                     </p>
 
                     <div class="process-sketch" aria-hidden="true">
@@ -404,22 +430,22 @@
                     <div class="process-accordion">
                         <details open>
                             <summary><span>01</span> Diagnóstico</summary>
-                            <p>Levantamos necesidades, revisamos contexto, normativa, posibilidades del espacio y
+                            <p>Se levantan necesidades, se revisa contexto, normativa, posibilidades del espacio y
                                 objetivos del encargo.</p>
                         </details>
                         <details>
                             <summary><span>02</span> Planificación</summary>
-                            <p>Definimos alcance, etapas, documentación requerida, especialidades y ruta técnica para
+                            <p>Se define alcance, etapas, documentación requerida, especialidades y ruta técnica para
                                 avanzar sin improvisar.</p>
                         </details>
                         <details>
                             <summary><span>03</span> Diseño</summary>
-                            <p>Desarrollamos una propuesta coherente con la identidad del cliente, el uso cotidiano y
+                            <p>Se desarrolla una propuesta coherente con la identidad del cliente, el uso cotidiano y
                                 la factibilidad constructiva.</p>
                         </details>
                         <details>
                             <summary><span>04</span> Ejecución</summary>
-                            <p>Coordinamos obra, revisión técnica, permisos o regularización según las necesidades de
+                            <p>Se coordina obra, revisión técnica, permisos o regularización según las necesidades de
                                 cada proyecto.</p>
                         </details>
                     </div>
@@ -461,7 +487,7 @@
             </div>
             <div class="faq-section__content">
                 <p class="faq-section__eyebrow">Preguntas frecuentes</p>
-                <h2 class="faq-section__headline">Resolvemos tus dudas</h2>
+                <h2 class="faq-section__headline">Preguntas frecuentes</h2>
                 <div class="faq-list">
                     <details open>
                         <summary>¿Qué servicios ofrece el estudio?</summary>
@@ -469,7 +495,7 @@
                     </details>
                     <details>
                         <summary>¿Trabajan con proyectos residenciales y comerciales?</summary>
-                        <p>Sí. Desarrollamos viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándonos a la normativa de cada caso.</p>
+                        <p>Sí. El estudio desarrolla viviendas, ampliaciones, remodelaciones, locales comerciales, bodegas industriales y equipamiento, adaptándose a la normativa de cada caso.</p>
                     </details>
                     <details>
                         <summary>¿Cuánto cuesta contratar un arquitecto?</summary>
@@ -477,11 +503,11 @@
                     </details>
                     <details>
                         <summary>¿En qué zonas trabajan?</summary>
-                        <p>Principalmente en Santiago y Región Metropolitana, pero gestionamos proyectos en otras regiones mediante coordinación remota y visitas programadas.</p>
+                        <p>Principalmente en Santiago y Región Metropolitana, pero se gestionan proyectos en otras regiones mediante coordinación remota y visitas programadas.</p>
                     </details>
                     <details>
                         <summary>¿Cómo inicio un proyecto con ustedes?</summary>
-                        <p>Agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Coordinamos una reunión para entender tu idea y definir el mejor camino.</p>
+                        <p>Se agenda una conversación a través del formulario de contacto, por correo o WhatsApp. Se coordina una reunión para comprender la idea del cliente y definir el mejor camino.</p>
                     </details>
                 </div>
             </div>
@@ -499,13 +525,16 @@
                     <div class="footer-cta-col">
                         <h2>¿Tienes algo en mente?<br>Hablemos.</h2>
                         <div class="architectural-button-wrap">
-                            <a href="#contact" class="cta-btn" data-open-contact>
-                                <span class="cta-bracket-tl"></span>
-                                <span class="cta-bracket-tr"></span>
-                                <span class="cta-bracket-bl"></span>
-                                <span class="cta-bracket-br"></span>
-                                <span class="cta-btn-inner">ESCRÍBENOS</span>
-                            </a>
+                            <div class="hero__actions">
+                                <a class="cta-btn" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">
+                                    <span class="cta-bracket-tl"></span>
+                                    <span class="cta-bracket-tr"></span>
+                                    <span class="cta-bracket-bl"></span>
+                                    <span class="cta-bracket-br"></span>
+                                    <span class="cta-btn-inner">AGENDAR REUNIÓN</span>
+                                </a>
+                                <p class="hero__cta"><a href="https://wa.me/56951278937" class="hero__phone" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">o escribenos</a></p>
+                            </div>
                             <span class="btn-microcopy">Arquitectura, diseño, construcción y regularización</span>
                         </div>
                     </div>
@@ -516,13 +545,14 @@
                         <ul class="footer-col-links">
                             <li><a href="https://www.instagram.com/contrerasmtz.arq/" target="_blank" rel="noopener">Instagram</a></li>
                             <li><a href="https://www.linkedin.com/company/contreras-mart%C3%ADnez-arquitectura-integral/" target="_blank" rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://wa.me/56951278937" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
                         </ul>
                     </div>
 
                     <!-- Address Column -->
                     <div class="footer-address">
                         <h3 class="footer-col-label">Escríbenos</h3>
-                        <p>Paseo Ahumada 341, Of. 504<br>Santiago Centro, Chile</p>
+                        <p>Paseo Bulnes 209, Oficina 62<br>Santiago Centro, Chile</p>
                         <a href="mailto:elizabeth@ecmarquitectura.cl">elizabeth@ecmarquitectura.cl</a>
                         <a href="tel:+56951278937">+56 9 5127 8937</a>
                     </div>
@@ -600,6 +630,25 @@
 
                     <p class="form-feedback" aria-live="polite"></p>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agenda Modal (non-intrusive, once per session) -->
+    <div class="agenda-modal-overlay" id="agendaModal" aria-hidden="true" role="dialog" aria-label="Agendar reunión">
+        <div class="agenda-modal-backdrop" data-close-agenda></div>
+        <div class="agenda-modal">
+            <button class="agenda-modal-close" type="button" aria-label="Cerrar" data-close-agenda>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+            </button>
+            <div class="agenda-modal-content">
+                <p class="eyebrow">Primera reunión gratis</p>
+                <h2>¿Conversamos sobre tu proyecto?</h2>
+                <p class="agenda-modal-desc">Elige el día y horario que más te convenga para una primera reunión.</p>
+                <a class="agenda-cta" href="https://calendly.com/arquitecturaecm" target="_blank" rel="noopener noreferrer">AGENDAR REUNIÓN</a>
             </div>
         </div>
     </div>

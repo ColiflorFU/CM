@@ -2,6 +2,7 @@ CM/
 .atl/
 bkp/
 SESSION_CONTEXT.md
+.DS_Store
 
 # Composer (PHPMailer)
 vendor/
@@ -13,3 +14,6 @@ smtp-config.php
 
 # Imágenes originales de la clienta (muy pesadas para git)
 _backups/Imagenes-Proyectos/
+
+# JPG untracked de OfWayne (no versionar, proteger de git add .)
+Recursos/Proyectos/Viviendas/OfWayne/Sin título.jpg
