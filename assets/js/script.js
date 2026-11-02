@@ -40,7 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // ── Custom cursor ──
-    const cursor = document.querySelector(".cursor-dot");
+    const cursor = document.querySelector(".cursor-dot") || (() => {
+        const dot = document.createElement("div");
+        dot.className = "cursor-dot";
+        dot.setAttribute("aria-hidden", "true");
+        document.body.appendChild(dot);
+        return dot;
+    })();
     if (cursor && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
         document.addEventListener("mousemove", (e) => {
             cursor.style.left = e.clientX + "px";
