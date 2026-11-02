@@ -434,6 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const track = slider.querySelector('.hero__track');
         const slides = slider.querySelectorAll('.hero__slide');
         const btns = slider.querySelectorAll('.hero__slider-btn');
+        const srStatus = slider.querySelector('.hero__sr-status');
         if (track && slides.length && btns.length) {
             let current = 0;
             let animating = true; /* Locked during page load */
